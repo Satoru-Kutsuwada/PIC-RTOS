@@ -1,0 +1,3576 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"86 Source/FreeRTOS/include\task.h
+[; ;Source/FreeRTOS/include\task.h: 86: struct tskTaskControlBlock;
+[s S935 ]
+[n S935 tskTaskControlBlock ]
+[v F7363 `*S935 ~T0 @X0 1 t ]
+[v F7365 `*S935 ~T0 @X0 1 t ]
+"224 Source/FreeRTOS/stream_buffer.c
+[; ;Source/FreeRTOS/stream_buffer.c: 224: {
+[s S941 `Vui 1 `Vui 1 `ui 1 `ui 1 `V*S935 1 `V*S935 1 `*uc 1 `uc 1 `uc 1 ]
+[n S941 StreamBufferDef_t xTail xHead xLength xTriggerLevelBytes xTaskWaitingToReceive xTaskWaitingToSend pucBuffer ucFlags uxStreamBufferNumber ]
+[v F7565 `*c ~T0 @X0 1 t ]
+[v F7562 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+[v F7570 `*c ~T0 @X0 1 t ]
+[v F7567 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+[v F7579 `*c ~T0 @X0 1 t ]
+[v F7576 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+[v F7585 `*c ~T0 @X0 1 t ]
+[v F7582 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+"356 Source/FreeRTOS/include\FreeRTOS.h
+[; ;Source/FreeRTOS/include\FreeRTOS.h: 356: void Xprintf(const char *string, ...);
+[v _Xprintf `(v ~T0 @X0 0 ev`*Cuc ]
+"175 Source/FreeRTOS/include/portable.h
+[; ;Source/FreeRTOS/include/portable.h: 175: void * pvPortMalloc( size_t xSize ) ;
+[v _pvPortMalloc `(*v ~T0 @X0 0 ef1`ui ]
+[v F7530 `*S941 ~T0 @X0 1 t ]
+[v F7531 `*uc ~T0 @X0 1 t ]
+[v F7535 `*c ~T0 @X0 1 t ]
+[v F7532 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+[v F7540 `*c ~T0 @X0 1 t ]
+[v F7537 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+"311 Source/FreeRTOS/stream_buffer.c
+[; ;Source/FreeRTOS/stream_buffer.c: 311: static void prvInitialiseNewStreamBuffer( StreamBuffer_t * const pxStreamBuffer,
+[v _prvInitialiseNewStreamBuffer `(v ~T0 @X0 0 sf7`C*S941`C*uc`ui`ui`uc`*F7532`*F7537 ]
+"178 Source/FreeRTOS/include/portable.h
+[; ;Source/FreeRTOS/include/portable.h: 178: void vPortFree( void * pv ) ;
+[v _vPortFree `(v ~T0 @X0 0 ef1`*v ]
+"29 C:\Program Files\Microchip\xc8\v2.41\pic\include\c99\string.h
+[; ;C:\Program Files\Microchip\xc8\v2.41\pic\include\c99\string.h: 29: void *memset (void *, int, size_t);
+[v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
+[v F7601 `*c ~T0 @X0 1 t ]
+[v F7598 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+[v F7606 `*c ~T0 @X0 1 t ]
+[v F7603 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+[v F7617 `*c ~T0 @X0 1 t ]
+[v F7614 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+[v F7622 `*c ~T0 @X0 1 t ]
+[v F7619 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+"18561 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18561: extern volatile unsigned char POSTINC1 __attribute__((address(0xFE6)));
+[v _POSTINC1 `Vuc ~T0 @X0 0 e@4070 ]
+"18960
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18960: extern volatile unsigned char INTCON __attribute__((address(0xFF2)));
+[v _INTCON `Vuc ~T0 @X0 0 e@4082 ]
+"18966
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18966:     struct {
+[s S894 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S894 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+"18976
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18976:     struct {
+[s S895 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S895 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+"18986
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18986:     struct {
+[s S896 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S896 . . GIEL GIEH ]
+"18965
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18965: typedef union {
+[u S893 `S894 1 `S895 1 `S896 1 ]
+[n S893 . . . . ]
+"18992
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18992: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
+[v _INTCONbits `VS893 ~T0 @X0 0 e@4082 ]
+"18581
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18581: extern volatile unsigned char INDF1 __attribute__((address(0xFE7)));
+[v _INDF1 `Vuc ~T0 @X0 0 e@4071 ]
+[v F7501 `*CS941 ~T0 @X0 1 t ]
+"247 Source/FreeRTOS/stream_buffer.c
+[; ;Source/FreeRTOS/stream_buffer.c: 247: static size_t prvBytesInBuffer( const StreamBuffer_t * const pxStreamBuffer ) ;
+[v _prvBytesInBuffer `(ui ~T0 @X0 0 sf1`C*CS941 ]
+"120 Source/FreeRTOS/include\task.h
+[; ;Source/FreeRTOS/include\task.h: 120: {
+[s S936 `c 1 `us 1 ]
+[n S936 xTIME_OUT xOverflowCount xTimeOnEntering ]
+[v F7289 `*S936 ~T0 @X0 1 t ]
+"2788
+[; ;Source/FreeRTOS/include\task.h: 2788: void vTaskSetTimeOutState( TimeOut_t * const pxTimeOut ) ;
+[v _vTaskSetTimeOutState `(v ~T0 @X0 0 ef1`C*S936 ]
+"2701
+[; ;Source/FreeRTOS/include\task.h: 2701: BaseType_t xTaskGenericNotifyStateClear( TaskHandle_t xTask,
+[v _xTaskGenericNotifyStateClear `(c ~T0 @X0 0 ef2`*S935`uc ]
+"3025
+[; ;Source/FreeRTOS/include\task.h: 3025: TaskHandle_t xTaskGetCurrentTaskHandle( void ) ;
+[v _xTaskGetCurrentTaskHandle `(*S935 ~T0 @X0 0 ef ]
+"2364
+[; ;Source/FreeRTOS/include\task.h: 2364: BaseType_t xTaskGenericNotifyWait( UBaseType_t uxIndexToWaitOn,
+[v _xTaskGenericNotifyWait `(c ~T0 @X0 0 ef5`uc`ul`ul`*ul`us ]
+[v F7293 `*S936 ~T0 @X0 1 t ]
+[v F7294 `*us ~T0 @X0 1 t ]
+"2873
+[; ;Source/FreeRTOS/include\task.h: 2873: BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut,
+[v _xTaskCheckForTimeOut `(c ~T0 @X0 0 ef2`C*S936`C*us ]
+[v F7517 `*S941 ~T0 @X0 1 t ]
+"284 Source/FreeRTOS/stream_buffer.c
+[; ;Source/FreeRTOS/stream_buffer.c: 284: static size_t prvWriteMessageToBuffer( StreamBuffer_t * const pxStreamBuffer,
+[v _prvWriteMessageToBuffer `(ui ~T0 @X0 0 sf5`C*S941`*Cv`ui`ui`ui ]
+"1370 Source/FreeRTOS/include\task.h
+[; ;Source/FreeRTOS/include\task.h: 1370: void vTaskSuspendAll( void ) ;
+[v _vTaskSuspendAll `(v ~T0 @X0 0 ef ]
+"757 Source/FreeRTOS/stream_buffer.c
+[; ;Source/FreeRTOS/stream_buffer.c: 757:             vTaskSuspendAll(); { if( ( ( pxStreamBuffer ) )->xTaskWaitingToReceive != ((void*)0) ) { ( void ) xTaskGenericNotify( ( ( ( pxStreamBuffer ) )->xTaskWaitingToReceive ), ( ( 0 ) ), ( ( uint32_t ) 0 ), ( eNoAction ), ((void*)0) ); ( ( pxStreamBuffer ) )->xTaskWaitingToReceive = ((void*)0); } } ( void ) xTaskResumeAll();;
+[c E7121 0 1 2 3 4 .. ]
+[n E7121 . eNoAction eSetBits eIncrement eSetValueWithOverwrite eSetValueWithoutOverwrite  ]
+"2068 Source/FreeRTOS/include\task.h
+[; ;Source/FreeRTOS/include\task.h: 2068: BaseType_t xTaskGenericNotify( TaskHandle_t xTaskToNotify,
+[v _xTaskGenericNotify `(c ~T0 @X0 0 ef5`*S935`uc`ul`E7121`*ul ]
+"1426
+[; ;Source/FreeRTOS/include\task.h: 1426: BaseType_t xTaskResumeAll( void ) ;
+[v _xTaskResumeAll `(c ~T0 @X0 0 ef ]
+[v F7670 `*c ~T0 @X0 1 t ]
+"2220
+[; ;Source/FreeRTOS/include\task.h: 2220: BaseType_t xTaskGenericNotifyFromISR( TaskHandle_t xTaskToNotify,
+[v _xTaskGenericNotifyFromISR `(c ~T0 @X0 0 ef6`*S935`uc`ul`E7121`*ul`*c ]
+[v F7687 `*S941 ~T0 @X0 1 t ]
+[v F7505 `*S941 ~T0 @X0 1 t ]
+"260 Source/FreeRTOS/stream_buffer.c
+[; ;Source/FreeRTOS/stream_buffer.c: 260: static size_t prvWriteBytesToBuffer( StreamBuffer_t * const pxStreamBuffer,
+[v _prvWriteBytesToBuffer `(ui ~T0 @X0 0 sf4`C*S941`*Cuc`ui`ui ]
+"272
+[; ;Source/FreeRTOS/stream_buffer.c: 272: static size_t prvReadMessageFromBuffer( StreamBuffer_t * pxStreamBuffer,
+[v _prvReadMessageFromBuffer `(ui ~T0 @X0 0 sf4`*S941`*v`ui`ui ]
+"302
+[; ;Source/FreeRTOS/stream_buffer.c: 302: static size_t prvReadBytesFromBuffer( StreamBuffer_t * pxStreamBuffer,
+[v _prvReadBytesFromBuffer `(ui ~T0 @X0 0 sf4`*S941`*uc`ui`ui ]
+[v F7722 `*c ~T0 @X0 1 t ]
+[v F7782 `*S941 ~T0 @X0 1 t ]
+"27 C:\Program Files\Microchip\xc8\v2.41\pic\include\c99\string.h
+[; ;C:\Program Files\Microchip\xc8\v2.41\pic\include\c99\string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
+[v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
+[v F7796 `*CS941 ~T0 @X0 1 t ]
+[v F7801 `*S941 ~T0 @X0 1 t ]
+[v F7802 `*uc ~T0 @X0 1 t ]
+[v F7806 `*c ~T0 @X0 1 t ]
+[v F7803 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+[v F7811 `*c ~T0 @X0 1 t ]
+[v F7808 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+[v F7824 `*c ~T0 @X0 1 t ]
+[v F7821 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+[v F7830 `*c ~T0 @X0 1 t ]
+[v F7827 `(v ~T0 @X0 0 tf3`*S941`c`C*c ]
+"55 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 55: __asm("ADCTRIG equ 0EB8h");
+[; <" ADCTRIG equ 0EB8h ;# ">
+"111
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 111: __asm("PMDIS0 equ 0EB9h");
+[; <" PMDIS0 equ 0EB9h ;# ">
+"116
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 116: __asm("PD0 equ 0EB9h");
+[; <" PD0 equ 0EB9h ;# ">
+"417
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 417: __asm("PMDIS1 equ 0EBAh");
+[; <" PMDIS1 equ 0EBAh ;# ">
+"422
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 422: __asm("PD1 equ 0EBAh");
+[; <" PD1 equ 0EBAh ;# ">
+"655
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 655: __asm("PMDIS2 equ 0EBBh");
+[; <" PMDIS2 equ 0EBBh ;# ">
+"660
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 660: __asm("PD2 equ 0EBBh");
+[; <" PD2 equ 0EBBh ;# ">
+"865
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 865: __asm("PMDIS3 equ 0EBCh");
+[; <" PMDIS3 equ 0EBCh ;# ">
+"870
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 870: __asm("PD3 equ 0EBCh");
+[; <" PD3 equ 0EBCh ;# ">
+"1103
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1103: __asm("PPSCON equ 0EBFh");
+[; <" PPSCON equ 0EBFh ;# ">
+"1123
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1123: __asm("RPOR0 equ 0EC0h");
+[; <" RPOR0 equ 0EC0h ;# ">
+"1130
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1130: __asm("RPOR1 equ 0EC1h");
+[; <" RPOR1 equ 0EC1h ;# ">
+"1137
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1137: __asm("RPOR2 equ 0EC2h");
+[; <" RPOR2 equ 0EC2h ;# ">
+"1144
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1144: __asm("RPOR3 equ 0EC3h");
+[; <" RPOR3 equ 0EC3h ;# ">
+"1151
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1151: __asm("RPOR4 equ 0EC4h");
+[; <" RPOR4 equ 0EC4h ;# ">
+"1158
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1158: __asm("RPOR5 equ 0EC5h");
+[; <" RPOR5 equ 0EC5h ;# ">
+"1165
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1165: __asm("RPOR6 equ 0EC6h");
+[; <" RPOR6 equ 0EC6h ;# ">
+"1172
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1172: __asm("RPOR7 equ 0EC7h");
+[; <" RPOR7 equ 0EC7h ;# ">
+"1179
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1179: __asm("RPOR8 equ 0EC8h");
+[; <" RPOR8 equ 0EC8h ;# ">
+"1186
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1186: __asm("RPOR9 equ 0EC9h");
+[; <" RPOR9 equ 0EC9h ;# ">
+"1193
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1193: __asm("RPOR10 equ 0ECAh");
+[; <" RPOR10 equ 0ECAh ;# ">
+"1200
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1200: __asm("RPOR11 equ 0ECBh");
+[; <" RPOR11 equ 0ECBh ;# ">
+"1207
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1207: __asm("RPOR12 equ 0ECCh");
+[; <" RPOR12 equ 0ECCh ;# ">
+"1214
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1214: __asm("RPOR13 equ 0ECDh");
+[; <" RPOR13 equ 0ECDh ;# ">
+"1221
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1221: __asm("RPOR17 equ 0ED1h");
+[; <" RPOR17 equ 0ED1h ;# ">
+"1228
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1228: __asm("RPOR18 equ 0ED2h");
+[; <" RPOR18 equ 0ED2h ;# ">
+"1235
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1235: __asm("RPOR19 equ 0ED3h");
+[; <" RPOR19 equ 0ED3h ;# ">
+"1242
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1242: __asm("RPOR20 equ 0ED4h");
+[; <" RPOR20 equ 0ED4h ;# ">
+"1249
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1249: __asm("RPOR21 equ 0ED5h");
+[; <" RPOR21 equ 0ED5h ;# ">
+"1256
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1256: __asm("RPOR22 equ 0ED6h");
+[; <" RPOR22 equ 0ED6h ;# ">
+"1263
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1263: __asm("RPOR23 equ 0ED7h");
+[; <" RPOR23 equ 0ED7h ;# ">
+"1270
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1270: __asm("RPOR24 equ 0ED8h");
+[; <" RPOR24 equ 0ED8h ;# ">
+"1277
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1277: __asm("RPINR1 equ 0EE1h");
+[; <" RPINR1 equ 0EE1h ;# ">
+"1284
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1284: __asm("RPINR2 equ 0EE2h");
+[; <" RPINR2 equ 0EE2h ;# ">
+"1291
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1291: __asm("RPINR3 equ 0EE3h");
+[; <" RPINR3 equ 0EE3h ;# ">
+"1298
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1298: __asm("RPINR4 equ 0EE4h");
+[; <" RPINR4 equ 0EE4h ;# ">
+"1305
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1305: __asm("RPINR6 equ 0EE6h");
+[; <" RPINR6 equ 0EE6h ;# ">
+"1312
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1312: __asm("RPINR15 equ 0EE7h");
+[; <" RPINR15 equ 0EE7h ;# ">
+"1319
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1319: __asm("RPINR7 equ 0EE8h");
+[; <" RPINR7 equ 0EE8h ;# ">
+"1326
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1326: __asm("RPINR8 equ 0EE9h");
+[; <" RPINR8 equ 0EE9h ;# ">
+"1333
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1333: __asm("RPINR9 equ 0EEAh");
+[; <" RPINR9 equ 0EEAh ;# ">
+"1340
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1340: __asm("RPINR12 equ 0EF2h");
+[; <" RPINR12 equ 0EF2h ;# ">
+"1347
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1347: __asm("RPINR13 equ 0EF3h");
+[; <" RPINR13 equ 0EF3h ;# ">
+"1354
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1354: __asm("RPINR14 equ 0EF4h");
+[; <" RPINR14 equ 0EF4h ;# ">
+"1361
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1361: __asm("RPINR16 equ 0EF7h");
+[; <" RPINR16 equ 0EF7h ;# ">
+"1368
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1368: __asm("RPINR17 equ 0EF8h");
+[; <" RPINR17 equ 0EF8h ;# ">
+"1375
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1375: __asm("RPINR21 equ 0EFCh");
+[; <" RPINR21 equ 0EFCh ;# ">
+"1382
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1382: __asm("RPINR22 equ 0EFDh");
+[; <" RPINR22 equ 0EFDh ;# ">
+"1389
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1389: __asm("RPINR23 equ 0EFEh");
+[; <" RPINR23 equ 0EFEh ;# ">
+"1396
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1396: __asm("RPINR24 equ 0EFFh");
+[; <" RPINR24 equ 0EFFh ;# ">
+"1403
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1403: __asm("CCP10CON equ 0F00h");
+[; <" CCP10CON equ 0F00h ;# ">
+"1467
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1467: __asm("CCPR10L equ 0F01h");
+[; <" CCPR10L equ 0F01h ;# ">
+"1487
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1487: __asm("CCPR10H equ 0F02h");
+[; <" CCPR10H equ 0F02h ;# ">
+"1507
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1507: __asm("CCP9CON equ 0F03h");
+[; <" CCP9CON equ 0F03h ;# ">
+"1571
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1571: __asm("CCPR9L equ 0F04h");
+[; <" CCPR9L equ 0F04h ;# ">
+"1591
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1591: __asm("CCPR9H equ 0F05h");
+[; <" CCPR9H equ 0F05h ;# ">
+"1611
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1611: __asm("CCP8CON equ 0F06h");
+[; <" CCP8CON equ 0F06h ;# ">
+"1675
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1675: __asm("CCPR8L equ 0F07h");
+[; <" CCPR8L equ 0F07h ;# ">
+"1695
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1695: __asm("CCPR8H equ 0F08h");
+[; <" CCPR8H equ 0F08h ;# ">
+"1715
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1715: __asm("CCP7CON equ 0F09h");
+[; <" CCP7CON equ 0F09h ;# ">
+"1779
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1779: __asm("CCPR7L equ 0F0Ah");
+[; <" CCPR7L equ 0F0Ah ;# ">
+"1799
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1799: __asm("CCPR7H equ 0F0Bh");
+[; <" CCPR7H equ 0F0Bh ;# ">
+"1819
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1819: __asm("CCP6CON equ 0F0Ch");
+[; <" CCP6CON equ 0F0Ch ;# ">
+"1883
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1883: __asm("CCPR6L equ 0F0Dh");
+[; <" CCPR6L equ 0F0Dh ;# ">
+"1903
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1903: __asm("CCPR6H equ 0F0Eh");
+[; <" CCPR6H equ 0F0Eh ;# ">
+"1923
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1923: __asm("CCP5CON equ 0F0Fh");
+[; <" CCP5CON equ 0F0Fh ;# ">
+"1987
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1987: __asm("CCPR5L equ 0F10h");
+[; <" CCPR5L equ 0F10h ;# ">
+"2007
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2007: __asm("CCPR5H equ 0F11h");
+[; <" CCPR5H equ 0F11h ;# ">
+"2027
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2027: __asm("CCP4CON equ 0F12h");
+[; <" CCP4CON equ 0F12h ;# ">
+"2091
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2091: __asm("CCPR4L equ 0F13h");
+[; <" CCPR4L equ 0F13h ;# ">
+"2111
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2111: __asm("CCPR4H equ 0F14h");
+[; <" CCPR4H equ 0F14h ;# ">
+"2131
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2131: __asm("CCP3CON equ 0F15h");
+[; <" CCP3CON equ 0F15h ;# ">
+"2213
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2213: __asm("CCPR3L equ 0F16h");
+[; <" CCPR3L equ 0F16h ;# ">
+"2233
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2233: __asm("CCPR3H equ 0F17h");
+[; <" CCPR3H equ 0F17h ;# ">
+"2253
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2253: __asm("ECCP3DEL equ 0F18h");
+[; <" ECCP3DEL equ 0F18h ;# ">
+"2323
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2323: __asm("ECCP3AS equ 0F19h");
+[; <" ECCP3AS equ 0F19h ;# ">
+"2405
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2405: __asm("PSTR3CON equ 0F1Ah");
+[; <" PSTR3CON equ 0F1Ah ;# ">
+"2516
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2516: __asm("T8CON equ 0F1Bh");
+[; <" T8CON equ 0F1Bh ;# ">
+"2587
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2587: __asm("PR8 equ 0F1Ch");
+[; <" PR8 equ 0F1Ch ;# ">
+"2607
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2607: __asm("TMR8 equ 0F1Dh");
+[; <" TMR8 equ 0F1Dh ;# ">
+"2627
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2627: __asm("T6CON equ 0F1Eh");
+[; <" T6CON equ 0F1Eh ;# ">
+"2698
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2698: __asm("PR6 equ 0F1Fh");
+[; <" PR6 equ 0F1Fh ;# ">
+"2718
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2718: __asm("TMR6 equ 0F20h");
+[; <" TMR6 equ 0F20h ;# ">
+"2738
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2738: __asm("T5GCON equ 0F21h");
+[; <" T5GCON equ 0F21h ;# ">
+"2851
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2851: __asm("T5CON equ 0F22h");
+[; <" T5CON equ 0F22h ;# ">
+"2953
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2953: __asm("TMR5L equ 0F23h");
+[; <" TMR5L equ 0F23h ;# ">
+"2973
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2973: __asm("TMR5H equ 0F24h");
+[; <" TMR5H equ 0F24h ;# ">
+"2993
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2993: __asm("CM3CON equ 0F25h");
+[; <" CM3CON equ 0F25h ;# ">
+"3120
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3120: __asm("UEP0 equ 0F26h");
+[; <" UEP0 equ 0F26h ;# ">
+"3228
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3228: __asm("UEP1 equ 0F27h");
+[; <" UEP1 equ 0F27h ;# ">
+"3336
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3336: __asm("UEP2 equ 0F28h");
+[; <" UEP2 equ 0F28h ;# ">
+"3444
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3444: __asm("UEP3 equ 0F29h");
+[; <" UEP3 equ 0F29h ;# ">
+"3552
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3552: __asm("UEP4 equ 0F2Ah");
+[; <" UEP4 equ 0F2Ah ;# ">
+"3660
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3660: __asm("UEP5 equ 0F2Bh");
+[; <" UEP5 equ 0F2Bh ;# ">
+"3768
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3768: __asm("UEP6 equ 0F2Ch");
+[; <" UEP6 equ 0F2Ch ;# ">
+"3876
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3876: __asm("UEP7 equ 0F2Dh");
+[; <" UEP7 equ 0F2Dh ;# ">
+"3984
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3984: __asm("UEP8 equ 0F2Eh");
+[; <" UEP8 equ 0F2Eh ;# ">
+"4060
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4060: __asm("UEP9 equ 0F2Fh");
+[; <" UEP9 equ 0F2Fh ;# ">
+"4136
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4136: __asm("UEP10 equ 0F30h");
+[; <" UEP10 equ 0F30h ;# ">
+"4212
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4212: __asm("UEP11 equ 0F31h");
+[; <" UEP11 equ 0F31h ;# ">
+"4288
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4288: __asm("UEP12 equ 0F32h");
+[; <" UEP12 equ 0F32h ;# ">
+"4364
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4364: __asm("UEP13 equ 0F33h");
+[; <" UEP13 equ 0F33h ;# ">
+"4440
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4440: __asm("UEP14 equ 0F34h");
+[; <" UEP14 equ 0F34h ;# ">
+"4516
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4516: __asm("UEP15 equ 0F35h");
+[; <" UEP15 equ 0F35h ;# ">
+"4592
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4592: __asm("UIE equ 0F36h");
+[; <" UIE equ 0F36h ;# ">
+"4648
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4648: __asm("UEIE equ 0F37h");
+[; <" UEIE equ 0F37h ;# ">
+"4699
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4699: __asm("UADDR equ 0F38h");
+[; <" UADDR equ 0F38h ;# ">
+"4763
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4763: __asm("UCFG equ 0F39h");
+[; <" UCFG equ 0F39h ;# ">
+"4834
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4834: __asm("RTCVALL equ 0F3Ah");
+[; <" RTCVALL equ 0F3Ah ;# ">
+"4854
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4854: __asm("RTCVALH equ 0F3Bh");
+[; <" RTCVALH equ 0F3Bh ;# ">
+"4924
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4924: __asm("PADCFG1 equ 0F3Ch");
+[; <" PADCFG1 equ 0F3Ch ;# ">
+"4956
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4956: __asm("REFOCON equ 0F3Dh");
+[; <" REFOCON equ 0F3Dh ;# ">
+"5021
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5021: __asm("RTCCAL equ 0F3Eh");
+[; <" RTCCAL equ 0F3Eh ;# ">
+"5091
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5091: __asm("RTCCFG equ 0F3Fh");
+[; <" RTCCFG equ 0F3Fh ;# ">
+"5148
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5148: __asm("ODCON3 equ 0F40h");
+[; <" ODCON3 equ 0F40h ;# ">
+"5174
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5174: __asm("ODCON2 equ 0F41h");
+[; <" ODCON2 equ 0F41h ;# ">
+"5212
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5212: __asm("ODCON1 equ 0F42h");
+[; <" ODCON1 equ 0F42h ;# ">
+"5274
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5274: __asm("ALRMVALL equ 0F44h");
+[; <" ALRMVALL equ 0F44h ;# ">
+"5294
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5294: __asm("ALRMVALH equ 0F45h");
+[; <" ALRMVALH equ 0F45h ;# ">
+"5314
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5314: __asm("ALRMRPT equ 0F46h");
+[; <" ALRMRPT equ 0F46h ;# ">
+"5384
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5384: __asm("ALRMCFG equ 0F47h");
+[; <" ALRMCFG equ 0F47h ;# ">
+"5460
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5460: __asm("ANCON0 equ 0F48h");
+[; <" ANCON0 equ 0F48h ;# ">
+"5522
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5522: __asm("ANCON1 equ 0F49h");
+[; <" ANCON1 equ 0F49h ;# ">
+"5582
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5582: __asm("DSWAKEL equ 0F4Ah");
+[; <" DSWAKEL equ 0F4Ah ;# ">
+"5634
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5634: __asm("DSWAKEH equ 0F4Bh");
+[; <" DSWAKEH equ 0F4Bh ;# ">
+"5654
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5654: __asm("DSCONL equ 0F4Ch");
+[; <" DSCONL equ 0F4Ch ;# ">
+"5686
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5686: __asm("DSCONH equ 0F4Dh");
+[; <" DSCONH equ 0F4Dh ;# ">
+"5719
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5719: __asm("DSGPR0 equ 0F4Eh");
+[; <" DSGPR0 equ 0F4Eh ;# ">
+"5739
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5739: __asm("DSGPR1 equ 0F4Fh");
+[; <" DSGPR1 equ 0F4Fh ;# ">
+"5759
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5759: __asm("CCPTMRS2 equ 0F50h");
+[; <" CCPTMRS2 equ 0F50h ;# ">
+"5806
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5806: __asm("CCPTMRS1 equ 0F51h");
+[; <" CCPTMRS1 equ 0F51h ;# ">
+"5873
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5873: __asm("CCPTMRS0 equ 0F52h");
+[; <" CCPTMRS0 equ 0F52h ;# ">
+"5955
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5955: __asm("CVRCON equ 0F53h");
+[; <" CVRCON equ 0F53h ;# ">
+"6034
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6034: __asm("PMSTATL equ 0F54h");
+[; <" PMSTATL equ 0F54h ;# ">
+"6085
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6085: __asm("PMSTATH equ 0F55h");
+[; <" PMSTATH equ 0F55h ;# ">
+"6136
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6136: __asm("PMEL equ 0F56h");
+[; <" PMEL equ 0F56h ;# ">
+"6206
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6206: __asm("PMEH equ 0F57h");
+[; <" PMEH equ 0F57h ;# ">
+"6276
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6276: __asm("PMDIN2L equ 0F58h");
+[; <" PMDIN2L equ 0F58h ;# ">
+"6296
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6296: __asm("PMDIN2H equ 0F59h");
+[; <" PMDIN2H equ 0F59h ;# ">
+"6316
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6316: __asm("PMDOUT2L equ 0F5Ah");
+[; <" PMDOUT2L equ 0F5Ah ;# ">
+"6336
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6336: __asm("PMDOUT2H equ 0F5Bh");
+[; <" PMDOUT2H equ 0F5Bh ;# ">
+"6356
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6356: __asm("PMMODEL equ 0F5Ch");
+[; <" PMMODEL equ 0F5Ch ;# ">
+"6438
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6438: __asm("PMMODEH equ 0F5Dh");
+[; <" PMMODEH equ 0F5Dh ;# ">
+"6500
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6500: __asm("PMCONL equ 0F5Eh");
+[; <" PMCONL equ 0F5Eh ;# ">
+"6557
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6557: __asm("PMCONH equ 0F5Fh");
+[; <" PMCONH equ 0F5Fh ;# ">
+"6614
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6614: __asm("UFRM equ 0F60h");
+[; <" UFRM equ 0F60h ;# ">
+"6621
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6621: __asm("UFRML equ 0F60h");
+[; <" UFRML equ 0F60h ;# ">
+"6699
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6699: __asm("UFRMH equ 0F61h");
+[; <" UFRMH equ 0F61h ;# ">
+"6739
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6739: __asm("UIR equ 0F62h");
+[; <" UIR equ 0F62h ;# ">
+"6795
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6795: __asm("UEIR equ 0F63h");
+[; <" UEIR equ 0F63h ;# ">
+"6846
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6846: __asm("USTAT equ 0F64h");
+[; <" USTAT equ 0F64h ;# ">
+"6906
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6906: __asm("UCON equ 0F65h");
+[; <" UCON equ 0F65h ;# ">
+"6957
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6957: __asm("DMABCH equ 0F66h");
+[; <" DMABCH equ 0F66h ;# ">
+"6977
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6977: __asm("DMABCL equ 0F67h");
+[; <" DMABCL equ 0F67h ;# ">
+"6997
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6997: __asm("RXADDRH equ 0F68h");
+[; <" RXADDRH equ 0F68h ;# ">
+"7017
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7017: __asm("RXADDRL equ 0F69h");
+[; <" RXADDRL equ 0F69h ;# ">
+"7037
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7037: __asm("TXADDRH equ 0F6Ah");
+[; <" TXADDRH equ 0F6Ah ;# ">
+"7057
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7057: __asm("TXADDRL equ 0F6Bh");
+[; <" TXADDRL equ 0F6Bh ;# ">
+"7077
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7077: __asm("PMDIN1L equ 0F6Ch");
+[; <" PMDIN1L equ 0F6Ch ;# ">
+"7097
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7097: __asm("PMDIN1H equ 0F6Dh");
+[; <" PMDIN1H equ 0F6Dh ;# ">
+"7117
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7117: __asm("PMADDRL equ 0F6Eh");
+[; <" PMADDRL equ 0F6Eh ;# ">
+"7137
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7137: __asm("PMDOUT1L equ 0F6Eh");
+[; <" PMDOUT1L equ 0F6Eh ;# ">
+"7157
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7157: __asm("PMADDRH equ 0F6Fh");
+[; <" PMADDRH equ 0F6Fh ;# ">
+"7183
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7183: __asm("PMDOUT1H equ 0F6Fh");
+[; <" PMDOUT1H equ 0F6Fh ;# ">
+"7203
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7203: __asm("CMSTAT equ 0F70h");
+[; <" CMSTAT equ 0F70h ;# ">
+"7208
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7208: __asm("CMSTATUS equ 0F70h");
+[; <" CMSTATUS equ 0F70h ;# ">
+"7265
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7265: __asm("SSP2CON2 equ 0F71h");
+[; <" SSP2CON2 equ 0F71h ;# ">
+"7443
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7443: __asm("SSP2CON1 equ 0F72h");
+[; <" SSP2CON1 equ 0F72h ;# ">
+"7563
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7563: __asm("SSP2STAT equ 0F73h");
+[; <" SSP2STAT equ 0F73h ;# ">
+"7865
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7865: __asm("SSP2ADD equ 0F74h");
+[; <" SSP2ADD equ 0F74h ;# ">
+"7935
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7935: __asm("SSP2MSK equ 0F74h");
+[; <" SSP2MSK equ 0F74h ;# ">
+"7997
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7997: __asm("SSP2BUF equ 0F75h");
+[; <" SSP2BUF equ 0F75h ;# ">
+"8017
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8017: __asm("T4CON equ 0F76h");
+[; <" T4CON equ 0F76h ;# ">
+"8088
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8088: __asm("PR4 equ 0F77h");
+[; <" PR4 equ 0F77h ;# ">
+"8108
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8108: __asm("TMR4 equ 0F78h");
+[; <" TMR4 equ 0F78h ;# ">
+"8128
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8128: __asm("T3CON equ 0F79h");
+[; <" T3CON equ 0F79h ;# ">
+"8239
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8239: __asm("TMR3 equ 0F7Ah");
+[; <" TMR3 equ 0F7Ah ;# ">
+"8246
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8246: __asm("TMR3L equ 0F7Ah");
+[; <" TMR3L equ 0F7Ah ;# ">
+"8266
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8266: __asm("TMR3H equ 0F7Bh");
+[; <" TMR3H equ 0F7Bh ;# ">
+"8286
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8286: __asm("BAUDCON2 equ 0F7Ch");
+[; <" BAUDCON2 equ 0F7Ch ;# ">
+"8409
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8409: __asm("SPBRGH2 equ 0F7Dh");
+[; <" SPBRGH2 equ 0F7Dh ;# ">
+"8429
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8429: __asm("BAUDCON1 equ 0F7Eh");
+[; <" BAUDCON1 equ 0F7Eh ;# ">
+"8434
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8434: __asm("BAUDCON equ 0F7Eh");
+[; <" BAUDCON equ 0F7Eh ;# ">
+"8438
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8438: __asm("BAUDCTL equ 0F7Eh");
+[; <" BAUDCTL equ 0F7Eh ;# ">
+"8936
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8936: __asm("SPBRGH1 equ 0F7Fh");
+[; <" SPBRGH1 equ 0F7Fh ;# ">
+"8941
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8941: __asm("SPBRGH equ 0F7Fh");
+[; <" SPBRGH equ 0F7Fh ;# ">
+"8974
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8974: __asm("PORTA equ 0F80h");
+[; <" PORTA equ 0F80h ;# ">
+"9255
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 9255: __asm("PORTB equ 0F81h");
+[; <" PORTB equ 0F81h ;# ">
+"9601
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 9601: __asm("PORTC equ 0F82h");
+[; <" PORTC equ 0F82h ;# ">
+"9867
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 9867: __asm("PORTD equ 0F83h");
+[; <" PORTD equ 0F83h ;# ">
+"10038
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10038: __asm("PORTE equ 0F84h");
+[; <" PORTE equ 0F84h ;# ">
+"10179
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10179: __asm("HLVDCON equ 0F85h");
+[; <" HLVDCON equ 0F85h ;# ">
+"10249
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10249: __asm("DMACON2 equ 0F86h");
+[; <" DMACON2 equ 0F86h ;# ">
+"10325
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10325: __asm("OSCCON2 equ 0F87h");
+[; <" OSCCON2 equ 0F87h ;# ">
+"10365
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10365: __asm("DMACON1 equ 0F88h");
+[; <" DMACON1 equ 0F88h ;# ">
+"10427
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10427: __asm("LATA equ 0F89h");
+[; <" LATA equ 0F89h ;# ">
+"10529
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10529: __asm("LATB equ 0F8Ah");
+[; <" LATB equ 0F8Ah ;# ">
+"10641
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10641: __asm("LATC equ 0F8Bh");
+[; <" LATC equ 0F8Bh ;# ">
+"10719
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10719: __asm("LATD equ 0F8Ch");
+[; <" LATD equ 0F8Ch ;# ">
+"10831
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10831: __asm("LATE equ 0F8Dh");
+[; <" LATE equ 0F8Dh ;# ">
+"10883
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10883: __asm("PIE4 equ 0F8Eh");
+[; <" PIE4 equ 0F8Eh ;# ">
+"10945
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10945: __asm("PIR4 equ 0F8Fh");
+[; <" PIR4 equ 0F8Fh ;# ">
+"11007
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11007: __asm("IPR4 equ 0F90h");
+[; <" IPR4 equ 0F90h ;# ">
+"11077
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11077: __asm("PIE5 equ 0F91h");
+[; <" PIE5 equ 0F91h ;# ">
+"11127
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11127: __asm("TRISA equ 0F92h");
+[; <" TRISA equ 0F92h ;# ">
+"11184
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11184: __asm("TRISB equ 0F93h");
+[; <" TRISB equ 0F93h ;# ">
+"11246
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11246: __asm("TRISC equ 0F94h");
+[; <" TRISC equ 0F94h ;# ">
+"11291
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11291: __asm("TRISD equ 0F95h");
+[; <" TRISD equ 0F95h ;# ">
+"11353
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11353: __asm("TRISE equ 0F96h");
+[; <" TRISE equ 0F96h ;# ">
+"11398
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11398: __asm("T3GCON equ 0F97h");
+[; <" T3GCON equ 0F97h ;# ">
+"11487
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11487: __asm("PIR5 equ 0F98h");
+[; <" PIR5 equ 0F98h ;# ">
+"11537
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11537: __asm("IPR5 equ 0F99h");
+[; <" IPR5 equ 0F99h ;# ">
+"11614
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11614: __asm("T1GCON equ 0F9Ah");
+[; <" T1GCON equ 0F9Ah ;# ">
+"11721
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11721: __asm("OSCTUNE equ 0F9Bh");
+[; <" OSCTUNE equ 0F9Bh ;# ">
+"11791
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11791: __asm("RCSTA2 equ 0F9Ch");
+[; <" RCSTA2 equ 0F9Ch ;# ">
+"11927
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11927: __asm("PIE1 equ 0F9Dh");
+[; <" PIE1 equ 0F9Dh ;# ">
+"12019
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12019: __asm("PIR1 equ 0F9Eh");
+[; <" PIR1 equ 0F9Eh ;# ">
+"12111
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12111: __asm("IPR1 equ 0F9Fh");
+[; <" IPR1 equ 0F9Fh ;# ">
+"12203
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12203: __asm("PIE2 equ 0FA0h");
+[; <" PIE2 equ 0FA0h ;# ">
+"12289
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12289: __asm("PIR2 equ 0FA1h");
+[; <" PIR2 equ 0FA1h ;# ">
+"12375
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12375: __asm("IPR2 equ 0FA2h");
+[; <" IPR2 equ 0FA2h ;# ">
+"12461
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12461: __asm("PIE3 equ 0FA3h");
+[; <" PIE3 equ 0FA3h ;# ">
+"12571
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12571: __asm("PIR3 equ 0FA4h");
+[; <" PIR3 equ 0FA4h ;# ">
+"12649
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12649: __asm("IPR3 equ 0FA5h");
+[; <" IPR3 equ 0FA5h ;# ">
+"12727
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12727: __asm("EECON1 equ 0FA6h");
+[; <" EECON1 equ 0FA6h ;# ">
+"12772
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12772: __asm("EECON2 equ 0FA7h");
+[; <" EECON2 equ 0FA7h ;# ">
+"12792
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12792: __asm("TXSTA2 equ 0FA8h");
+[; <" TXSTA2 equ 0FA8h ;# ">
+"12919
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12919: __asm("TXREG2 equ 0FA9h");
+[; <" TXREG2 equ 0FA9h ;# ">
+"12939
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12939: __asm("RCREG2 equ 0FAAh");
+[; <" RCREG2 equ 0FAAh ;# ">
+"12959
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12959: __asm("SPBRG2 equ 0FABh");
+[; <" SPBRG2 equ 0FABh ;# ">
+"12979
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12979: __asm("RCSTA1 equ 0FACh");
+[; <" RCSTA1 equ 0FACh ;# ">
+"12984
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12984: __asm("RCSTA equ 0FACh");
+[; <" RCSTA equ 0FACh ;# ">
+"13317
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13317: __asm("TXSTA1 equ 0FADh");
+[; <" TXSTA1 equ 0FADh ;# ">
+"13322
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13322: __asm("TXSTA equ 0FADh");
+[; <" TXSTA equ 0FADh ;# ">
+"13605
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13605: __asm("TXREG1 equ 0FAEh");
+[; <" TXREG1 equ 0FAEh ;# ">
+"13610
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13610: __asm("TXREG equ 0FAEh");
+[; <" TXREG equ 0FAEh ;# ">
+"13643
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13643: __asm("RCREG1 equ 0FAFh");
+[; <" RCREG1 equ 0FAFh ;# ">
+"13648
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13648: __asm("RCREG equ 0FAFh");
+[; <" RCREG equ 0FAFh ;# ">
+"13681
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13681: __asm("SPBRG1 equ 0FB0h");
+[; <" SPBRG1 equ 0FB0h ;# ">
+"13686
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13686: __asm("SPBRG equ 0FB0h");
+[; <" SPBRG equ 0FB0h ;# ">
+"13719
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13719: __asm("CTMUICON equ 0FB1h");
+[; <" CTMUICON equ 0FB1h ;# ">
+"13795
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13795: __asm("CTMUCONL equ 0FB2h");
+[; <" CTMUCONL equ 0FB2h ;# ">
+"13857
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13857: __asm("CTMUCONH equ 0FB3h");
+[; <" CTMUCONH equ 0FB3h ;# ">
+"13914
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13914: __asm("CCP2CON equ 0FB4h");
+[; <" CCP2CON equ 0FB4h ;# ">
+"13919
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13919: __asm("ECCP2CON equ 0FB4h");
+[; <" ECCP2CON equ 0FB4h ;# ">
+"14106
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14106: __asm("CCPR2 equ 0FB5h");
+[; <" CCPR2 equ 0FB5h ;# ">
+"14113
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14113: __asm("CCPR2L equ 0FB5h");
+[; <" CCPR2L equ 0FB5h ;# ">
+"14133
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14133: __asm("CCPR2H equ 0FB6h");
+[; <" CCPR2H equ 0FB6h ;# ">
+"14153
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14153: __asm("ECCP2DEL equ 0FB7h");
+[; <" ECCP2DEL equ 0FB7h ;# ">
+"14158
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14158: __asm("PWM2CON equ 0FB7h");
+[; <" PWM2CON equ 0FB7h ;# ">
+"14291
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14291: __asm("ECCP2AS equ 0FB8h");
+[; <" ECCP2AS equ 0FB8h ;# ">
+"14373
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14373: __asm("PSTR2CON equ 0FB9h");
+[; <" PSTR2CON equ 0FB9h ;# ">
+"14615
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14615: __asm("CCP1CON equ 0FBAh");
+[; <" CCP1CON equ 0FBAh ;# ">
+"14620
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14620: __asm("ECCP1CON equ 0FBAh");
+[; <" ECCP1CON equ 0FBAh ;# ">
+"14807
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14807: __asm("CCPR1 equ 0FBBh");
+[; <" CCPR1 equ 0FBBh ;# ">
+"14814
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14814: __asm("CCPR1L equ 0FBBh");
+[; <" CCPR1L equ 0FBBh ;# ">
+"14834
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14834: __asm("CCPR1H equ 0FBCh");
+[; <" CCPR1H equ 0FBCh ;# ">
+"14854
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14854: __asm("ECCP1DEL equ 0FBDh");
+[; <" ECCP1DEL equ 0FBDh ;# ">
+"14859
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14859: __asm("PWM1CON equ 0FBDh");
+[; <" PWM1CON equ 0FBDh ;# ">
+"14992
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14992: __asm("ECCP1AS equ 0FBEh");
+[; <" ECCP1AS equ 0FBEh ;# ">
+"15074
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15074: __asm("PSTR1CON equ 0FBFh");
+[; <" PSTR1CON equ 0FBFh ;# ">
+"15131
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15131: __asm("WDTCON equ 0FC0h");
+[; <" WDTCON equ 0FC0h ;# ">
+"15201
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15201: __asm("ADCON1 equ 0FC1h");
+[; <" ADCON1 equ 0FC1h ;# ">
+"15298
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15298: __asm("ADCON0 equ 0FC2h");
+[; <" ADCON0 equ 0FC2h ;# ">
+"15442
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15442: __asm("ADRES equ 0FC3h");
+[; <" ADRES equ 0FC3h ;# ">
+"15449
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15449: __asm("ADRESL equ 0FC3h");
+[; <" ADRESL equ 0FC3h ;# ">
+"15469
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15469: __asm("ADRESH equ 0FC4h");
+[; <" ADRESH equ 0FC4h ;# ">
+"15489
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15489: __asm("SSP1CON2 equ 0FC5h");
+[; <" SSP1CON2 equ 0FC5h ;# ">
+"15494
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15494: __asm("SSPCON2 equ 0FC5h");
+[; <" SSPCON2 equ 0FC5h ;# ">
+"15843
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15843: __asm("SSP1CON1 equ 0FC6h");
+[; <" SSP1CON1 equ 0FC6h ;# ">
+"15848
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15848: __asm("SSPCON1 equ 0FC6h");
+[; <" SSPCON1 equ 0FC6h ;# ">
+"16081
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16081: __asm("SSP1STAT equ 0FC7h");
+[; <" SSP1STAT equ 0FC7h ;# ">
+"16086
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16086: __asm("SSPSTAT equ 0FC7h");
+[; <" SSPSTAT equ 0FC7h ;# ">
+"16679
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16679: __asm("SSP1ADD equ 0FC8h");
+[; <" SSP1ADD equ 0FC8h ;# ">
+"16684
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16684: __asm("SSPADD equ 0FC8h");
+[; <" SSPADD equ 0FC8h ;# ">
+"16917
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16917: __asm("SSP1MSK equ 0FC8h");
+[; <" SSP1MSK equ 0FC8h ;# ">
+"16979
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16979: __asm("SSP1BUF equ 0FC9h");
+[; <" SSP1BUF equ 0FC9h ;# ">
+"16984
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16984: __asm("SSPBUF equ 0FC9h");
+[; <" SSPBUF equ 0FC9h ;# ">
+"17017
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17017: __asm("T2CON equ 0FCAh");
+[; <" T2CON equ 0FCAh ;# ">
+"17088
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17088: __asm("PR2 equ 0FCBh");
+[; <" PR2 equ 0FCBh ;# ">
+"17093
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17093: __asm("MEMCON equ 0FCBh");
+[; <" MEMCON equ 0FCBh ;# ">
+"17214
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17214: __asm("TMR2 equ 0FCCh");
+[; <" TMR2 equ 0FCCh ;# ">
+"17234
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17234: __asm("T1CON equ 0FCDh");
+[; <" T1CON equ 0FCDh ;# ">
+"17336
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17336: __asm("TMR1 equ 0FCEh");
+[; <" TMR1 equ 0FCEh ;# ">
+"17343
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17343: __asm("TMR1L equ 0FCEh");
+[; <" TMR1L equ 0FCEh ;# ">
+"17363
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17363: __asm("TMR1H equ 0FCFh");
+[; <" TMR1H equ 0FCFh ;# ">
+"17383
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17383: __asm("RCON equ 0FD0h");
+[; <" RCON equ 0FD0h ;# ">
+"17531
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17531: __asm("CM2CON equ 0FD1h");
+[; <" CM2CON equ 0FD1h ;# ">
+"17536
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17536: __asm("CM2CON1 equ 0FD1h");
+[; <" CM2CON1 equ 0FD1h ;# ">
+"17783
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17783: __asm("CM1CON equ 0FD2h");
+[; <" CM1CON equ 0FD2h ;# ">
+"17788
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17788: __asm("CM1CON1 equ 0FD2h");
+[; <" CM1CON1 equ 0FD2h ;# ">
+"18063
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18063: __asm("OSCCON equ 0FD3h");
+[; <" OSCCON equ 0FD3h ;# ">
+"18140
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18140: __asm("T0CON equ 0FD5h");
+[; <" T0CON equ 0FD5h ;# ">
+"18210
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18210: __asm("TMR0 equ 0FD6h");
+[; <" TMR0 equ 0FD6h ;# ">
+"18217
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18217: __asm("TMR0L equ 0FD6h");
+[; <" TMR0L equ 0FD6h ;# ">
+"18237
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18237: __asm("TMR0H equ 0FD7h");
+[; <" TMR0H equ 0FD7h ;# ">
+"18257
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18257: __asm("STATUS equ 0FD8h");
+[; <" STATUS equ 0FD8h ;# ">
+"18328
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18328: __asm("FSR2 equ 0FD9h");
+[; <" FSR2 equ 0FD9h ;# ">
+"18335
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18335: __asm("FSR2L equ 0FD9h");
+[; <" FSR2L equ 0FD9h ;# ">
+"18355
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18355: __asm("FSR2H equ 0FDAh");
+[; <" FSR2H equ 0FDAh ;# ">
+"18362
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18362: __asm("PLUSW2 equ 0FDBh");
+[; <" PLUSW2 equ 0FDBh ;# ">
+"18382
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18382: __asm("PREINC2 equ 0FDCh");
+[; <" PREINC2 equ 0FDCh ;# ">
+"18402
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18402: __asm("POSTDEC2 equ 0FDDh");
+[; <" POSTDEC2 equ 0FDDh ;# ">
+"18422
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18422: __asm("POSTINC2 equ 0FDEh");
+[; <" POSTINC2 equ 0FDEh ;# ">
+"18442
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18442: __asm("INDF2 equ 0FDFh");
+[; <" INDF2 equ 0FDFh ;# ">
+"18462
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18462: __asm("BSR equ 0FE0h");
+[; <" BSR equ 0FE0h ;# ">
+"18469
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18469: __asm("FSR1 equ 0FE1h");
+[; <" FSR1 equ 0FE1h ;# ">
+"18476
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18476: __asm("FSR1L equ 0FE1h");
+[; <" FSR1L equ 0FE1h ;# ">
+"18496
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18496: __asm("FSR1H equ 0FE2h");
+[; <" FSR1H equ 0FE2h ;# ">
+"18503
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18503: __asm("PLUSW1 equ 0FE3h");
+[; <" PLUSW1 equ 0FE3h ;# ">
+"18523
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18523: __asm("PREINC1 equ 0FE4h");
+[; <" PREINC1 equ 0FE4h ;# ">
+"18543
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18543: __asm("POSTDEC1 equ 0FE5h");
+[; <" POSTDEC1 equ 0FE5h ;# ">
+"18563
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18563: __asm("POSTINC1 equ 0FE6h");
+[; <" POSTINC1 equ 0FE6h ;# ">
+"18583
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18583: __asm("INDF1 equ 0FE7h");
+[; <" INDF1 equ 0FE7h ;# ">
+"18603
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18603: __asm("WREG equ 0FE8h");
+[; <" WREG equ 0FE8h ;# ">
+"18623
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18623: __asm("FSR0 equ 0FE9h");
+[; <" FSR0 equ 0FE9h ;# ">
+"18630
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18630: __asm("FSR0L equ 0FE9h");
+[; <" FSR0L equ 0FE9h ;# ">
+"18650
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18650: __asm("FSR0H equ 0FEAh");
+[; <" FSR0H equ 0FEAh ;# ">
+"18657
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18657: __asm("PLUSW0 equ 0FEBh");
+[; <" PLUSW0 equ 0FEBh ;# ">
+"18677
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18677: __asm("PREINC0 equ 0FECh");
+[; <" PREINC0 equ 0FECh ;# ">
+"18697
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18697: __asm("POSTDEC0 equ 0FEDh");
+[; <" POSTDEC0 equ 0FEDh ;# ">
+"18717
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18717: __asm("POSTINC0 equ 0FEEh");
+[; <" POSTINC0 equ 0FEEh ;# ">
+"18737
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18737: __asm("INDF0 equ 0FEFh");
+[; <" INDF0 equ 0FEFh ;# ">
+"18757
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18757: __asm("INTCON3 equ 0FF0h");
+[; <" INTCON3 equ 0FF0h ;# ">
+"18869
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18869: __asm("INTCON2 equ 0FF1h");
+[; <" INTCON2 equ 0FF1h ;# ">
+"18962
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18962: __asm("INTCON equ 0FF2h");
+[; <" INTCON equ 0FF2h ;# ">
+"19079
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19079: __asm("PROD equ 0FF3h");
+[; <" PROD equ 0FF3h ;# ">
+"19086
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19086: __asm("PRODL equ 0FF3h");
+[; <" PRODL equ 0FF3h ;# ">
+"19106
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19106: __asm("PRODH equ 0FF4h");
+[; <" PRODH equ 0FF4h ;# ">
+"19126
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19126: __asm("TABLAT equ 0FF5h");
+[; <" TABLAT equ 0FF5h ;# ">
+"19148
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19148: __asm("TBLPTR equ 0FF6h");
+[; <" TBLPTR equ 0FF6h ;# ">
+"19155
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19155: __asm("TBLPTRL equ 0FF6h");
+[; <" TBLPTRL equ 0FF6h ;# ">
+"19175
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19175: __asm("TBLPTRH equ 0FF7h");
+[; <" TBLPTRH equ 0FF7h ;# ">
+"19195
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19195: __asm("TBLPTRU equ 0FF8h");
+[; <" TBLPTRU equ 0FF8h ;# ">
+"19204
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19204: __asm("PCLAT equ 0FF9h");
+[; <" PCLAT equ 0FF9h ;# ">
+"19211
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19211: __asm("PC equ 0FF9h");
+[; <" PC equ 0FF9h ;# ">
+"19218
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19218: __asm("PCL equ 0FF9h");
+[; <" PCL equ 0FF9h ;# ">
+"19238
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19238: __asm("PCLATH equ 0FFAh");
+[; <" PCLATH equ 0FFAh ;# ">
+"19258
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19258: __asm("PCLATU equ 0FFBh");
+[; <" PCLATU equ 0FFBh ;# ">
+"19265
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19265: __asm("STKPTR equ 0FFCh");
+[; <" STKPTR equ 0FFCh ;# ">
+"19339
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19339: __asm("TOS equ 0FFDh");
+[; <" TOS equ 0FFDh ;# ">
+"19346
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19346: __asm("TOSL equ 0FFDh");
+[; <" TOSL equ 0FFDh ;# ">
+"19366
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19366: __asm("TOSH equ 0FFEh");
+[; <" TOSH equ 0FFEh ;# ">
+"19386
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19386: __asm("TOSU equ 0FFFh");
+[; <" TOSU equ 0FFFh ;# ">
+"321 Source/FreeRTOS/stream_buffer.c
+[; ;Source/FreeRTOS/stream_buffer.c: 321:     StreamBufferHandle_t xStreamBufferGenericCreate( size_t xBufferSizeBytes,
+[v _xStreamBufferGenericCreate `(*S941 ~T0 @X0 1 ef5`ui`ui`c`*F7562`*F7567 ]
+"326
+[; ;Source/FreeRTOS/stream_buffer.c: 326:     {
+{
+[e :U _xStreamBufferGenericCreate ]
+"321
+[; ;Source/FreeRTOS/stream_buffer.c: 321:     StreamBufferHandle_t xStreamBufferGenericCreate( size_t xBufferSizeBytes,
+[v _xBufferSizeBytes `ui ~T0 @X0 1 r1 ]
+"322
+[; ;Source/FreeRTOS/stream_buffer.c: 322:                                                      size_t xTriggerLevelBytes,
+[v _xTriggerLevelBytes `ui ~T0 @X0 1 r2 ]
+"323
+[; ;Source/FreeRTOS/stream_buffer.c: 323:                                                      BaseType_t xIsMessageBuffer,
+[v _xIsMessageBuffer `c ~T0 @X0 1 r3 ]
+"324
+[; ;Source/FreeRTOS/stream_buffer.c: 324:                                                      StreamBufferCallbackFunction_t pxSendCompletedCallback,
+[v _pxSendCompletedCallback `*F7576 ~T0 @X0 1 r4 ]
+"325
+[; ;Source/FreeRTOS/stream_buffer.c: 325:                                                      StreamBufferCallbackFunction_t pxReceiveCompletedCallback )
+[v _pxReceiveCompletedCallback `*F7582 ~T0 @X0 1 r5 ]
+"326
+[; ;Source/FreeRTOS/stream_buffer.c: 326:     {
+[f ]
+"327
+[; ;Source/FreeRTOS/stream_buffer.c: 327:         uint8_t * pucAllocatedMemory;
+[v _pucAllocatedMemory `*uc ~T0 @X0 1 a ]
+"328
+[; ;Source/FreeRTOS/stream_buffer.c: 328:         uint8_t ucFlags;
+[v _ucFlags `uc ~T0 @X0 1 a ]
+"334
+[; ;Source/FreeRTOS/stream_buffer.c: 334:         if( xIsMessageBuffer == ( ( BaseType_t ) 1 ) )
+[e $ ! == -> _xIsMessageBuffer `i -> -> -> 1 `i `c `i 944  ]
+"335
+[; ;Source/FreeRTOS/stream_buffer.c: 335:         {
+{
+"337
+[; ;Source/FreeRTOS/stream_buffer.c: 337:             ucFlags = ( ( uint8_t ) 1 );
+[e = _ucFlags -> -> 1 `i `uc ]
+"338
+[; ;Source/FreeRTOS/stream_buffer.c: 338:             if( ( xBufferSizeBytes > ( sizeof( size_t ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 338 );
+[e $ ! == -> > _xBufferSizeBytes -> # `ui `ui `i -> 0 `i 945  ]
+[e ( _Xprintf , (. :s 1C -> 338 `i ]
+[e :U 945 ]
+"339
+[; ;Source/FreeRTOS/stream_buffer.c: 339:         }
+}
+[e $U 946  ]
+"340
+[; ;Source/FreeRTOS/stream_buffer.c: 340:         else
+[e :U 944 ]
+"341
+[; ;Source/FreeRTOS/stream_buffer.c: 341:         {
+{
+"343
+[; ;Source/FreeRTOS/stream_buffer.c: 343:             ucFlags = 0;
+[e = _ucFlags -> -> 0 `i `uc ]
+"344
+[; ;Source/FreeRTOS/stream_buffer.c: 344:             if( ( xBufferSizeBytes > 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 344 );
+[e $ ! == -> > _xBufferSizeBytes -> -> 0 `i `ui `i -> 0 `i 947  ]
+[e ( _Xprintf , (. :s 2C -> 344 `i ]
+[e :U 947 ]
+"345
+[; ;Source/FreeRTOS/stream_buffer.c: 345:         }
+}
+[e :U 946 ]
+"347
+[; ;Source/FreeRTOS/stream_buffer.c: 347:         if( ( xTriggerLevelBytes <= xBufferSizeBytes ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 347 );
+[e $ ! == -> <= _xTriggerLevelBytes _xBufferSizeBytes `i -> 0 `i 948  ]
+[e ( _Xprintf , (. :s 3C -> 347 `i ]
+[e :U 948 ]
+"351
+[; ;Source/FreeRTOS/stream_buffer.c: 351:         if( xTriggerLevelBytes == ( size_t ) 0 )
+[e $ ! == _xTriggerLevelBytes -> -> 0 `i `ui 949  ]
+"352
+[; ;Source/FreeRTOS/stream_buffer.c: 352:         {
+{
+"353
+[; ;Source/FreeRTOS/stream_buffer.c: 353:             xTriggerLevelBytes = ( size_t ) 1;
+[e = _xTriggerLevelBytes -> -> 1 `i `ui ]
+"354
+[; ;Source/FreeRTOS/stream_buffer.c: 354:         }
+}
+[e :U 949 ]
+"364
+[; ;Source/FreeRTOS/stream_buffer.c: 364:         if( xBufferSizeBytes < ( xBufferSizeBytes + 1 + sizeof( StreamBuffer_t ) ) )
+[e $ ! < _xBufferSizeBytes + + _xBufferSizeBytes -> -> 1 `i `ui -> # `S941 `ui 950  ]
+"365
+[; ;Source/FreeRTOS/stream_buffer.c: 365:         {
+{
+"366
+[; ;Source/FreeRTOS/stream_buffer.c: 366:             xBufferSizeBytes++;
+[e ++ _xBufferSizeBytes -> -> 1 `i `ui ]
+"367
+[; ;Source/FreeRTOS/stream_buffer.c: 367:             pucAllocatedMemory = ( uint8_t * ) pvPortMalloc( xBufferSizeBytes + sizeof( StreamBuffer_t ) );
+[e = _pucAllocatedMemory -> ( _pvPortMalloc (1 + _xBufferSizeBytes -> # `S941 `ui `*uc ]
+"368
+[; ;Source/FreeRTOS/stream_buffer.c: 368:         }
+}
+[e $U 951  ]
+"369
+[; ;Source/FreeRTOS/stream_buffer.c: 369:         else
+[e :U 950 ]
+"370
+[; ;Source/FreeRTOS/stream_buffer.c: 370:         {
+{
+"371
+[; ;Source/FreeRTOS/stream_buffer.c: 371:             pucAllocatedMemory = ((void*)0);
+[e = _pucAllocatedMemory -> -> -> 0 `i `*v `*uc ]
+"372
+[; ;Source/FreeRTOS/stream_buffer.c: 372:         }
+}
+[e :U 951 ]
+"374
+[; ;Source/FreeRTOS/stream_buffer.c: 374:         if( pucAllocatedMemory != ((void*)0) )
+[e $ ! != _pucAllocatedMemory -> -> -> 0 `i `*v `*uc 952  ]
+"375
+[; ;Source/FreeRTOS/stream_buffer.c: 375:         {
+{
+"376
+[; ;Source/FreeRTOS/stream_buffer.c: 376:             prvInitialiseNewStreamBuffer( ( StreamBuffer_t * ) pucAllocatedMemory,
+[e ( _prvInitialiseNewStreamBuffer (4 , , , , , , -> _pucAllocatedMemory `*S941 + _pucAllocatedMemory * -> -> # `S941 `ui `ux -> -> # *U _pucAllocatedMemory `ui `ux _xBufferSizeBytes _xTriggerLevelBytes _ucFlags _pxSendCompletedCallback _pxReceiveCompletedCallback ]
+"385
+[; ;Source/FreeRTOS/stream_buffer.c: 385:         }
+}
+[e $U 953  ]
+"386
+[; ;Source/FreeRTOS/stream_buffer.c: 386:         else
+[e :U 952 ]
+"387
+[; ;Source/FreeRTOS/stream_buffer.c: 387:         {
+{
+"389
+[; ;Source/FreeRTOS/stream_buffer.c: 389:         }
+}
+[e :U 953 ]
+"391
+[; ;Source/FreeRTOS/stream_buffer.c: 391:         return ( StreamBufferHandle_t ) pucAllocatedMemory;
+[e ) -> _pucAllocatedMemory `*S941 ]
+[e $UE 943  ]
+"392
+[; ;Source/FreeRTOS/stream_buffer.c: 392:     }
+[e :UE 943 ]
+}
+"477
+[; ;Source/FreeRTOS/stream_buffer.c: 477: void vStreamBufferDelete( StreamBufferHandle_t xStreamBuffer )
+[v _vStreamBufferDelete `(v ~T0 @X0 1 ef1`*S941 ]
+"478
+[; ;Source/FreeRTOS/stream_buffer.c: 478: {
+{
+[e :U _vStreamBufferDelete ]
+"477
+[; ;Source/FreeRTOS/stream_buffer.c: 477: void vStreamBufferDelete( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"478
+[; ;Source/FreeRTOS/stream_buffer.c: 478: {
+[f ]
+"479
+[; ;Source/FreeRTOS/stream_buffer.c: 479:     StreamBuffer_t * pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `*S941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer _xStreamBuffer ]
+"481
+[; ;Source/FreeRTOS/stream_buffer.c: 481:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 481 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*S941 955  ]
+[e ( _Xprintf , (. :s 4C -> 481 `i ]
+[e :U 955 ]
+"485
+[; ;Source/FreeRTOS/stream_buffer.c: 485:     if( ( pxStreamBuffer->ucFlags & ( ( uint8_t ) 2 ) ) == ( uint8_t ) ( ( BaseType_t ) 0 ) )
+[e $ ! == & -> . *U _pxStreamBuffer 7 `i -> -> -> 2 `i `uc `i -> -> -> -> 0 `i `c `uc `i 956  ]
+"486
+[; ;Source/FreeRTOS/stream_buffer.c: 486:     {
+{
+"488
+[; ;Source/FreeRTOS/stream_buffer.c: 488:         {
+{
+"491
+[; ;Source/FreeRTOS/stream_buffer.c: 491:             vPortFree( ( void * ) pxStreamBuffer );
+[e ( _vPortFree (1 -> _pxStreamBuffer `*v ]
+"492
+[; ;Source/FreeRTOS/stream_buffer.c: 492:         }
+}
+"500
+[; ;Source/FreeRTOS/stream_buffer.c: 500:     }
+}
+[e $U 957  ]
+"501
+[; ;Source/FreeRTOS/stream_buffer.c: 501:     else
+[e :U 956 ]
+"502
+[; ;Source/FreeRTOS/stream_buffer.c: 502:     {
+{
+"505
+[; ;Source/FreeRTOS/stream_buffer.c: 505:         ( void ) memset( pxStreamBuffer, 0x00, sizeof( StreamBuffer_t ) );
+[e ( _memset (3 , , -> _pxStreamBuffer `*v -> 0 `i -> # `S941 `ui ]
+"506
+[; ;Source/FreeRTOS/stream_buffer.c: 506:     }
+}
+[e :U 957 ]
+"507
+[; ;Source/FreeRTOS/stream_buffer.c: 507: }
+[e :UE 954 ]
+}
+"510
+[; ;Source/FreeRTOS/stream_buffer.c: 510: BaseType_t xStreamBufferReset( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBufferReset `(c ~T0 @X0 1 ef1`*S941 ]
+"511
+[; ;Source/FreeRTOS/stream_buffer.c: 511: {
+{
+[e :U _xStreamBufferReset ]
+"510
+[; ;Source/FreeRTOS/stream_buffer.c: 510: BaseType_t xStreamBufferReset( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"511
+[; ;Source/FreeRTOS/stream_buffer.c: 511: {
+[f ]
+[v F7595 `*S941 ~T0 @X0 1 t ]
+"512
+[; ;Source/FreeRTOS/stream_buffer.c: 512:     StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer _xStreamBuffer ]
+"513
+[; ;Source/FreeRTOS/stream_buffer.c: 513:     BaseType_t xReturn = ( ( ( BaseType_t ) 0 ) );
+[v _xReturn `c ~T0 @X0 1 a ]
+[e = _xReturn -> -> 0 `i `c ]
+"514
+[; ;Source/FreeRTOS/stream_buffer.c: 514:     StreamBufferCallbackFunction_t pxSendCallback = ((void*)0), pxReceiveCallback = ((void*)0);
+[v _pxSendCallback `*F7598 ~T0 @X0 1 a ]
+[e = _pxSendCallback -> -> -> 0 `i `*v `*F7603 ]
+[v _pxReceiveCallback `*F7614 ~T0 @X0 1 a ]
+[e = _pxReceiveCallback -> -> -> 0 `i `*v `*F7619 ]
+"517
+[; ;Source/FreeRTOS/stream_buffer.c: 517:         UBaseType_t uxStreamBufferNumber;
+[v _uxStreamBufferNumber `uc ~T0 @X0 1 a ]
+"520
+[; ;Source/FreeRTOS/stream_buffer.c: 520:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 520 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*S941 959  ]
+[e ( _Xprintf , (. :s 5C -> 520 `i ]
+[e :U 959 ]
+"523
+[; ;Source/FreeRTOS/stream_buffer.c: 523:     {
+{
+"526
+[; ;Source/FreeRTOS/stream_buffer.c: 526:         uxStreamBufferNumber = pxStreamBuffer->uxStreamBufferNumber;
+[e = _uxStreamBufferNumber . *U _pxStreamBuffer 8 ]
+"527
+[; ;Source/FreeRTOS/stream_buffer.c: 527:     }
+}
+"531
+[; ;Source/FreeRTOS/stream_buffer.c: 531:     POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"532
+[; ;Source/FreeRTOS/stream_buffer.c: 532:     {
+{
+"533
+[; ;Source/FreeRTOS/stream_buffer.c: 533:         if( ( pxStreamBuffer->xTaskWaitingToReceive == ((void*)0) ) && ( pxStreamBuffer->xTaskWaitingToSend == ((void*)0) ) )
+[e $ ! && == . *U _pxStreamBuffer 4 -> -> -> 0 `i `*v `*S935 == . *U _pxStreamBuffer 5 -> -> -> 0 `i `*v `*S935 960  ]
+"534
+[; ;Source/FreeRTOS/stream_buffer.c: 534:         {
+{
+"542
+[; ;Source/FreeRTOS/stream_buffer.c: 542:             prvInitialiseNewStreamBuffer( pxStreamBuffer,
+[e ( _prvInitialiseNewStreamBuffer (4 , , , , , , _pxStreamBuffer . *U _pxStreamBuffer 6 . *U _pxStreamBuffer 2 . *U _pxStreamBuffer 3 . *U _pxStreamBuffer 7 _pxSendCallback _pxReceiveCallback ]
+"551
+[; ;Source/FreeRTOS/stream_buffer.c: 551:             {
+{
+"552
+[; ;Source/FreeRTOS/stream_buffer.c: 552:                 pxStreamBuffer->uxStreamBufferNumber = uxStreamBufferNumber;
+[e = . *U _pxStreamBuffer 8 _uxStreamBufferNumber ]
+"553
+[; ;Source/FreeRTOS/stream_buffer.c: 553:             }
+}
+"558
+[; ;Source/FreeRTOS/stream_buffer.c: 558:             xReturn = ( ( ( BaseType_t ) 1 ) );
+[e = _xReturn -> -> 1 `i `c ]
+"559
+[; ;Source/FreeRTOS/stream_buffer.c: 559:         }
+}
+[e :U 960 ]
+"560
+[; ;Source/FreeRTOS/stream_buffer.c: 560:     }
+}
+"561
+[; ;Source/FreeRTOS/stream_buffer.c: 561:     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 961  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 961 ]
+"563
+[; ;Source/FreeRTOS/stream_buffer.c: 563:     return xReturn;
+[e ) _xReturn ]
+[e $UE 958  ]
+"564
+[; ;Source/FreeRTOS/stream_buffer.c: 564: }
+[e :UE 958 ]
+}
+"567
+[; ;Source/FreeRTOS/stream_buffer.c: 567: BaseType_t xStreamBufferSetTriggerLevel( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBufferSetTriggerLevel `(c ~T0 @X0 1 ef2`*S941`ui ]
+"569
+[; ;Source/FreeRTOS/stream_buffer.c: 569: {
+{
+[e :U _xStreamBufferSetTriggerLevel ]
+"567
+[; ;Source/FreeRTOS/stream_buffer.c: 567: BaseType_t xStreamBufferSetTriggerLevel( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"568
+[; ;Source/FreeRTOS/stream_buffer.c: 568:                                          size_t xTriggerLevel )
+[v _xTriggerLevel `ui ~T0 @X0 1 r2 ]
+"569
+[; ;Source/FreeRTOS/stream_buffer.c: 569: {
+[f ]
+[v F7636 `*S941 ~T0 @X0 1 t ]
+"570
+[; ;Source/FreeRTOS/stream_buffer.c: 570:     StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer _xStreamBuffer ]
+"571
+[; ;Source/FreeRTOS/stream_buffer.c: 571:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"573
+[; ;Source/FreeRTOS/stream_buffer.c: 573:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 573 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*S941 963  ]
+[e ( _Xprintf , (. :s 6C -> 573 `i ]
+[e :U 963 ]
+"576
+[; ;Source/FreeRTOS/stream_buffer.c: 576:     if( xTriggerLevel == ( size_t ) 0 )
+[e $ ! == _xTriggerLevel -> -> 0 `i `ui 964  ]
+"577
+[; ;Source/FreeRTOS/stream_buffer.c: 577:     {
+{
+"578
+[; ;Source/FreeRTOS/stream_buffer.c: 578:         xTriggerLevel = ( size_t ) 1;
+[e = _xTriggerLevel -> -> 1 `i `ui ]
+"579
+[; ;Source/FreeRTOS/stream_buffer.c: 579:     }
+}
+[e :U 964 ]
+"583
+[; ;Source/FreeRTOS/stream_buffer.c: 583:     if( xTriggerLevel < pxStreamBuffer->xLength )
+[e $ ! < _xTriggerLevel . *U _pxStreamBuffer 2 965  ]
+"584
+[; ;Source/FreeRTOS/stream_buffer.c: 584:     {
+{
+"585
+[; ;Source/FreeRTOS/stream_buffer.c: 585:         pxStreamBuffer->xTriggerLevelBytes = xTriggerLevel;
+[e = . *U _pxStreamBuffer 3 _xTriggerLevel ]
+"586
+[; ;Source/FreeRTOS/stream_buffer.c: 586:         xReturn = ( ( ( BaseType_t ) 1 ) );
+[e = _xReturn -> -> 1 `i `c ]
+"587
+[; ;Source/FreeRTOS/stream_buffer.c: 587:     }
+}
+[e $U 966  ]
+"588
+[; ;Source/FreeRTOS/stream_buffer.c: 588:     else
+[e :U 965 ]
+"589
+[; ;Source/FreeRTOS/stream_buffer.c: 589:     {
+{
+"590
+[; ;Source/FreeRTOS/stream_buffer.c: 590:         xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"591
+[; ;Source/FreeRTOS/stream_buffer.c: 591:     }
+}
+[e :U 966 ]
+"593
+[; ;Source/FreeRTOS/stream_buffer.c: 593:     return xReturn;
+[e ) _xReturn ]
+[e $UE 962  ]
+"594
+[; ;Source/FreeRTOS/stream_buffer.c: 594: }
+[e :UE 962 ]
+}
+"597
+[; ;Source/FreeRTOS/stream_buffer.c: 597: size_t xStreamBufferSpacesAvailable( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBufferSpacesAvailable `(ui ~T0 @X0 1 ef1`*S941 ]
+"598
+[; ;Source/FreeRTOS/stream_buffer.c: 598: {
+{
+[e :U _xStreamBufferSpacesAvailable ]
+"597
+[; ;Source/FreeRTOS/stream_buffer.c: 597: size_t xStreamBufferSpacesAvailable( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"598
+[; ;Source/FreeRTOS/stream_buffer.c: 598: {
+[f ]
+[v F7641 `*CS941 ~T0 @X0 1 t ]
+"599
+[; ;Source/FreeRTOS/stream_buffer.c: 599:     const StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*CS941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer -> _xStreamBuffer `*CS941 ]
+"600
+[; ;Source/FreeRTOS/stream_buffer.c: 600:     size_t xSpace;
+[v _xSpace `ui ~T0 @X0 1 a ]
+"601
+[; ;Source/FreeRTOS/stream_buffer.c: 601:     size_t xOriginalTail;
+[v _xOriginalTail `ui ~T0 @X0 1 a ]
+"603
+[; ;Source/FreeRTOS/stream_buffer.c: 603:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 603 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*CS941 968  ]
+[e ( _Xprintf , (. :s 7C -> 603 `i ]
+[e :U 968 ]
+"608
+[; ;Source/FreeRTOS/stream_buffer.c: 608:     do
+[e :U 971 ]
+"609
+[; ;Source/FreeRTOS/stream_buffer.c: 609:     {
+{
+"610
+[; ;Source/FreeRTOS/stream_buffer.c: 610:         xOriginalTail = pxStreamBuffer->xTail;
+[e = _xOriginalTail . *U _pxStreamBuffer 0 ]
+"611
+[; ;Source/FreeRTOS/stream_buffer.c: 611:         xSpace = pxStreamBuffer->xLength + pxStreamBuffer->xTail;
+[e = _xSpace + . *U _pxStreamBuffer 2 . *U _pxStreamBuffer 0 ]
+"612
+[; ;Source/FreeRTOS/stream_buffer.c: 612:         xSpace -= pxStreamBuffer->xHead;
+[e =- _xSpace . *U _pxStreamBuffer 1 ]
+"613
+[; ;Source/FreeRTOS/stream_buffer.c: 613:     } while( xOriginalTail != pxStreamBuffer->xTail );
+}
+[e $ != _xOriginalTail . *U _pxStreamBuffer 0 971  ]
+[e :U 970 ]
+"615
+[; ;Source/FreeRTOS/stream_buffer.c: 615:     xSpace -= ( size_t ) 1;
+[e =- _xSpace -> -> 1 `i `ui ]
+"617
+[; ;Source/FreeRTOS/stream_buffer.c: 617:     if( xSpace >= pxStreamBuffer->xLength )
+[e $ ! >= _xSpace . *U _pxStreamBuffer 2 972  ]
+"618
+[; ;Source/FreeRTOS/stream_buffer.c: 618:     {
+{
+"619
+[; ;Source/FreeRTOS/stream_buffer.c: 619:         xSpace -= pxStreamBuffer->xLength;
+[e =- _xSpace . *U _pxStreamBuffer 2 ]
+"620
+[; ;Source/FreeRTOS/stream_buffer.c: 620:     }
+}
+[e $U 973  ]
+"621
+[; ;Source/FreeRTOS/stream_buffer.c: 621:     else
+[e :U 972 ]
+"622
+[; ;Source/FreeRTOS/stream_buffer.c: 622:     {
+{
+"624
+[; ;Source/FreeRTOS/stream_buffer.c: 624:     }
+}
+[e :U 973 ]
+"626
+[; ;Source/FreeRTOS/stream_buffer.c: 626:     return xSpace;
+[e ) _xSpace ]
+[e $UE 967  ]
+"627
+[; ;Source/FreeRTOS/stream_buffer.c: 627: }
+[e :UE 967 ]
+}
+"630
+[; ;Source/FreeRTOS/stream_buffer.c: 630: size_t xStreamBufferBytesAvailable( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBufferBytesAvailable `(ui ~T0 @X0 1 ef1`*S941 ]
+"631
+[; ;Source/FreeRTOS/stream_buffer.c: 631: {
+{
+[e :U _xStreamBufferBytesAvailable ]
+"630
+[; ;Source/FreeRTOS/stream_buffer.c: 630: size_t xStreamBufferBytesAvailable( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"631
+[; ;Source/FreeRTOS/stream_buffer.c: 631: {
+[f ]
+[v F7647 `*CS941 ~T0 @X0 1 t ]
+"632
+[; ;Source/FreeRTOS/stream_buffer.c: 632:     const StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*CS941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer -> _xStreamBuffer `*CS941 ]
+"633
+[; ;Source/FreeRTOS/stream_buffer.c: 633:     size_t xReturn;
+[v _xReturn `ui ~T0 @X0 1 a ]
+"635
+[; ;Source/FreeRTOS/stream_buffer.c: 635:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 635 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*CS941 975  ]
+[e ( _Xprintf , (. :s 8C -> 635 `i ]
+[e :U 975 ]
+"637
+[; ;Source/FreeRTOS/stream_buffer.c: 637:     xReturn = prvBytesInBuffer( pxStreamBuffer );
+[e = _xReturn ( _prvBytesInBuffer (1 _pxStreamBuffer ]
+"638
+[; ;Source/FreeRTOS/stream_buffer.c: 638:     return xReturn;
+[e ) _xReturn ]
+[e $UE 974  ]
+"639
+[; ;Source/FreeRTOS/stream_buffer.c: 639: }
+[e :UE 974 ]
+}
+"642
+[; ;Source/FreeRTOS/stream_buffer.c: 642: size_t xStreamBufferSend( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBufferSend `(ui ~T0 @X0 1 ef4`*S941`*Cv`ui`us ]
+"646
+[; ;Source/FreeRTOS/stream_buffer.c: 646: {
+{
+[e :U _xStreamBufferSend ]
+"642
+[; ;Source/FreeRTOS/stream_buffer.c: 642: size_t xStreamBufferSend( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"643
+[; ;Source/FreeRTOS/stream_buffer.c: 643:                           const void * pvTxData,
+[v _pvTxData `*Cv ~T0 @X0 1 r2 ]
+"644
+[; ;Source/FreeRTOS/stream_buffer.c: 644:                           size_t xDataLengthBytes,
+[v _xDataLengthBytes `ui ~T0 @X0 1 r3 ]
+"645
+[; ;Source/FreeRTOS/stream_buffer.c: 645:                           TickType_t xTicksToWait )
+[v _xTicksToWait `us ~T0 @X0 1 r4 ]
+"646
+[; ;Source/FreeRTOS/stream_buffer.c: 646: {
+[f ]
+[v F7655 `*S941 ~T0 @X0 1 t ]
+"647
+[; ;Source/FreeRTOS/stream_buffer.c: 647:     StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer _xStreamBuffer ]
+"648
+[; ;Source/FreeRTOS/stream_buffer.c: 648:     size_t xReturn, xSpace = 0;
+[v _xReturn `ui ~T0 @X0 1 a ]
+[v _xSpace `ui ~T0 @X0 1 a ]
+[e = _xSpace -> -> 0 `i `ui ]
+"649
+[; ;Source/FreeRTOS/stream_buffer.c: 649:     size_t xRequiredSpace = xDataLengthBytes;
+[v _xRequiredSpace `ui ~T0 @X0 1 a ]
+[e = _xRequiredSpace _xDataLengthBytes ]
+"650
+[; ;Source/FreeRTOS/stream_buffer.c: 650:     TimeOut_t xTimeOut;
+[v _xTimeOut `S936 ~T0 @X0 1 a ]
+"651
+[; ;Source/FreeRTOS/stream_buffer.c: 651:     size_t xMaxReportedSpace = 0;
+[v _xMaxReportedSpace `ui ~T0 @X0 1 a ]
+[e = _xMaxReportedSpace -> -> 0 `i `ui ]
+"653
+[; ;Source/FreeRTOS/stream_buffer.c: 653:     if( ( pvTxData ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 653 );
+[e $ ! == _pvTxData -> -> 0 `i `*Cv 977  ]
+[e ( _Xprintf , (. :s 9C -> 653 `i ]
+[e :U 977 ]
+"654
+[; ;Source/FreeRTOS/stream_buffer.c: 654:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 654 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*S941 978  ]
+[e ( _Xprintf , (. :s 10C -> 654 `i ]
+[e :U 978 ]
+"659
+[; ;Source/FreeRTOS/stream_buffer.c: 659:     xMaxReportedSpace = pxStreamBuffer->xLength - ( size_t ) 1;
+[e = _xMaxReportedSpace - . *U _pxStreamBuffer 2 -> -> 1 `i `ui ]
+"665
+[; ;Source/FreeRTOS/stream_buffer.c: 665:     if( ( pxStreamBuffer->ucFlags & ( ( uint8_t ) 1 ) ) != ( uint8_t ) 0 )
+[e $ ! != & -> . *U _pxStreamBuffer 7 `i -> -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 979  ]
+"666
+[; ;Source/FreeRTOS/stream_buffer.c: 666:     {
+{
+"667
+[; ;Source/FreeRTOS/stream_buffer.c: 667:         xRequiredSpace += ( sizeof( size_t ) );
+[e =+ _xRequiredSpace -> # `ui `ui ]
+"670
+[; ;Source/FreeRTOS/stream_buffer.c: 670:         if( ( xRequiredSpace > xDataLengthBytes ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 670 );
+[e $ ! == -> > _xRequiredSpace _xDataLengthBytes `i -> 0 `i 980  ]
+[e ( _Xprintf , (. :s 11C -> 670 `i ]
+[e :U 980 ]
+"674
+[; ;Source/FreeRTOS/stream_buffer.c: 674:         if( xRequiredSpace > xMaxReportedSpace )
+[e $ ! > _xRequiredSpace _xMaxReportedSpace 981  ]
+"675
+[; ;Source/FreeRTOS/stream_buffer.c: 675:         {
+{
+"678
+[; ;Source/FreeRTOS/stream_buffer.c: 678:             xTicksToWait = ( TickType_t ) 0;
+[e = _xTicksToWait -> -> 0 `i `us ]
+"679
+[; ;Source/FreeRTOS/stream_buffer.c: 679:         }
+}
+[e $U 982  ]
+"680
+[; ;Source/FreeRTOS/stream_buffer.c: 680:         else
+[e :U 981 ]
+"681
+[; ;Source/FreeRTOS/stream_buffer.c: 681:         {
+{
+"683
+[; ;Source/FreeRTOS/stream_buffer.c: 683:         }
+}
+[e :U 982 ]
+"684
+[; ;Source/FreeRTOS/stream_buffer.c: 684:     }
+}
+[e $U 983  ]
+"685
+[; ;Source/FreeRTOS/stream_buffer.c: 685:     else
+[e :U 979 ]
+"686
+[; ;Source/FreeRTOS/stream_buffer.c: 686:     {
+{
+"690
+[; ;Source/FreeRTOS/stream_buffer.c: 690:         if( xRequiredSpace > xMaxReportedSpace )
+[e $ ! > _xRequiredSpace _xMaxReportedSpace 984  ]
+"691
+[; ;Source/FreeRTOS/stream_buffer.c: 691:         {
+{
+"692
+[; ;Source/FreeRTOS/stream_buffer.c: 692:             xRequiredSpace = xMaxReportedSpace;
+[e = _xRequiredSpace _xMaxReportedSpace ]
+"693
+[; ;Source/FreeRTOS/stream_buffer.c: 693:         }
+}
+[e $U 985  ]
+"694
+[; ;Source/FreeRTOS/stream_buffer.c: 694:         else
+[e :U 984 ]
+"695
+[; ;Source/FreeRTOS/stream_buffer.c: 695:         {
+{
+"697
+[; ;Source/FreeRTOS/stream_buffer.c: 697:         }
+}
+[e :U 985 ]
+"698
+[; ;Source/FreeRTOS/stream_buffer.c: 698:     }
+}
+[e :U 983 ]
+"700
+[; ;Source/FreeRTOS/stream_buffer.c: 700:     if( xTicksToWait != ( TickType_t ) 0 )
+[e $ ! != -> _xTicksToWait `ui -> -> -> 0 `i `us `ui 986  ]
+"701
+[; ;Source/FreeRTOS/stream_buffer.c: 701:     {
+{
+"702
+[; ;Source/FreeRTOS/stream_buffer.c: 702:         vTaskSetTimeOutState( &xTimeOut );
+[e ( _vTaskSetTimeOutState (1 &U _xTimeOut ]
+"704
+[; ;Source/FreeRTOS/stream_buffer.c: 704:         do
+[e :U 989 ]
+"705
+[; ;Source/FreeRTOS/stream_buffer.c: 705:         {
+{
+"708
+[; ;Source/FreeRTOS/stream_buffer.c: 708:             POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"709
+[; ;Source/FreeRTOS/stream_buffer.c: 709:             {
+{
+"710
+[; ;Source/FreeRTOS/stream_buffer.c: 710:                 xSpace = xStreamBufferSpacesAvailable( pxStreamBuffer );
+[e = _xSpace ( _xStreamBufferSpacesAvailable (1 _pxStreamBuffer ]
+"712
+[; ;Source/FreeRTOS/stream_buffer.c: 712:                 if( xSpace < xRequiredSpace )
+[e $ ! < _xSpace _xRequiredSpace 990  ]
+"713
+[; ;Source/FreeRTOS/stream_buffer.c: 713:                 {
+{
+"715
+[; ;Source/FreeRTOS/stream_buffer.c: 715:                     ( void ) xTaskGenericNotifyStateClear( ( ((void*)0) ), ( ( 0 ) ) );
+[e ( _xTaskGenericNotifyStateClear (2 , -> -> -> 0 `i `*v `*S935 -> -> 0 `i `uc ]
+"718
+[; ;Source/FreeRTOS/stream_buffer.c: 718:                     if( ( pxStreamBuffer->xTaskWaitingToSend == ((void*)0) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 718 );
+[e $ ! == -> == . *U _pxStreamBuffer 5 -> -> -> 0 `i `*v `*S935 `i -> 0 `i 991  ]
+[e ( _Xprintf , (. :s 12C -> 718 `i ]
+[e :U 991 ]
+"719
+[; ;Source/FreeRTOS/stream_buffer.c: 719:                     pxStreamBuffer->xTaskWaitingToSend = xTaskGetCurrentTaskHandle();
+[e = . *U _pxStreamBuffer 5 ( _xTaskGetCurrentTaskHandle ..  ]
+"720
+[; ;Source/FreeRTOS/stream_buffer.c: 720:                 }
+}
+[e $U 992  ]
+"721
+[; ;Source/FreeRTOS/stream_buffer.c: 721:                 else
+[e :U 990 ]
+"722
+[; ;Source/FreeRTOS/stream_buffer.c: 722:                 {
+{
+"723
+[; ;Source/FreeRTOS/stream_buffer.c: 723:                     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 993  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 993 ]
+"724
+[; ;Source/FreeRTOS/stream_buffer.c: 724:                     break;
+[e $U 988  ]
+"725
+[; ;Source/FreeRTOS/stream_buffer.c: 725:                 }
+}
+[e :U 992 ]
+"726
+[; ;Source/FreeRTOS/stream_buffer.c: 726:             }
+}
+"727
+[; ;Source/FreeRTOS/stream_buffer.c: 727:             __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 994  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 994 ]
+"730
+[; ;Source/FreeRTOS/stream_buffer.c: 730:             ( void ) xTaskGenericNotifyWait( ( 0 ), ( ( uint32_t ) 0 ), ( ( uint32_t ) 0 ), ( ((void*)0) ), ( xTicksToWait ) );
+[e ( _xTaskGenericNotifyWait (4 , , , , -> -> 0 `i `uc -> -> 0 `i `ul -> -> 0 `i `ul -> -> -> 0 `i `*v `*ul _xTicksToWait ]
+[v F7664 `*S935 ~T0 @X0 1 t ]
+"731
+[; ;Source/FreeRTOS/stream_buffer.c: 731:             pxStreamBuffer->xTaskWaitingToSend = ((void*)0);
+[e = . *U _pxStreamBuffer 5 -> -> -> 0 `i `*v `V*S935 ]
+"732
+[; ;Source/FreeRTOS/stream_buffer.c: 732:         } while( xTaskCheckForTimeOut( &xTimeOut, &xTicksToWait ) == ( ( BaseType_t ) 0 ) );
+}
+[e $ == -> ( _xTaskCheckForTimeOut (2 , &U _xTimeOut &U _xTicksToWait `i -> -> -> 0 `i `c `i 989  ]
+[e :U 988 ]
+"733
+[; ;Source/FreeRTOS/stream_buffer.c: 733:     }
+}
+[e $U 995  ]
+"734
+[; ;Source/FreeRTOS/stream_buffer.c: 734:     else
+[e :U 986 ]
+"735
+[; ;Source/FreeRTOS/stream_buffer.c: 735:     {
+{
+"737
+[; ;Source/FreeRTOS/stream_buffer.c: 737:     }
+}
+[e :U 995 ]
+"739
+[; ;Source/FreeRTOS/stream_buffer.c: 739:     if( xSpace == ( size_t ) 0 )
+[e $ ! == _xSpace -> -> 0 `i `ui 996  ]
+"740
+[; ;Source/FreeRTOS/stream_buffer.c: 740:     {
+{
+"741
+[; ;Source/FreeRTOS/stream_buffer.c: 741:         xSpace = xStreamBufferSpacesAvailable( pxStreamBuffer );
+[e = _xSpace ( _xStreamBufferSpacesAvailable (1 _pxStreamBuffer ]
+"742
+[; ;Source/FreeRTOS/stream_buffer.c: 742:     }
+}
+[e $U 997  ]
+"743
+[; ;Source/FreeRTOS/stream_buffer.c: 743:     else
+[e :U 996 ]
+"744
+[; ;Source/FreeRTOS/stream_buffer.c: 744:     {
+{
+"746
+[; ;Source/FreeRTOS/stream_buffer.c: 746:     }
+}
+[e :U 997 ]
+"748
+[; ;Source/FreeRTOS/stream_buffer.c: 748:     xReturn = prvWriteMessageToBuffer( pxStreamBuffer, pvTxData, xDataLengthBytes, xSpace, xRequiredSpace );
+[e = _xReturn ( _prvWriteMessageToBuffer (4 , , , , _pxStreamBuffer _pvTxData _xDataLengthBytes _xSpace _xRequiredSpace ]
+"750
+[; ;Source/FreeRTOS/stream_buffer.c: 750:     if( xReturn > ( size_t ) 0 )
+[e $ ! > _xReturn -> -> 0 `i `ui 998  ]
+"751
+[; ;Source/FreeRTOS/stream_buffer.c: 751:     {
+{
+"755
+[; ;Source/FreeRTOS/stream_buffer.c: 755:         if( prvBytesInBuffer( pxStreamBuffer ) >= pxStreamBuffer->xTriggerLevelBytes )
+[e $ ! >= ( _prvBytesInBuffer (1 -> _pxStreamBuffer `*CS941 . *U _pxStreamBuffer 3 999  ]
+"756
+[; ;Source/FreeRTOS/stream_buffer.c: 756:         {
+{
+"757
+[; ;Source/FreeRTOS/stream_buffer.c: 757:             vTaskSuspendAll(); { if( ( ( pxStreamBuffer ) )->xTaskWaitingToReceive != ((void*)0) ) { ( void ) xTaskGenericNotify( ( ( ( pxStreamBuffer ) )->xTaskWaitingToReceive ), ( ( 0 ) ), ( ( uint32_t ) 0 ), ( eNoAction ), ((void*)0) ); ( ( pxStreamBuffer ) )->xTaskWaitingToReceive = ((void*)0); } } ( void ) xTaskResumeAll();;
+[e ( _vTaskSuspendAll ..  ]
+{
+[e $ ! != . *U _pxStreamBuffer 4 -> -> -> 0 `i `*v `*S935 1000  ]
+{
+[e ( _xTaskGenericNotify (4 , , , , . *U _pxStreamBuffer 4 -> -> 0 `i `uc -> -> 0 `i `ul -> . `E7121 0 `E7121 -> -> -> 0 `i `*v `*ul ]
+[v F7668 `*S935 ~T0 @X0 1 t ]
+[e = . *U _pxStreamBuffer 4 -> -> -> 0 `i `*v `V*S935 ]
+}
+[e :U 1000 ]
+}
+[e ( _xTaskResumeAll ..  ]
+"758
+[; ;Source/FreeRTOS/stream_buffer.c: 758:         }
+}
+[e $U 1001  ]
+"759
+[; ;Source/FreeRTOS/stream_buffer.c: 759:         else
+[e :U 999 ]
+"760
+[; ;Source/FreeRTOS/stream_buffer.c: 760:         {
+{
+"762
+[; ;Source/FreeRTOS/stream_buffer.c: 762:         }
+}
+[e :U 1001 ]
+"763
+[; ;Source/FreeRTOS/stream_buffer.c: 763:     }
+}
+[e $U 1002  ]
+"764
+[; ;Source/FreeRTOS/stream_buffer.c: 764:     else
+[e :U 998 ]
+"765
+[; ;Source/FreeRTOS/stream_buffer.c: 765:     {
+{
+"768
+[; ;Source/FreeRTOS/stream_buffer.c: 768:     }
+}
+[e :U 1002 ]
+"770
+[; ;Source/FreeRTOS/stream_buffer.c: 770:     return xReturn;
+[e ) _xReturn ]
+[e $UE 976  ]
+"771
+[; ;Source/FreeRTOS/stream_buffer.c: 771: }
+[e :UE 976 ]
+}
+"774
+[; ;Source/FreeRTOS/stream_buffer.c: 774: size_t xStreamBufferSendFromISR( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBufferSendFromISR `(ui ~T0 @X0 1 ef4`*S941`*Cv`ui`C*c ]
+"778
+[; ;Source/FreeRTOS/stream_buffer.c: 778: {
+{
+[e :U _xStreamBufferSendFromISR ]
+"774
+[; ;Source/FreeRTOS/stream_buffer.c: 774: size_t xStreamBufferSendFromISR( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"775
+[; ;Source/FreeRTOS/stream_buffer.c: 775:                                  const void * pvTxData,
+[v _pvTxData `*Cv ~T0 @X0 1 r2 ]
+"776
+[; ;Source/FreeRTOS/stream_buffer.c: 776:                                  size_t xDataLengthBytes,
+[v _xDataLengthBytes `ui ~T0 @X0 1 r3 ]
+[v F7675 `*c ~T0 @X0 1 t ]
+"777
+[; ;Source/FreeRTOS/stream_buffer.c: 777:                                  BaseType_t * const pxHigherPriorityTaskWoken )
+[v _pxHigherPriorityTaskWoken `C*c ~T0 @X0 1 r4 ]
+"778
+[; ;Source/FreeRTOS/stream_buffer.c: 778: {
+[f ]
+[v F7677 `*S941 ~T0 @X0 1 t ]
+"779
+[; ;Source/FreeRTOS/stream_buffer.c: 779:     StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer _xStreamBuffer ]
+"780
+[; ;Source/FreeRTOS/stream_buffer.c: 780:     size_t xReturn, xSpace;
+[v _xReturn `ui ~T0 @X0 1 a ]
+[v _xSpace `ui ~T0 @X0 1 a ]
+"781
+[; ;Source/FreeRTOS/stream_buffer.c: 781:     size_t xRequiredSpace = xDataLengthBytes;
+[v _xRequiredSpace `ui ~T0 @X0 1 a ]
+[e = _xRequiredSpace _xDataLengthBytes ]
+"783
+[; ;Source/FreeRTOS/stream_buffer.c: 783:     if( ( pvTxData ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 783 );
+[e $ ! == _pvTxData -> -> 0 `i `*Cv 1004  ]
+[e ( _Xprintf , (. :s 13C -> 783 `i ]
+[e :U 1004 ]
+"784
+[; ;Source/FreeRTOS/stream_buffer.c: 784:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 784 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*S941 1005  ]
+[e ( _Xprintf , (. :s 14C -> 784 `i ]
+[e :U 1005 ]
+"790
+[; ;Source/FreeRTOS/stream_buffer.c: 790:     if( ( pxStreamBuffer->ucFlags & ( ( uint8_t ) 1 ) ) != ( uint8_t ) 0 )
+[e $ ! != & -> . *U _pxStreamBuffer 7 `i -> -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 1006  ]
+"791
+[; ;Source/FreeRTOS/stream_buffer.c: 791:     {
+{
+"792
+[; ;Source/FreeRTOS/stream_buffer.c: 792:         xRequiredSpace += ( sizeof( size_t ) );
+[e =+ _xRequiredSpace -> # `ui `ui ]
+"793
+[; ;Source/FreeRTOS/stream_buffer.c: 793:     }
+}
+[e $U 1007  ]
+"794
+[; ;Source/FreeRTOS/stream_buffer.c: 794:     else
+[e :U 1006 ]
+"795
+[; ;Source/FreeRTOS/stream_buffer.c: 795:     {
+{
+"797
+[; ;Source/FreeRTOS/stream_buffer.c: 797:     }
+}
+[e :U 1007 ]
+"799
+[; ;Source/FreeRTOS/stream_buffer.c: 799:     xSpace = xStreamBufferSpacesAvailable( pxStreamBuffer );
+[e = _xSpace ( _xStreamBufferSpacesAvailable (1 _pxStreamBuffer ]
+"800
+[; ;Source/FreeRTOS/stream_buffer.c: 800:     xReturn = prvWriteMessageToBuffer( pxStreamBuffer, pvTxData, xDataLengthBytes, xSpace, xRequiredSpace );
+[e = _xReturn ( _prvWriteMessageToBuffer (4 , , , , _pxStreamBuffer _pvTxData _xDataLengthBytes _xSpace _xRequiredSpace ]
+"802
+[; ;Source/FreeRTOS/stream_buffer.c: 802:     if( xReturn > ( size_t ) 0 )
+[e $ ! > _xReturn -> -> 0 `i `ui 1008  ]
+"803
+[; ;Source/FreeRTOS/stream_buffer.c: 803:     {
+{
+"805
+[; ;Source/FreeRTOS/stream_buffer.c: 805:         if( prvBytesInBuffer( pxStreamBuffer ) >= pxStreamBuffer->xTriggerLevelBytes )
+[e $ ! >= ( _prvBytesInBuffer (1 -> _pxStreamBuffer `*CS941 . *U _pxStreamBuffer 3 1009  ]
+"806
+[; ;Source/FreeRTOS/stream_buffer.c: 806:         {
+{
+"807
+[; ;Source/FreeRTOS/stream_buffer.c: 807:             { UBaseType_t uxSavedInterruptStatus; uxSavedInterruptStatus = ( UBaseType_t ) 0; { if( ( ( pxStreamBuffer ) )->xTaskWaitingToReceive != ((void*)0) ) { ( void ) xTaskGenericNotifyFromISR( ( ( ( pxStreamBuffer ) )->xTaskWaitingToReceive ), ( ( 0 ) ), ( ( uint32_t ) 0 ), ( eNoAction ), ((void*)0), ( ( ( pxHigherPriorityTaskWoken ) ) ) ); ( ( pxStreamBuffer ) )->xTaskWaitingToReceive = ((void*)0); } } ( void ) ( uxSavedInterruptStatus ); };
+{
+[v _uxSavedInterruptStatus `uc ~T0 @X0 1 a ]
+[e = _uxSavedInterruptStatus -> -> 0 `i `uc ]
+{
+[e $ ! != . *U _pxStreamBuffer 4 -> -> -> 0 `i `*v `*S935 1010  ]
+{
+[e ( _xTaskGenericNotifyFromISR (4 , , , , , . *U _pxStreamBuffer 4 -> -> 0 `i `uc -> -> 0 `i `ul -> . `E7121 0 `E7121 -> -> -> 0 `i `*v `*ul _pxHigherPriorityTaskWoken ]
+[v F7685 `*S935 ~T0 @X0 1 t ]
+[e = . *U _pxStreamBuffer 4 -> -> -> 0 `i `*v `V*S935 ]
+}
+[e :U 1010 ]
+}
+[e _uxSavedInterruptStatus ]
+}
+"808
+[; ;Source/FreeRTOS/stream_buffer.c: 808:         }
+}
+[e $U 1011  ]
+"809
+[; ;Source/FreeRTOS/stream_buffer.c: 809:         else
+[e :U 1009 ]
+"810
+[; ;Source/FreeRTOS/stream_buffer.c: 810:         {
+{
+"812
+[; ;Source/FreeRTOS/stream_buffer.c: 812:         }
+}
+[e :U 1011 ]
+"813
+[; ;Source/FreeRTOS/stream_buffer.c: 813:     }
+}
+[e $U 1012  ]
+"814
+[; ;Source/FreeRTOS/stream_buffer.c: 814:     else
+[e :U 1008 ]
+"815
+[; ;Source/FreeRTOS/stream_buffer.c: 815:     {
+{
+"817
+[; ;Source/FreeRTOS/stream_buffer.c: 817:     }
+}
+[e :U 1012 ]
+"821
+[; ;Source/FreeRTOS/stream_buffer.c: 821:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1003  ]
+"822
+[; ;Source/FreeRTOS/stream_buffer.c: 822: }
+[e :UE 1003 ]
+}
+"825
+[; ;Source/FreeRTOS/stream_buffer.c: 825: static size_t prvWriteMessageToBuffer( StreamBuffer_t * const pxStreamBuffer,
+[v _prvWriteMessageToBuffer `(ui ~T0 @X0 1 sf5`C*S941`*Cv`ui`ui`ui ]
+"830
+[; ;Source/FreeRTOS/stream_buffer.c: 830: {
+{
+[e :U _prvWriteMessageToBuffer ]
+[v F7689 `*S941 ~T0 @X0 1 t ]
+"825
+[; ;Source/FreeRTOS/stream_buffer.c: 825: static size_t prvWriteMessageToBuffer( StreamBuffer_t * const pxStreamBuffer,
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 r1 ]
+"826
+[; ;Source/FreeRTOS/stream_buffer.c: 826:                                        const void * pvTxData,
+[v _pvTxData `*Cv ~T0 @X0 1 r2 ]
+"827
+[; ;Source/FreeRTOS/stream_buffer.c: 827:                                        size_t xDataLengthBytes,
+[v _xDataLengthBytes `ui ~T0 @X0 1 r3 ]
+"828
+[; ;Source/FreeRTOS/stream_buffer.c: 828:                                        size_t xSpace,
+[v _xSpace `ui ~T0 @X0 1 r4 ]
+"829
+[; ;Source/FreeRTOS/stream_buffer.c: 829:                                        size_t xRequiredSpace )
+[v _xRequiredSpace `ui ~T0 @X0 1 r5 ]
+"830
+[; ;Source/FreeRTOS/stream_buffer.c: 830: {
+[f ]
+"831
+[; ;Source/FreeRTOS/stream_buffer.c: 831:     size_t xNextHead = pxStreamBuffer->xHead;
+[v _xNextHead `ui ~T0 @X0 1 a ]
+[e = _xNextHead . *U _pxStreamBuffer 1 ]
+"832
+[; ;Source/FreeRTOS/stream_buffer.c: 832:     size_t xMessageLength;
+[v _xMessageLength `ui ~T0 @X0 1 a ]
+"834
+[; ;Source/FreeRTOS/stream_buffer.c: 834:     if( ( pxStreamBuffer->ucFlags & ( ( uint8_t ) 1 ) ) != ( uint8_t ) 0 )
+[e $ ! != & -> . *U _pxStreamBuffer 7 `i -> -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 1014  ]
+"835
+[; ;Source/FreeRTOS/stream_buffer.c: 835:     {
+{
+"839
+[; ;Source/FreeRTOS/stream_buffer.c: 839:         xMessageLength = ( size_t ) xDataLengthBytes;
+[e = _xMessageLength _xDataLengthBytes ]
+"842
+[; ;Source/FreeRTOS/stream_buffer.c: 842:         if( ( ( size_t ) xMessageLength == xDataLengthBytes ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 842 );
+[e $ ! == -> == _xMessageLength _xDataLengthBytes `i -> 0 `i 1015  ]
+[e ( _Xprintf , (. :s 15C -> 842 `i ]
+[e :U 1015 ]
+"844
+[; ;Source/FreeRTOS/stream_buffer.c: 844:         if( xSpace >= xRequiredSpace )
+[e $ ! >= _xSpace _xRequiredSpace 1016  ]
+"845
+[; ;Source/FreeRTOS/stream_buffer.c: 845:         {
+{
+"849
+[; ;Source/FreeRTOS/stream_buffer.c: 849:             xNextHead = prvWriteBytesToBuffer( pxStreamBuffer, ( const uint8_t * ) &( xMessageLength ), ( sizeof( size_t ) ), xNextHead );
+[e = _xNextHead ( _prvWriteBytesToBuffer (4 , , , _pxStreamBuffer -> &U _xMessageLength `*Cuc -> # `ui `ui _xNextHead ]
+"850
+[; ;Source/FreeRTOS/stream_buffer.c: 850:         }
+}
+[e $U 1017  ]
+"851
+[; ;Source/FreeRTOS/stream_buffer.c: 851:         else
+[e :U 1016 ]
+"852
+[; ;Source/FreeRTOS/stream_buffer.c: 852:         {
+{
+"854
+[; ;Source/FreeRTOS/stream_buffer.c: 854:             xDataLengthBytes = 0;
+[e = _xDataLengthBytes -> -> 0 `i `ui ]
+"855
+[; ;Source/FreeRTOS/stream_buffer.c: 855:         }
+}
+[e :U 1017 ]
+"856
+[; ;Source/FreeRTOS/stream_buffer.c: 856:     }
+}
+[e $U 1018  ]
+"857
+[; ;Source/FreeRTOS/stream_buffer.c: 857:     else
+[e :U 1014 ]
+"858
+[; ;Source/FreeRTOS/stream_buffer.c: 858:     {
+{
+"862
+[; ;Source/FreeRTOS/stream_buffer.c: 862:         xDataLengthBytes = ( ( ( xDataLengthBytes ) < ( xSpace ) ) ? ( xDataLengthBytes ) : ( xSpace ) );
+[e = _xDataLengthBytes ? < _xDataLengthBytes _xSpace : _xDataLengthBytes _xSpace ]
+"863
+[; ;Source/FreeRTOS/stream_buffer.c: 863:     }
+}
+[e :U 1018 ]
+"865
+[; ;Source/FreeRTOS/stream_buffer.c: 865:     if( xDataLengthBytes != ( size_t ) 0 )
+[e $ ! != _xDataLengthBytes -> -> 0 `i `ui 1019  ]
+"866
+[; ;Source/FreeRTOS/stream_buffer.c: 866:     {
+{
+"868
+[; ;Source/FreeRTOS/stream_buffer.c: 868:         pxStreamBuffer->xHead = prvWriteBytesToBuffer( pxStreamBuffer, ( const uint8_t * ) pvTxData, xDataLengthBytes, xNextHead );
+[e = . *U _pxStreamBuffer 1 ( _prvWriteBytesToBuffer (4 , , , _pxStreamBuffer -> _pvTxData `*Cuc _xDataLengthBytes _xNextHead ]
+"869
+[; ;Source/FreeRTOS/stream_buffer.c: 869:     }
+}
+[e :U 1019 ]
+"871
+[; ;Source/FreeRTOS/stream_buffer.c: 871:     return xDataLengthBytes;
+[e ) _xDataLengthBytes ]
+[e $UE 1013  ]
+"872
+[; ;Source/FreeRTOS/stream_buffer.c: 872: }
+[e :UE 1013 ]
+}
+"875
+[; ;Source/FreeRTOS/stream_buffer.c: 875: size_t xStreamBufferReceive( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBufferReceive `(ui ~T0 @X0 1 ef4`*S941`*v`ui`us ]
+"879
+[; ;Source/FreeRTOS/stream_buffer.c: 879: {
+{
+[e :U _xStreamBufferReceive ]
+"875
+[; ;Source/FreeRTOS/stream_buffer.c: 875: size_t xStreamBufferReceive( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"876
+[; ;Source/FreeRTOS/stream_buffer.c: 876:                              void * pvRxData,
+[v _pvRxData `*v ~T0 @X0 1 r2 ]
+"877
+[; ;Source/FreeRTOS/stream_buffer.c: 877:                              size_t xBufferLengthBytes,
+[v _xBufferLengthBytes `ui ~T0 @X0 1 r3 ]
+"878
+[; ;Source/FreeRTOS/stream_buffer.c: 878:                              TickType_t xTicksToWait )
+[v _xTicksToWait `us ~T0 @X0 1 r4 ]
+"879
+[; ;Source/FreeRTOS/stream_buffer.c: 879: {
+[f ]
+[v F7702 `*S941 ~T0 @X0 1 t ]
+"880
+[; ;Source/FreeRTOS/stream_buffer.c: 880:     StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer _xStreamBuffer ]
+"881
+[; ;Source/FreeRTOS/stream_buffer.c: 881:     size_t xReceivedLength = 0, xBytesAvailable, xBytesToStoreMessageLength;
+[v _xReceivedLength `ui ~T0 @X0 1 a ]
+[e = _xReceivedLength -> -> 0 `i `ui ]
+[v _xBytesAvailable `ui ~T0 @X0 1 a ]
+[v _xBytesToStoreMessageLength `ui ~T0 @X0 1 a ]
+"883
+[; ;Source/FreeRTOS/stream_buffer.c: 883:     if( ( pvRxData ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 883 );
+[e $ ! == _pvRxData -> -> 0 `i `*v 1021  ]
+[e ( _Xprintf , (. :s 16C -> 883 `i ]
+[e :U 1021 ]
+"884
+[; ;Source/FreeRTOS/stream_buffer.c: 884:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 884 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*S941 1022  ]
+[e ( _Xprintf , (. :s 17C -> 884 `i ]
+[e :U 1022 ]
+"891
+[; ;Source/FreeRTOS/stream_buffer.c: 891:     if( ( pxStreamBuffer->ucFlags & ( ( uint8_t ) 1 ) ) != ( uint8_t ) 0 )
+[e $ ! != & -> . *U _pxStreamBuffer 7 `i -> -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 1023  ]
+"892
+[; ;Source/FreeRTOS/stream_buffer.c: 892:     {
+{
+"893
+[; ;Source/FreeRTOS/stream_buffer.c: 893:         xBytesToStoreMessageLength = ( sizeof( size_t ) );
+[e = _xBytesToStoreMessageLength -> # `ui `ui ]
+"894
+[; ;Source/FreeRTOS/stream_buffer.c: 894:     }
+}
+[e $U 1024  ]
+"895
+[; ;Source/FreeRTOS/stream_buffer.c: 895:     else
+[e :U 1023 ]
+"896
+[; ;Source/FreeRTOS/stream_buffer.c: 896:     {
+{
+"897
+[; ;Source/FreeRTOS/stream_buffer.c: 897:         xBytesToStoreMessageLength = 0;
+[e = _xBytesToStoreMessageLength -> -> 0 `i `ui ]
+"898
+[; ;Source/FreeRTOS/stream_buffer.c: 898:     }
+}
+[e :U 1024 ]
+"900
+[; ;Source/FreeRTOS/stream_buffer.c: 900:     if( xTicksToWait != ( TickType_t ) 0 )
+[e $ ! != -> _xTicksToWait `ui -> -> -> 0 `i `us `ui 1025  ]
+"901
+[; ;Source/FreeRTOS/stream_buffer.c: 901:     {
+{
+"904
+[; ;Source/FreeRTOS/stream_buffer.c: 904:         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"905
+[; ;Source/FreeRTOS/stream_buffer.c: 905:         {
+{
+"906
+[; ;Source/FreeRTOS/stream_buffer.c: 906:             xBytesAvailable = prvBytesInBuffer( pxStreamBuffer );
+[e = _xBytesAvailable ( _prvBytesInBuffer (1 -> _pxStreamBuffer `*CS941 ]
+"913
+[; ;Source/FreeRTOS/stream_buffer.c: 913:             if( xBytesAvailable <= xBytesToStoreMessageLength )
+[e $ ! <= _xBytesAvailable _xBytesToStoreMessageLength 1026  ]
+"914
+[; ;Source/FreeRTOS/stream_buffer.c: 914:             {
+{
+"916
+[; ;Source/FreeRTOS/stream_buffer.c: 916:                 ( void ) xTaskGenericNotifyStateClear( ( ((void*)0) ), ( ( 0 ) ) );
+[e ( _xTaskGenericNotifyStateClear (2 , -> -> -> 0 `i `*v `*S935 -> -> 0 `i `uc ]
+"919
+[; ;Source/FreeRTOS/stream_buffer.c: 919:                 if( ( pxStreamBuffer->xTaskWaitingToReceive == ((void*)0) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 919 );
+[e $ ! == -> == . *U _pxStreamBuffer 4 -> -> -> 0 `i `*v `*S935 `i -> 0 `i 1027  ]
+[e ( _Xprintf , (. :s 18C -> 919 `i ]
+[e :U 1027 ]
+"920
+[; ;Source/FreeRTOS/stream_buffer.c: 920:                 pxStreamBuffer->xTaskWaitingToReceive = xTaskGetCurrentTaskHandle();
+[e = . *U _pxStreamBuffer 4 ( _xTaskGetCurrentTaskHandle ..  ]
+"921
+[; ;Source/FreeRTOS/stream_buffer.c: 921:             }
+}
+[e $U 1028  ]
+"922
+[; ;Source/FreeRTOS/stream_buffer.c: 922:             else
+[e :U 1026 ]
+"923
+[; ;Source/FreeRTOS/stream_buffer.c: 923:             {
+{
+"925
+[; ;Source/FreeRTOS/stream_buffer.c: 925:             }
+}
+[e :U 1028 ]
+"926
+[; ;Source/FreeRTOS/stream_buffer.c: 926:         }
+}
+"927
+[; ;Source/FreeRTOS/stream_buffer.c: 927:         __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1029  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1029 ]
+"929
+[; ;Source/FreeRTOS/stream_buffer.c: 929:         if( xBytesAvailable <= xBytesToStoreMessageLength )
+[e $ ! <= _xBytesAvailable _xBytesToStoreMessageLength 1030  ]
+"930
+[; ;Source/FreeRTOS/stream_buffer.c: 930:         {
+{
+"933
+[; ;Source/FreeRTOS/stream_buffer.c: 933:             ( void ) xTaskGenericNotifyWait( ( 0 ), ( ( uint32_t ) 0 ), ( ( uint32_t ) 0 ), ( ((void*)0) ), ( xTicksToWait ) );
+[e ( _xTaskGenericNotifyWait (4 , , , , -> -> 0 `i `uc -> -> 0 `i `ul -> -> 0 `i `ul -> -> -> 0 `i `*v `*ul _xTicksToWait ]
+[v F7709 `*S935 ~T0 @X0 1 t ]
+"934
+[; ;Source/FreeRTOS/stream_buffer.c: 934:             pxStreamBuffer->xTaskWaitingToReceive = ((void*)0);
+[e = . *U _pxStreamBuffer 4 -> -> -> 0 `i `*v `V*S935 ]
+"937
+[; ;Source/FreeRTOS/stream_buffer.c: 937:             xBytesAvailable = prvBytesInBuffer( pxStreamBuffer );
+[e = _xBytesAvailable ( _prvBytesInBuffer (1 -> _pxStreamBuffer `*CS941 ]
+"938
+[; ;Source/FreeRTOS/stream_buffer.c: 938:         }
+}
+[e $U 1031  ]
+"939
+[; ;Source/FreeRTOS/stream_buffer.c: 939:         else
+[e :U 1030 ]
+"940
+[; ;Source/FreeRTOS/stream_buffer.c: 940:         {
+{
+"942
+[; ;Source/FreeRTOS/stream_buffer.c: 942:         }
+}
+[e :U 1031 ]
+"943
+[; ;Source/FreeRTOS/stream_buffer.c: 943:     }
+}
+[e $U 1032  ]
+"944
+[; ;Source/FreeRTOS/stream_buffer.c: 944:     else
+[e :U 1025 ]
+"945
+[; ;Source/FreeRTOS/stream_buffer.c: 945:     {
+{
+"946
+[; ;Source/FreeRTOS/stream_buffer.c: 946:         xBytesAvailable = prvBytesInBuffer( pxStreamBuffer );
+[e = _xBytesAvailable ( _prvBytesInBuffer (1 -> _pxStreamBuffer `*CS941 ]
+"947
+[; ;Source/FreeRTOS/stream_buffer.c: 947:     }
+}
+[e :U 1032 ]
+"954
+[; ;Source/FreeRTOS/stream_buffer.c: 954:     if( xBytesAvailable > xBytesToStoreMessageLength )
+[e $ ! > _xBytesAvailable _xBytesToStoreMessageLength 1033  ]
+"955
+[; ;Source/FreeRTOS/stream_buffer.c: 955:     {
+{
+"956
+[; ;Source/FreeRTOS/stream_buffer.c: 956:         xReceivedLength = prvReadMessageFromBuffer( pxStreamBuffer, pvRxData, xBufferLengthBytes, xBytesAvailable );
+[e = _xReceivedLength ( _prvReadMessageFromBuffer (4 , , , _pxStreamBuffer _pvRxData _xBufferLengthBytes _xBytesAvailable ]
+"959
+[; ;Source/FreeRTOS/stream_buffer.c: 959:         if( xReceivedLength != ( size_t ) 0 )
+[e $ ! != _xReceivedLength -> -> 0 `i `ui 1034  ]
+"960
+[; ;Source/FreeRTOS/stream_buffer.c: 960:         {
+{
+"962
+[; ;Source/FreeRTOS/stream_buffer.c: 962:             vTaskSuspendAll(); { if( ( ( xStreamBuffer ) )->xTaskWaitingToSend != ((void*)0) ) { ( void ) xTaskGenericNotify( ( ( ( xStreamBuffer ) )->xTaskWaitingToSend ), ( ( 0 ) ), ( ( uint32_t ) 0 ), ( eNoAction ), ((void*)0) ); ( ( xStreamBuffer ) )->xTaskWaitingToSend = ((void*)0); } } ( void ) xTaskResumeAll();;
+[e ( _vTaskSuspendAll ..  ]
+{
+[e $ ! != . *U _xStreamBuffer 5 -> -> -> 0 `i `*v `*S935 1035  ]
+{
+[e ( _xTaskGenericNotify (4 , , , , . *U _xStreamBuffer 5 -> -> 0 `i `uc -> -> 0 `i `ul -> . `E7121 0 `E7121 -> -> -> 0 `i `*v `*ul ]
+[v F7713 `*S935 ~T0 @X0 1 t ]
+[e = . *U _xStreamBuffer 5 -> -> -> 0 `i `*v `V*S935 ]
+}
+[e :U 1035 ]
+}
+[e ( _xTaskResumeAll ..  ]
+"963
+[; ;Source/FreeRTOS/stream_buffer.c: 963:         }
+}
+[e $U 1036  ]
+"964
+[; ;Source/FreeRTOS/stream_buffer.c: 964:         else
+[e :U 1034 ]
+"965
+[; ;Source/FreeRTOS/stream_buffer.c: 965:         {
+{
+"967
+[; ;Source/FreeRTOS/stream_buffer.c: 967:         }
+}
+[e :U 1036 ]
+"968
+[; ;Source/FreeRTOS/stream_buffer.c: 968:     }
+}
+[e $U 1037  ]
+"969
+[; ;Source/FreeRTOS/stream_buffer.c: 969:     else
+[e :U 1033 ]
+"970
+[; ;Source/FreeRTOS/stream_buffer.c: 970:     {
+{
+"973
+[; ;Source/FreeRTOS/stream_buffer.c: 973:     }
+}
+[e :U 1037 ]
+"975
+[; ;Source/FreeRTOS/stream_buffer.c: 975:     return xReceivedLength;
+[e ) _xReceivedLength ]
+[e $UE 1020  ]
+"976
+[; ;Source/FreeRTOS/stream_buffer.c: 976: }
+[e :UE 1020 ]
+}
+"979
+[; ;Source/FreeRTOS/stream_buffer.c: 979: size_t xStreamBufferNextMessageLengthBytes( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBufferNextMessageLengthBytes `(ui ~T0 @X0 1 ef1`*S941 ]
+"980
+[; ;Source/FreeRTOS/stream_buffer.c: 980: {
+{
+[e :U _xStreamBufferNextMessageLengthBytes ]
+"979
+[; ;Source/FreeRTOS/stream_buffer.c: 979: size_t xStreamBufferNextMessageLengthBytes( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"980
+[; ;Source/FreeRTOS/stream_buffer.c: 980: {
+[f ]
+[v F7717 `*S941 ~T0 @X0 1 t ]
+"981
+[; ;Source/FreeRTOS/stream_buffer.c: 981:     StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer _xStreamBuffer ]
+"982
+[; ;Source/FreeRTOS/stream_buffer.c: 982:     size_t xReturn, xBytesAvailable;
+[v _xReturn `ui ~T0 @X0 1 a ]
+[v _xBytesAvailable `ui ~T0 @X0 1 a ]
+"983
+[; ;Source/FreeRTOS/stream_buffer.c: 983:     size_t xTempReturn;
+[v _xTempReturn `ui ~T0 @X0 1 a ]
+"985
+[; ;Source/FreeRTOS/stream_buffer.c: 985:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 985 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*S941 1039  ]
+[e ( _Xprintf , (. :s 19C -> 985 `i ]
+[e :U 1039 ]
+"988
+[; ;Source/FreeRTOS/stream_buffer.c: 988:     if( ( pxStreamBuffer->ucFlags & ( ( uint8_t ) 1 ) ) != ( uint8_t ) 0 )
+[e $ ! != & -> . *U _pxStreamBuffer 7 `i -> -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 1040  ]
+"989
+[; ;Source/FreeRTOS/stream_buffer.c: 989:     {
+{
+"990
+[; ;Source/FreeRTOS/stream_buffer.c: 990:         xBytesAvailable = prvBytesInBuffer( pxStreamBuffer );
+[e = _xBytesAvailable ( _prvBytesInBuffer (1 -> _pxStreamBuffer `*CS941 ]
+"992
+[; ;Source/FreeRTOS/stream_buffer.c: 992:         if( xBytesAvailable > ( sizeof( size_t ) ) )
+[e $ ! > _xBytesAvailable -> # `ui `ui 1041  ]
+"993
+[; ;Source/FreeRTOS/stream_buffer.c: 993:         {
+{
+"997
+[; ;Source/FreeRTOS/stream_buffer.c: 997:             ( void ) prvReadBytesFromBuffer( pxStreamBuffer, ( uint8_t * ) &xTempReturn, ( sizeof( size_t ) ), pxStreamBuffer->xTail );
+[e ( _prvReadBytesFromBuffer (4 , , , _pxStreamBuffer -> &U _xTempReturn `*uc -> # `ui `ui . *U _pxStreamBuffer 0 ]
+"998
+[; ;Source/FreeRTOS/stream_buffer.c: 998:             xReturn = ( size_t ) xTempReturn;
+[e = _xReturn _xTempReturn ]
+"999
+[; ;Source/FreeRTOS/stream_buffer.c: 999:         }
+}
+[e $U 1042  ]
+"1000
+[; ;Source/FreeRTOS/stream_buffer.c: 1000:         else
+[e :U 1041 ]
+"1001
+[; ;Source/FreeRTOS/stream_buffer.c: 1001:         {
+{
+"1006
+[; ;Source/FreeRTOS/stream_buffer.c: 1006:             if( ( xBytesAvailable == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1006 );
+[e $ ! == -> == _xBytesAvailable -> -> 0 `i `ui `i -> 0 `i 1043  ]
+[e ( _Xprintf , (. :s 20C -> 1006 `i ]
+[e :U 1043 ]
+"1007
+[; ;Source/FreeRTOS/stream_buffer.c: 1007:             xReturn = 0;
+[e = _xReturn -> -> 0 `i `ui ]
+"1008
+[; ;Source/FreeRTOS/stream_buffer.c: 1008:         }
+}
+[e :U 1042 ]
+"1009
+[; ;Source/FreeRTOS/stream_buffer.c: 1009:     }
+}
+[e $U 1044  ]
+"1010
+[; ;Source/FreeRTOS/stream_buffer.c: 1010:     else
+[e :U 1040 ]
+"1011
+[; ;Source/FreeRTOS/stream_buffer.c: 1011:     {
+{
+"1012
+[; ;Source/FreeRTOS/stream_buffer.c: 1012:         xReturn = 0;
+[e = _xReturn -> -> 0 `i `ui ]
+"1013
+[; ;Source/FreeRTOS/stream_buffer.c: 1013:     }
+}
+[e :U 1044 ]
+"1015
+[; ;Source/FreeRTOS/stream_buffer.c: 1015:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1038  ]
+"1016
+[; ;Source/FreeRTOS/stream_buffer.c: 1016: }
+[e :UE 1038 ]
+}
+"1019
+[; ;Source/FreeRTOS/stream_buffer.c: 1019: size_t xStreamBufferReceiveFromISR( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBufferReceiveFromISR `(ui ~T0 @X0 1 ef4`*S941`*v`ui`C*c ]
+"1023
+[; ;Source/FreeRTOS/stream_buffer.c: 1023: {
+{
+[e :U _xStreamBufferReceiveFromISR ]
+"1019
+[; ;Source/FreeRTOS/stream_buffer.c: 1019: size_t xStreamBufferReceiveFromISR( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"1020
+[; ;Source/FreeRTOS/stream_buffer.c: 1020:                                     void * pvRxData,
+[v _pvRxData `*v ~T0 @X0 1 r2 ]
+"1021
+[; ;Source/FreeRTOS/stream_buffer.c: 1021:                                     size_t xBufferLengthBytes,
+[v _xBufferLengthBytes `ui ~T0 @X0 1 r3 ]
+[v F7727 `*c ~T0 @X0 1 t ]
+"1022
+[; ;Source/FreeRTOS/stream_buffer.c: 1022:                                     BaseType_t * const pxHigherPriorityTaskWoken )
+[v _pxHigherPriorityTaskWoken `C*c ~T0 @X0 1 r4 ]
+"1023
+[; ;Source/FreeRTOS/stream_buffer.c: 1023: {
+[f ]
+[v F7729 `*S941 ~T0 @X0 1 t ]
+"1024
+[; ;Source/FreeRTOS/stream_buffer.c: 1024:     StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer _xStreamBuffer ]
+"1025
+[; ;Source/FreeRTOS/stream_buffer.c: 1025:     size_t xReceivedLength = 0, xBytesAvailable, xBytesToStoreMessageLength;
+[v _xReceivedLength `ui ~T0 @X0 1 a ]
+[e = _xReceivedLength -> -> 0 `i `ui ]
+[v _xBytesAvailable `ui ~T0 @X0 1 a ]
+[v _xBytesToStoreMessageLength `ui ~T0 @X0 1 a ]
+"1027
+[; ;Source/FreeRTOS/stream_buffer.c: 1027:     if( ( pvRxData ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1027 );
+[e $ ! == _pvRxData -> -> 0 `i `*v 1046  ]
+[e ( _Xprintf , (. :s 21C -> 1027 `i ]
+[e :U 1046 ]
+"1028
+[; ;Source/FreeRTOS/stream_buffer.c: 1028:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1028 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*S941 1047  ]
+[e ( _Xprintf , (. :s 22C -> 1028 `i ]
+[e :U 1047 ]
+"1035
+[; ;Source/FreeRTOS/stream_buffer.c: 1035:     if( ( pxStreamBuffer->ucFlags & ( ( uint8_t ) 1 ) ) != ( uint8_t ) 0 )
+[e $ ! != & -> . *U _pxStreamBuffer 7 `i -> -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 1048  ]
+"1036
+[; ;Source/FreeRTOS/stream_buffer.c: 1036:     {
+{
+"1037
+[; ;Source/FreeRTOS/stream_buffer.c: 1037:         xBytesToStoreMessageLength = ( sizeof( size_t ) );
+[e = _xBytesToStoreMessageLength -> # `ui `ui ]
+"1038
+[; ;Source/FreeRTOS/stream_buffer.c: 1038:     }
+}
+[e $U 1049  ]
+"1039
+[; ;Source/FreeRTOS/stream_buffer.c: 1039:     else
+[e :U 1048 ]
+"1040
+[; ;Source/FreeRTOS/stream_buffer.c: 1040:     {
+{
+"1041
+[; ;Source/FreeRTOS/stream_buffer.c: 1041:         xBytesToStoreMessageLength = 0;
+[e = _xBytesToStoreMessageLength -> -> 0 `i `ui ]
+"1042
+[; ;Source/FreeRTOS/stream_buffer.c: 1042:     }
+}
+[e :U 1049 ]
+"1044
+[; ;Source/FreeRTOS/stream_buffer.c: 1044:     xBytesAvailable = prvBytesInBuffer( pxStreamBuffer );
+[e = _xBytesAvailable ( _prvBytesInBuffer (1 -> _pxStreamBuffer `*CS941 ]
+"1051
+[; ;Source/FreeRTOS/stream_buffer.c: 1051:     if( xBytesAvailable > xBytesToStoreMessageLength )
+[e $ ! > _xBytesAvailable _xBytesToStoreMessageLength 1050  ]
+"1052
+[; ;Source/FreeRTOS/stream_buffer.c: 1052:     {
+{
+"1053
+[; ;Source/FreeRTOS/stream_buffer.c: 1053:         xReceivedLength = prvReadMessageFromBuffer( pxStreamBuffer, pvRxData, xBufferLengthBytes, xBytesAvailable );
+[e = _xReceivedLength ( _prvReadMessageFromBuffer (4 , , , _pxStreamBuffer _pvRxData _xBufferLengthBytes _xBytesAvailable ]
+"1056
+[; ;Source/FreeRTOS/stream_buffer.c: 1056:         if( xReceivedLength != ( size_t ) 0 )
+[e $ ! != _xReceivedLength -> -> 0 `i `ui 1051  ]
+"1057
+[; ;Source/FreeRTOS/stream_buffer.c: 1057:         {
+{
+"1058
+[; ;Source/FreeRTOS/stream_buffer.c: 1058:             { UBaseType_t uxSavedInterruptStatus; uxSavedInterruptStatus = ( UBaseType_t ) 0; { if( ( ( pxStreamBuffer ) )->xTaskWaitingToSend != ((void*)0) ) { ( void ) xTaskGenericNotifyFromISR( ( ( ( pxStreamBuffer ) )->xTaskWaitingToSend ), ( ( 0 ) ), ( ( uint32_t ) 0 ), ( eNoAction ), ((void*)0), ( ( ( pxHigherPriorityTaskWoken ) ) ) ); ( ( pxStreamBuffer ) )->xTaskWaitingToSend = ((void*)0); } } ( void ) ( uxSavedInterruptStatus ); };
+{
+[v _uxSavedInterruptStatus `uc ~T0 @X0 1 a ]
+[e = _uxSavedInterruptStatus -> -> 0 `i `uc ]
+{
+[e $ ! != . *U _pxStreamBuffer 5 -> -> -> 0 `i `*v `*S935 1052  ]
+{
+[e ( _xTaskGenericNotifyFromISR (4 , , , , , . *U _pxStreamBuffer 5 -> -> 0 `i `uc -> -> 0 `i `ul -> . `E7121 0 `E7121 -> -> -> 0 `i `*v `*ul _pxHigherPriorityTaskWoken ]
+[v F7737 `*S935 ~T0 @X0 1 t ]
+[e = . *U _pxStreamBuffer 5 -> -> -> 0 `i `*v `V*S935 ]
+}
+[e :U 1052 ]
+}
+[e _uxSavedInterruptStatus ]
+}
+"1059
+[; ;Source/FreeRTOS/stream_buffer.c: 1059:         }
+}
+[e $U 1053  ]
+"1060
+[; ;Source/FreeRTOS/stream_buffer.c: 1060:         else
+[e :U 1051 ]
+"1061
+[; ;Source/FreeRTOS/stream_buffer.c: 1061:         {
+{
+"1063
+[; ;Source/FreeRTOS/stream_buffer.c: 1063:         }
+}
+[e :U 1053 ]
+"1064
+[; ;Source/FreeRTOS/stream_buffer.c: 1064:     }
+}
+[e $U 1054  ]
+"1065
+[; ;Source/FreeRTOS/stream_buffer.c: 1065:     else
+[e :U 1050 ]
+"1066
+[; ;Source/FreeRTOS/stream_buffer.c: 1066:     {
+{
+"1068
+[; ;Source/FreeRTOS/stream_buffer.c: 1068:     }
+}
+[e :U 1054 ]
+"1072
+[; ;Source/FreeRTOS/stream_buffer.c: 1072:     return xReceivedLength;
+[e ) _xReceivedLength ]
+[e $UE 1045  ]
+"1073
+[; ;Source/FreeRTOS/stream_buffer.c: 1073: }
+[e :UE 1045 ]
+}
+"1076
+[; ;Source/FreeRTOS/stream_buffer.c: 1076: static size_t prvReadMessageFromBuffer( StreamBuffer_t * pxStreamBuffer,
+[v _prvReadMessageFromBuffer `(ui ~T0 @X0 1 sf4`*S941`*v`ui`ui ]
+"1080
+[; ;Source/FreeRTOS/stream_buffer.c: 1080: {
+{
+[e :U _prvReadMessageFromBuffer ]
+"1076
+[; ;Source/FreeRTOS/stream_buffer.c: 1076: static size_t prvReadMessageFromBuffer( StreamBuffer_t * pxStreamBuffer,
+[v _pxStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"1077
+[; ;Source/FreeRTOS/stream_buffer.c: 1077:                                         void * pvRxData,
+[v _pvRxData `*v ~T0 @X0 1 r2 ]
+"1078
+[; ;Source/FreeRTOS/stream_buffer.c: 1078:                                         size_t xBufferLengthBytes,
+[v _xBufferLengthBytes `ui ~T0 @X0 1 r3 ]
+"1079
+[; ;Source/FreeRTOS/stream_buffer.c: 1079:                                         size_t xBytesAvailable )
+[v _xBytesAvailable `ui ~T0 @X0 1 r4 ]
+"1080
+[; ;Source/FreeRTOS/stream_buffer.c: 1080: {
+[f ]
+"1081
+[; ;Source/FreeRTOS/stream_buffer.c: 1081:     size_t xCount, xNextMessageLength;
+[v _xCount `ui ~T0 @X0 1 a ]
+[v _xNextMessageLength `ui ~T0 @X0 1 a ]
+"1082
+[; ;Source/FreeRTOS/stream_buffer.c: 1082:     size_t xTempNextMessageLength;
+[v _xTempNextMessageLength `ui ~T0 @X0 1 a ]
+"1083
+[; ;Source/FreeRTOS/stream_buffer.c: 1083:     size_t xNextTail = pxStreamBuffer->xTail;
+[v _xNextTail `ui ~T0 @X0 1 a ]
+[e = _xNextTail . *U _pxStreamBuffer 0 ]
+"1085
+[; ;Source/FreeRTOS/stream_buffer.c: 1085:     if( ( pxStreamBuffer->ucFlags & ( ( uint8_t ) 1 ) ) != ( uint8_t ) 0 )
+[e $ ! != & -> . *U _pxStreamBuffer 7 `i -> -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 1056  ]
+"1086
+[; ;Source/FreeRTOS/stream_buffer.c: 1086:     {
+{
+"1089
+[; ;Source/FreeRTOS/stream_buffer.c: 1089:         xNextTail = prvReadBytesFromBuffer( pxStreamBuffer, ( uint8_t * ) &xTempNextMessageLength, ( sizeof( size_t ) ), xNextTail );
+[e = _xNextTail ( _prvReadBytesFromBuffer (4 , , , _pxStreamBuffer -> &U _xTempNextMessageLength `*uc -> # `ui `ui _xNextTail ]
+"1090
+[; ;Source/FreeRTOS/stream_buffer.c: 1090:         xNextMessageLength = ( size_t ) xTempNextMessageLength;
+[e = _xNextMessageLength _xTempNextMessageLength ]
+"1094
+[; ;Source/FreeRTOS/stream_buffer.c: 1094:         xBytesAvailable -= ( sizeof( size_t ) );
+[e =- _xBytesAvailable -> # `ui `ui ]
+"1098
+[; ;Source/FreeRTOS/stream_buffer.c: 1098:         if( xNextMessageLength > xBufferLengthBytes )
+[e $ ! > _xNextMessageLength _xBufferLengthBytes 1057  ]
+"1099
+[; ;Source/FreeRTOS/stream_buffer.c: 1099:         {
+{
+"1101
+[; ;Source/FreeRTOS/stream_buffer.c: 1101:             xNextMessageLength = 0;
+[e = _xNextMessageLength -> -> 0 `i `ui ]
+"1102
+[; ;Source/FreeRTOS/stream_buffer.c: 1102:         }
+}
+[e $U 1058  ]
+"1103
+[; ;Source/FreeRTOS/stream_buffer.c: 1103:         else
+[e :U 1057 ]
+"1104
+[; ;Source/FreeRTOS/stream_buffer.c: 1104:         {
+{
+"1106
+[; ;Source/FreeRTOS/stream_buffer.c: 1106:         }
+}
+[e :U 1058 ]
+"1107
+[; ;Source/FreeRTOS/stream_buffer.c: 1107:     }
+}
+[e $U 1059  ]
+"1108
+[; ;Source/FreeRTOS/stream_buffer.c: 1108:     else
+[e :U 1056 ]
+"1109
+[; ;Source/FreeRTOS/stream_buffer.c: 1109:     {
+{
+"1112
+[; ;Source/FreeRTOS/stream_buffer.c: 1112:         xNextMessageLength = xBufferLengthBytes;
+[e = _xNextMessageLength _xBufferLengthBytes ]
+"1113
+[; ;Source/FreeRTOS/stream_buffer.c: 1113:     }
+}
+[e :U 1059 ]
+"1116
+[; ;Source/FreeRTOS/stream_buffer.c: 1116:     xCount = ( ( ( xNextMessageLength ) < ( xBytesAvailable ) ) ? ( xNextMessageLength ) : ( xBytesAvailable ) );
+[e = _xCount ? < _xNextMessageLength _xBytesAvailable : _xNextMessageLength _xBytesAvailable ]
+"1118
+[; ;Source/FreeRTOS/stream_buffer.c: 1118:     if( xCount != ( size_t ) 0 )
+[e $ ! != _xCount -> -> 0 `i `ui 1060  ]
+"1119
+[; ;Source/FreeRTOS/stream_buffer.c: 1119:     {
+{
+"1121
+[; ;Source/FreeRTOS/stream_buffer.c: 1121:         pxStreamBuffer->xTail = prvReadBytesFromBuffer( pxStreamBuffer, ( uint8_t * ) pvRxData, xCount, xNextTail );
+[e = . *U _pxStreamBuffer 0 ( _prvReadBytesFromBuffer (4 , , , _pxStreamBuffer -> _pvRxData `*uc _xCount _xNextTail ]
+"1122
+[; ;Source/FreeRTOS/stream_buffer.c: 1122:     }
+}
+[e :U 1060 ]
+"1124
+[; ;Source/FreeRTOS/stream_buffer.c: 1124:     return xCount;
+[e ) _xCount ]
+[e $UE 1055  ]
+"1125
+[; ;Source/FreeRTOS/stream_buffer.c: 1125: }
+[e :UE 1055 ]
+}
+"1128
+[; ;Source/FreeRTOS/stream_buffer.c: 1128: BaseType_t xStreamBufferIsEmpty( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBufferIsEmpty `(c ~T0 @X0 1 ef1`*S941 ]
+"1129
+[; ;Source/FreeRTOS/stream_buffer.c: 1129: {
+{
+[e :U _xStreamBufferIsEmpty ]
+"1128
+[; ;Source/FreeRTOS/stream_buffer.c: 1128: BaseType_t xStreamBufferIsEmpty( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"1129
+[; ;Source/FreeRTOS/stream_buffer.c: 1129: {
+[f ]
+[v F7750 `*CS941 ~T0 @X0 1 t ]
+"1130
+[; ;Source/FreeRTOS/stream_buffer.c: 1130:     const StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*CS941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer -> _xStreamBuffer `*CS941 ]
+"1131
+[; ;Source/FreeRTOS/stream_buffer.c: 1131:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"1132
+[; ;Source/FreeRTOS/stream_buffer.c: 1132:     size_t xTail;
+[v _xTail `ui ~T0 @X0 1 a ]
+"1134
+[; ;Source/FreeRTOS/stream_buffer.c: 1134:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1134 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*CS941 1062  ]
+[e ( _Xprintf , (. :s 23C -> 1134 `i ]
+[e :U 1062 ]
+"1137
+[; ;Source/FreeRTOS/stream_buffer.c: 1137:     xTail = pxStreamBuffer->xTail;
+[e = _xTail . *U _pxStreamBuffer 0 ]
+"1139
+[; ;Source/FreeRTOS/stream_buffer.c: 1139:     if( pxStreamBuffer->xHead == xTail )
+[e $ ! == . *U _pxStreamBuffer 1 _xTail 1063  ]
+"1140
+[; ;Source/FreeRTOS/stream_buffer.c: 1140:     {
+{
+"1141
+[; ;Source/FreeRTOS/stream_buffer.c: 1141:         xReturn = ( ( BaseType_t ) 1 );
+[e = _xReturn -> -> 1 `i `c ]
+"1142
+[; ;Source/FreeRTOS/stream_buffer.c: 1142:     }
+}
+[e $U 1064  ]
+"1143
+[; ;Source/FreeRTOS/stream_buffer.c: 1143:     else
+[e :U 1063 ]
+"1144
+[; ;Source/FreeRTOS/stream_buffer.c: 1144:     {
+{
+"1145
+[; ;Source/FreeRTOS/stream_buffer.c: 1145:         xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"1146
+[; ;Source/FreeRTOS/stream_buffer.c: 1146:     }
+}
+[e :U 1064 ]
+"1148
+[; ;Source/FreeRTOS/stream_buffer.c: 1148:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1061  ]
+"1149
+[; ;Source/FreeRTOS/stream_buffer.c: 1149: }
+[e :UE 1061 ]
+}
+"1152
+[; ;Source/FreeRTOS/stream_buffer.c: 1152: BaseType_t xStreamBufferIsFull( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBufferIsFull `(c ~T0 @X0 1 ef1`*S941 ]
+"1153
+[; ;Source/FreeRTOS/stream_buffer.c: 1153: {
+{
+[e :U _xStreamBufferIsFull ]
+"1152
+[; ;Source/FreeRTOS/stream_buffer.c: 1152: BaseType_t xStreamBufferIsFull( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"1153
+[; ;Source/FreeRTOS/stream_buffer.c: 1153: {
+[f ]
+"1154
+[; ;Source/FreeRTOS/stream_buffer.c: 1154:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"1155
+[; ;Source/FreeRTOS/stream_buffer.c: 1155:     size_t xBytesToStoreMessageLength;
+[v _xBytesToStoreMessageLength `ui ~T0 @X0 1 a ]
+[v F7758 `*CS941 ~T0 @X0 1 t ]
+"1156
+[; ;Source/FreeRTOS/stream_buffer.c: 1156:     const StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*CS941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer -> _xStreamBuffer `*CS941 ]
+"1158
+[; ;Source/FreeRTOS/stream_buffer.c: 1158:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1158 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*CS941 1066  ]
+[e ( _Xprintf , (. :s 24C -> 1158 `i ]
+[e :U 1066 ]
+"1164
+[; ;Source/FreeRTOS/stream_buffer.c: 1164:     if( ( pxStreamBuffer->ucFlags & ( ( uint8_t ) 1 ) ) != ( uint8_t ) 0 )
+[e $ ! != & -> . *U _pxStreamBuffer 7 `i -> -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 1067  ]
+"1165
+[; ;Source/FreeRTOS/stream_buffer.c: 1165:     {
+{
+"1166
+[; ;Source/FreeRTOS/stream_buffer.c: 1166:         xBytesToStoreMessageLength = ( sizeof( size_t ) );
+[e = _xBytesToStoreMessageLength -> # `ui `ui ]
+"1167
+[; ;Source/FreeRTOS/stream_buffer.c: 1167:     }
+}
+[e $U 1068  ]
+"1168
+[; ;Source/FreeRTOS/stream_buffer.c: 1168:     else
+[e :U 1067 ]
+"1169
+[; ;Source/FreeRTOS/stream_buffer.c: 1169:     {
+{
+"1170
+[; ;Source/FreeRTOS/stream_buffer.c: 1170:         xBytesToStoreMessageLength = 0;
+[e = _xBytesToStoreMessageLength -> -> 0 `i `ui ]
+"1171
+[; ;Source/FreeRTOS/stream_buffer.c: 1171:     }
+}
+[e :U 1068 ]
+"1174
+[; ;Source/FreeRTOS/stream_buffer.c: 1174:     if( xStreamBufferSpacesAvailable( xStreamBuffer ) <= xBytesToStoreMessageLength )
+[e $ ! <= ( _xStreamBufferSpacesAvailable (1 _xStreamBuffer _xBytesToStoreMessageLength 1069  ]
+"1175
+[; ;Source/FreeRTOS/stream_buffer.c: 1175:     {
+{
+"1176
+[; ;Source/FreeRTOS/stream_buffer.c: 1176:         xReturn = ( ( BaseType_t ) 1 );
+[e = _xReturn -> -> 1 `i `c ]
+"1177
+[; ;Source/FreeRTOS/stream_buffer.c: 1177:     }
+}
+[e $U 1070  ]
+"1178
+[; ;Source/FreeRTOS/stream_buffer.c: 1178:     else
+[e :U 1069 ]
+"1179
+[; ;Source/FreeRTOS/stream_buffer.c: 1179:     {
+{
+"1180
+[; ;Source/FreeRTOS/stream_buffer.c: 1180:         xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"1181
+[; ;Source/FreeRTOS/stream_buffer.c: 1181:     }
+}
+[e :U 1070 ]
+"1183
+[; ;Source/FreeRTOS/stream_buffer.c: 1183:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1065  ]
+"1184
+[; ;Source/FreeRTOS/stream_buffer.c: 1184: }
+[e :UE 1065 ]
+}
+"1187
+[; ;Source/FreeRTOS/stream_buffer.c: 1187: BaseType_t xStreamBufferSendCompletedFromISR( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBufferSendCompletedFromISR `(c ~T0 @X0 1 ef2`*S941`*c ]
+"1189
+[; ;Source/FreeRTOS/stream_buffer.c: 1189: {
+{
+[e :U _xStreamBufferSendCompletedFromISR ]
+"1187
+[; ;Source/FreeRTOS/stream_buffer.c: 1187: BaseType_t xStreamBufferSendCompletedFromISR( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"1188
+[; ;Source/FreeRTOS/stream_buffer.c: 1188:                                               BaseType_t * pxHigherPriorityTaskWoken )
+[v _pxHigherPriorityTaskWoken `*c ~T0 @X0 1 r2 ]
+"1189
+[; ;Source/FreeRTOS/stream_buffer.c: 1189: {
+[f ]
+[v F7763 `*S941 ~T0 @X0 1 t ]
+"1190
+[; ;Source/FreeRTOS/stream_buffer.c: 1190:     StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer _xStreamBuffer ]
+"1191
+[; ;Source/FreeRTOS/stream_buffer.c: 1191:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"1192
+[; ;Source/FreeRTOS/stream_buffer.c: 1192:     UBaseType_t uxSavedInterruptStatus;
+[v _uxSavedInterruptStatus `uc ~T0 @X0 1 a ]
+"1194
+[; ;Source/FreeRTOS/stream_buffer.c: 1194:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1194 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*S941 1072  ]
+[e ( _Xprintf , (. :s 25C -> 1194 `i ]
+[e :U 1072 ]
+"1196
+[; ;Source/FreeRTOS/stream_buffer.c: 1196:     uxSavedInterruptStatus = ( UBaseType_t ) 0;
+[e = _uxSavedInterruptStatus -> -> 0 `i `uc ]
+"1197
+[; ;Source/FreeRTOS/stream_buffer.c: 1197:     {
+{
+"1198
+[; ;Source/FreeRTOS/stream_buffer.c: 1198:         if( ( pxStreamBuffer )->xTaskWaitingToReceive != ((void*)0) )
+[e $ ! != . *U _pxStreamBuffer 4 -> -> -> 0 `i `*v `*S935 1073  ]
+"1199
+[; ;Source/FreeRTOS/stream_buffer.c: 1199:         {
+{
+"1200
+[; ;Source/FreeRTOS/stream_buffer.c: 1200:             ( void ) xTaskGenericNotifyFromISR( ( ( pxStreamBuffer )->xTaskWaitingToReceive ), ( ( 0 ) ), ( ( uint32_t ) 0 ), ( eNoAction ), ((void*)0), ( pxHigherPriorityTaskWoken ) );
+[e ( _xTaskGenericNotifyFromISR (4 , , , , , . *U _pxStreamBuffer 4 -> -> 0 `i `uc -> -> 0 `i `ul -> . `E7121 0 `E7121 -> -> -> 0 `i `*v `*ul _pxHigherPriorityTaskWoken ]
+[v F7769 `*S935 ~T0 @X0 1 t ]
+"1204
+[; ;Source/FreeRTOS/stream_buffer.c: 1204:             ( pxStreamBuffer )->xTaskWaitingToReceive = ((void*)0);
+[e = . *U _pxStreamBuffer 4 -> -> -> 0 `i `*v `V*S935 ]
+"1205
+[; ;Source/FreeRTOS/stream_buffer.c: 1205:             xReturn = ( ( BaseType_t ) 1 );
+[e = _xReturn -> -> 1 `i `c ]
+"1206
+[; ;Source/FreeRTOS/stream_buffer.c: 1206:         }
+}
+[e $U 1074  ]
+"1207
+[; ;Source/FreeRTOS/stream_buffer.c: 1207:         else
+[e :U 1073 ]
+"1208
+[; ;Source/FreeRTOS/stream_buffer.c: 1208:         {
+{
+"1209
+[; ;Source/FreeRTOS/stream_buffer.c: 1209:             xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"1210
+[; ;Source/FreeRTOS/stream_buffer.c: 1210:         }
+}
+[e :U 1074 ]
+"1211
+[; ;Source/FreeRTOS/stream_buffer.c: 1211:     }
+}
+"1212
+[; ;Source/FreeRTOS/stream_buffer.c: 1212:     ( void ) ( uxSavedInterruptStatus );
+[e _uxSavedInterruptStatus ]
+"1214
+[; ;Source/FreeRTOS/stream_buffer.c: 1214:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1071  ]
+"1215
+[; ;Source/FreeRTOS/stream_buffer.c: 1215: }
+[e :UE 1071 ]
+}
+"1218
+[; ;Source/FreeRTOS/stream_buffer.c: 1218: BaseType_t xStreamBufferReceiveCompletedFromISR( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBufferReceiveCompletedFromISR `(c ~T0 @X0 1 ef2`*S941`*c ]
+"1220
+[; ;Source/FreeRTOS/stream_buffer.c: 1220: {
+{
+[e :U _xStreamBufferReceiveCompletedFromISR ]
+"1218
+[; ;Source/FreeRTOS/stream_buffer.c: 1218: BaseType_t xStreamBufferReceiveCompletedFromISR( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"1219
+[; ;Source/FreeRTOS/stream_buffer.c: 1219:                                                  BaseType_t * pxHigherPriorityTaskWoken )
+[v _pxHigherPriorityTaskWoken `*c ~T0 @X0 1 r2 ]
+"1220
+[; ;Source/FreeRTOS/stream_buffer.c: 1220: {
+[f ]
+[v F7774 `*S941 ~T0 @X0 1 t ]
+"1221
+[; ;Source/FreeRTOS/stream_buffer.c: 1221:     StreamBuffer_t * const pxStreamBuffer = xStreamBuffer;
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 a ]
+[e = _pxStreamBuffer _xStreamBuffer ]
+"1222
+[; ;Source/FreeRTOS/stream_buffer.c: 1222:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"1223
+[; ;Source/FreeRTOS/stream_buffer.c: 1223:     UBaseType_t uxSavedInterruptStatus;
+[v _uxSavedInterruptStatus `uc ~T0 @X0 1 a ]
+"1225
+[; ;Source/FreeRTOS/stream_buffer.c: 1225:     if( ( pxStreamBuffer ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1225 );
+[e $ ! == _pxStreamBuffer -> -> 0 `i `*S941 1076  ]
+[e ( _Xprintf , (. :s 26C -> 1225 `i ]
+[e :U 1076 ]
+"1227
+[; ;Source/FreeRTOS/stream_buffer.c: 1227:     uxSavedInterruptStatus = ( UBaseType_t ) 0;
+[e = _uxSavedInterruptStatus -> -> 0 `i `uc ]
+"1228
+[; ;Source/FreeRTOS/stream_buffer.c: 1228:     {
+{
+"1229
+[; ;Source/FreeRTOS/stream_buffer.c: 1229:         if( ( pxStreamBuffer )->xTaskWaitingToSend != ((void*)0) )
+[e $ ! != . *U _pxStreamBuffer 5 -> -> -> 0 `i `*v `*S935 1077  ]
+"1230
+[; ;Source/FreeRTOS/stream_buffer.c: 1230:         {
+{
+"1231
+[; ;Source/FreeRTOS/stream_buffer.c: 1231:             ( void ) xTaskGenericNotifyFromISR( ( ( pxStreamBuffer )->xTaskWaitingToSend ), ( ( 0 ) ), ( ( uint32_t ) 0 ), ( eNoAction ), ((void*)0), ( pxHigherPriorityTaskWoken ) );
+[e ( _xTaskGenericNotifyFromISR (4 , , , , , . *U _pxStreamBuffer 5 -> -> 0 `i `uc -> -> 0 `i `ul -> . `E7121 0 `E7121 -> -> -> 0 `i `*v `*ul _pxHigherPriorityTaskWoken ]
+[v F7780 `*S935 ~T0 @X0 1 t ]
+"1235
+[; ;Source/FreeRTOS/stream_buffer.c: 1235:             ( pxStreamBuffer )->xTaskWaitingToSend = ((void*)0);
+[e = . *U _pxStreamBuffer 5 -> -> -> 0 `i `*v `V*S935 ]
+"1236
+[; ;Source/FreeRTOS/stream_buffer.c: 1236:             xReturn = ( ( BaseType_t ) 1 );
+[e = _xReturn -> -> 1 `i `c ]
+"1237
+[; ;Source/FreeRTOS/stream_buffer.c: 1237:         }
+}
+[e $U 1078  ]
+"1238
+[; ;Source/FreeRTOS/stream_buffer.c: 1238:         else
+[e :U 1077 ]
+"1239
+[; ;Source/FreeRTOS/stream_buffer.c: 1239:         {
+{
+"1240
+[; ;Source/FreeRTOS/stream_buffer.c: 1240:             xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"1241
+[; ;Source/FreeRTOS/stream_buffer.c: 1241:         }
+}
+[e :U 1078 ]
+"1242
+[; ;Source/FreeRTOS/stream_buffer.c: 1242:     }
+}
+"1243
+[; ;Source/FreeRTOS/stream_buffer.c: 1243:     ( void ) ( uxSavedInterruptStatus );
+[e _uxSavedInterruptStatus ]
+"1245
+[; ;Source/FreeRTOS/stream_buffer.c: 1245:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1075  ]
+"1246
+[; ;Source/FreeRTOS/stream_buffer.c: 1246: }
+[e :UE 1075 ]
+}
+"1249
+[; ;Source/FreeRTOS/stream_buffer.c: 1249: static size_t prvWriteBytesToBuffer( StreamBuffer_t * const pxStreamBuffer,
+[v _prvWriteBytesToBuffer `(ui ~T0 @X0 1 sf4`C*S941`*Cuc`ui`ui ]
+"1253
+[; ;Source/FreeRTOS/stream_buffer.c: 1253: {
+{
+[e :U _prvWriteBytesToBuffer ]
+[v F7784 `*S941 ~T0 @X0 1 t ]
+"1249
+[; ;Source/FreeRTOS/stream_buffer.c: 1249: static size_t prvWriteBytesToBuffer( StreamBuffer_t * const pxStreamBuffer,
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 r1 ]
+"1250
+[; ;Source/FreeRTOS/stream_buffer.c: 1250:                                      const uint8_t * pucData,
+[v _pucData `*Cuc ~T0 @X0 1 r2 ]
+"1251
+[; ;Source/FreeRTOS/stream_buffer.c: 1251:                                      size_t xCount,
+[v _xCount `ui ~T0 @X0 1 r3 ]
+"1252
+[; ;Source/FreeRTOS/stream_buffer.c: 1252:                                      size_t xHead )
+[v _xHead `ui ~T0 @X0 1 r4 ]
+"1253
+[; ;Source/FreeRTOS/stream_buffer.c: 1253: {
+[f ]
+"1254
+[; ;Source/FreeRTOS/stream_buffer.c: 1254:     size_t xFirstLength;
+[v _xFirstLength `ui ~T0 @X0 1 a ]
+"1256
+[; ;Source/FreeRTOS/stream_buffer.c: 1256:     if( ( xCount > ( size_t ) 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1256 );
+[e $ ! == -> > _xCount -> -> 0 `i `ui `i -> 0 `i 1080  ]
+[e ( _Xprintf , (. :s 27C -> 1256 `i ]
+[e :U 1080 ]
+"1261
+[; ;Source/FreeRTOS/stream_buffer.c: 1261:     xFirstLength = ( ( ( pxStreamBuffer->xLength - xHead ) < ( xCount ) ) ? ( pxStreamBuffer->xLength - xHead ) : ( xCount ) );
+[e = _xFirstLength ? < - . *U _pxStreamBuffer 2 _xHead _xCount : - . *U _pxStreamBuffer 2 _xHead _xCount ]
+"1264
+[; ;Source/FreeRTOS/stream_buffer.c: 1264:     if( ( ( xHead + xFirstLength ) <= pxStreamBuffer->xLength ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1264 );
+[e $ ! == -> <= + _xHead _xFirstLength . *U _pxStreamBuffer 2 `i -> 0 `i 1081  ]
+[e ( _Xprintf , (. :s 28C -> 1264 `i ]
+[e :U 1081 ]
+"1265
+[; ;Source/FreeRTOS/stream_buffer.c: 1265:     ( void ) memcpy( ( void * ) ( &( pxStreamBuffer->pucBuffer[ xHead ] ) ), ( const void * ) pucData, xFirstLength );
+[e ( _memcpy (3 , , -> &U *U + . *U _pxStreamBuffer 6 * -> _xHead `ux -> -> # *U . *U _pxStreamBuffer 6 `ui `ux `*v -> _pucData `*Cv _xFirstLength ]
+"1269
+[; ;Source/FreeRTOS/stream_buffer.c: 1269:     if( xCount > xFirstLength )
+[e $ ! > _xCount _xFirstLength 1082  ]
+"1270
+[; ;Source/FreeRTOS/stream_buffer.c: 1270:     {
+{
+"1272
+[; ;Source/FreeRTOS/stream_buffer.c: 1272:         if( ( ( xCount - xFirstLength ) <= pxStreamBuffer->xLength ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1272 );
+[e $ ! == -> <= - _xCount _xFirstLength . *U _pxStreamBuffer 2 `i -> 0 `i 1083  ]
+[e ( _Xprintf , (. :s 29C -> 1272 `i ]
+[e :U 1083 ]
+"1273
+[; ;Source/FreeRTOS/stream_buffer.c: 1273:         ( void ) memcpy( ( void * ) pxStreamBuffer->pucBuffer, ( const void * ) &( pucData[ xFirstLength ] ), xCount - xFirstLength );
+[e ( _memcpy (3 , , -> . *U _pxStreamBuffer 6 `*v -> &U *U + _pucData * -> _xFirstLength `ux -> -> # *U _pucData `ui `ux `*Cv - _xCount _xFirstLength ]
+"1274
+[; ;Source/FreeRTOS/stream_buffer.c: 1274:     }
+}
+[e $U 1084  ]
+"1275
+[; ;Source/FreeRTOS/stream_buffer.c: 1275:     else
+[e :U 1082 ]
+"1276
+[; ;Source/FreeRTOS/stream_buffer.c: 1276:     {
+{
+"1278
+[; ;Source/FreeRTOS/stream_buffer.c: 1278:     }
+}
+[e :U 1084 ]
+"1280
+[; ;Source/FreeRTOS/stream_buffer.c: 1280:     xHead += xCount;
+[e =+ _xHead _xCount ]
+"1282
+[; ;Source/FreeRTOS/stream_buffer.c: 1282:     if( xHead >= pxStreamBuffer->xLength )
+[e $ ! >= _xHead . *U _pxStreamBuffer 2 1085  ]
+"1283
+[; ;Source/FreeRTOS/stream_buffer.c: 1283:     {
+{
+"1284
+[; ;Source/FreeRTOS/stream_buffer.c: 1284:         xHead -= pxStreamBuffer->xLength;
+[e =- _xHead . *U _pxStreamBuffer 2 ]
+"1285
+[; ;Source/FreeRTOS/stream_buffer.c: 1285:     }
+}
+[e $U 1086  ]
+"1286
+[; ;Source/FreeRTOS/stream_buffer.c: 1286:     else
+[e :U 1085 ]
+"1287
+[; ;Source/FreeRTOS/stream_buffer.c: 1287:     {
+{
+"1289
+[; ;Source/FreeRTOS/stream_buffer.c: 1289:     }
+}
+[e :U 1086 ]
+"1291
+[; ;Source/FreeRTOS/stream_buffer.c: 1291:     return xHead;
+[e ) _xHead ]
+[e $UE 1079  ]
+"1292
+[; ;Source/FreeRTOS/stream_buffer.c: 1292: }
+[e :UE 1079 ]
+}
+"1295
+[; ;Source/FreeRTOS/stream_buffer.c: 1295: static size_t prvReadBytesFromBuffer( StreamBuffer_t * pxStreamBuffer,
+[v _prvReadBytesFromBuffer `(ui ~T0 @X0 1 sf4`*S941`*uc`ui`ui ]
+"1299
+[; ;Source/FreeRTOS/stream_buffer.c: 1299: {
+{
+[e :U _prvReadBytesFromBuffer ]
+"1295
+[; ;Source/FreeRTOS/stream_buffer.c: 1295: static size_t prvReadBytesFromBuffer( StreamBuffer_t * pxStreamBuffer,
+[v _pxStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"1296
+[; ;Source/FreeRTOS/stream_buffer.c: 1296:                                       uint8_t * pucData,
+[v _pucData `*uc ~T0 @X0 1 r2 ]
+"1297
+[; ;Source/FreeRTOS/stream_buffer.c: 1297:                                       size_t xCount,
+[v _xCount `ui ~T0 @X0 1 r3 ]
+"1298
+[; ;Source/FreeRTOS/stream_buffer.c: 1298:                                       size_t xTail )
+[v _xTail `ui ~T0 @X0 1 r4 ]
+"1299
+[; ;Source/FreeRTOS/stream_buffer.c: 1299: {
+[f ]
+"1300
+[; ;Source/FreeRTOS/stream_buffer.c: 1300:     size_t xFirstLength;
+[v _xFirstLength `ui ~T0 @X0 1 a ]
+"1302
+[; ;Source/FreeRTOS/stream_buffer.c: 1302:     if( ( xCount != ( size_t ) 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1302 );
+[e $ ! == -> != _xCount -> -> 0 `i `ui `i -> 0 `i 1088  ]
+[e ( _Xprintf , (. :s 30C -> 1302 `i ]
+[e :U 1088 ]
+"1307
+[; ;Source/FreeRTOS/stream_buffer.c: 1307:     xFirstLength = ( ( ( pxStreamBuffer->xLength - xTail ) < ( xCount ) ) ? ( pxStreamBuffer->xLength - xTail ) : ( xCount ) );
+[e = _xFirstLength ? < - . *U _pxStreamBuffer 2 _xTail _xCount : - . *U _pxStreamBuffer 2 _xTail _xCount ]
+"1311
+[; ;Source/FreeRTOS/stream_buffer.c: 1311:     if( ( xFirstLength <= xCount ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1311 );
+[e $ ! == -> <= _xFirstLength _xCount `i -> 0 `i 1089  ]
+[e ( _Xprintf , (. :s 31C -> 1311 `i ]
+[e :U 1089 ]
+"1312
+[; ;Source/FreeRTOS/stream_buffer.c: 1312:     if( ( ( xTail + xFirstLength ) <= pxStreamBuffer->xLength ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/stream_buffer.c", 1312 );
+[e $ ! == -> <= + _xTail _xFirstLength . *U _pxStreamBuffer 2 `i -> 0 `i 1090  ]
+[e ( _Xprintf , (. :s 32C -> 1312 `i ]
+[e :U 1090 ]
+"1313
+[; ;Source/FreeRTOS/stream_buffer.c: 1313:     ( void ) memcpy( ( void * ) pucData, ( const void * ) &( pxStreamBuffer->pucBuffer[ xTail ] ), xFirstLength );
+[e ( _memcpy (3 , , -> _pucData `*v -> &U *U + . *U _pxStreamBuffer 6 * -> _xTail `ux -> -> # *U . *U _pxStreamBuffer 6 `ui `ux `*Cv _xFirstLength ]
+"1317
+[; ;Source/FreeRTOS/stream_buffer.c: 1317:     if( xCount > xFirstLength )
+[e $ ! > _xCount _xFirstLength 1091  ]
+"1318
+[; ;Source/FreeRTOS/stream_buffer.c: 1318:     {
+{
+"1320
+[; ;Source/FreeRTOS/stream_buffer.c: 1320:         ( void ) memcpy( ( void * ) &( pucData[ xFirstLength ] ), ( void * ) ( pxStreamBuffer->pucBuffer ), xCount - xFirstLength );
+[e ( _memcpy (3 , , -> &U *U + _pucData * -> _xFirstLength `ux -> -> # *U _pucData `ui `ux `*v -> -> . *U _pxStreamBuffer 6 `*v `*Cv - _xCount _xFirstLength ]
+"1321
+[; ;Source/FreeRTOS/stream_buffer.c: 1321:     }
+}
+[e $U 1092  ]
+"1322
+[; ;Source/FreeRTOS/stream_buffer.c: 1322:     else
+[e :U 1091 ]
+"1323
+[; ;Source/FreeRTOS/stream_buffer.c: 1323:     {
+{
+"1325
+[; ;Source/FreeRTOS/stream_buffer.c: 1325:     }
+}
+[e :U 1092 ]
+"1328
+[; ;Source/FreeRTOS/stream_buffer.c: 1328:     xTail += xCount;
+[e =+ _xTail _xCount ]
+"1330
+[; ;Source/FreeRTOS/stream_buffer.c: 1330:     if( xTail >= pxStreamBuffer->xLength )
+[e $ ! >= _xTail . *U _pxStreamBuffer 2 1093  ]
+"1331
+[; ;Source/FreeRTOS/stream_buffer.c: 1331:     {
+{
+"1332
+[; ;Source/FreeRTOS/stream_buffer.c: 1332:         xTail -= pxStreamBuffer->xLength;
+[e =- _xTail . *U _pxStreamBuffer 2 ]
+"1333
+[; ;Source/FreeRTOS/stream_buffer.c: 1333:     }
+}
+[e :U 1093 ]
+"1335
+[; ;Source/FreeRTOS/stream_buffer.c: 1335:     return xTail;
+[e ) _xTail ]
+[e $UE 1087  ]
+"1336
+[; ;Source/FreeRTOS/stream_buffer.c: 1336: }
+[e :UE 1087 ]
+}
+"1339
+[; ;Source/FreeRTOS/stream_buffer.c: 1339: static size_t prvBytesInBuffer( const StreamBuffer_t * const pxStreamBuffer )
+[v _prvBytesInBuffer `(ui ~T0 @X0 1 sf1`C*CS941 ]
+"1340
+[; ;Source/FreeRTOS/stream_buffer.c: 1340: {
+{
+[e :U _prvBytesInBuffer ]
+[v F7798 `*CS941 ~T0 @X0 1 t ]
+"1339
+[; ;Source/FreeRTOS/stream_buffer.c: 1339: static size_t prvBytesInBuffer( const StreamBuffer_t * const pxStreamBuffer )
+[v _pxStreamBuffer `C*CS941 ~T0 @X0 1 r1 ]
+"1340
+[; ;Source/FreeRTOS/stream_buffer.c: 1340: {
+[f ]
+"1342
+[; ;Source/FreeRTOS/stream_buffer.c: 1342:     size_t xCount;
+[v _xCount `ui ~T0 @X0 1 a ]
+"1344
+[; ;Source/FreeRTOS/stream_buffer.c: 1344:     xCount = pxStreamBuffer->xLength + pxStreamBuffer->xHead;
+[e = _xCount + . *U _pxStreamBuffer 2 . *U _pxStreamBuffer 1 ]
+"1345
+[; ;Source/FreeRTOS/stream_buffer.c: 1345:     xCount -= pxStreamBuffer->xTail;
+[e =- _xCount . *U _pxStreamBuffer 0 ]
+"1347
+[; ;Source/FreeRTOS/stream_buffer.c: 1347:     if( xCount >= pxStreamBuffer->xLength )
+[e $ ! >= _xCount . *U _pxStreamBuffer 2 1095  ]
+"1348
+[; ;Source/FreeRTOS/stream_buffer.c: 1348:     {
+{
+"1349
+[; ;Source/FreeRTOS/stream_buffer.c: 1349:         xCount -= pxStreamBuffer->xLength;
+[e =- _xCount . *U _pxStreamBuffer 2 ]
+"1350
+[; ;Source/FreeRTOS/stream_buffer.c: 1350:     }
+}
+[e $U 1096  ]
+"1351
+[; ;Source/FreeRTOS/stream_buffer.c: 1351:     else
+[e :U 1095 ]
+"1352
+[; ;Source/FreeRTOS/stream_buffer.c: 1352:     {
+{
+"1354
+[; ;Source/FreeRTOS/stream_buffer.c: 1354:     }
+}
+[e :U 1096 ]
+"1356
+[; ;Source/FreeRTOS/stream_buffer.c: 1356:     return xCount;
+[e ) _xCount ]
+[e $UE 1094  ]
+"1357
+[; ;Source/FreeRTOS/stream_buffer.c: 1357: }
+[e :UE 1094 ]
+}
+"1360
+[; ;Source/FreeRTOS/stream_buffer.c: 1360: static void prvInitialiseNewStreamBuffer( StreamBuffer_t * const pxStreamBuffer,
+[v _prvInitialiseNewStreamBuffer `(v ~T0 @X0 1 sf7`C*S941`C*uc`ui`ui`uc`*F7803`*F7808 ]
+"1367
+[; ;Source/FreeRTOS/stream_buffer.c: 1367: {
+{
+[e :U _prvInitialiseNewStreamBuffer ]
+[v F7814 `*S941 ~T0 @X0 1 t ]
+"1360
+[; ;Source/FreeRTOS/stream_buffer.c: 1360: static void prvInitialiseNewStreamBuffer( StreamBuffer_t * const pxStreamBuffer,
+[v _pxStreamBuffer `C*S941 ~T0 @X0 1 r1 ]
+[v F7816 `*uc ~T0 @X0 1 t ]
+"1361
+[; ;Source/FreeRTOS/stream_buffer.c: 1361:                                           uint8_t * const pucBuffer,
+[v _pucBuffer `C*uc ~T0 @X0 1 r2 ]
+"1362
+[; ;Source/FreeRTOS/stream_buffer.c: 1362:                                           size_t xBufferSizeBytes,
+[v _xBufferSizeBytes `ui ~T0 @X0 1 r3 ]
+"1363
+[; ;Source/FreeRTOS/stream_buffer.c: 1363:                                           size_t xTriggerLevelBytes,
+[v _xTriggerLevelBytes `ui ~T0 @X0 1 r4 ]
+"1364
+[; ;Source/FreeRTOS/stream_buffer.c: 1364:                                           uint8_t ucFlags,
+[v _ucFlags `uc ~T0 @X0 1 r5 ]
+"1365
+[; ;Source/FreeRTOS/stream_buffer.c: 1365:                                           StreamBufferCallbackFunction_t pxSendCompletedCallback,
+[v _pxSendCompletedCallback `*F7821 ~T0 @X0 1 r6 ]
+"1366
+[; ;Source/FreeRTOS/stream_buffer.c: 1366:                                           StreamBufferCallbackFunction_t pxReceiveCompletedCallback )
+[v _pxReceiveCompletedCallback `*F7827 ~T0 @X0 1 r7 ]
+"1367
+[; ;Source/FreeRTOS/stream_buffer.c: 1367: {
+[f ]
+"1381
+[; ;Source/FreeRTOS/stream_buffer.c: 1381:     ( void ) memset( ( void * ) pxStreamBuffer, 0x00, sizeof( StreamBuffer_t ) );
+[e ( _memset (3 , , -> _pxStreamBuffer `*v -> 0 `i -> # `S941 `ui ]
+"1382
+[; ;Source/FreeRTOS/stream_buffer.c: 1382:     pxStreamBuffer->pucBuffer = pucBuffer;
+[e = . *U _pxStreamBuffer 6 _pucBuffer ]
+"1383
+[; ;Source/FreeRTOS/stream_buffer.c: 1383:     pxStreamBuffer->xLength = xBufferSizeBytes;
+[e = . *U _pxStreamBuffer 2 _xBufferSizeBytes ]
+"1384
+[; ;Source/FreeRTOS/stream_buffer.c: 1384:     pxStreamBuffer->xTriggerLevelBytes = xTriggerLevelBytes;
+[e = . *U _pxStreamBuffer 3 _xTriggerLevelBytes ]
+"1385
+[; ;Source/FreeRTOS/stream_buffer.c: 1385:     pxStreamBuffer->ucFlags = ucFlags;
+[e = . *U _pxStreamBuffer 7 _ucFlags ]
+"1392
+[; ;Source/FreeRTOS/stream_buffer.c: 1392:     {
+{
+"1393
+[; ;Source/FreeRTOS/stream_buffer.c: 1393:         ( void ) pxSendCompletedCallback;
+[e _pxSendCompletedCallback ]
+"1394
+[; ;Source/FreeRTOS/stream_buffer.c: 1394:         ( void ) pxReceiveCompletedCallback;
+[e _pxReceiveCompletedCallback ]
+"1395
+[; ;Source/FreeRTOS/stream_buffer.c: 1395:     }
+}
+"1397
+[; ;Source/FreeRTOS/stream_buffer.c: 1397: }
+[e :UE 1097 ]
+}
+"1401
+[; ;Source/FreeRTOS/stream_buffer.c: 1401:     UBaseType_t uxStreamBufferGetStreamBufferNumber( StreamBufferHandle_t xStreamBuffer )
+[v _uxStreamBufferGetStreamBufferNumber `(uc ~T0 @X0 1 ef1`*S941 ]
+"1402
+[; ;Source/FreeRTOS/stream_buffer.c: 1402:     {
+{
+[e :U _uxStreamBufferGetStreamBufferNumber ]
+"1401
+[; ;Source/FreeRTOS/stream_buffer.c: 1401:     UBaseType_t uxStreamBufferGetStreamBufferNumber( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"1402
+[; ;Source/FreeRTOS/stream_buffer.c: 1402:     {
+[f ]
+"1403
+[; ;Source/FreeRTOS/stream_buffer.c: 1403:         return xStreamBuffer->uxStreamBufferNumber;
+[e ) . *U _xStreamBuffer 8 ]
+[e $UE 1098  ]
+"1404
+[; ;Source/FreeRTOS/stream_buffer.c: 1404:     }
+[e :UE 1098 ]
+}
+"1411
+[; ;Source/FreeRTOS/stream_buffer.c: 1411:     void vStreamBufferSetStreamBufferNumber( StreamBufferHandle_t xStreamBuffer,
+[v _vStreamBufferSetStreamBufferNumber `(v ~T0 @X0 1 ef2`*S941`uc ]
+"1413
+[; ;Source/FreeRTOS/stream_buffer.c: 1413:     {
+{
+[e :U _vStreamBufferSetStreamBufferNumber ]
+"1411
+[; ;Source/FreeRTOS/stream_buffer.c: 1411:     void vStreamBufferSetStreamBufferNumber( StreamBufferHandle_t xStreamBuffer,
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"1412
+[; ;Source/FreeRTOS/stream_buffer.c: 1412:                                              UBaseType_t uxStreamBufferNumber )
+[v _uxStreamBufferNumber `uc ~T0 @X0 1 r2 ]
+"1413
+[; ;Source/FreeRTOS/stream_buffer.c: 1413:     {
+[f ]
+"1414
+[; ;Source/FreeRTOS/stream_buffer.c: 1414:         xStreamBuffer->uxStreamBufferNumber = uxStreamBufferNumber;
+[e = . *U _xStreamBuffer 8 _uxStreamBufferNumber ]
+"1415
+[; ;Source/FreeRTOS/stream_buffer.c: 1415:     }
+[e :UE 1099 ]
+}
+"1422
+[; ;Source/FreeRTOS/stream_buffer.c: 1422:     uint8_t ucStreamBufferGetStreamBufferType( StreamBufferHandle_t xStreamBuffer )
+[v _ucStreamBufferGetStreamBufferType `(uc ~T0 @X0 1 ef1`*S941 ]
+"1423
+[; ;Source/FreeRTOS/stream_buffer.c: 1423:     {
+{
+[e :U _ucStreamBufferGetStreamBufferType ]
+"1422
+[; ;Source/FreeRTOS/stream_buffer.c: 1422:     uint8_t ucStreamBufferGetStreamBufferType( StreamBufferHandle_t xStreamBuffer )
+[v _xStreamBuffer `*S941 ~T0 @X0 1 r1 ]
+"1423
+[; ;Source/FreeRTOS/stream_buffer.c: 1423:     {
+[f ]
+"1424
+[; ;Source/FreeRTOS/stream_buffer.c: 1424:         return( xStreamBuffer->ucFlags & ( ( uint8_t ) 1 ) );
+[e ) -> & -> . *U _xStreamBuffer 7 `i -> -> -> 1 `i `uc `i `uc ]
+[e $UE 1100  ]
+"1425
+[; ;Source/FreeRTOS/stream_buffer.c: 1425:     }
+[e :UE 1100 ]
+}
+[a 1C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 2C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 3C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 4C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 5C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 6C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 7C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 8C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 9C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 10C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 11C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 12C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 13C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 14C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 15C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 16C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 17C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 18C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 19C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 20C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 21C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 22C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 23C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 24C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 25C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 26C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 27C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 28C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 29C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 30C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 31C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]
+[a 32C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 115 116 114 101 97 109 95 98 117 102 102 101 114 46 99 0 ]

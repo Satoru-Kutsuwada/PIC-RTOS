@@ -1,0 +1,4568 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"70 Source/FreeRTOS/queue.c
+[; ;Source/FreeRTOS/queue.c: 70: {
+[s S943 `*c 1 `*c 1 ]
+[n S943 QueuePointers pcTail pcReadFrom ]
+"86 Source/FreeRTOS/include/task.h
+[s S935 ]
+[n S935 tskTaskControlBlock ]
+"76 Source/FreeRTOS/queue.c
+[; ;Source/FreeRTOS/queue.c: 76: {
+[s S944 `*S935 1 `uc 1 ]
+[n S944 SemaphoreData xMutexHolder uxRecursiveCallCount ]
+"106
+[; ;Source/FreeRTOS/queue.c: 106:     {
+[u S942 `S943 1 `S944 1 ]
+[n S942 . xQueue xSemaphore ]
+"145 Source/FreeRTOS/include/list.h
+[; ;Source/FreeRTOS/include/list.h: 145: {
+[s S930 `us 1 `*S930 1 `*S930 1 `*v 1 `*S931 1 ]
+[n S930 xLIST_ITEM xItemValue pxNext pxPrevious pvOwner pvContainer ]
+"158
+[; ;Source/FreeRTOS/include/list.h: 158:     {
+[s S932 `us 1 `*S930 1 `*S930 1 ]
+[n S932 xMINI_LIST_ITEM xItemValue pxNext pxPrevious ]
+"173
+[; ;Source/FreeRTOS/include/list.h: 173: {
+[s S931 `Vuc 1 `*S930 1 `S932 1 ]
+[n S931 xLIST uxNumberOfItems pxIndex xListEnd ]
+"101 Source/FreeRTOS/queue.c
+[; ;Source/FreeRTOS/queue.c: 101: {
+[s S941 `*c 1 `*c 1 `S942 1 `S931 1 `S931 1 `Vuc 1 `uc 1 `uc 1 `Vc 1 `Vc 1 `uc 1 `uc 1 ]
+[n S941 QueueDefinition pcHead pcWriteTo u xTasksWaitingToSend xTasksWaitingToReceive uxMessagesWaiting uxLength uxItemSize cRxLock cTxLock uxQueueNumber ucQueueType ]
+"354 Source/FreeRTOS/include\FreeRTOS.h
+[; ;Source/FreeRTOS/include\FreeRTOS.h: 354: void Xprintf(const char *string, ...);
+[v _Xprintf `(v ~T0 @X0 0 ev`*Cuc ]
+"18561 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18561: extern volatile unsigned char POSTINC1 __attribute__((address(0xFE6)));
+[v _POSTINC1 `Vuc ~T0 @X0 0 e@4070 ]
+"18960
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18960: extern volatile unsigned char INTCON __attribute__((address(0xFF2)));
+[v _INTCON `Vuc ~T0 @X0 0 e@4082 ]
+"18966
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18966:     struct {
+[s S894 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S894 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+"18976
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18976:     struct {
+[s S895 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S895 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+"18986
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18986:     struct {
+[s S896 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S896 . . GIEL GIEH ]
+"18965
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18965: typedef union {
+[u S893 `S894 1 `S895 1 `S896 1 ]
+[n S893 . . . . ]
+"18992
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18992: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
+[v _INTCONbits `VS893 ~T0 @X0 0 e@4082 ]
+[v F7317 `*CS931 ~T0 @X0 1 t ]
+"3002 Source/FreeRTOS/include/task.h
+[v _xTaskRemoveFromEventList `(c ~T0 @X0 0 ef1`C*CS931 ]
+"92 Source/FreeRTOS/portable/PIC18F\portmacro.h
+[; ;Source/FreeRTOS/portable/PIC18F\portmacro.h: 92: extern void vPortYield( void );
+[v _vPortYield `(v ~T0 @X0 0 ef ]
+[v F7082 `*S931 ~T0 @X0 1 t ]
+"429 Source/FreeRTOS/include/list.h
+[; ;Source/FreeRTOS/include/list.h: 429: void vListInitialise( List_t * const pxList ) ;
+[v _vListInitialise `(v ~T0 @X0 0 ef1`C*S931 ]
+"18581 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18581: extern volatile unsigned char INDF1 __attribute__((address(0xFE7)));
+[v _INDF1 `Vuc ~T0 @X0 0 e@4071 ]
+"175 Source/FreeRTOS/include/portable.h
+[; ;Source/FreeRTOS/include/portable.h: 175: void * pvPortMalloc( size_t xSize ) ;
+[v _pvPortMalloc `(*v ~T0 @X0 0 ef1`ui ]
+"219 Source/FreeRTOS/queue.c
+[; ;Source/FreeRTOS/queue.c: 219: static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength,
+[v _prvInitialiseNewQueue `(v ~T0 @X0 0 sf5`Cuc`Cuc`*uc`Cuc`*S941 ]
+[v F7592 `*Cv ~T0 @X0 1 t ]
+"120 Source/FreeRTOS/include/task.h
+[s S936 `c 1 `us 1 ]
+[n S936 xTIME_OUT xOverflowCount xTimeOnEntering ]
+[v F7554 `*S941 ~T0 @X0 1 t ]
+"196 Source/FreeRTOS/queue.c
+[; ;Source/FreeRTOS/queue.c: 196: static BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
+[v _prvCopyDataToQueue `(c ~T0 @X0 0 sf3`C*S941`*Cv`Cc ]
+[v F7351 `*S936 ~T0 @X0 1 t ]
+"3110 Source/FreeRTOS/include/task.h
+[v _vTaskInternalSetTimeOutState `(v ~T0 @X0 0 ef1`C*S936 ]
+"1370
+[v _vTaskSuspendAll `(v ~T0 @X0 0 ef ]
+[v F7292 `*S936 ~T0 @X0 1 t ]
+[v F7293 `*us ~T0 @X0 1 t ]
+"2873
+[v _xTaskCheckForTimeOut `(c ~T0 @X0 0 ef2`C*S936`C*us ]
+"190 Source/FreeRTOS/queue.c
+[; ;Source/FreeRTOS/queue.c: 190: static BaseType_t prvIsQueueFull( const Queue_t * pxQueue ) ;
+[v _prvIsQueueFull `(c ~T0 @X0 0 sf1`*CS941 ]
+[v F7302 `*S931 ~T0 @X0 1 t ]
+"2957 Source/FreeRTOS/include/task.h
+[v _vTaskPlaceOnEventList `(v ~T0 @X0 0 ef2`C*S931`Cus ]
+[v F7546 `*S941 ~T0 @X0 1 t ]
+"176 Source/FreeRTOS/queue.c
+[; ;Source/FreeRTOS/queue.c: 176: static void prvUnlockQueue( Queue_t * const pxQueue ) ;
+[v _prvUnlockQueue `(v ~T0 @X0 0 sf1`C*S941 ]
+"1426 Source/FreeRTOS/include/task.h
+[v _xTaskResumeAll `(c ~T0 @X0 0 ef ]
+[v F7604 `*Cv ~T0 @X0 1 t ]
+[v F7605 `*c ~T0 @X0 1 t ]
+"1477
+[v _uxTaskGetNumberOfTasks `(uc ~T0 @X0 0 ef ]
+[v F7620 `*c ~T0 @X0 1 t ]
+[v F7632 `*v ~T0 @X0 1 t ]
+[v F7560 `*S941 ~T0 @X0 1 t ]
+[v F7561 `*v ~T0 @X0 1 t ]
+"203 Source/FreeRTOS/queue.c
+[; ;Source/FreeRTOS/queue.c: 203: static void prvCopyDataFromQueue( Queue_t * const pxQueue,
+[v _prvCopyDataFromQueue `(v ~T0 @X0 0 sf2`C*S941`C*v ]
+"183
+[; ;Source/FreeRTOS/queue.c: 183: static BaseType_t prvIsQueueEmpty( const Queue_t * pxQueue ) ;
+[v _prvIsQueueEmpty `(c ~T0 @X0 0 sf1`*CS941 ]
+[v F7651 `*v ~T0 @X0 1 t ]
+[v F7663 `*v ~T0 @X0 1 t ]
+[v F7664 `*c ~T0 @X0 1 t ]
+[v F7678 `*v ~T0 @X0 1 t ]
+[v F7688 `*S941 ~T0 @X0 1 t ]
+[v F7693 `*S941 ~T0 @X0 1 t ]
+[v F7700 `*S941 ~T0 @X0 1 t ]
+"178 Source/FreeRTOS/include/portable.h
+[; ;Source/FreeRTOS/include/portable.h: 178: void vPortFree( void * pv ) ;
+[v _vPortFree `(v ~T0 @X0 0 ef1`*v ]
+[v F7718 `*S941 ~T0 @X0 1 t ]
+"27 C:\Program Files\Microchip\xc8\v2.41\pic\include\c99\string.h
+[; ;C:\Program Files\Microchip\xc8\v2.41\pic\include\c99\string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
+[v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
+[v F7726 `*S941 ~T0 @X0 1 t ]
+[v F7727 `*v ~T0 @X0 1 t ]
+[v F7733 `*S941 ~T0 @X0 1 t ]
+"3031 Source/FreeRTOS/include/task.h
+[v _vTaskMissedYield `(v ~T0 @X0 0 ef ]
+[v F7742 `*S941 ~T0 @X0 1 t ]
+[v F7752 `*S941 ~T0 @X0 1 t ]
+"55 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 55: __asm("ADCTRIG equ 0EB8h");
+[; <" ADCTRIG equ 0EB8h ;# ">
+"111
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 111: __asm("PMDIS0 equ 0EB9h");
+[; <" PMDIS0 equ 0EB9h ;# ">
+"116
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 116: __asm("PD0 equ 0EB9h");
+[; <" PD0 equ 0EB9h ;# ">
+"417
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 417: __asm("PMDIS1 equ 0EBAh");
+[; <" PMDIS1 equ 0EBAh ;# ">
+"422
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 422: __asm("PD1 equ 0EBAh");
+[; <" PD1 equ 0EBAh ;# ">
+"655
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 655: __asm("PMDIS2 equ 0EBBh");
+[; <" PMDIS2 equ 0EBBh ;# ">
+"660
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 660: __asm("PD2 equ 0EBBh");
+[; <" PD2 equ 0EBBh ;# ">
+"865
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 865: __asm("PMDIS3 equ 0EBCh");
+[; <" PMDIS3 equ 0EBCh ;# ">
+"870
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 870: __asm("PD3 equ 0EBCh");
+[; <" PD3 equ 0EBCh ;# ">
+"1103
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1103: __asm("PPSCON equ 0EBFh");
+[; <" PPSCON equ 0EBFh ;# ">
+"1123
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1123: __asm("RPOR0 equ 0EC0h");
+[; <" RPOR0 equ 0EC0h ;# ">
+"1130
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1130: __asm("RPOR1 equ 0EC1h");
+[; <" RPOR1 equ 0EC1h ;# ">
+"1137
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1137: __asm("RPOR2 equ 0EC2h");
+[; <" RPOR2 equ 0EC2h ;# ">
+"1144
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1144: __asm("RPOR3 equ 0EC3h");
+[; <" RPOR3 equ 0EC3h ;# ">
+"1151
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1151: __asm("RPOR4 equ 0EC4h");
+[; <" RPOR4 equ 0EC4h ;# ">
+"1158
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1158: __asm("RPOR5 equ 0EC5h");
+[; <" RPOR5 equ 0EC5h ;# ">
+"1165
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1165: __asm("RPOR6 equ 0EC6h");
+[; <" RPOR6 equ 0EC6h ;# ">
+"1172
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1172: __asm("RPOR7 equ 0EC7h");
+[; <" RPOR7 equ 0EC7h ;# ">
+"1179
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1179: __asm("RPOR8 equ 0EC8h");
+[; <" RPOR8 equ 0EC8h ;# ">
+"1186
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1186: __asm("RPOR9 equ 0EC9h");
+[; <" RPOR9 equ 0EC9h ;# ">
+"1193
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1193: __asm("RPOR10 equ 0ECAh");
+[; <" RPOR10 equ 0ECAh ;# ">
+"1200
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1200: __asm("RPOR11 equ 0ECBh");
+[; <" RPOR11 equ 0ECBh ;# ">
+"1207
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1207: __asm("RPOR12 equ 0ECCh");
+[; <" RPOR12 equ 0ECCh ;# ">
+"1214
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1214: __asm("RPOR13 equ 0ECDh");
+[; <" RPOR13 equ 0ECDh ;# ">
+"1221
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1221: __asm("RPOR17 equ 0ED1h");
+[; <" RPOR17 equ 0ED1h ;# ">
+"1228
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1228: __asm("RPOR18 equ 0ED2h");
+[; <" RPOR18 equ 0ED2h ;# ">
+"1235
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1235: __asm("RPOR19 equ 0ED3h");
+[; <" RPOR19 equ 0ED3h ;# ">
+"1242
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1242: __asm("RPOR20 equ 0ED4h");
+[; <" RPOR20 equ 0ED4h ;# ">
+"1249
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1249: __asm("RPOR21 equ 0ED5h");
+[; <" RPOR21 equ 0ED5h ;# ">
+"1256
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1256: __asm("RPOR22 equ 0ED6h");
+[; <" RPOR22 equ 0ED6h ;# ">
+"1263
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1263: __asm("RPOR23 equ 0ED7h");
+[; <" RPOR23 equ 0ED7h ;# ">
+"1270
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1270: __asm("RPOR24 equ 0ED8h");
+[; <" RPOR24 equ 0ED8h ;# ">
+"1277
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1277: __asm("RPINR1 equ 0EE1h");
+[; <" RPINR1 equ 0EE1h ;# ">
+"1284
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1284: __asm("RPINR2 equ 0EE2h");
+[; <" RPINR2 equ 0EE2h ;# ">
+"1291
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1291: __asm("RPINR3 equ 0EE3h");
+[; <" RPINR3 equ 0EE3h ;# ">
+"1298
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1298: __asm("RPINR4 equ 0EE4h");
+[; <" RPINR4 equ 0EE4h ;# ">
+"1305
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1305: __asm("RPINR6 equ 0EE6h");
+[; <" RPINR6 equ 0EE6h ;# ">
+"1312
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1312: __asm("RPINR15 equ 0EE7h");
+[; <" RPINR15 equ 0EE7h ;# ">
+"1319
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1319: __asm("RPINR7 equ 0EE8h");
+[; <" RPINR7 equ 0EE8h ;# ">
+"1326
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1326: __asm("RPINR8 equ 0EE9h");
+[; <" RPINR8 equ 0EE9h ;# ">
+"1333
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1333: __asm("RPINR9 equ 0EEAh");
+[; <" RPINR9 equ 0EEAh ;# ">
+"1340
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1340: __asm("RPINR12 equ 0EF2h");
+[; <" RPINR12 equ 0EF2h ;# ">
+"1347
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1347: __asm("RPINR13 equ 0EF3h");
+[; <" RPINR13 equ 0EF3h ;# ">
+"1354
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1354: __asm("RPINR14 equ 0EF4h");
+[; <" RPINR14 equ 0EF4h ;# ">
+"1361
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1361: __asm("RPINR16 equ 0EF7h");
+[; <" RPINR16 equ 0EF7h ;# ">
+"1368
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1368: __asm("RPINR17 equ 0EF8h");
+[; <" RPINR17 equ 0EF8h ;# ">
+"1375
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1375: __asm("RPINR21 equ 0EFCh");
+[; <" RPINR21 equ 0EFCh ;# ">
+"1382
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1382: __asm("RPINR22 equ 0EFDh");
+[; <" RPINR22 equ 0EFDh ;# ">
+"1389
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1389: __asm("RPINR23 equ 0EFEh");
+[; <" RPINR23 equ 0EFEh ;# ">
+"1396
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1396: __asm("RPINR24 equ 0EFFh");
+[; <" RPINR24 equ 0EFFh ;# ">
+"1403
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1403: __asm("CCP10CON equ 0F00h");
+[; <" CCP10CON equ 0F00h ;# ">
+"1467
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1467: __asm("CCPR10L equ 0F01h");
+[; <" CCPR10L equ 0F01h ;# ">
+"1487
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1487: __asm("CCPR10H equ 0F02h");
+[; <" CCPR10H equ 0F02h ;# ">
+"1507
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1507: __asm("CCP9CON equ 0F03h");
+[; <" CCP9CON equ 0F03h ;# ">
+"1571
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1571: __asm("CCPR9L equ 0F04h");
+[; <" CCPR9L equ 0F04h ;# ">
+"1591
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1591: __asm("CCPR9H equ 0F05h");
+[; <" CCPR9H equ 0F05h ;# ">
+"1611
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1611: __asm("CCP8CON equ 0F06h");
+[; <" CCP8CON equ 0F06h ;# ">
+"1675
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1675: __asm("CCPR8L equ 0F07h");
+[; <" CCPR8L equ 0F07h ;# ">
+"1695
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1695: __asm("CCPR8H equ 0F08h");
+[; <" CCPR8H equ 0F08h ;# ">
+"1715
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1715: __asm("CCP7CON equ 0F09h");
+[; <" CCP7CON equ 0F09h ;# ">
+"1779
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1779: __asm("CCPR7L equ 0F0Ah");
+[; <" CCPR7L equ 0F0Ah ;# ">
+"1799
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1799: __asm("CCPR7H equ 0F0Bh");
+[; <" CCPR7H equ 0F0Bh ;# ">
+"1819
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1819: __asm("CCP6CON equ 0F0Ch");
+[; <" CCP6CON equ 0F0Ch ;# ">
+"1883
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1883: __asm("CCPR6L equ 0F0Dh");
+[; <" CCPR6L equ 0F0Dh ;# ">
+"1903
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1903: __asm("CCPR6H equ 0F0Eh");
+[; <" CCPR6H equ 0F0Eh ;# ">
+"1923
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1923: __asm("CCP5CON equ 0F0Fh");
+[; <" CCP5CON equ 0F0Fh ;# ">
+"1987
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 1987: __asm("CCPR5L equ 0F10h");
+[; <" CCPR5L equ 0F10h ;# ">
+"2007
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2007: __asm("CCPR5H equ 0F11h");
+[; <" CCPR5H equ 0F11h ;# ">
+"2027
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2027: __asm("CCP4CON equ 0F12h");
+[; <" CCP4CON equ 0F12h ;# ">
+"2091
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2091: __asm("CCPR4L equ 0F13h");
+[; <" CCPR4L equ 0F13h ;# ">
+"2111
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2111: __asm("CCPR4H equ 0F14h");
+[; <" CCPR4H equ 0F14h ;# ">
+"2131
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2131: __asm("CCP3CON equ 0F15h");
+[; <" CCP3CON equ 0F15h ;# ">
+"2213
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2213: __asm("CCPR3L equ 0F16h");
+[; <" CCPR3L equ 0F16h ;# ">
+"2233
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2233: __asm("CCPR3H equ 0F17h");
+[; <" CCPR3H equ 0F17h ;# ">
+"2253
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2253: __asm("ECCP3DEL equ 0F18h");
+[; <" ECCP3DEL equ 0F18h ;# ">
+"2323
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2323: __asm("ECCP3AS equ 0F19h");
+[; <" ECCP3AS equ 0F19h ;# ">
+"2405
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2405: __asm("PSTR3CON equ 0F1Ah");
+[; <" PSTR3CON equ 0F1Ah ;# ">
+"2516
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2516: __asm("T8CON equ 0F1Bh");
+[; <" T8CON equ 0F1Bh ;# ">
+"2587
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2587: __asm("PR8 equ 0F1Ch");
+[; <" PR8 equ 0F1Ch ;# ">
+"2607
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2607: __asm("TMR8 equ 0F1Dh");
+[; <" TMR8 equ 0F1Dh ;# ">
+"2627
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2627: __asm("T6CON equ 0F1Eh");
+[; <" T6CON equ 0F1Eh ;# ">
+"2698
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2698: __asm("PR6 equ 0F1Fh");
+[; <" PR6 equ 0F1Fh ;# ">
+"2718
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2718: __asm("TMR6 equ 0F20h");
+[; <" TMR6 equ 0F20h ;# ">
+"2738
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2738: __asm("T5GCON equ 0F21h");
+[; <" T5GCON equ 0F21h ;# ">
+"2851
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2851: __asm("T5CON equ 0F22h");
+[; <" T5CON equ 0F22h ;# ">
+"2953
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2953: __asm("TMR5L equ 0F23h");
+[; <" TMR5L equ 0F23h ;# ">
+"2973
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2973: __asm("TMR5H equ 0F24h");
+[; <" TMR5H equ 0F24h ;# ">
+"2993
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 2993: __asm("CM3CON equ 0F25h");
+[; <" CM3CON equ 0F25h ;# ">
+"3120
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3120: __asm("UEP0 equ 0F26h");
+[; <" UEP0 equ 0F26h ;# ">
+"3228
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3228: __asm("UEP1 equ 0F27h");
+[; <" UEP1 equ 0F27h ;# ">
+"3336
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3336: __asm("UEP2 equ 0F28h");
+[; <" UEP2 equ 0F28h ;# ">
+"3444
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3444: __asm("UEP3 equ 0F29h");
+[; <" UEP3 equ 0F29h ;# ">
+"3552
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3552: __asm("UEP4 equ 0F2Ah");
+[; <" UEP4 equ 0F2Ah ;# ">
+"3660
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3660: __asm("UEP5 equ 0F2Bh");
+[; <" UEP5 equ 0F2Bh ;# ">
+"3768
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3768: __asm("UEP6 equ 0F2Ch");
+[; <" UEP6 equ 0F2Ch ;# ">
+"3876
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3876: __asm("UEP7 equ 0F2Dh");
+[; <" UEP7 equ 0F2Dh ;# ">
+"3984
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 3984: __asm("UEP8 equ 0F2Eh");
+[; <" UEP8 equ 0F2Eh ;# ">
+"4060
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4060: __asm("UEP9 equ 0F2Fh");
+[; <" UEP9 equ 0F2Fh ;# ">
+"4136
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4136: __asm("UEP10 equ 0F30h");
+[; <" UEP10 equ 0F30h ;# ">
+"4212
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4212: __asm("UEP11 equ 0F31h");
+[; <" UEP11 equ 0F31h ;# ">
+"4288
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4288: __asm("UEP12 equ 0F32h");
+[; <" UEP12 equ 0F32h ;# ">
+"4364
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4364: __asm("UEP13 equ 0F33h");
+[; <" UEP13 equ 0F33h ;# ">
+"4440
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4440: __asm("UEP14 equ 0F34h");
+[; <" UEP14 equ 0F34h ;# ">
+"4516
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4516: __asm("UEP15 equ 0F35h");
+[; <" UEP15 equ 0F35h ;# ">
+"4592
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4592: __asm("UIE equ 0F36h");
+[; <" UIE equ 0F36h ;# ">
+"4648
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4648: __asm("UEIE equ 0F37h");
+[; <" UEIE equ 0F37h ;# ">
+"4699
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4699: __asm("UADDR equ 0F38h");
+[; <" UADDR equ 0F38h ;# ">
+"4763
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4763: __asm("UCFG equ 0F39h");
+[; <" UCFG equ 0F39h ;# ">
+"4834
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4834: __asm("RTCVALL equ 0F3Ah");
+[; <" RTCVALL equ 0F3Ah ;# ">
+"4854
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4854: __asm("RTCVALH equ 0F3Bh");
+[; <" RTCVALH equ 0F3Bh ;# ">
+"4924
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4924: __asm("PADCFG1 equ 0F3Ch");
+[; <" PADCFG1 equ 0F3Ch ;# ">
+"4956
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 4956: __asm("REFOCON equ 0F3Dh");
+[; <" REFOCON equ 0F3Dh ;# ">
+"5021
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5021: __asm("RTCCAL equ 0F3Eh");
+[; <" RTCCAL equ 0F3Eh ;# ">
+"5091
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5091: __asm("RTCCFG equ 0F3Fh");
+[; <" RTCCFG equ 0F3Fh ;# ">
+"5148
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5148: __asm("ODCON3 equ 0F40h");
+[; <" ODCON3 equ 0F40h ;# ">
+"5174
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5174: __asm("ODCON2 equ 0F41h");
+[; <" ODCON2 equ 0F41h ;# ">
+"5212
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5212: __asm("ODCON1 equ 0F42h");
+[; <" ODCON1 equ 0F42h ;# ">
+"5274
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5274: __asm("ALRMVALL equ 0F44h");
+[; <" ALRMVALL equ 0F44h ;# ">
+"5294
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5294: __asm("ALRMVALH equ 0F45h");
+[; <" ALRMVALH equ 0F45h ;# ">
+"5314
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5314: __asm("ALRMRPT equ 0F46h");
+[; <" ALRMRPT equ 0F46h ;# ">
+"5384
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5384: __asm("ALRMCFG equ 0F47h");
+[; <" ALRMCFG equ 0F47h ;# ">
+"5460
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5460: __asm("ANCON0 equ 0F48h");
+[; <" ANCON0 equ 0F48h ;# ">
+"5522
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5522: __asm("ANCON1 equ 0F49h");
+[; <" ANCON1 equ 0F49h ;# ">
+"5582
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5582: __asm("DSWAKEL equ 0F4Ah");
+[; <" DSWAKEL equ 0F4Ah ;# ">
+"5634
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5634: __asm("DSWAKEH equ 0F4Bh");
+[; <" DSWAKEH equ 0F4Bh ;# ">
+"5654
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5654: __asm("DSCONL equ 0F4Ch");
+[; <" DSCONL equ 0F4Ch ;# ">
+"5686
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5686: __asm("DSCONH equ 0F4Dh");
+[; <" DSCONH equ 0F4Dh ;# ">
+"5719
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5719: __asm("DSGPR0 equ 0F4Eh");
+[; <" DSGPR0 equ 0F4Eh ;# ">
+"5739
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5739: __asm("DSGPR1 equ 0F4Fh");
+[; <" DSGPR1 equ 0F4Fh ;# ">
+"5759
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5759: __asm("CCPTMRS2 equ 0F50h");
+[; <" CCPTMRS2 equ 0F50h ;# ">
+"5806
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5806: __asm("CCPTMRS1 equ 0F51h");
+[; <" CCPTMRS1 equ 0F51h ;# ">
+"5873
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5873: __asm("CCPTMRS0 equ 0F52h");
+[; <" CCPTMRS0 equ 0F52h ;# ">
+"5955
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 5955: __asm("CVRCON equ 0F53h");
+[; <" CVRCON equ 0F53h ;# ">
+"6034
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6034: __asm("PMSTATL equ 0F54h");
+[; <" PMSTATL equ 0F54h ;# ">
+"6085
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6085: __asm("PMSTATH equ 0F55h");
+[; <" PMSTATH equ 0F55h ;# ">
+"6136
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6136: __asm("PMEL equ 0F56h");
+[; <" PMEL equ 0F56h ;# ">
+"6206
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6206: __asm("PMEH equ 0F57h");
+[; <" PMEH equ 0F57h ;# ">
+"6276
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6276: __asm("PMDIN2L equ 0F58h");
+[; <" PMDIN2L equ 0F58h ;# ">
+"6296
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6296: __asm("PMDIN2H equ 0F59h");
+[; <" PMDIN2H equ 0F59h ;# ">
+"6316
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6316: __asm("PMDOUT2L equ 0F5Ah");
+[; <" PMDOUT2L equ 0F5Ah ;# ">
+"6336
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6336: __asm("PMDOUT2H equ 0F5Bh");
+[; <" PMDOUT2H equ 0F5Bh ;# ">
+"6356
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6356: __asm("PMMODEL equ 0F5Ch");
+[; <" PMMODEL equ 0F5Ch ;# ">
+"6438
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6438: __asm("PMMODEH equ 0F5Dh");
+[; <" PMMODEH equ 0F5Dh ;# ">
+"6500
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6500: __asm("PMCONL equ 0F5Eh");
+[; <" PMCONL equ 0F5Eh ;# ">
+"6557
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6557: __asm("PMCONH equ 0F5Fh");
+[; <" PMCONH equ 0F5Fh ;# ">
+"6614
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6614: __asm("UFRM equ 0F60h");
+[; <" UFRM equ 0F60h ;# ">
+"6621
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6621: __asm("UFRML equ 0F60h");
+[; <" UFRML equ 0F60h ;# ">
+"6699
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6699: __asm("UFRMH equ 0F61h");
+[; <" UFRMH equ 0F61h ;# ">
+"6739
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6739: __asm("UIR equ 0F62h");
+[; <" UIR equ 0F62h ;# ">
+"6795
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6795: __asm("UEIR equ 0F63h");
+[; <" UEIR equ 0F63h ;# ">
+"6846
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6846: __asm("USTAT equ 0F64h");
+[; <" USTAT equ 0F64h ;# ">
+"6906
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6906: __asm("UCON equ 0F65h");
+[; <" UCON equ 0F65h ;# ">
+"6957
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6957: __asm("DMABCH equ 0F66h");
+[; <" DMABCH equ 0F66h ;# ">
+"6977
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6977: __asm("DMABCL equ 0F67h");
+[; <" DMABCL equ 0F67h ;# ">
+"6997
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 6997: __asm("RXADDRH equ 0F68h");
+[; <" RXADDRH equ 0F68h ;# ">
+"7017
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7017: __asm("RXADDRL equ 0F69h");
+[; <" RXADDRL equ 0F69h ;# ">
+"7037
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7037: __asm("TXADDRH equ 0F6Ah");
+[; <" TXADDRH equ 0F6Ah ;# ">
+"7057
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7057: __asm("TXADDRL equ 0F6Bh");
+[; <" TXADDRL equ 0F6Bh ;# ">
+"7077
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7077: __asm("PMDIN1L equ 0F6Ch");
+[; <" PMDIN1L equ 0F6Ch ;# ">
+"7097
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7097: __asm("PMDIN1H equ 0F6Dh");
+[; <" PMDIN1H equ 0F6Dh ;# ">
+"7117
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7117: __asm("PMADDRL equ 0F6Eh");
+[; <" PMADDRL equ 0F6Eh ;# ">
+"7137
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7137: __asm("PMDOUT1L equ 0F6Eh");
+[; <" PMDOUT1L equ 0F6Eh ;# ">
+"7157
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7157: __asm("PMADDRH equ 0F6Fh");
+[; <" PMADDRH equ 0F6Fh ;# ">
+"7183
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7183: __asm("PMDOUT1H equ 0F6Fh");
+[; <" PMDOUT1H equ 0F6Fh ;# ">
+"7203
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7203: __asm("CMSTAT equ 0F70h");
+[; <" CMSTAT equ 0F70h ;# ">
+"7208
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7208: __asm("CMSTATUS equ 0F70h");
+[; <" CMSTATUS equ 0F70h ;# ">
+"7265
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7265: __asm("SSP2CON2 equ 0F71h");
+[; <" SSP2CON2 equ 0F71h ;# ">
+"7443
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7443: __asm("SSP2CON1 equ 0F72h");
+[; <" SSP2CON1 equ 0F72h ;# ">
+"7563
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7563: __asm("SSP2STAT equ 0F73h");
+[; <" SSP2STAT equ 0F73h ;# ">
+"7865
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7865: __asm("SSP2ADD equ 0F74h");
+[; <" SSP2ADD equ 0F74h ;# ">
+"7935
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7935: __asm("SSP2MSK equ 0F74h");
+[; <" SSP2MSK equ 0F74h ;# ">
+"7997
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 7997: __asm("SSP2BUF equ 0F75h");
+[; <" SSP2BUF equ 0F75h ;# ">
+"8017
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8017: __asm("T4CON equ 0F76h");
+[; <" T4CON equ 0F76h ;# ">
+"8088
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8088: __asm("PR4 equ 0F77h");
+[; <" PR4 equ 0F77h ;# ">
+"8108
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8108: __asm("TMR4 equ 0F78h");
+[; <" TMR4 equ 0F78h ;# ">
+"8128
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8128: __asm("T3CON equ 0F79h");
+[; <" T3CON equ 0F79h ;# ">
+"8239
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8239: __asm("TMR3 equ 0F7Ah");
+[; <" TMR3 equ 0F7Ah ;# ">
+"8246
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8246: __asm("TMR3L equ 0F7Ah");
+[; <" TMR3L equ 0F7Ah ;# ">
+"8266
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8266: __asm("TMR3H equ 0F7Bh");
+[; <" TMR3H equ 0F7Bh ;# ">
+"8286
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8286: __asm("BAUDCON2 equ 0F7Ch");
+[; <" BAUDCON2 equ 0F7Ch ;# ">
+"8409
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8409: __asm("SPBRGH2 equ 0F7Dh");
+[; <" SPBRGH2 equ 0F7Dh ;# ">
+"8429
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8429: __asm("BAUDCON1 equ 0F7Eh");
+[; <" BAUDCON1 equ 0F7Eh ;# ">
+"8434
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8434: __asm("BAUDCON equ 0F7Eh");
+[; <" BAUDCON equ 0F7Eh ;# ">
+"8438
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8438: __asm("BAUDCTL equ 0F7Eh");
+[; <" BAUDCTL equ 0F7Eh ;# ">
+"8936
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8936: __asm("SPBRGH1 equ 0F7Fh");
+[; <" SPBRGH1 equ 0F7Fh ;# ">
+"8941
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8941: __asm("SPBRGH equ 0F7Fh");
+[; <" SPBRGH equ 0F7Fh ;# ">
+"8974
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 8974: __asm("PORTA equ 0F80h");
+[; <" PORTA equ 0F80h ;# ">
+"9255
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 9255: __asm("PORTB equ 0F81h");
+[; <" PORTB equ 0F81h ;# ">
+"9601
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 9601: __asm("PORTC equ 0F82h");
+[; <" PORTC equ 0F82h ;# ">
+"9867
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 9867: __asm("PORTD equ 0F83h");
+[; <" PORTD equ 0F83h ;# ">
+"10038
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10038: __asm("PORTE equ 0F84h");
+[; <" PORTE equ 0F84h ;# ">
+"10179
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10179: __asm("HLVDCON equ 0F85h");
+[; <" HLVDCON equ 0F85h ;# ">
+"10249
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10249: __asm("DMACON2 equ 0F86h");
+[; <" DMACON2 equ 0F86h ;# ">
+"10325
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10325: __asm("OSCCON2 equ 0F87h");
+[; <" OSCCON2 equ 0F87h ;# ">
+"10365
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10365: __asm("DMACON1 equ 0F88h");
+[; <" DMACON1 equ 0F88h ;# ">
+"10427
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10427: __asm("LATA equ 0F89h");
+[; <" LATA equ 0F89h ;# ">
+"10529
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10529: __asm("LATB equ 0F8Ah");
+[; <" LATB equ 0F8Ah ;# ">
+"10641
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10641: __asm("LATC equ 0F8Bh");
+[; <" LATC equ 0F8Bh ;# ">
+"10719
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10719: __asm("LATD equ 0F8Ch");
+[; <" LATD equ 0F8Ch ;# ">
+"10831
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10831: __asm("LATE equ 0F8Dh");
+[; <" LATE equ 0F8Dh ;# ">
+"10883
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10883: __asm("PIE4 equ 0F8Eh");
+[; <" PIE4 equ 0F8Eh ;# ">
+"10945
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 10945: __asm("PIR4 equ 0F8Fh");
+[; <" PIR4 equ 0F8Fh ;# ">
+"11007
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11007: __asm("IPR4 equ 0F90h");
+[; <" IPR4 equ 0F90h ;# ">
+"11077
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11077: __asm("PIE5 equ 0F91h");
+[; <" PIE5 equ 0F91h ;# ">
+"11127
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11127: __asm("TRISA equ 0F92h");
+[; <" TRISA equ 0F92h ;# ">
+"11184
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11184: __asm("TRISB equ 0F93h");
+[; <" TRISB equ 0F93h ;# ">
+"11246
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11246: __asm("TRISC equ 0F94h");
+[; <" TRISC equ 0F94h ;# ">
+"11291
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11291: __asm("TRISD equ 0F95h");
+[; <" TRISD equ 0F95h ;# ">
+"11353
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11353: __asm("TRISE equ 0F96h");
+[; <" TRISE equ 0F96h ;# ">
+"11398
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11398: __asm("T3GCON equ 0F97h");
+[; <" T3GCON equ 0F97h ;# ">
+"11487
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11487: __asm("PIR5 equ 0F98h");
+[; <" PIR5 equ 0F98h ;# ">
+"11537
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11537: __asm("IPR5 equ 0F99h");
+[; <" IPR5 equ 0F99h ;# ">
+"11614
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11614: __asm("T1GCON equ 0F9Ah");
+[; <" T1GCON equ 0F9Ah ;# ">
+"11721
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11721: __asm("OSCTUNE equ 0F9Bh");
+[; <" OSCTUNE equ 0F9Bh ;# ">
+"11791
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11791: __asm("RCSTA2 equ 0F9Ch");
+[; <" RCSTA2 equ 0F9Ch ;# ">
+"11927
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 11927: __asm("PIE1 equ 0F9Dh");
+[; <" PIE1 equ 0F9Dh ;# ">
+"12019
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12019: __asm("PIR1 equ 0F9Eh");
+[; <" PIR1 equ 0F9Eh ;# ">
+"12111
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12111: __asm("IPR1 equ 0F9Fh");
+[; <" IPR1 equ 0F9Fh ;# ">
+"12203
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12203: __asm("PIE2 equ 0FA0h");
+[; <" PIE2 equ 0FA0h ;# ">
+"12289
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12289: __asm("PIR2 equ 0FA1h");
+[; <" PIR2 equ 0FA1h ;# ">
+"12375
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12375: __asm("IPR2 equ 0FA2h");
+[; <" IPR2 equ 0FA2h ;# ">
+"12461
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12461: __asm("PIE3 equ 0FA3h");
+[; <" PIE3 equ 0FA3h ;# ">
+"12571
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12571: __asm("PIR3 equ 0FA4h");
+[; <" PIR3 equ 0FA4h ;# ">
+"12649
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12649: __asm("IPR3 equ 0FA5h");
+[; <" IPR3 equ 0FA5h ;# ">
+"12727
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12727: __asm("EECON1 equ 0FA6h");
+[; <" EECON1 equ 0FA6h ;# ">
+"12772
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12772: __asm("EECON2 equ 0FA7h");
+[; <" EECON2 equ 0FA7h ;# ">
+"12792
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12792: __asm("TXSTA2 equ 0FA8h");
+[; <" TXSTA2 equ 0FA8h ;# ">
+"12919
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12919: __asm("TXREG2 equ 0FA9h");
+[; <" TXREG2 equ 0FA9h ;# ">
+"12939
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12939: __asm("RCREG2 equ 0FAAh");
+[; <" RCREG2 equ 0FAAh ;# ">
+"12959
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12959: __asm("SPBRG2 equ 0FABh");
+[; <" SPBRG2 equ 0FABh ;# ">
+"12979
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12979: __asm("RCSTA1 equ 0FACh");
+[; <" RCSTA1 equ 0FACh ;# ">
+"12984
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 12984: __asm("RCSTA equ 0FACh");
+[; <" RCSTA equ 0FACh ;# ">
+"13317
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13317: __asm("TXSTA1 equ 0FADh");
+[; <" TXSTA1 equ 0FADh ;# ">
+"13322
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13322: __asm("TXSTA equ 0FADh");
+[; <" TXSTA equ 0FADh ;# ">
+"13605
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13605: __asm("TXREG1 equ 0FAEh");
+[; <" TXREG1 equ 0FAEh ;# ">
+"13610
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13610: __asm("TXREG equ 0FAEh");
+[; <" TXREG equ 0FAEh ;# ">
+"13643
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13643: __asm("RCREG1 equ 0FAFh");
+[; <" RCREG1 equ 0FAFh ;# ">
+"13648
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13648: __asm("RCREG equ 0FAFh");
+[; <" RCREG equ 0FAFh ;# ">
+"13681
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13681: __asm("SPBRG1 equ 0FB0h");
+[; <" SPBRG1 equ 0FB0h ;# ">
+"13686
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13686: __asm("SPBRG equ 0FB0h");
+[; <" SPBRG equ 0FB0h ;# ">
+"13719
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13719: __asm("CTMUICON equ 0FB1h");
+[; <" CTMUICON equ 0FB1h ;# ">
+"13795
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13795: __asm("CTMUCONL equ 0FB2h");
+[; <" CTMUCONL equ 0FB2h ;# ">
+"13857
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13857: __asm("CTMUCONH equ 0FB3h");
+[; <" CTMUCONH equ 0FB3h ;# ">
+"13914
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13914: __asm("CCP2CON equ 0FB4h");
+[; <" CCP2CON equ 0FB4h ;# ">
+"13919
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13919: __asm("ECCP2CON equ 0FB4h");
+[; <" ECCP2CON equ 0FB4h ;# ">
+"14106
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14106: __asm("CCPR2 equ 0FB5h");
+[; <" CCPR2 equ 0FB5h ;# ">
+"14113
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14113: __asm("CCPR2L equ 0FB5h");
+[; <" CCPR2L equ 0FB5h ;# ">
+"14133
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14133: __asm("CCPR2H equ 0FB6h");
+[; <" CCPR2H equ 0FB6h ;# ">
+"14153
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14153: __asm("ECCP2DEL equ 0FB7h");
+[; <" ECCP2DEL equ 0FB7h ;# ">
+"14158
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14158: __asm("PWM2CON equ 0FB7h");
+[; <" PWM2CON equ 0FB7h ;# ">
+"14291
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14291: __asm("ECCP2AS equ 0FB8h");
+[; <" ECCP2AS equ 0FB8h ;# ">
+"14373
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14373: __asm("PSTR2CON equ 0FB9h");
+[; <" PSTR2CON equ 0FB9h ;# ">
+"14615
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14615: __asm("CCP1CON equ 0FBAh");
+[; <" CCP1CON equ 0FBAh ;# ">
+"14620
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14620: __asm("ECCP1CON equ 0FBAh");
+[; <" ECCP1CON equ 0FBAh ;# ">
+"14807
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14807: __asm("CCPR1 equ 0FBBh");
+[; <" CCPR1 equ 0FBBh ;# ">
+"14814
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14814: __asm("CCPR1L equ 0FBBh");
+[; <" CCPR1L equ 0FBBh ;# ">
+"14834
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14834: __asm("CCPR1H equ 0FBCh");
+[; <" CCPR1H equ 0FBCh ;# ">
+"14854
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14854: __asm("ECCP1DEL equ 0FBDh");
+[; <" ECCP1DEL equ 0FBDh ;# ">
+"14859
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14859: __asm("PWM1CON equ 0FBDh");
+[; <" PWM1CON equ 0FBDh ;# ">
+"14992
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 14992: __asm("ECCP1AS equ 0FBEh");
+[; <" ECCP1AS equ 0FBEh ;# ">
+"15074
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15074: __asm("PSTR1CON equ 0FBFh");
+[; <" PSTR1CON equ 0FBFh ;# ">
+"15131
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15131: __asm("WDTCON equ 0FC0h");
+[; <" WDTCON equ 0FC0h ;# ">
+"15201
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15201: __asm("ADCON1 equ 0FC1h");
+[; <" ADCON1 equ 0FC1h ;# ">
+"15298
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15298: __asm("ADCON0 equ 0FC2h");
+[; <" ADCON0 equ 0FC2h ;# ">
+"15442
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15442: __asm("ADRES equ 0FC3h");
+[; <" ADRES equ 0FC3h ;# ">
+"15449
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15449: __asm("ADRESL equ 0FC3h");
+[; <" ADRESL equ 0FC3h ;# ">
+"15469
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15469: __asm("ADRESH equ 0FC4h");
+[; <" ADRESH equ 0FC4h ;# ">
+"15489
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15489: __asm("SSP1CON2 equ 0FC5h");
+[; <" SSP1CON2 equ 0FC5h ;# ">
+"15494
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15494: __asm("SSPCON2 equ 0FC5h");
+[; <" SSPCON2 equ 0FC5h ;# ">
+"15843
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15843: __asm("SSP1CON1 equ 0FC6h");
+[; <" SSP1CON1 equ 0FC6h ;# ">
+"15848
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 15848: __asm("SSPCON1 equ 0FC6h");
+[; <" SSPCON1 equ 0FC6h ;# ">
+"16081
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16081: __asm("SSP1STAT equ 0FC7h");
+[; <" SSP1STAT equ 0FC7h ;# ">
+"16086
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16086: __asm("SSPSTAT equ 0FC7h");
+[; <" SSPSTAT equ 0FC7h ;# ">
+"16679
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16679: __asm("SSP1ADD equ 0FC8h");
+[; <" SSP1ADD equ 0FC8h ;# ">
+"16684
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16684: __asm("SSPADD equ 0FC8h");
+[; <" SSPADD equ 0FC8h ;# ">
+"16917
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16917: __asm("SSP1MSK equ 0FC8h");
+[; <" SSP1MSK equ 0FC8h ;# ">
+"16979
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16979: __asm("SSP1BUF equ 0FC9h");
+[; <" SSP1BUF equ 0FC9h ;# ">
+"16984
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 16984: __asm("SSPBUF equ 0FC9h");
+[; <" SSPBUF equ 0FC9h ;# ">
+"17017
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17017: __asm("T2CON equ 0FCAh");
+[; <" T2CON equ 0FCAh ;# ">
+"17088
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17088: __asm("PR2 equ 0FCBh");
+[; <" PR2 equ 0FCBh ;# ">
+"17093
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17093: __asm("MEMCON equ 0FCBh");
+[; <" MEMCON equ 0FCBh ;# ">
+"17214
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17214: __asm("TMR2 equ 0FCCh");
+[; <" TMR2 equ 0FCCh ;# ">
+"17234
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17234: __asm("T1CON equ 0FCDh");
+[; <" T1CON equ 0FCDh ;# ">
+"17336
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17336: __asm("TMR1 equ 0FCEh");
+[; <" TMR1 equ 0FCEh ;# ">
+"17343
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17343: __asm("TMR1L equ 0FCEh");
+[; <" TMR1L equ 0FCEh ;# ">
+"17363
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17363: __asm("TMR1H equ 0FCFh");
+[; <" TMR1H equ 0FCFh ;# ">
+"17383
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17383: __asm("RCON equ 0FD0h");
+[; <" RCON equ 0FD0h ;# ">
+"17531
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17531: __asm("CM2CON equ 0FD1h");
+[; <" CM2CON equ 0FD1h ;# ">
+"17536
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17536: __asm("CM2CON1 equ 0FD1h");
+[; <" CM2CON1 equ 0FD1h ;# ">
+"17783
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17783: __asm("CM1CON equ 0FD2h");
+[; <" CM1CON equ 0FD2h ;# ">
+"17788
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 17788: __asm("CM1CON1 equ 0FD2h");
+[; <" CM1CON1 equ 0FD2h ;# ">
+"18063
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18063: __asm("OSCCON equ 0FD3h");
+[; <" OSCCON equ 0FD3h ;# ">
+"18140
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18140: __asm("T0CON equ 0FD5h");
+[; <" T0CON equ 0FD5h ;# ">
+"18210
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18210: __asm("TMR0 equ 0FD6h");
+[; <" TMR0 equ 0FD6h ;# ">
+"18217
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18217: __asm("TMR0L equ 0FD6h");
+[; <" TMR0L equ 0FD6h ;# ">
+"18237
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18237: __asm("TMR0H equ 0FD7h");
+[; <" TMR0H equ 0FD7h ;# ">
+"18257
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18257: __asm("STATUS equ 0FD8h");
+[; <" STATUS equ 0FD8h ;# ">
+"18328
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18328: __asm("FSR2 equ 0FD9h");
+[; <" FSR2 equ 0FD9h ;# ">
+"18335
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18335: __asm("FSR2L equ 0FD9h");
+[; <" FSR2L equ 0FD9h ;# ">
+"18355
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18355: __asm("FSR2H equ 0FDAh");
+[; <" FSR2H equ 0FDAh ;# ">
+"18362
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18362: __asm("PLUSW2 equ 0FDBh");
+[; <" PLUSW2 equ 0FDBh ;# ">
+"18382
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18382: __asm("PREINC2 equ 0FDCh");
+[; <" PREINC2 equ 0FDCh ;# ">
+"18402
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18402: __asm("POSTDEC2 equ 0FDDh");
+[; <" POSTDEC2 equ 0FDDh ;# ">
+"18422
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18422: __asm("POSTINC2 equ 0FDEh");
+[; <" POSTINC2 equ 0FDEh ;# ">
+"18442
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18442: __asm("INDF2 equ 0FDFh");
+[; <" INDF2 equ 0FDFh ;# ">
+"18462
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18462: __asm("BSR equ 0FE0h");
+[; <" BSR equ 0FE0h ;# ">
+"18469
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18469: __asm("FSR1 equ 0FE1h");
+[; <" FSR1 equ 0FE1h ;# ">
+"18476
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18476: __asm("FSR1L equ 0FE1h");
+[; <" FSR1L equ 0FE1h ;# ">
+"18496
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18496: __asm("FSR1H equ 0FE2h");
+[; <" FSR1H equ 0FE2h ;# ">
+"18503
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18503: __asm("PLUSW1 equ 0FE3h");
+[; <" PLUSW1 equ 0FE3h ;# ">
+"18523
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18523: __asm("PREINC1 equ 0FE4h");
+[; <" PREINC1 equ 0FE4h ;# ">
+"18543
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18543: __asm("POSTDEC1 equ 0FE5h");
+[; <" POSTDEC1 equ 0FE5h ;# ">
+"18563
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18563: __asm("POSTINC1 equ 0FE6h");
+[; <" POSTINC1 equ 0FE6h ;# ">
+"18583
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18583: __asm("INDF1 equ 0FE7h");
+[; <" INDF1 equ 0FE7h ;# ">
+"18603
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18603: __asm("WREG equ 0FE8h");
+[; <" WREG equ 0FE8h ;# ">
+"18623
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18623: __asm("FSR0 equ 0FE9h");
+[; <" FSR0 equ 0FE9h ;# ">
+"18630
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18630: __asm("FSR0L equ 0FE9h");
+[; <" FSR0L equ 0FE9h ;# ">
+"18650
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18650: __asm("FSR0H equ 0FEAh");
+[; <" FSR0H equ 0FEAh ;# ">
+"18657
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18657: __asm("PLUSW0 equ 0FEBh");
+[; <" PLUSW0 equ 0FEBh ;# ">
+"18677
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18677: __asm("PREINC0 equ 0FECh");
+[; <" PREINC0 equ 0FECh ;# ">
+"18697
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18697: __asm("POSTDEC0 equ 0FEDh");
+[; <" POSTDEC0 equ 0FEDh ;# ">
+"18717
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18717: __asm("POSTINC0 equ 0FEEh");
+[; <" POSTINC0 equ 0FEEh ;# ">
+"18737
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18737: __asm("INDF0 equ 0FEFh");
+[; <" INDF0 equ 0FEFh ;# ">
+"18757
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18757: __asm("INTCON3 equ 0FF0h");
+[; <" INTCON3 equ 0FF0h ;# ">
+"18869
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18869: __asm("INTCON2 equ 0FF1h");
+[; <" INTCON2 equ 0FF1h ;# ">
+"18962
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 18962: __asm("INTCON equ 0FF2h");
+[; <" INTCON equ 0FF2h ;# ">
+"19079
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19079: __asm("PROD equ 0FF3h");
+[; <" PROD equ 0FF3h ;# ">
+"19086
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19086: __asm("PRODL equ 0FF3h");
+[; <" PRODL equ 0FF3h ;# ">
+"19106
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19106: __asm("PRODH equ 0FF4h");
+[; <" PRODH equ 0FF4h ;# ">
+"19126
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19126: __asm("TABLAT equ 0FF5h");
+[; <" TABLAT equ 0FF5h ;# ">
+"19148
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19148: __asm("TBLPTR equ 0FF6h");
+[; <" TBLPTR equ 0FF6h ;# ">
+"19155
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19155: __asm("TBLPTRL equ 0FF6h");
+[; <" TBLPTRL equ 0FF6h ;# ">
+"19175
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19175: __asm("TBLPTRH equ 0FF7h");
+[; <" TBLPTRH equ 0FF7h ;# ">
+"19195
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19195: __asm("TBLPTRU equ 0FF8h");
+[; <" TBLPTRU equ 0FF8h ;# ">
+"19204
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19204: __asm("PCLAT equ 0FF9h");
+[; <" PCLAT equ 0FF9h ;# ">
+"19211
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19211: __asm("PC equ 0FF9h");
+[; <" PC equ 0FF9h ;# ">
+"19218
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19218: __asm("PCL equ 0FF9h");
+[; <" PCL equ 0FF9h ;# ">
+"19238
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19238: __asm("PCLATH equ 0FFAh");
+[; <" PCLATH equ 0FFAh ;# ">
+"19258
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19258: __asm("PCLATU equ 0FFBh");
+[; <" PCLATU equ 0FFBh ;# ">
+"19265
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19265: __asm("STKPTR equ 0FFCh");
+[; <" STKPTR equ 0FFCh ;# ">
+"19339
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19339: __asm("TOS equ 0FFDh");
+[; <" TOS equ 0FFDh ;# ">
+"19346
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19346: __asm("TOSL equ 0FFDh");
+[; <" TOSL equ 0FFDh ;# ">
+"19366
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19366: __asm("TOSH equ 0FFEh");
+[; <" TOSH equ 0FFEh ;# ">
+"19386
+[; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 19386: __asm("TOSU equ 0FFFh");
+[; <" TOSU equ 0FFFh ;# ">
+"296 Source/FreeRTOS/queue.c
+[; ;Source/FreeRTOS/queue.c: 296: BaseType_t xQueueGenericReset( QueueHandle_t xQueue,
+[v _xQueueGenericReset `(c ~T0 @X0 1 ef2`*S941`c ]
+"298
+[; ;Source/FreeRTOS/queue.c: 298: {
+{
+[e :U _xQueueGenericReset ]
+"296
+[; ;Source/FreeRTOS/queue.c: 296: BaseType_t xQueueGenericReset( QueueHandle_t xQueue,
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+"297
+[; ;Source/FreeRTOS/queue.c: 297:                                BaseType_t xNewQueue )
+[v _xNewQueue `c ~T0 @X0 1 r2 ]
+"298
+[; ;Source/FreeRTOS/queue.c: 298: {
+[f ]
+"299
+[; ;Source/FreeRTOS/queue.c: 299:     BaseType_t xReturn = ( ( ( BaseType_t ) 1 ) );
+[v _xReturn `c ~T0 @X0 1 a ]
+[e = _xReturn -> -> 1 `i `c ]
+[v F7577 `*S941 ~T0 @X0 1 t ]
+"300
+[; ;Source/FreeRTOS/queue.c: 300:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"302
+[; ;Source/FreeRTOS/queue.c: 302:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 302 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 950  ]
+[e ( _Xprintf , (. :s 1C -> 302 `i ]
+[e :U 950 ]
+"304
+[; ;Source/FreeRTOS/queue.c: 304:     if( ( pxQueue != ((void*)0) ) &&
+[e $ ! && && != _pxQueue -> -> -> 0 `i `*v `*S941 >= -> . *U _pxQueue 6 `ui -> 1 `ui >= / -> 65535 `ui -> . *U _pxQueue 6 `ui -> . *U _pxQueue 7 `ui 951  ]
+"308
+[; ;Source/FreeRTOS/queue.c: 308:     {
+{
+"309
+[; ;Source/FreeRTOS/queue.c: 309:         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"310
+[; ;Source/FreeRTOS/queue.c: 310:         {
+{
+"311
+[; ;Source/FreeRTOS/queue.c: 311:             pxQueue->u.xQueue.pcTail = pxQueue->pcHead + ( pxQueue->uxLength * pxQueue->uxItemSize );
+[e = . . . *U _pxQueue 2 0 0 + . *U _pxQueue 0 * -> * -> . *U _pxQueue 6 `i -> . *U _pxQueue 7 `i `x -> -> # *U . *U _pxQueue 0 `i `x ]
+"312
+[; ;Source/FreeRTOS/queue.c: 312:             pxQueue->uxMessagesWaiting = ( UBaseType_t ) 0U;
+[e = . *U _pxQueue 5 -> -> 0 `ui `uc ]
+"313
+[; ;Source/FreeRTOS/queue.c: 313:             pxQueue->pcWriteTo = pxQueue->pcHead;
+[e = . *U _pxQueue 1 . *U _pxQueue 0 ]
+"314
+[; ;Source/FreeRTOS/queue.c: 314:             pxQueue->u.xQueue.pcReadFrom = pxQueue->pcHead + ( ( pxQueue->uxLength - 1U ) * pxQueue->uxItemSize );
+[e = . . . *U _pxQueue 2 0 1 + . *U _pxQueue 0 * -> * - -> . *U _pxQueue 6 `ui -> 1 `ui -> . *U _pxQueue 7 `ui `ux -> -> # *U . *U _pxQueue 0 `ui `ux ]
+"315
+[; ;Source/FreeRTOS/queue.c: 315:             pxQueue->cRxLock = ( ( int8_t ) -1 );
+[e = . *U _pxQueue 8 -> -U -> 1 `i `c ]
+"316
+[; ;Source/FreeRTOS/queue.c: 316:             pxQueue->cTxLock = ( ( int8_t ) -1 );
+[e = . *U _pxQueue 9 -> -U -> 1 `i `c ]
+"318
+[; ;Source/FreeRTOS/queue.c: 318:             if( xNewQueue == ( ( BaseType_t ) 0 ) )
+[e $ ! == -> _xNewQueue `i -> -> -> 0 `i `c `i 952  ]
+"319
+[; ;Source/FreeRTOS/queue.c: 319:             {
+{
+"325
+[; ;Source/FreeRTOS/queue.c: 325:                 if( ( ( ( &( pxQueue->xTasksWaitingToSend ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == ? == -> . *U &U . *U _pxQueue 3 0 `i -> -> -> 0 `i `uc `i : -> -> -> 1 `i `c `i -> -> -> 0 `i `c `i -> -> -> 0 `i `c `i 953  ]
+"326
+[; ;Source/FreeRTOS/queue.c: 326:                 {
+{
+"327
+[; ;Source/FreeRTOS/queue.c: 327:                     if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToSend ) ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _xTaskRemoveFromEventList (1 -> &U . *U _pxQueue 3 `*CS931 `i -> -> -> 0 `i `c `i 954  ]
+"328
+[; ;Source/FreeRTOS/queue.c: 328:                     {
+{
+"329
+[; ;Source/FreeRTOS/queue.c: 329:                         vPortYield();
+[e ( _vPortYield ..  ]
+"330
+[; ;Source/FreeRTOS/queue.c: 330:                     }
+}
+[e $U 955  ]
+"331
+[; ;Source/FreeRTOS/queue.c: 331:                     else
+[e :U 954 ]
+"332
+[; ;Source/FreeRTOS/queue.c: 332:                     {
+{
+"334
+[; ;Source/FreeRTOS/queue.c: 334:                     }
+}
+[e :U 955 ]
+"335
+[; ;Source/FreeRTOS/queue.c: 335:                 }
+}
+[e $U 956  ]
+"336
+[; ;Source/FreeRTOS/queue.c: 336:                 else
+[e :U 953 ]
+"337
+[; ;Source/FreeRTOS/queue.c: 337:                 {
+{
+"339
+[; ;Source/FreeRTOS/queue.c: 339:                 }
+}
+[e :U 956 ]
+"340
+[; ;Source/FreeRTOS/queue.c: 340:             }
+}
+[e $U 957  ]
+"341
+[; ;Source/FreeRTOS/queue.c: 341:             else
+[e :U 952 ]
+"342
+[; ;Source/FreeRTOS/queue.c: 342:             {
+{
+"344
+[; ;Source/FreeRTOS/queue.c: 344:                 vListInitialise( &( pxQueue->xTasksWaitingToSend ) );
+[e ( _vListInitialise (1 &U . *U _pxQueue 3 ]
+"345
+[; ;Source/FreeRTOS/queue.c: 345:                 vListInitialise( &( pxQueue->xTasksWaitingToReceive ) );
+[e ( _vListInitialise (1 &U . *U _pxQueue 4 ]
+"346
+[; ;Source/FreeRTOS/queue.c: 346:             }
+}
+[e :U 957 ]
+"347
+[; ;Source/FreeRTOS/queue.c: 347:         }
+}
+"348
+[; ;Source/FreeRTOS/queue.c: 348:         __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 958  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 958 ]
+"349
+[; ;Source/FreeRTOS/queue.c: 349:     }
+}
+[e $U 959  ]
+"350
+[; ;Source/FreeRTOS/queue.c: 350:     else
+[e :U 951 ]
+"351
+[; ;Source/FreeRTOS/queue.c: 351:     {
+{
+"352
+[; ;Source/FreeRTOS/queue.c: 352:         xReturn = ( ( ( BaseType_t ) 0 ) );
+[e = _xReturn -> -> 0 `i `c ]
+"353
+[; ;Source/FreeRTOS/queue.c: 353:     }
+}
+[e :U 959 ]
+"355
+[; ;Source/FreeRTOS/queue.c: 355:     if( ( xReturn != ( ( ( BaseType_t ) 0 ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 355 );
+[e $ ! == -> != -> _xReturn `i -> -> -> 0 `i `c `i `i -> 0 `i 960  ]
+[e ( _Xprintf , (. :s 2C -> 355 `i ]
+[e :U 960 ]
+"359
+[; ;Source/FreeRTOS/queue.c: 359:     return xReturn;
+[e ) _xReturn ]
+[e $UE 949  ]
+"360
+[; ;Source/FreeRTOS/queue.c: 360: }
+[e :UE 949 ]
+}
+"428
+[; ;Source/FreeRTOS/queue.c: 428:     QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength,
+[v _xQueueGenericCreate `(*S941 ~T0 @X0 1 ef3`Cuc`Cuc`Cuc ]
+"431
+[; ;Source/FreeRTOS/queue.c: 431:     {
+{
+[e :U _xQueueGenericCreate ]
+"428
+[; ;Source/FreeRTOS/queue.c: 428:     QueueHandle_t xQueueGenericCreate( const UBaseType_t uxQueueLength,
+[v _uxQueueLength `Cuc ~T0 @X0 1 r1 ]
+"429
+[; ;Source/FreeRTOS/queue.c: 429:                                        const UBaseType_t uxItemSize,
+[v _uxItemSize `Cuc ~T0 @X0 1 r2 ]
+"430
+[; ;Source/FreeRTOS/queue.c: 430:                                        const uint8_t ucQueueType )
+[v _ucQueueType `Cuc ~T0 @X0 1 r3 ]
+"431
+[; ;Source/FreeRTOS/queue.c: 431:     {
+[f ]
+"432
+[; ;Source/FreeRTOS/queue.c: 432:         Queue_t * pxNewQueue = ((void*)0);
+[v _pxNewQueue `*S941 ~T0 @X0 1 a ]
+[e = _pxNewQueue -> -> -> 0 `i `*v `*S941 ]
+"433
+[; ;Source/FreeRTOS/queue.c: 433:         size_t xQueueSizeInBytes;
+[v _xQueueSizeInBytes `ui ~T0 @X0 1 a ]
+"434
+[; ;Source/FreeRTOS/queue.c: 434:         uint8_t * pucQueueStorage;
+[v _pucQueueStorage `*uc ~T0 @X0 1 a ]
+"436
+[; ;Source/FreeRTOS/queue.c: 436:         if( ( uxQueueLength > ( UBaseType_t ) 0 ) &&
+[e $ ! && && > -> _uxQueueLength `i -> -> -> 0 `i `uc `i >= / -> 65535 `ui -> _uxQueueLength `ui -> _uxItemSize `ui >= - -> 65535 `ui -> # `S941 `ui -> * -> _uxQueueLength `i -> _uxItemSize `i `ui 962  ]
+"441
+[; ;Source/FreeRTOS/queue.c: 441:         {
+{
+"445
+[; ;Source/FreeRTOS/queue.c: 445:             xQueueSizeInBytes = ( size_t ) ( uxQueueLength * uxItemSize );
+[e = _xQueueSizeInBytes -> * -> _uxQueueLength `i -> _uxItemSize `i `ui ]
+"456
+[; ;Source/FreeRTOS/queue.c: 456:             pxNewQueue = ( Queue_t * ) pvPortMalloc( sizeof( Queue_t ) + xQueueSizeInBytes );
+[e = _pxNewQueue -> ( _pvPortMalloc (1 + -> # `S941 `ui _xQueueSizeInBytes `*S941 ]
+"458
+[; ;Source/FreeRTOS/queue.c: 458:             if( pxNewQueue != ((void*)0) )
+[e $ ! != _pxNewQueue -> -> -> 0 `i `*v `*S941 963  ]
+"459
+[; ;Source/FreeRTOS/queue.c: 459:             {
+{
+"462
+[; ;Source/FreeRTOS/queue.c: 462:                 pucQueueStorage = ( uint8_t * ) pxNewQueue;
+[e = _pucQueueStorage -> _pxNewQueue `*uc ]
+"463
+[; ;Source/FreeRTOS/queue.c: 463:                 pucQueueStorage += sizeof( Queue_t );
+[e =+ _pucQueueStorage * -> -> # `S941 `ui `ux -> -> # *U _pucQueueStorage `ui `ux ]
+"474
+[; ;Source/FreeRTOS/queue.c: 474:                 prvInitialiseNewQueue( uxQueueLength, uxItemSize, pucQueueStorage, ucQueueType, pxNewQueue );
+[e ( _prvInitialiseNewQueue (4 , , , , _uxQueueLength _uxItemSize _pucQueueStorage _ucQueueType _pxNewQueue ]
+"475
+[; ;Source/FreeRTOS/queue.c: 475:             }
+}
+[e $U 964  ]
+"476
+[; ;Source/FreeRTOS/queue.c: 476:             else
+[e :U 963 ]
+"477
+[; ;Source/FreeRTOS/queue.c: 477:             {
+{
+"480
+[; ;Source/FreeRTOS/queue.c: 480:             }
+}
+[e :U 964 ]
+"481
+[; ;Source/FreeRTOS/queue.c: 481:         }
+}
+[e $U 965  ]
+"482
+[; ;Source/FreeRTOS/queue.c: 482:         else
+[e :U 962 ]
+"483
+[; ;Source/FreeRTOS/queue.c: 483:         {
+{
+"484
+[; ;Source/FreeRTOS/queue.c: 484:             if( ( pxNewQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 484 );
+[e $ ! == _pxNewQueue -> -> 0 `i `*S941 966  ]
+[e ( _Xprintf , (. :s 3C -> 484 `i ]
+[e :U 966 ]
+"486
+[; ;Source/FreeRTOS/queue.c: 486:         }
+}
+[e :U 965 ]
+"488
+[; ;Source/FreeRTOS/queue.c: 488:         return pxNewQueue;
+[e ) _pxNewQueue ]
+[e $UE 961  ]
+"489
+[; ;Source/FreeRTOS/queue.c: 489:     }
+[e :UE 961 ]
+}
+"494
+[; ;Source/FreeRTOS/queue.c: 494: static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength,
+[v _prvInitialiseNewQueue `(v ~T0 @X0 1 sf5`Cuc`Cuc`*uc`Cuc`*S941 ]
+"499
+[; ;Source/FreeRTOS/queue.c: 499: {
+{
+[e :U _prvInitialiseNewQueue ]
+"494
+[; ;Source/FreeRTOS/queue.c: 494: static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength,
+[v _uxQueueLength `Cuc ~T0 @X0 1 r1 ]
+"495
+[; ;Source/FreeRTOS/queue.c: 495:                                    const UBaseType_t uxItemSize,
+[v _uxItemSize `Cuc ~T0 @X0 1 r2 ]
+"496
+[; ;Source/FreeRTOS/queue.c: 496:                                    uint8_t * pucQueueStorage,
+[v _pucQueueStorage `*uc ~T0 @X0 1 r3 ]
+"497
+[; ;Source/FreeRTOS/queue.c: 497:                                    const uint8_t ucQueueType,
+[v _ucQueueType `Cuc ~T0 @X0 1 r4 ]
+"498
+[; ;Source/FreeRTOS/queue.c: 498:                                    Queue_t * pxNewQueue )
+[v _pxNewQueue `*S941 ~T0 @X0 1 r5 ]
+"499
+[; ;Source/FreeRTOS/queue.c: 499: {
+[f ]
+"502
+[; ;Source/FreeRTOS/queue.c: 502:     ( void ) ucQueueType;
+[e _ucQueueType ]
+"504
+[; ;Source/FreeRTOS/queue.c: 504:     if( uxItemSize == ( UBaseType_t ) 0 )
+[e $ ! == -> _uxItemSize `i -> -> -> 0 `i `uc `i 968  ]
+"505
+[; ;Source/FreeRTOS/queue.c: 505:     {
+{
+"510
+[; ;Source/FreeRTOS/queue.c: 510:         pxNewQueue->pcHead = ( int8_t * ) pxNewQueue;
+[e = . *U _pxNewQueue 0 -> _pxNewQueue `*c ]
+"511
+[; ;Source/FreeRTOS/queue.c: 511:     }
+}
+[e $U 969  ]
+"512
+[; ;Source/FreeRTOS/queue.c: 512:     else
+[e :U 968 ]
+"513
+[; ;Source/FreeRTOS/queue.c: 513:     {
+{
+"515
+[; ;Source/FreeRTOS/queue.c: 515:         pxNewQueue->pcHead = ( int8_t * ) pucQueueStorage;
+[e = . *U _pxNewQueue 0 -> _pucQueueStorage `*c ]
+"516
+[; ;Source/FreeRTOS/queue.c: 516:     }
+}
+[e :U 969 ]
+"520
+[; ;Source/FreeRTOS/queue.c: 520:     pxNewQueue->uxLength = uxQueueLength;
+[e = . *U _pxNewQueue 6 _uxQueueLength ]
+"521
+[; ;Source/FreeRTOS/queue.c: 521:     pxNewQueue->uxItemSize = uxItemSize;
+[e = . *U _pxNewQueue 7 _uxItemSize ]
+"522
+[; ;Source/FreeRTOS/queue.c: 522:     ( void ) xQueueGenericReset( pxNewQueue, ( ( BaseType_t ) 1 ) );
+[e ( _xQueueGenericReset (2 , _pxNewQueue -> -> 1 `i `c ]
+"525
+[; ;Source/FreeRTOS/queue.c: 525:     {
+{
+"526
+[; ;Source/FreeRTOS/queue.c: 526:         pxNewQueue->ucQueueType = ucQueueType;
+[e = . *U _pxNewQueue 11 _ucQueueType ]
+"527
+[; ;Source/FreeRTOS/queue.c: 527:     }
+}
+"537
+[; ;Source/FreeRTOS/queue.c: 537: }
+[e :UE 967 ]
+}
+"835
+[; ;Source/FreeRTOS/queue.c: 835: BaseType_t xQueueGenericSend( QueueHandle_t xQueue,
+[v _xQueueGenericSend `(c ~T0 @X0 1 ef4`*S941`C*Cv`us`Cc ]
+"839
+[; ;Source/FreeRTOS/queue.c: 839: {
+{
+[e :U _xQueueGenericSend ]
+"835
+[; ;Source/FreeRTOS/queue.c: 835: BaseType_t xQueueGenericSend( QueueHandle_t xQueue,
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+[v F7595 `*Cv ~T0 @X0 1 t ]
+"836
+[; ;Source/FreeRTOS/queue.c: 836:                               const void * const pvItemToQueue,
+[v _pvItemToQueue `C*Cv ~T0 @X0 1 r2 ]
+"837
+[; ;Source/FreeRTOS/queue.c: 837:                               TickType_t xTicksToWait,
+[v _xTicksToWait `us ~T0 @X0 1 r3 ]
+"838
+[; ;Source/FreeRTOS/queue.c: 838:                               const BaseType_t xCopyPosition )
+[v _xCopyPosition `Cc ~T0 @X0 1 r4 ]
+"839
+[; ;Source/FreeRTOS/queue.c: 839: {
+[f ]
+"840
+[; ;Source/FreeRTOS/queue.c: 840:     BaseType_t xEntryTimeSet = ( ( BaseType_t ) 0 ), xYieldRequired;
+[v _xEntryTimeSet `c ~T0 @X0 1 a ]
+[e = _xEntryTimeSet -> -> 0 `i `c ]
+[v _xYieldRequired `c ~T0 @X0 1 a ]
+"841
+[; ;Source/FreeRTOS/queue.c: 841:     TimeOut_t xTimeOut;
+[v _xTimeOut `S936 ~T0 @X0 1 a ]
+[v F7602 `*S941 ~T0 @X0 1 t ]
+"842
+[; ;Source/FreeRTOS/queue.c: 842:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"844
+[; ;Source/FreeRTOS/queue.c: 844:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 844 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 971  ]
+[e ( _Xprintf , (. :s 4C -> 844 `i ]
+[e :U 971 ]
+"845
+[; ;Source/FreeRTOS/queue.c: 845:     if( ( !( ( pvItemToQueue == ((void*)0) ) && ( pxQueue->uxItemSize != ( UBaseType_t ) 0U ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 845 );
+[e $ ! == -> ! && == _pvItemToQueue -> -> -> 0 `i `*v `*Cv != -> . *U _pxQueue 7 `i -> -> -> 0 `ui `uc `i `i -> 0 `i 972  ]
+[e ( _Xprintf , (. :s 5C -> 845 `i ]
+[e :U 972 ]
+"846
+[; ;Source/FreeRTOS/queue.c: 846:     if( ( !( ( xCopyPosition == ( ( BaseType_t ) 2 ) ) && ( pxQueue->uxLength != 1 ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 846 );
+[e $ ! == -> ! && == -> _xCopyPosition `i -> -> -> 2 `i `c `i != -> . *U _pxQueue 6 `i -> 1 `i `i -> 0 `i 973  ]
+[e ( _Xprintf , (. :s 6C -> 846 `i ]
+[e :U 973 ]
+"856
+[; ;Source/FreeRTOS/queue.c: 856:     for( ; ; )
+{
+[e :U 974 ]
+"857
+[; ;Source/FreeRTOS/queue.c: 857:     {
+{
+"858
+[; ;Source/FreeRTOS/queue.c: 858:         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"859
+[; ;Source/FreeRTOS/queue.c: 859:         {
+{
+"864
+[; ;Source/FreeRTOS/queue.c: 864:             if( ( pxQueue->uxMessagesWaiting < pxQueue->uxLength ) || ( xCopyPosition == ( ( BaseType_t ) 2 ) ) )
+[e $ ! || < -> . *U _pxQueue 5 `i -> . *U _pxQueue 6 `i == -> _xCopyPosition `i -> -> -> 2 `i `c `i 977  ]
+"865
+[; ;Source/FreeRTOS/queue.c: 865:             {
+{
+"929
+[; ;Source/FreeRTOS/queue.c: 929:                 {
+{
+"930
+[; ;Source/FreeRTOS/queue.c: 930:                     xYieldRequired = prvCopyDataToQueue( pxQueue, pvItemToQueue, xCopyPosition );
+[e = _xYieldRequired ( _prvCopyDataToQueue (3 , , _pxQueue _pvItemToQueue _xCopyPosition ]
+"934
+[; ;Source/FreeRTOS/queue.c: 934:                     if( ( ( ( &( pxQueue->xTasksWaitingToReceive ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == ? == -> . *U &U . *U _pxQueue 4 0 `i -> -> -> 0 `i `uc `i : -> -> -> 1 `i `c `i -> -> -> 0 `i `c `i -> -> -> 0 `i `c `i 978  ]
+"935
+[; ;Source/FreeRTOS/queue.c: 935:                     {
+{
+"936
+[; ;Source/FreeRTOS/queue.c: 936:                         if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToReceive ) ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _xTaskRemoveFromEventList (1 -> &U . *U _pxQueue 4 `*CS931 `i -> -> -> 0 `i `c `i 979  ]
+"937
+[; ;Source/FreeRTOS/queue.c: 937:                         {
+{
+"942
+[; ;Source/FreeRTOS/queue.c: 942:                             vPortYield();
+[e ( _vPortYield ..  ]
+"943
+[; ;Source/FreeRTOS/queue.c: 943:                         }
+}
+[e $U 980  ]
+"944
+[; ;Source/FreeRTOS/queue.c: 944:                         else
+[e :U 979 ]
+"945
+[; ;Source/FreeRTOS/queue.c: 945:                         {
+{
+"947
+[; ;Source/FreeRTOS/queue.c: 947:                         }
+}
+[e :U 980 ]
+"948
+[; ;Source/FreeRTOS/queue.c: 948:                     }
+}
+[e $U 981  ]
+"949
+[; ;Source/FreeRTOS/queue.c: 949:                     else if( xYieldRequired != ( ( BaseType_t ) 0 ) )
+[e :U 978 ]
+[e $ ! != -> _xYieldRequired `i -> -> -> 0 `i `c `i 982  ]
+"950
+[; ;Source/FreeRTOS/queue.c: 950:                     {
+{
+"955
+[; ;Source/FreeRTOS/queue.c: 955:                         vPortYield();
+[e ( _vPortYield ..  ]
+"956
+[; ;Source/FreeRTOS/queue.c: 956:                     }
+}
+[e $U 983  ]
+"957
+[; ;Source/FreeRTOS/queue.c: 957:                     else
+[e :U 982 ]
+"958
+[; ;Source/FreeRTOS/queue.c: 958:                     {
+{
+"960
+[; ;Source/FreeRTOS/queue.c: 960:                     }
+}
+[e :U 983 ]
+[e :U 981 ]
+"961
+[; ;Source/FreeRTOS/queue.c: 961:                 }
+}
+"964
+[; ;Source/FreeRTOS/queue.c: 964:                 __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 984  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 984 ]
+"965
+[; ;Source/FreeRTOS/queue.c: 965:                 return ( ( ( BaseType_t ) 1 ) );
+[e ) -> -> 1 `i `c ]
+[e $UE 970  ]
+"966
+[; ;Source/FreeRTOS/queue.c: 966:             }
+}
+[e $U 985  ]
+"967
+[; ;Source/FreeRTOS/queue.c: 967:             else
+[e :U 977 ]
+"968
+[; ;Source/FreeRTOS/queue.c: 968:             {
+{
+"969
+[; ;Source/FreeRTOS/queue.c: 969:                 if( xTicksToWait == ( TickType_t ) 0 )
+[e $ ! == -> _xTicksToWait `ui -> -> -> 0 `i `us `ui 986  ]
+"970
+[; ;Source/FreeRTOS/queue.c: 970:                 {
+{
+"973
+[; ;Source/FreeRTOS/queue.c: 973:                     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 987  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 987 ]
+"978
+[; ;Source/FreeRTOS/queue.c: 978:                     return ( ( BaseType_t ) 0 );
+[e ) -> -> 0 `i `c ]
+[e $UE 970  ]
+"979
+[; ;Source/FreeRTOS/queue.c: 979:                 }
+}
+[e $U 988  ]
+"980
+[; ;Source/FreeRTOS/queue.c: 980:                 else if( xEntryTimeSet == ( ( BaseType_t ) 0 ) )
+[e :U 986 ]
+[e $ ! == -> _xEntryTimeSet `i -> -> -> 0 `i `c `i 989  ]
+"981
+[; ;Source/FreeRTOS/queue.c: 981:                 {
+{
+"984
+[; ;Source/FreeRTOS/queue.c: 984:                     vTaskInternalSetTimeOutState( &xTimeOut );
+[e ( _vTaskInternalSetTimeOutState (1 &U _xTimeOut ]
+"985
+[; ;Source/FreeRTOS/queue.c: 985:                     xEntryTimeSet = ( ( BaseType_t ) 1 );
+[e = _xEntryTimeSet -> -> 1 `i `c ]
+"986
+[; ;Source/FreeRTOS/queue.c: 986:                 }
+}
+[e $U 990  ]
+"987
+[; ;Source/FreeRTOS/queue.c: 987:                 else
+[e :U 989 ]
+"988
+[; ;Source/FreeRTOS/queue.c: 988:                 {
+{
+"991
+[; ;Source/FreeRTOS/queue.c: 991:                 }
+}
+[e :U 990 ]
+[e :U 988 ]
+"992
+[; ;Source/FreeRTOS/queue.c: 992:             }
+}
+[e :U 985 ]
+"993
+[; ;Source/FreeRTOS/queue.c: 993:         }
+}
+"994
+[; ;Source/FreeRTOS/queue.c: 994:         __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 991  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 991 ]
+"999
+[; ;Source/FreeRTOS/queue.c: 999:         vTaskSuspendAll();
+[e ( _vTaskSuspendAll ..  ]
+"1000
+[; ;Source/FreeRTOS/queue.c: 1000:         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;; { if( ( pxQueue )->cRxLock == ( ( int8_t ) -1 ) ) { ( pxQueue )->cRxLock = ( ( int8_t ) 0 ); } if( ( pxQueue )->cTxLock == ( ( int8_t ) -1 ) ) { ( pxQueue )->cTxLock = ( ( int8_t ) 0 ); } } __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+{
+[e $ ! == -> . *U _pxQueue 8 `i -> -> -U -> 1 `i `c `i 992  ]
+{
+[e = . *U _pxQueue 8 -> -> 0 `i `c ]
+}
+[e :U 992 ]
+[e $ ! == -> . *U _pxQueue 9 `i -> -> -U -> 1 `i `c `i 993  ]
+{
+[e = . *U _pxQueue 9 -> -> 0 `i `c ]
+}
+[e :U 993 ]
+}
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 994  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 994 ]
+"1003
+[; ;Source/FreeRTOS/queue.c: 1003:         if( xTaskCheckForTimeOut( &xTimeOut, &xTicksToWait ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == -> ( _xTaskCheckForTimeOut (2 , &U _xTimeOut &U _xTicksToWait `i -> -> -> 0 `i `c `i 995  ]
+"1004
+[; ;Source/FreeRTOS/queue.c: 1004:         {
+{
+"1005
+[; ;Source/FreeRTOS/queue.c: 1005:             if( prvIsQueueFull( pxQueue ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _prvIsQueueFull (1 -> _pxQueue `*CS941 `i -> -> -> 0 `i `c `i 996  ]
+"1006
+[; ;Source/FreeRTOS/queue.c: 1006:             {
+{
+"1008
+[; ;Source/FreeRTOS/queue.c: 1008:                 vTaskPlaceOnEventList( &( pxQueue->xTasksWaitingToSend ), xTicksToWait );
+[e ( _vTaskPlaceOnEventList (2 , &U . *U _pxQueue 3 _xTicksToWait ]
+"1015
+[; ;Source/FreeRTOS/queue.c: 1015:                 prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1022
+[; ;Source/FreeRTOS/queue.c: 1022:                 if( xTaskResumeAll() == ( ( BaseType_t ) 0 ) )
+[e $ ! == -> ( _xTaskResumeAll ..  `i -> -> -> 0 `i `c `i 997  ]
+"1023
+[; ;Source/FreeRTOS/queue.c: 1023:                 {
+{
+"1024
+[; ;Source/FreeRTOS/queue.c: 1024:                     vPortYield();
+[e ( _vPortYield ..  ]
+"1025
+[; ;Source/FreeRTOS/queue.c: 1025:                 }
+}
+[e :U 997 ]
+"1026
+[; ;Source/FreeRTOS/queue.c: 1026:             }
+}
+[e $U 998  ]
+"1027
+[; ;Source/FreeRTOS/queue.c: 1027:             else
+[e :U 996 ]
+"1028
+[; ;Source/FreeRTOS/queue.c: 1028:             {
+{
+"1030
+[; ;Source/FreeRTOS/queue.c: 1030:                 prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1031
+[; ;Source/FreeRTOS/queue.c: 1031:                 ( void ) xTaskResumeAll();
+[e ( _xTaskResumeAll ..  ]
+"1032
+[; ;Source/FreeRTOS/queue.c: 1032:             }
+}
+[e :U 998 ]
+"1033
+[; ;Source/FreeRTOS/queue.c: 1033:         }
+}
+[e $U 999  ]
+"1034
+[; ;Source/FreeRTOS/queue.c: 1034:         else
+[e :U 995 ]
+"1035
+[; ;Source/FreeRTOS/queue.c: 1035:         {
+{
+"1037
+[; ;Source/FreeRTOS/queue.c: 1037:             prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1038
+[; ;Source/FreeRTOS/queue.c: 1038:             ( void ) xTaskResumeAll();
+[e ( _xTaskResumeAll ..  ]
+"1041
+[; ;Source/FreeRTOS/queue.c: 1041:             return ( ( BaseType_t ) 0 );
+[e ) -> -> 0 `i `c ]
+[e $UE 970  ]
+"1042
+[; ;Source/FreeRTOS/queue.c: 1042:         }
+}
+[e :U 999 ]
+"1043
+[; ;Source/FreeRTOS/queue.c: 1043:     }
+}
+[e $U 974  ]
+[e :U 975 ]
+}
+"1044
+[; ;Source/FreeRTOS/queue.c: 1044: }
+[e :UE 970 ]
+}
+"1047
+[; ;Source/FreeRTOS/queue.c: 1047: BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue,
+[v _xQueueGenericSendFromISR `(c ~T0 @X0 1 ef4`*S941`C*Cv`C*c`Cc ]
+"1051
+[; ;Source/FreeRTOS/queue.c: 1051: {
+{
+[e :U _xQueueGenericSendFromISR ]
+"1047
+[; ;Source/FreeRTOS/queue.c: 1047: BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue,
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+[v F7608 `*Cv ~T0 @X0 1 t ]
+"1048
+[; ;Source/FreeRTOS/queue.c: 1048:                                      const void * const pvItemToQueue,
+[v _pvItemToQueue `C*Cv ~T0 @X0 1 r2 ]
+[v F7610 `*c ~T0 @X0 1 t ]
+"1049
+[; ;Source/FreeRTOS/queue.c: 1049:                                      BaseType_t * const pxHigherPriorityTaskWoken,
+[v _pxHigherPriorityTaskWoken `C*c ~T0 @X0 1 r3 ]
+"1050
+[; ;Source/FreeRTOS/queue.c: 1050:                                      const BaseType_t xCopyPosition )
+[v _xCopyPosition `Cc ~T0 @X0 1 r4 ]
+"1051
+[; ;Source/FreeRTOS/queue.c: 1051: {
+[f ]
+"1052
+[; ;Source/FreeRTOS/queue.c: 1052:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"1053
+[; ;Source/FreeRTOS/queue.c: 1053:     UBaseType_t uxSavedInterruptStatus;
+[v _uxSavedInterruptStatus `uc ~T0 @X0 1 a ]
+[v F7615 `*S941 ~T0 @X0 1 t ]
+"1054
+[; ;Source/FreeRTOS/queue.c: 1054:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"1056
+[; ;Source/FreeRTOS/queue.c: 1056:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1056 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1001  ]
+[e ( _Xprintf , (. :s 7C -> 1056 `i ]
+[e :U 1001 ]
+"1057
+[; ;Source/FreeRTOS/queue.c: 1057:     if( ( !( ( pvItemToQueue == ((void*)0) ) && ( pxQueue->uxItemSize != ( UBaseType_t ) 0U ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1057 );
+[e $ ! == -> ! && == _pvItemToQueue -> -> -> 0 `i `*v `*Cv != -> . *U _pxQueue 7 `i -> -> -> 0 `ui `uc `i `i -> 0 `i 1002  ]
+[e ( _Xprintf , (. :s 8C -> 1057 `i ]
+[e :U 1002 ]
+"1058
+[; ;Source/FreeRTOS/queue.c: 1058:     if( ( !( ( xCopyPosition == ( ( BaseType_t ) 2 ) ) && ( pxQueue->uxLength != 1 ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1058 );
+[e $ ! == -> ! && == -> _xCopyPosition `i -> -> -> 2 `i `c `i != -> . *U _pxQueue 6 `i -> 1 `i `i -> 0 `i 1003  ]
+[e ( _Xprintf , (. :s 9C -> 1058 `i ]
+[e :U 1003 ]
+"1081
+[; ;Source/FreeRTOS/queue.c: 1081:     uxSavedInterruptStatus = 0;
+[e = _uxSavedInterruptStatus -> -> 0 `i `uc ]
+"1082
+[; ;Source/FreeRTOS/queue.c: 1082:     {
+{
+"1083
+[; ;Source/FreeRTOS/queue.c: 1083:         if( ( pxQueue->uxMessagesWaiting < pxQueue->uxLength ) || ( xCopyPosition == ( ( BaseType_t ) 2 ) ) )
+[e $ ! || < -> . *U _pxQueue 5 `i -> . *U _pxQueue 6 `i == -> _xCopyPosition `i -> -> -> 2 `i `c `i 1004  ]
+"1084
+[; ;Source/FreeRTOS/queue.c: 1084:         {
+{
+"1085
+[; ;Source/FreeRTOS/queue.c: 1085:             const int8_t cTxLock = pxQueue->cTxLock;
+[v _cTxLock `Cc ~T0 @X0 1 a ]
+[e = _cTxLock . *U _pxQueue 9 ]
+"1086
+[; ;Source/FreeRTOS/queue.c: 1086:             const UBaseType_t uxPreviousMessagesWaiting = pxQueue->uxMessagesWaiting;
+[v _uxPreviousMessagesWaiting `Cuc ~T0 @X0 1 a ]
+[e = _uxPreviousMessagesWaiting . *U _pxQueue 5 ]
+"1095
+[; ;Source/FreeRTOS/queue.c: 1095:             ( void ) prvCopyDataToQueue( pxQueue, pvItemToQueue, xCopyPosition );
+[e ( _prvCopyDataToQueue (3 , , _pxQueue _pvItemToQueue _xCopyPosition ]
+"1099
+[; ;Source/FreeRTOS/queue.c: 1099:             if( cTxLock == ( ( int8_t ) -1 ) )
+[e $ ! == -> _cTxLock `i -> -> -U -> 1 `i `c `i 1005  ]
+"1100
+[; ;Source/FreeRTOS/queue.c: 1100:             {
+{
+"1160
+[; ;Source/FreeRTOS/queue.c: 1160:                 {
+{
+"1161
+[; ;Source/FreeRTOS/queue.c: 1161:                     if( ( ( ( &( pxQueue->xTasksWaitingToReceive ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == ? == -> . *U &U . *U _pxQueue 4 0 `i -> -> -> 0 `i `uc `i : -> -> -> 1 `i `c `i -> -> -> 0 `i `c `i -> -> -> 0 `i `c `i 1006  ]
+"1162
+[; ;Source/FreeRTOS/queue.c: 1162:                     {
+{
+"1163
+[; ;Source/FreeRTOS/queue.c: 1163:                         if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToReceive ) ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _xTaskRemoveFromEventList (1 -> &U . *U _pxQueue 4 `*CS931 `i -> -> -> 0 `i `c `i 1007  ]
+"1164
+[; ;Source/FreeRTOS/queue.c: 1164:                         {
+{
+"1167
+[; ;Source/FreeRTOS/queue.c: 1167:                             if( pxHigherPriorityTaskWoken != ((void*)0) )
+[e $ ! != _pxHigherPriorityTaskWoken -> -> -> 0 `i `*v `*c 1008  ]
+"1168
+[; ;Source/FreeRTOS/queue.c: 1168:                             {
+{
+"1169
+[; ;Source/FreeRTOS/queue.c: 1169:                                 *pxHigherPriorityTaskWoken = ( ( BaseType_t ) 1 );
+[e = *U _pxHigherPriorityTaskWoken -> -> 1 `i `c ]
+"1170
+[; ;Source/FreeRTOS/queue.c: 1170:                             }
+}
+[e $U 1009  ]
+"1171
+[; ;Source/FreeRTOS/queue.c: 1171:                             else
+[e :U 1008 ]
+"1172
+[; ;Source/FreeRTOS/queue.c: 1172:                             {
+{
+"1174
+[; ;Source/FreeRTOS/queue.c: 1174:                             }
+}
+[e :U 1009 ]
+"1175
+[; ;Source/FreeRTOS/queue.c: 1175:                         }
+}
+[e $U 1010  ]
+"1176
+[; ;Source/FreeRTOS/queue.c: 1176:                         else
+[e :U 1007 ]
+"1177
+[; ;Source/FreeRTOS/queue.c: 1177:                         {
+{
+"1179
+[; ;Source/FreeRTOS/queue.c: 1179:                         }
+}
+[e :U 1010 ]
+"1180
+[; ;Source/FreeRTOS/queue.c: 1180:                     }
+}
+[e $U 1011  ]
+"1181
+[; ;Source/FreeRTOS/queue.c: 1181:                     else
+[e :U 1006 ]
+"1182
+[; ;Source/FreeRTOS/queue.c: 1182:                     {
+{
+"1184
+[; ;Source/FreeRTOS/queue.c: 1184:                     }
+}
+[e :U 1011 ]
+"1187
+[; ;Source/FreeRTOS/queue.c: 1187:                     ( void ) uxPreviousMessagesWaiting;
+[e _uxPreviousMessagesWaiting ]
+"1188
+[; ;Source/FreeRTOS/queue.c: 1188:                 }
+}
+"1190
+[; ;Source/FreeRTOS/queue.c: 1190:             }
+}
+[e $U 1012  ]
+"1191
+[; ;Source/FreeRTOS/queue.c: 1191:             else
+[e :U 1005 ]
+"1192
+[; ;Source/FreeRTOS/queue.c: 1192:             {
+{
+"1195
+[; ;Source/FreeRTOS/queue.c: 1195:                 { const UBaseType_t uxNumberOfTasks = uxTaskGetNumberOfTasks(); if( ( UBaseType_t ) ( cTxLock ) < uxNumberOfTasks ) { if( ( ( cTxLock ) != ( ( int8_t ) 127 ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1195 ); ( pxQueue )->cTxLock = ( int8_t ) ( ( cTxLock ) + ( int8_t ) 1 ); } };
+{
+[v _uxNumberOfTasks `Cuc ~T0 @X0 1 a ]
+[e = _uxNumberOfTasks ( _uxTaskGetNumberOfTasks ..  ]
+[e $ ! < -> -> _cTxLock `uc `i -> _uxNumberOfTasks `i 1013  ]
+{
+[e $ ! == -> != -> _cTxLock `i -> -> -> 127 `i `c `i `i -> 0 `i 1014  ]
+[e ( _Xprintf , (. :s 10C -> 1195 `i ]
+[e :U 1014 ]
+[e = . *U _pxQueue 9 -> + -> _cTxLock `i -> -> -> 1 `i `c `i `c ]
+}
+[e :U 1013 ]
+}
+"1196
+[; ;Source/FreeRTOS/queue.c: 1196:             }
+}
+[e :U 1012 ]
+"1198
+[; ;Source/FreeRTOS/queue.c: 1198:             xReturn = ( ( ( BaseType_t ) 1 ) );
+[e = _xReturn -> -> 1 `i `c ]
+"1199
+[; ;Source/FreeRTOS/queue.c: 1199:         }
+}
+[e $U 1015  ]
+"1200
+[; ;Source/FreeRTOS/queue.c: 1200:         else
+[e :U 1004 ]
+"1201
+[; ;Source/FreeRTOS/queue.c: 1201:         {
+{
+"1203
+[; ;Source/FreeRTOS/queue.c: 1203:             xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"1204
+[; ;Source/FreeRTOS/queue.c: 1204:         }
+}
+[e :U 1015 ]
+"1205
+[; ;Source/FreeRTOS/queue.c: 1205:     }
+}
+"1206
+[; ;Source/FreeRTOS/queue.c: 1206:     ( void ) ( uxSavedInterruptStatus );
+[e _uxSavedInterruptStatus ]
+"1208
+[; ;Source/FreeRTOS/queue.c: 1208:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1000  ]
+"1209
+[; ;Source/FreeRTOS/queue.c: 1209: }
+[e :UE 1000 ]
+}
+"1212
+[; ;Source/FreeRTOS/queue.c: 1212: BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue,
+[v _xQueueGiveFromISR `(c ~T0 @X0 1 ef2`*S941`C*c ]
+"1214
+[; ;Source/FreeRTOS/queue.c: 1214: {
+{
+[e :U _xQueueGiveFromISR ]
+"1212
+[; ;Source/FreeRTOS/queue.c: 1212: BaseType_t xQueueGiveFromISR( QueueHandle_t xQueue,
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+[v F7623 `*c ~T0 @X0 1 t ]
+"1213
+[; ;Source/FreeRTOS/queue.c: 1213:                               BaseType_t * const pxHigherPriorityTaskWoken )
+[v _pxHigherPriorityTaskWoken `C*c ~T0 @X0 1 r2 ]
+"1214
+[; ;Source/FreeRTOS/queue.c: 1214: {
+[f ]
+"1215
+[; ;Source/FreeRTOS/queue.c: 1215:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"1216
+[; ;Source/FreeRTOS/queue.c: 1216:     UBaseType_t uxSavedInterruptStatus;
+[v _uxSavedInterruptStatus `uc ~T0 @X0 1 a ]
+[v F7627 `*S941 ~T0 @X0 1 t ]
+"1217
+[; ;Source/FreeRTOS/queue.c: 1217:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"1225
+[; ;Source/FreeRTOS/queue.c: 1225:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1225 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1017  ]
+[e ( _Xprintf , (. :s 11C -> 1225 `i ]
+[e :U 1017 ]
+"1229
+[; ;Source/FreeRTOS/queue.c: 1229:     if( ( pxQueue->uxItemSize == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1229 );
+[e $ ! == -> == -> . *U _pxQueue 7 `i -> 0 `i `i -> 0 `i 1018  ]
+[e ( _Xprintf , (. :s 12C -> 1229 `i ]
+[e :U 1018 ]
+"1234
+[; ;Source/FreeRTOS/queue.c: 1234:     if( ( !( ( pxQueue->pcHead == ((void*)0) ) && ( pxQueue->u.xSemaphore.xMutexHolder != ((void*)0) ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1234 );
+[e $ ! == -> ! && == . *U _pxQueue 0 -> -> -> 0 `i `*v `*c != . . . *U _pxQueue 2 1 0 -> -> -> 0 `i `*v `*S935 `i -> 0 `i 1019  ]
+[e ( _Xprintf , (. :s 13C -> 1234 `i ]
+[e :U 1019 ]
+"1252
+[; ;Source/FreeRTOS/queue.c: 1252:     uxSavedInterruptStatus = 0;
+[e = _uxSavedInterruptStatus -> -> 0 `i `uc ]
+"1253
+[; ;Source/FreeRTOS/queue.c: 1253:     {
+{
+"1254
+[; ;Source/FreeRTOS/queue.c: 1254:         const UBaseType_t uxMessagesWaiting = pxQueue->uxMessagesWaiting;
+[v _uxMessagesWaiting `Cuc ~T0 @X0 1 a ]
+[e = _uxMessagesWaiting . *U _pxQueue 5 ]
+"1259
+[; ;Source/FreeRTOS/queue.c: 1259:         if( uxMessagesWaiting < pxQueue->uxLength )
+[e $ ! < -> _uxMessagesWaiting `i -> . *U _pxQueue 6 `i 1020  ]
+"1260
+[; ;Source/FreeRTOS/queue.c: 1260:         {
+{
+"1261
+[; ;Source/FreeRTOS/queue.c: 1261:             const int8_t cTxLock = pxQueue->cTxLock;
+[v _cTxLock `Cc ~T0 @X0 1 a ]
+[e = _cTxLock . *U _pxQueue 9 ]
+"1271
+[; ;Source/FreeRTOS/queue.c: 1271:             pxQueue->uxMessagesWaiting = uxMessagesWaiting + ( UBaseType_t ) 1;
+[e = . *U _pxQueue 5 -> + -> _uxMessagesWaiting `i -> -> -> 1 `i `uc `i `uc ]
+"1275
+[; ;Source/FreeRTOS/queue.c: 1275:             if( cTxLock == ( ( int8_t ) -1 ) )
+[e $ ! == -> _cTxLock `i -> -> -U -> 1 `i `c `i 1021  ]
+"1276
+[; ;Source/FreeRTOS/queue.c: 1276:             {
+{
+"1329
+[; ;Source/FreeRTOS/queue.c: 1329:                 {
+{
+"1330
+[; ;Source/FreeRTOS/queue.c: 1330:                     if( ( ( ( &( pxQueue->xTasksWaitingToReceive ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == ? == -> . *U &U . *U _pxQueue 4 0 `i -> -> -> 0 `i `uc `i : -> -> -> 1 `i `c `i -> -> -> 0 `i `c `i -> -> -> 0 `i `c `i 1022  ]
+"1331
+[; ;Source/FreeRTOS/queue.c: 1331:                     {
+{
+"1332
+[; ;Source/FreeRTOS/queue.c: 1332:                         if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToReceive ) ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _xTaskRemoveFromEventList (1 -> &U . *U _pxQueue 4 `*CS931 `i -> -> -> 0 `i `c `i 1023  ]
+"1333
+[; ;Source/FreeRTOS/queue.c: 1333:                         {
+{
+"1336
+[; ;Source/FreeRTOS/queue.c: 1336:                             if( pxHigherPriorityTaskWoken != ((void*)0) )
+[e $ ! != _pxHigherPriorityTaskWoken -> -> -> 0 `i `*v `*c 1024  ]
+"1337
+[; ;Source/FreeRTOS/queue.c: 1337:                             {
+{
+"1338
+[; ;Source/FreeRTOS/queue.c: 1338:                                 *pxHigherPriorityTaskWoken = ( ( BaseType_t ) 1 );
+[e = *U _pxHigherPriorityTaskWoken -> -> 1 `i `c ]
+"1339
+[; ;Source/FreeRTOS/queue.c: 1339:                             }
+}
+[e $U 1025  ]
+"1340
+[; ;Source/FreeRTOS/queue.c: 1340:                             else
+[e :U 1024 ]
+"1341
+[; ;Source/FreeRTOS/queue.c: 1341:                             {
+{
+"1343
+[; ;Source/FreeRTOS/queue.c: 1343:                             }
+}
+[e :U 1025 ]
+"1344
+[; ;Source/FreeRTOS/queue.c: 1344:                         }
+}
+[e $U 1026  ]
+"1345
+[; ;Source/FreeRTOS/queue.c: 1345:                         else
+[e :U 1023 ]
+"1346
+[; ;Source/FreeRTOS/queue.c: 1346:                         {
+{
+"1348
+[; ;Source/FreeRTOS/queue.c: 1348:                         }
+}
+[e :U 1026 ]
+"1349
+[; ;Source/FreeRTOS/queue.c: 1349:                     }
+}
+[e $U 1027  ]
+"1350
+[; ;Source/FreeRTOS/queue.c: 1350:                     else
+[e :U 1022 ]
+"1351
+[; ;Source/FreeRTOS/queue.c: 1351:                     {
+{
+"1353
+[; ;Source/FreeRTOS/queue.c: 1353:                     }
+}
+[e :U 1027 ]
+"1354
+[; ;Source/FreeRTOS/queue.c: 1354:                 }
+}
+"1356
+[; ;Source/FreeRTOS/queue.c: 1356:             }
+}
+[e $U 1028  ]
+"1357
+[; ;Source/FreeRTOS/queue.c: 1357:             else
+[e :U 1021 ]
+"1358
+[; ;Source/FreeRTOS/queue.c: 1358:             {
+{
+"1361
+[; ;Source/FreeRTOS/queue.c: 1361:                 { const UBaseType_t uxNumberOfTasks = uxTaskGetNumberOfTasks(); if( ( UBaseType_t ) ( cTxLock ) < uxNumberOfTasks ) { if( ( ( cTxLock ) != ( ( int8_t ) 127 ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1361 ); ( pxQueue )->cTxLock = ( int8_t ) ( ( cTxLock ) + ( int8_t ) 1 ); } };
+{
+[v _uxNumberOfTasks `Cuc ~T0 @X0 1 a ]
+[e = _uxNumberOfTasks ( _uxTaskGetNumberOfTasks ..  ]
+[e $ ! < -> -> _cTxLock `uc `i -> _uxNumberOfTasks `i 1029  ]
+{
+[e $ ! == -> != -> _cTxLock `i -> -> -> 127 `i `c `i `i -> 0 `i 1030  ]
+[e ( _Xprintf , (. :s 14C -> 1361 `i ]
+[e :U 1030 ]
+[e = . *U _pxQueue 9 -> + -> _cTxLock `i -> -> -> 1 `i `c `i `c ]
+}
+[e :U 1029 ]
+}
+"1362
+[; ;Source/FreeRTOS/queue.c: 1362:             }
+}
+[e :U 1028 ]
+"1364
+[; ;Source/FreeRTOS/queue.c: 1364:             xReturn = ( ( ( BaseType_t ) 1 ) );
+[e = _xReturn -> -> 1 `i `c ]
+"1365
+[; ;Source/FreeRTOS/queue.c: 1365:         }
+}
+[e $U 1031  ]
+"1366
+[; ;Source/FreeRTOS/queue.c: 1366:         else
+[e :U 1020 ]
+"1367
+[; ;Source/FreeRTOS/queue.c: 1367:         {
+{
+"1369
+[; ;Source/FreeRTOS/queue.c: 1369:             xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"1370
+[; ;Source/FreeRTOS/queue.c: 1370:         }
+}
+[e :U 1031 ]
+"1371
+[; ;Source/FreeRTOS/queue.c: 1371:     }
+}
+"1372
+[; ;Source/FreeRTOS/queue.c: 1372:     ( void ) ( uxSavedInterruptStatus );
+[e _uxSavedInterruptStatus ]
+"1374
+[; ;Source/FreeRTOS/queue.c: 1374:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1016  ]
+"1375
+[; ;Source/FreeRTOS/queue.c: 1375: }
+[e :UE 1016 ]
+}
+"1378
+[; ;Source/FreeRTOS/queue.c: 1378: BaseType_t xQueueReceive( QueueHandle_t xQueue,
+[v _xQueueReceive `(c ~T0 @X0 1 ef3`*S941`C*v`us ]
+"1381
+[; ;Source/FreeRTOS/queue.c: 1381: {
+{
+[e :U _xQueueReceive ]
+"1378
+[; ;Source/FreeRTOS/queue.c: 1378: BaseType_t xQueueReceive( QueueHandle_t xQueue,
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+[v F7635 `*v ~T0 @X0 1 t ]
+"1379
+[; ;Source/FreeRTOS/queue.c: 1379:                           void * const pvBuffer,
+[v _pvBuffer `C*v ~T0 @X0 1 r2 ]
+"1380
+[; ;Source/FreeRTOS/queue.c: 1380:                           TickType_t xTicksToWait )
+[v _xTicksToWait `us ~T0 @X0 1 r3 ]
+"1381
+[; ;Source/FreeRTOS/queue.c: 1381: {
+[f ]
+"1382
+[; ;Source/FreeRTOS/queue.c: 1382:     BaseType_t xEntryTimeSet = ( ( BaseType_t ) 0 );
+[v _xEntryTimeSet `c ~T0 @X0 1 a ]
+[e = _xEntryTimeSet -> -> 0 `i `c ]
+"1383
+[; ;Source/FreeRTOS/queue.c: 1383:     TimeOut_t xTimeOut;
+[v _xTimeOut `S936 ~T0 @X0 1 a ]
+[v F7640 `*S941 ~T0 @X0 1 t ]
+"1384
+[; ;Source/FreeRTOS/queue.c: 1384:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"1387
+[; ;Source/FreeRTOS/queue.c: 1387:     if( ( ( pxQueue ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1387 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1033  ]
+[e ( _Xprintf , (. :s 15C -> 1387 `i ]
+[e :U 1033 ]
+"1391
+[; ;Source/FreeRTOS/queue.c: 1391:     if( ( !( ( ( pvBuffer ) == ((void*)0) ) && ( ( pxQueue )->uxItemSize != ( UBaseType_t ) 0U ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1391 );
+[e $ ! == -> ! && == _pvBuffer -> -> 0 `i `*v != -> . *U _pxQueue 7 `i -> -> -> 0 `ui `uc `i `i -> 0 `i 1034  ]
+[e ( _Xprintf , (. :s 16C -> 1391 `i ]
+[e :U 1034 ]
+"1403
+[; ;Source/FreeRTOS/queue.c: 1403:     for( ; ; )
+{
+[e :U 1035 ]
+"1404
+[; ;Source/FreeRTOS/queue.c: 1404:     {
+{
+"1405
+[; ;Source/FreeRTOS/queue.c: 1405:         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"1406
+[; ;Source/FreeRTOS/queue.c: 1406:         {
+{
+"1407
+[; ;Source/FreeRTOS/queue.c: 1407:             const UBaseType_t uxMessagesWaiting = pxQueue->uxMessagesWaiting;
+[v _uxMessagesWaiting `Cuc ~T0 @X0 1 a ]
+[e = _uxMessagesWaiting . *U _pxQueue 5 ]
+"1411
+[; ;Source/FreeRTOS/queue.c: 1411:             if( uxMessagesWaiting > ( UBaseType_t ) 0 )
+[e $ ! > -> _uxMessagesWaiting `i -> -> -> 0 `i `uc `i 1038  ]
+"1412
+[; ;Source/FreeRTOS/queue.c: 1412:             {
+{
+"1414
+[; ;Source/FreeRTOS/queue.c: 1414:                 prvCopyDataFromQueue( pxQueue, pvBuffer );
+[e ( _prvCopyDataFromQueue (2 , _pxQueue _pvBuffer ]
+"1416
+[; ;Source/FreeRTOS/queue.c: 1416:                 pxQueue->uxMessagesWaiting = uxMessagesWaiting - ( UBaseType_t ) 1;
+[e = . *U _pxQueue 5 -> - -> _uxMessagesWaiting `i -> -> -> 1 `i `uc `i `uc ]
+"1421
+[; ;Source/FreeRTOS/queue.c: 1421:                 if( ( ( ( &( pxQueue->xTasksWaitingToSend ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == ? == -> . *U &U . *U _pxQueue 3 0 `i -> -> -> 0 `i `uc `i : -> -> -> 1 `i `c `i -> -> -> 0 `i `c `i -> -> -> 0 `i `c `i 1039  ]
+"1422
+[; ;Source/FreeRTOS/queue.c: 1422:                 {
+{
+"1423
+[; ;Source/FreeRTOS/queue.c: 1423:                     if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToSend ) ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _xTaskRemoveFromEventList (1 -> &U . *U _pxQueue 3 `*CS931 `i -> -> -> 0 `i `c `i 1040  ]
+"1424
+[; ;Source/FreeRTOS/queue.c: 1424:                     {
+{
+"1425
+[; ;Source/FreeRTOS/queue.c: 1425:                         vPortYield();
+[e ( _vPortYield ..  ]
+"1426
+[; ;Source/FreeRTOS/queue.c: 1426:                     }
+}
+[e $U 1041  ]
+"1427
+[; ;Source/FreeRTOS/queue.c: 1427:                     else
+[e :U 1040 ]
+"1428
+[; ;Source/FreeRTOS/queue.c: 1428:                     {
+{
+"1430
+[; ;Source/FreeRTOS/queue.c: 1430:                     }
+}
+[e :U 1041 ]
+"1431
+[; ;Source/FreeRTOS/queue.c: 1431:                 }
+}
+[e $U 1042  ]
+"1432
+[; ;Source/FreeRTOS/queue.c: 1432:                 else
+[e :U 1039 ]
+"1433
+[; ;Source/FreeRTOS/queue.c: 1433:                 {
+{
+"1435
+[; ;Source/FreeRTOS/queue.c: 1435:                 }
+}
+[e :U 1042 ]
+"1437
+[; ;Source/FreeRTOS/queue.c: 1437:                 __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1043  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1043 ]
+"1438
+[; ;Source/FreeRTOS/queue.c: 1438:                 return ( ( ( BaseType_t ) 1 ) );
+[e ) -> -> 1 `i `c ]
+[e $UE 1032  ]
+"1439
+[; ;Source/FreeRTOS/queue.c: 1439:             }
+}
+[e $U 1044  ]
+"1440
+[; ;Source/FreeRTOS/queue.c: 1440:             else
+[e :U 1038 ]
+"1441
+[; ;Source/FreeRTOS/queue.c: 1441:             {
+{
+"1442
+[; ;Source/FreeRTOS/queue.c: 1442:                 if( xTicksToWait == ( TickType_t ) 0 )
+[e $ ! == -> _xTicksToWait `ui -> -> -> 0 `i `us `ui 1045  ]
+"1443
+[; ;Source/FreeRTOS/queue.c: 1443:                 {
+{
+"1446
+[; ;Source/FreeRTOS/queue.c: 1446:                     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1046  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1046 ]
+"1448
+[; ;Source/FreeRTOS/queue.c: 1448:                     return ( ( BaseType_t ) 0 );
+[e ) -> -> 0 `i `c ]
+[e $UE 1032  ]
+"1449
+[; ;Source/FreeRTOS/queue.c: 1449:                 }
+}
+[e $U 1047  ]
+"1450
+[; ;Source/FreeRTOS/queue.c: 1450:                 else if( xEntryTimeSet == ( ( BaseType_t ) 0 ) )
+[e :U 1045 ]
+[e $ ! == -> _xEntryTimeSet `i -> -> -> 0 `i `c `i 1048  ]
+"1451
+[; ;Source/FreeRTOS/queue.c: 1451:                 {
+{
+"1454
+[; ;Source/FreeRTOS/queue.c: 1454:                     vTaskInternalSetTimeOutState( &xTimeOut );
+[e ( _vTaskInternalSetTimeOutState (1 &U _xTimeOut ]
+"1455
+[; ;Source/FreeRTOS/queue.c: 1455:                     xEntryTimeSet = ( ( BaseType_t ) 1 );
+[e = _xEntryTimeSet -> -> 1 `i `c ]
+"1456
+[; ;Source/FreeRTOS/queue.c: 1456:                 }
+}
+[e $U 1049  ]
+"1457
+[; ;Source/FreeRTOS/queue.c: 1457:                 else
+[e :U 1048 ]
+"1458
+[; ;Source/FreeRTOS/queue.c: 1458:                 {
+{
+"1461
+[; ;Source/FreeRTOS/queue.c: 1461:                 }
+}
+[e :U 1049 ]
+[e :U 1047 ]
+"1462
+[; ;Source/FreeRTOS/queue.c: 1462:             }
+}
+[e :U 1044 ]
+"1463
+[; ;Source/FreeRTOS/queue.c: 1463:         }
+}
+"1464
+[; ;Source/FreeRTOS/queue.c: 1464:         __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1050  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1050 ]
+"1469
+[; ;Source/FreeRTOS/queue.c: 1469:         vTaskSuspendAll();
+[e ( _vTaskSuspendAll ..  ]
+"1470
+[; ;Source/FreeRTOS/queue.c: 1470:         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;; { if( ( pxQueue )->cRxLock == ( ( int8_t ) -1 ) ) { ( pxQueue )->cRxLock = ( ( int8_t ) 0 ); } if( ( pxQueue )->cTxLock == ( ( int8_t ) -1 ) ) { ( pxQueue )->cTxLock = ( ( int8_t ) 0 ); } } __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+{
+[e $ ! == -> . *U _pxQueue 8 `i -> -> -U -> 1 `i `c `i 1051  ]
+{
+[e = . *U _pxQueue 8 -> -> 0 `i `c ]
+}
+[e :U 1051 ]
+[e $ ! == -> . *U _pxQueue 9 `i -> -> -U -> 1 `i `c `i 1052  ]
+{
+[e = . *U _pxQueue 9 -> -> 0 `i `c ]
+}
+[e :U 1052 ]
+}
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1053  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1053 ]
+"1473
+[; ;Source/FreeRTOS/queue.c: 1473:         if( xTaskCheckForTimeOut( &xTimeOut, &xTicksToWait ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == -> ( _xTaskCheckForTimeOut (2 , &U _xTimeOut &U _xTicksToWait `i -> -> -> 0 `i `c `i 1054  ]
+"1474
+[; ;Source/FreeRTOS/queue.c: 1474:         {
+{
+"1477
+[; ;Source/FreeRTOS/queue.c: 1477:             if( prvIsQueueEmpty( pxQueue ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _prvIsQueueEmpty (1 -> _pxQueue `*CS941 `i -> -> -> 0 `i `c `i 1055  ]
+"1478
+[; ;Source/FreeRTOS/queue.c: 1478:             {
+{
+"1480
+[; ;Source/FreeRTOS/queue.c: 1480:                 vTaskPlaceOnEventList( &( pxQueue->xTasksWaitingToReceive ), xTicksToWait );
+[e ( _vTaskPlaceOnEventList (2 , &U . *U _pxQueue 4 _xTicksToWait ]
+"1481
+[; ;Source/FreeRTOS/queue.c: 1481:                 prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1483
+[; ;Source/FreeRTOS/queue.c: 1483:                 if( xTaskResumeAll() == ( ( BaseType_t ) 0 ) )
+[e $ ! == -> ( _xTaskResumeAll ..  `i -> -> -> 0 `i `c `i 1056  ]
+"1484
+[; ;Source/FreeRTOS/queue.c: 1484:                 {
+{
+"1485
+[; ;Source/FreeRTOS/queue.c: 1485:                     vPortYield();
+[e ( _vPortYield ..  ]
+"1486
+[; ;Source/FreeRTOS/queue.c: 1486:                 }
+}
+[e $U 1057  ]
+"1487
+[; ;Source/FreeRTOS/queue.c: 1487:                 else
+[e :U 1056 ]
+"1488
+[; ;Source/FreeRTOS/queue.c: 1488:                 {
+{
+"1490
+[; ;Source/FreeRTOS/queue.c: 1490:                 }
+}
+[e :U 1057 ]
+"1491
+[; ;Source/FreeRTOS/queue.c: 1491:             }
+}
+[e $U 1058  ]
+"1492
+[; ;Source/FreeRTOS/queue.c: 1492:             else
+[e :U 1055 ]
+"1493
+[; ;Source/FreeRTOS/queue.c: 1493:             {
+{
+"1496
+[; ;Source/FreeRTOS/queue.c: 1496:                 prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1497
+[; ;Source/FreeRTOS/queue.c: 1497:                 ( void ) xTaskResumeAll();
+[e ( _xTaskResumeAll ..  ]
+"1498
+[; ;Source/FreeRTOS/queue.c: 1498:             }
+}
+[e :U 1058 ]
+"1499
+[; ;Source/FreeRTOS/queue.c: 1499:         }
+}
+[e $U 1059  ]
+"1500
+[; ;Source/FreeRTOS/queue.c: 1500:         else
+[e :U 1054 ]
+"1501
+[; ;Source/FreeRTOS/queue.c: 1501:         {
+{
+"1504
+[; ;Source/FreeRTOS/queue.c: 1504:             prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1505
+[; ;Source/FreeRTOS/queue.c: 1505:             ( void ) xTaskResumeAll();
+[e ( _xTaskResumeAll ..  ]
+"1507
+[; ;Source/FreeRTOS/queue.c: 1507:             if( prvIsQueueEmpty( pxQueue ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _prvIsQueueEmpty (1 -> _pxQueue `*CS941 `i -> -> -> 0 `i `c `i 1060  ]
+"1508
+[; ;Source/FreeRTOS/queue.c: 1508:             {
+{
+"1510
+[; ;Source/FreeRTOS/queue.c: 1510:                 return ( ( BaseType_t ) 0 );
+[e ) -> -> 0 `i `c ]
+[e $UE 1032  ]
+"1511
+[; ;Source/FreeRTOS/queue.c: 1511:             }
+}
+[e $U 1061  ]
+"1512
+[; ;Source/FreeRTOS/queue.c: 1512:             else
+[e :U 1060 ]
+"1513
+[; ;Source/FreeRTOS/queue.c: 1513:             {
+{
+"1515
+[; ;Source/FreeRTOS/queue.c: 1515:             }
+}
+[e :U 1061 ]
+"1516
+[; ;Source/FreeRTOS/queue.c: 1516:         }
+}
+[e :U 1059 ]
+"1517
+[; ;Source/FreeRTOS/queue.c: 1517:     }
+}
+[e $U 1035  ]
+[e :U 1036 ]
+}
+"1518
+[; ;Source/FreeRTOS/queue.c: 1518: }
+[e :UE 1032 ]
+}
+"1521
+[; ;Source/FreeRTOS/queue.c: 1521: BaseType_t xQueueSemaphoreTake( QueueHandle_t xQueue,
+[v _xQueueSemaphoreTake `(c ~T0 @X0 1 ef2`*S941`us ]
+"1523
+[; ;Source/FreeRTOS/queue.c: 1523: {
+{
+[e :U _xQueueSemaphoreTake ]
+"1521
+[; ;Source/FreeRTOS/queue.c: 1521: BaseType_t xQueueSemaphoreTake( QueueHandle_t xQueue,
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+"1522
+[; ;Source/FreeRTOS/queue.c: 1522:                                 TickType_t xTicksToWait )
+[v _xTicksToWait `us ~T0 @X0 1 r2 ]
+"1523
+[; ;Source/FreeRTOS/queue.c: 1523: {
+[f ]
+"1524
+[; ;Source/FreeRTOS/queue.c: 1524:     BaseType_t xEntryTimeSet = ( ( BaseType_t ) 0 );
+[v _xEntryTimeSet `c ~T0 @X0 1 a ]
+[e = _xEntryTimeSet -> -> 0 `i `c ]
+"1525
+[; ;Source/FreeRTOS/queue.c: 1525:     TimeOut_t xTimeOut;
+[v _xTimeOut `S936 ~T0 @X0 1 a ]
+[v F7648 `*S941 ~T0 @X0 1 t ]
+"1526
+[; ;Source/FreeRTOS/queue.c: 1526:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"1533
+[; ;Source/FreeRTOS/queue.c: 1533:     if( ( ( pxQueue ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1533 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1063  ]
+[e ( _Xprintf , (. :s 17C -> 1533 `i ]
+[e :U 1063 ]
+"1537
+[; ;Source/FreeRTOS/queue.c: 1537:     if( ( pxQueue->uxItemSize == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1537 );
+[e $ ! == -> == -> . *U _pxQueue 7 `i -> 0 `i `i -> 0 `i 1064  ]
+[e ( _Xprintf , (. :s 18C -> 1537 `i ]
+[e :U 1064 ]
+"1549
+[; ;Source/FreeRTOS/queue.c: 1549:     for( ; ; )
+{
+[e :U 1065 ]
+"1550
+[; ;Source/FreeRTOS/queue.c: 1550:     {
+{
+"1551
+[; ;Source/FreeRTOS/queue.c: 1551:         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"1552
+[; ;Source/FreeRTOS/queue.c: 1552:         {
+{
+"1555
+[; ;Source/FreeRTOS/queue.c: 1555:             const UBaseType_t uxSemaphoreCount = pxQueue->uxMessagesWaiting;
+[v _uxSemaphoreCount `Cuc ~T0 @X0 1 a ]
+[e = _uxSemaphoreCount . *U _pxQueue 5 ]
+"1559
+[; ;Source/FreeRTOS/queue.c: 1559:             if( uxSemaphoreCount > ( UBaseType_t ) 0 )
+[e $ ! > -> _uxSemaphoreCount `i -> -> -> 0 `i `uc `i 1068  ]
+"1560
+[; ;Source/FreeRTOS/queue.c: 1560:             {
+{
+"1565
+[; ;Source/FreeRTOS/queue.c: 1565:                 pxQueue->uxMessagesWaiting = uxSemaphoreCount - ( UBaseType_t ) 1;
+[e = . *U _pxQueue 5 -> - -> _uxSemaphoreCount `i -> -> -> 1 `i `uc `i `uc ]
+"1584
+[; ;Source/FreeRTOS/queue.c: 1584:                 if( ( ( ( &( pxQueue->xTasksWaitingToSend ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == ? == -> . *U &U . *U _pxQueue 3 0 `i -> -> -> 0 `i `uc `i : -> -> -> 1 `i `c `i -> -> -> 0 `i `c `i -> -> -> 0 `i `c `i 1069  ]
+"1585
+[; ;Source/FreeRTOS/queue.c: 1585:                 {
+{
+"1586
+[; ;Source/FreeRTOS/queue.c: 1586:                     if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToSend ) ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _xTaskRemoveFromEventList (1 -> &U . *U _pxQueue 3 `*CS931 `i -> -> -> 0 `i `c `i 1070  ]
+"1587
+[; ;Source/FreeRTOS/queue.c: 1587:                     {
+{
+"1588
+[; ;Source/FreeRTOS/queue.c: 1588:                         vPortYield();
+[e ( _vPortYield ..  ]
+"1589
+[; ;Source/FreeRTOS/queue.c: 1589:                     }
+}
+[e $U 1071  ]
+"1590
+[; ;Source/FreeRTOS/queue.c: 1590:                     else
+[e :U 1070 ]
+"1591
+[; ;Source/FreeRTOS/queue.c: 1591:                     {
+{
+"1593
+[; ;Source/FreeRTOS/queue.c: 1593:                     }
+}
+[e :U 1071 ]
+"1594
+[; ;Source/FreeRTOS/queue.c: 1594:                 }
+}
+[e $U 1072  ]
+"1595
+[; ;Source/FreeRTOS/queue.c: 1595:                 else
+[e :U 1069 ]
+"1596
+[; ;Source/FreeRTOS/queue.c: 1596:                 {
+{
+"1598
+[; ;Source/FreeRTOS/queue.c: 1598:                 }
+}
+[e :U 1072 ]
+"1600
+[; ;Source/FreeRTOS/queue.c: 1600:                 __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1073  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1073 ]
+"1601
+[; ;Source/FreeRTOS/queue.c: 1601:                 return ( ( ( BaseType_t ) 1 ) );
+[e ) -> -> 1 `i `c ]
+[e $UE 1062  ]
+"1602
+[; ;Source/FreeRTOS/queue.c: 1602:             }
+}
+[e $U 1074  ]
+"1603
+[; ;Source/FreeRTOS/queue.c: 1603:             else
+[e :U 1068 ]
+"1604
+[; ;Source/FreeRTOS/queue.c: 1604:             {
+{
+"1605
+[; ;Source/FreeRTOS/queue.c: 1605:                 if( xTicksToWait == ( TickType_t ) 0 )
+[e $ ! == -> _xTicksToWait `ui -> -> -> 0 `i `us `ui 1075  ]
+"1606
+[; ;Source/FreeRTOS/queue.c: 1606:                 {
+{
+"1609
+[; ;Source/FreeRTOS/queue.c: 1609:                     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1076  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1076 ]
+"1611
+[; ;Source/FreeRTOS/queue.c: 1611:                     return ( ( BaseType_t ) 0 );
+[e ) -> -> 0 `i `c ]
+[e $UE 1062  ]
+"1612
+[; ;Source/FreeRTOS/queue.c: 1612:                 }
+}
+[e $U 1077  ]
+"1613
+[; ;Source/FreeRTOS/queue.c: 1613:                 else if( xEntryTimeSet == ( ( BaseType_t ) 0 ) )
+[e :U 1075 ]
+[e $ ! == -> _xEntryTimeSet `i -> -> -> 0 `i `c `i 1078  ]
+"1614
+[; ;Source/FreeRTOS/queue.c: 1614:                 {
+{
+"1617
+[; ;Source/FreeRTOS/queue.c: 1617:                     vTaskInternalSetTimeOutState( &xTimeOut );
+[e ( _vTaskInternalSetTimeOutState (1 &U _xTimeOut ]
+"1618
+[; ;Source/FreeRTOS/queue.c: 1618:                     xEntryTimeSet = ( ( BaseType_t ) 1 );
+[e = _xEntryTimeSet -> -> 1 `i `c ]
+"1619
+[; ;Source/FreeRTOS/queue.c: 1619:                 }
+}
+[e $U 1079  ]
+"1620
+[; ;Source/FreeRTOS/queue.c: 1620:                 else
+[e :U 1078 ]
+"1621
+[; ;Source/FreeRTOS/queue.c: 1621:                 {
+{
+"1624
+[; ;Source/FreeRTOS/queue.c: 1624:                 }
+}
+[e :U 1079 ]
+[e :U 1077 ]
+"1625
+[; ;Source/FreeRTOS/queue.c: 1625:             }
+}
+[e :U 1074 ]
+"1626
+[; ;Source/FreeRTOS/queue.c: 1626:         }
+}
+"1627
+[; ;Source/FreeRTOS/queue.c: 1627:         __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1080  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1080 ]
+"1632
+[; ;Source/FreeRTOS/queue.c: 1632:         vTaskSuspendAll();
+[e ( _vTaskSuspendAll ..  ]
+"1633
+[; ;Source/FreeRTOS/queue.c: 1633:         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;; { if( ( pxQueue )->cRxLock == ( ( int8_t ) -1 ) ) { ( pxQueue )->cRxLock = ( ( int8_t ) 0 ); } if( ( pxQueue )->cTxLock == ( ( int8_t ) -1 ) ) { ( pxQueue )->cTxLock = ( ( int8_t ) 0 ); } } __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+{
+[e $ ! == -> . *U _pxQueue 8 `i -> -> -U -> 1 `i `c `i 1081  ]
+{
+[e = . *U _pxQueue 8 -> -> 0 `i `c ]
+}
+[e :U 1081 ]
+[e $ ! == -> . *U _pxQueue 9 `i -> -> -U -> 1 `i `c `i 1082  ]
+{
+[e = . *U _pxQueue 9 -> -> 0 `i `c ]
+}
+[e :U 1082 ]
+}
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1083  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1083 ]
+"1636
+[; ;Source/FreeRTOS/queue.c: 1636:         if( xTaskCheckForTimeOut( &xTimeOut, &xTicksToWait ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == -> ( _xTaskCheckForTimeOut (2 , &U _xTimeOut &U _xTicksToWait `i -> -> -> 0 `i `c `i 1084  ]
+"1637
+[; ;Source/FreeRTOS/queue.c: 1637:         {
+{
+"1642
+[; ;Source/FreeRTOS/queue.c: 1642:             if( prvIsQueueEmpty( pxQueue ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _prvIsQueueEmpty (1 -> _pxQueue `*CS941 `i -> -> -> 0 `i `c `i 1085  ]
+"1643
+[; ;Source/FreeRTOS/queue.c: 1643:             {
+{
+"1663
+[; ;Source/FreeRTOS/queue.c: 1663:                 vTaskPlaceOnEventList( &( pxQueue->xTasksWaitingToReceive ), xTicksToWait );
+[e ( _vTaskPlaceOnEventList (2 , &U . *U _pxQueue 4 _xTicksToWait ]
+"1664
+[; ;Source/FreeRTOS/queue.c: 1664:                 prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1666
+[; ;Source/FreeRTOS/queue.c: 1666:                 if( xTaskResumeAll() == ( ( BaseType_t ) 0 ) )
+[e $ ! == -> ( _xTaskResumeAll ..  `i -> -> -> 0 `i `c `i 1086  ]
+"1667
+[; ;Source/FreeRTOS/queue.c: 1667:                 {
+{
+"1668
+[; ;Source/FreeRTOS/queue.c: 1668:                     vPortYield();
+[e ( _vPortYield ..  ]
+"1669
+[; ;Source/FreeRTOS/queue.c: 1669:                 }
+}
+[e $U 1087  ]
+"1670
+[; ;Source/FreeRTOS/queue.c: 1670:                 else
+[e :U 1086 ]
+"1671
+[; ;Source/FreeRTOS/queue.c: 1671:                 {
+{
+"1673
+[; ;Source/FreeRTOS/queue.c: 1673:                 }
+}
+[e :U 1087 ]
+"1674
+[; ;Source/FreeRTOS/queue.c: 1674:             }
+}
+[e $U 1088  ]
+"1675
+[; ;Source/FreeRTOS/queue.c: 1675:             else
+[e :U 1085 ]
+"1676
+[; ;Source/FreeRTOS/queue.c: 1676:             {
+{
+"1679
+[; ;Source/FreeRTOS/queue.c: 1679:                 prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1680
+[; ;Source/FreeRTOS/queue.c: 1680:                 ( void ) xTaskResumeAll();
+[e ( _xTaskResumeAll ..  ]
+"1681
+[; ;Source/FreeRTOS/queue.c: 1681:             }
+}
+[e :U 1088 ]
+"1682
+[; ;Source/FreeRTOS/queue.c: 1682:         }
+}
+[e $U 1089  ]
+"1683
+[; ;Source/FreeRTOS/queue.c: 1683:         else
+[e :U 1084 ]
+"1684
+[; ;Source/FreeRTOS/queue.c: 1684:         {
+{
+"1686
+[; ;Source/FreeRTOS/queue.c: 1686:             prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1687
+[; ;Source/FreeRTOS/queue.c: 1687:             ( void ) xTaskResumeAll();
+[e ( _xTaskResumeAll ..  ]
+"1693
+[; ;Source/FreeRTOS/queue.c: 1693:             if( prvIsQueueEmpty( pxQueue ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _prvIsQueueEmpty (1 -> _pxQueue `*CS941 `i -> -> -> 0 `i `c `i 1090  ]
+"1694
+[; ;Source/FreeRTOS/queue.c: 1694:             {
+{
+"1720
+[; ;Source/FreeRTOS/queue.c: 1720:                 return ( ( BaseType_t ) 0 );
+[e ) -> -> 0 `i `c ]
+[e $UE 1062  ]
+"1721
+[; ;Source/FreeRTOS/queue.c: 1721:             }
+}
+[e $U 1091  ]
+"1722
+[; ;Source/FreeRTOS/queue.c: 1722:             else
+[e :U 1090 ]
+"1723
+[; ;Source/FreeRTOS/queue.c: 1723:             {
+{
+"1725
+[; ;Source/FreeRTOS/queue.c: 1725:             }
+}
+[e :U 1091 ]
+"1726
+[; ;Source/FreeRTOS/queue.c: 1726:         }
+}
+[e :U 1089 ]
+"1727
+[; ;Source/FreeRTOS/queue.c: 1727:     }
+}
+[e $U 1065  ]
+[e :U 1066 ]
+}
+"1728
+[; ;Source/FreeRTOS/queue.c: 1728: }
+[e :UE 1062 ]
+}
+"1731
+[; ;Source/FreeRTOS/queue.c: 1731: BaseType_t xQueuePeek( QueueHandle_t xQueue,
+[v _xQueuePeek `(c ~T0 @X0 1 ef3`*S941`C*v`us ]
+"1734
+[; ;Source/FreeRTOS/queue.c: 1734: {
+{
+[e :U _xQueuePeek ]
+"1731
+[; ;Source/FreeRTOS/queue.c: 1731: BaseType_t xQueuePeek( QueueHandle_t xQueue,
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+[v F7654 `*v ~T0 @X0 1 t ]
+"1732
+[; ;Source/FreeRTOS/queue.c: 1732:                        void * const pvBuffer,
+[v _pvBuffer `C*v ~T0 @X0 1 r2 ]
+"1733
+[; ;Source/FreeRTOS/queue.c: 1733:                        TickType_t xTicksToWait )
+[v _xTicksToWait `us ~T0 @X0 1 r3 ]
+"1734
+[; ;Source/FreeRTOS/queue.c: 1734: {
+[f ]
+"1735
+[; ;Source/FreeRTOS/queue.c: 1735:     BaseType_t xEntryTimeSet = ( ( BaseType_t ) 0 );
+[v _xEntryTimeSet `c ~T0 @X0 1 a ]
+[e = _xEntryTimeSet -> -> 0 `i `c ]
+"1736
+[; ;Source/FreeRTOS/queue.c: 1736:     TimeOut_t xTimeOut;
+[v _xTimeOut `S936 ~T0 @X0 1 a ]
+"1737
+[; ;Source/FreeRTOS/queue.c: 1737:     int8_t * pcOriginalReadPosition;
+[v _pcOriginalReadPosition `*c ~T0 @X0 1 a ]
+[v F7660 `*S941 ~T0 @X0 1 t ]
+"1738
+[; ;Source/FreeRTOS/queue.c: 1738:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"1741
+[; ;Source/FreeRTOS/queue.c: 1741:     if( ( ( pxQueue ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1741 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1093  ]
+[e ( _Xprintf , (. :s 19C -> 1741 `i ]
+[e :U 1093 ]
+"1745
+[; ;Source/FreeRTOS/queue.c: 1745:     if( ( !( ( ( pvBuffer ) == ((void*)0) ) && ( ( pxQueue )->uxItemSize != ( UBaseType_t ) 0U ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1745 );
+[e $ ! == -> ! && == _pvBuffer -> -> 0 `i `*v != -> . *U _pxQueue 7 `i -> -> -> 0 `ui `uc `i `i -> 0 `i 1094  ]
+[e ( _Xprintf , (. :s 20C -> 1745 `i ]
+[e :U 1094 ]
+"1757
+[; ;Source/FreeRTOS/queue.c: 1757:     for( ; ; )
+{
+[e :U 1095 ]
+"1758
+[; ;Source/FreeRTOS/queue.c: 1758:     {
+{
+"1759
+[; ;Source/FreeRTOS/queue.c: 1759:         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"1760
+[; ;Source/FreeRTOS/queue.c: 1760:         {
+{
+"1761
+[; ;Source/FreeRTOS/queue.c: 1761:             const UBaseType_t uxMessagesWaiting = pxQueue->uxMessagesWaiting;
+[v _uxMessagesWaiting `Cuc ~T0 @X0 1 a ]
+[e = _uxMessagesWaiting . *U _pxQueue 5 ]
+"1765
+[; ;Source/FreeRTOS/queue.c: 1765:             if( uxMessagesWaiting > ( UBaseType_t ) 0 )
+[e $ ! > -> _uxMessagesWaiting `i -> -> -> 0 `i `uc `i 1098  ]
+"1766
+[; ;Source/FreeRTOS/queue.c: 1766:             {
+{
+"1770
+[; ;Source/FreeRTOS/queue.c: 1770:                 pcOriginalReadPosition = pxQueue->u.xQueue.pcReadFrom;
+[e = _pcOriginalReadPosition . . . *U _pxQueue 2 0 1 ]
+"1772
+[; ;Source/FreeRTOS/queue.c: 1772:                 prvCopyDataFromQueue( pxQueue, pvBuffer );
+[e ( _prvCopyDataFromQueue (2 , _pxQueue _pvBuffer ]
+"1776
+[; ;Source/FreeRTOS/queue.c: 1776:                 pxQueue->u.xQueue.pcReadFrom = pcOriginalReadPosition;
+[e = . . . *U _pxQueue 2 0 1 _pcOriginalReadPosition ]
+"1780
+[; ;Source/FreeRTOS/queue.c: 1780:                 if( ( ( ( &( pxQueue->xTasksWaitingToReceive ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == ? == -> . *U &U . *U _pxQueue 4 0 `i -> -> -> 0 `i `uc `i : -> -> -> 1 `i `c `i -> -> -> 0 `i `c `i -> -> -> 0 `i `c `i 1099  ]
+"1781
+[; ;Source/FreeRTOS/queue.c: 1781:                 {
+{
+"1782
+[; ;Source/FreeRTOS/queue.c: 1782:                     if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToReceive ) ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _xTaskRemoveFromEventList (1 -> &U . *U _pxQueue 4 `*CS931 `i -> -> -> 0 `i `c `i 1100  ]
+"1783
+[; ;Source/FreeRTOS/queue.c: 1783:                     {
+{
+"1785
+[; ;Source/FreeRTOS/queue.c: 1785:                         vPortYield();
+[e ( _vPortYield ..  ]
+"1786
+[; ;Source/FreeRTOS/queue.c: 1786:                     }
+}
+[e $U 1101  ]
+"1787
+[; ;Source/FreeRTOS/queue.c: 1787:                     else
+[e :U 1100 ]
+"1788
+[; ;Source/FreeRTOS/queue.c: 1788:                     {
+{
+"1790
+[; ;Source/FreeRTOS/queue.c: 1790:                     }
+}
+[e :U 1101 ]
+"1791
+[; ;Source/FreeRTOS/queue.c: 1791:                 }
+}
+[e $U 1102  ]
+"1792
+[; ;Source/FreeRTOS/queue.c: 1792:                 else
+[e :U 1099 ]
+"1793
+[; ;Source/FreeRTOS/queue.c: 1793:                 {
+{
+"1795
+[; ;Source/FreeRTOS/queue.c: 1795:                 }
+}
+[e :U 1102 ]
+"1797
+[; ;Source/FreeRTOS/queue.c: 1797:                 __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1103  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1103 ]
+"1798
+[; ;Source/FreeRTOS/queue.c: 1798:                 return ( ( ( BaseType_t ) 1 ) );
+[e ) -> -> 1 `i `c ]
+[e $UE 1092  ]
+"1799
+[; ;Source/FreeRTOS/queue.c: 1799:             }
+}
+[e $U 1104  ]
+"1800
+[; ;Source/FreeRTOS/queue.c: 1800:             else
+[e :U 1098 ]
+"1801
+[; ;Source/FreeRTOS/queue.c: 1801:             {
+{
+"1802
+[; ;Source/FreeRTOS/queue.c: 1802:                 if( xTicksToWait == ( TickType_t ) 0 )
+[e $ ! == -> _xTicksToWait `ui -> -> -> 0 `i `us `ui 1105  ]
+"1803
+[; ;Source/FreeRTOS/queue.c: 1803:                 {
+{
+"1806
+[; ;Source/FreeRTOS/queue.c: 1806:                     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1106  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1106 ]
+"1808
+[; ;Source/FreeRTOS/queue.c: 1808:                     return ( ( BaseType_t ) 0 );
+[e ) -> -> 0 `i `c ]
+[e $UE 1092  ]
+"1809
+[; ;Source/FreeRTOS/queue.c: 1809:                 }
+}
+[e $U 1107  ]
+"1810
+[; ;Source/FreeRTOS/queue.c: 1810:                 else if( xEntryTimeSet == ( ( BaseType_t ) 0 ) )
+[e :U 1105 ]
+[e $ ! == -> _xEntryTimeSet `i -> -> -> 0 `i `c `i 1108  ]
+"1811
+[; ;Source/FreeRTOS/queue.c: 1811:                 {
+{
+"1815
+[; ;Source/FreeRTOS/queue.c: 1815:                     vTaskInternalSetTimeOutState( &xTimeOut );
+[e ( _vTaskInternalSetTimeOutState (1 &U _xTimeOut ]
+"1816
+[; ;Source/FreeRTOS/queue.c: 1816:                     xEntryTimeSet = ( ( BaseType_t ) 1 );
+[e = _xEntryTimeSet -> -> 1 `i `c ]
+"1817
+[; ;Source/FreeRTOS/queue.c: 1817:                 }
+}
+[e $U 1109  ]
+"1818
+[; ;Source/FreeRTOS/queue.c: 1818:                 else
+[e :U 1108 ]
+"1819
+[; ;Source/FreeRTOS/queue.c: 1819:                 {
+{
+"1822
+[; ;Source/FreeRTOS/queue.c: 1822:                 }
+}
+[e :U 1109 ]
+[e :U 1107 ]
+"1823
+[; ;Source/FreeRTOS/queue.c: 1823:             }
+}
+[e :U 1104 ]
+"1824
+[; ;Source/FreeRTOS/queue.c: 1824:         }
+}
+"1825
+[; ;Source/FreeRTOS/queue.c: 1825:         __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1110  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1110 ]
+"1830
+[; ;Source/FreeRTOS/queue.c: 1830:         vTaskSuspendAll();
+[e ( _vTaskSuspendAll ..  ]
+"1831
+[; ;Source/FreeRTOS/queue.c: 1831:         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;; { if( ( pxQueue )->cRxLock == ( ( int8_t ) -1 ) ) { ( pxQueue )->cRxLock = ( ( int8_t ) 0 ); } if( ( pxQueue )->cTxLock == ( ( int8_t ) -1 ) ) { ( pxQueue )->cTxLock = ( ( int8_t ) 0 ); } } __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+{
+[e $ ! == -> . *U _pxQueue 8 `i -> -> -U -> 1 `i `c `i 1111  ]
+{
+[e = . *U _pxQueue 8 -> -> 0 `i `c ]
+}
+[e :U 1111 ]
+[e $ ! == -> . *U _pxQueue 9 `i -> -> -U -> 1 `i `c `i 1112  ]
+{
+[e = . *U _pxQueue 9 -> -> 0 `i `c ]
+}
+[e :U 1112 ]
+}
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1113  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1113 ]
+"1834
+[; ;Source/FreeRTOS/queue.c: 1834:         if( xTaskCheckForTimeOut( &xTimeOut, &xTicksToWait ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == -> ( _xTaskCheckForTimeOut (2 , &U _xTimeOut &U _xTicksToWait `i -> -> -> 0 `i `c `i 1114  ]
+"1835
+[; ;Source/FreeRTOS/queue.c: 1835:         {
+{
+"1838
+[; ;Source/FreeRTOS/queue.c: 1838:             if( prvIsQueueEmpty( pxQueue ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _prvIsQueueEmpty (1 -> _pxQueue `*CS941 `i -> -> -> 0 `i `c `i 1115  ]
+"1839
+[; ;Source/FreeRTOS/queue.c: 1839:             {
+{
+"1841
+[; ;Source/FreeRTOS/queue.c: 1841:                 vTaskPlaceOnEventList( &( pxQueue->xTasksWaitingToReceive ), xTicksToWait );
+[e ( _vTaskPlaceOnEventList (2 , &U . *U _pxQueue 4 _xTicksToWait ]
+"1842
+[; ;Source/FreeRTOS/queue.c: 1842:                 prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1844
+[; ;Source/FreeRTOS/queue.c: 1844:                 if( xTaskResumeAll() == ( ( BaseType_t ) 0 ) )
+[e $ ! == -> ( _xTaskResumeAll ..  `i -> -> -> 0 `i `c `i 1116  ]
+"1845
+[; ;Source/FreeRTOS/queue.c: 1845:                 {
+{
+"1846
+[; ;Source/FreeRTOS/queue.c: 1846:                     vPortYield();
+[e ( _vPortYield ..  ]
+"1847
+[; ;Source/FreeRTOS/queue.c: 1847:                 }
+}
+[e $U 1117  ]
+"1848
+[; ;Source/FreeRTOS/queue.c: 1848:                 else
+[e :U 1116 ]
+"1849
+[; ;Source/FreeRTOS/queue.c: 1849:                 {
+{
+"1851
+[; ;Source/FreeRTOS/queue.c: 1851:                 }
+}
+[e :U 1117 ]
+"1852
+[; ;Source/FreeRTOS/queue.c: 1852:             }
+}
+[e $U 1118  ]
+"1853
+[; ;Source/FreeRTOS/queue.c: 1853:             else
+[e :U 1115 ]
+"1854
+[; ;Source/FreeRTOS/queue.c: 1854:             {
+{
+"1857
+[; ;Source/FreeRTOS/queue.c: 1857:                 prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1858
+[; ;Source/FreeRTOS/queue.c: 1858:                 ( void ) xTaskResumeAll();
+[e ( _xTaskResumeAll ..  ]
+"1859
+[; ;Source/FreeRTOS/queue.c: 1859:             }
+}
+[e :U 1118 ]
+"1860
+[; ;Source/FreeRTOS/queue.c: 1860:         }
+}
+[e $U 1119  ]
+"1861
+[; ;Source/FreeRTOS/queue.c: 1861:         else
+[e :U 1114 ]
+"1862
+[; ;Source/FreeRTOS/queue.c: 1862:         {
+{
+"1865
+[; ;Source/FreeRTOS/queue.c: 1865:             prvUnlockQueue( pxQueue );
+[e ( _prvUnlockQueue (1 _pxQueue ]
+"1866
+[; ;Source/FreeRTOS/queue.c: 1866:             ( void ) xTaskResumeAll();
+[e ( _xTaskResumeAll ..  ]
+"1868
+[; ;Source/FreeRTOS/queue.c: 1868:             if( prvIsQueueEmpty( pxQueue ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _prvIsQueueEmpty (1 -> _pxQueue `*CS941 `i -> -> -> 0 `i `c `i 1120  ]
+"1869
+[; ;Source/FreeRTOS/queue.c: 1869:             {
+{
+"1871
+[; ;Source/FreeRTOS/queue.c: 1871:                 return ( ( BaseType_t ) 0 );
+[e ) -> -> 0 `i `c ]
+[e $UE 1092  ]
+"1872
+[; ;Source/FreeRTOS/queue.c: 1872:             }
+}
+[e $U 1121  ]
+"1873
+[; ;Source/FreeRTOS/queue.c: 1873:             else
+[e :U 1120 ]
+"1874
+[; ;Source/FreeRTOS/queue.c: 1874:             {
+{
+"1876
+[; ;Source/FreeRTOS/queue.c: 1876:             }
+}
+[e :U 1121 ]
+"1877
+[; ;Source/FreeRTOS/queue.c: 1877:         }
+}
+[e :U 1119 ]
+"1878
+[; ;Source/FreeRTOS/queue.c: 1878:     }
+}
+[e $U 1095  ]
+[e :U 1096 ]
+}
+"1879
+[; ;Source/FreeRTOS/queue.c: 1879: }
+[e :UE 1092 ]
+}
+"1882
+[; ;Source/FreeRTOS/queue.c: 1882: BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue,
+[v _xQueueReceiveFromISR `(c ~T0 @X0 1 ef3`*S941`C*v`C*c ]
+"1885
+[; ;Source/FreeRTOS/queue.c: 1885: {
+{
+[e :U _xQueueReceiveFromISR ]
+"1882
+[; ;Source/FreeRTOS/queue.c: 1882: BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue,
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+[v F7667 `*v ~T0 @X0 1 t ]
+"1883
+[; ;Source/FreeRTOS/queue.c: 1883:                                  void * const pvBuffer,
+[v _pvBuffer `C*v ~T0 @X0 1 r2 ]
+[v F7669 `*c ~T0 @X0 1 t ]
+"1884
+[; ;Source/FreeRTOS/queue.c: 1884:                                  BaseType_t * const pxHigherPriorityTaskWoken )
+[v _pxHigherPriorityTaskWoken `C*c ~T0 @X0 1 r3 ]
+"1885
+[; ;Source/FreeRTOS/queue.c: 1885: {
+[f ]
+"1886
+[; ;Source/FreeRTOS/queue.c: 1886:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"1887
+[; ;Source/FreeRTOS/queue.c: 1887:     UBaseType_t uxSavedInterruptStatus;
+[v _uxSavedInterruptStatus `uc ~T0 @X0 1 a ]
+[v F7673 `*S941 ~T0 @X0 1 t ]
+"1888
+[; ;Source/FreeRTOS/queue.c: 1888:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"1890
+[; ;Source/FreeRTOS/queue.c: 1890:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1890 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1123  ]
+[e ( _Xprintf , (. :s 21C -> 1890 `i ]
+[e :U 1123 ]
+"1891
+[; ;Source/FreeRTOS/queue.c: 1891:     if( ( !( ( pvBuffer == ((void*)0) ) && ( pxQueue->uxItemSize != ( UBaseType_t ) 0U ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1891 );
+[e $ ! == -> ! && == _pvBuffer -> -> 0 `i `*v != -> . *U _pxQueue 7 `i -> -> -> 0 `ui `uc `i `i -> 0 `i 1124  ]
+[e ( _Xprintf , (. :s 22C -> 1891 `i ]
+[e :U 1124 ]
+"1909
+[; ;Source/FreeRTOS/queue.c: 1909:     uxSavedInterruptStatus = 0;
+[e = _uxSavedInterruptStatus -> -> 0 `i `uc ]
+"1910
+[; ;Source/FreeRTOS/queue.c: 1910:     {
+{
+"1911
+[; ;Source/FreeRTOS/queue.c: 1911:         const UBaseType_t uxMessagesWaiting = pxQueue->uxMessagesWaiting;
+[v _uxMessagesWaiting `Cuc ~T0 @X0 1 a ]
+[e = _uxMessagesWaiting . *U _pxQueue 5 ]
+"1914
+[; ;Source/FreeRTOS/queue.c: 1914:         if( uxMessagesWaiting > ( UBaseType_t ) 0 )
+[e $ ! > -> _uxMessagesWaiting `i -> -> -> 0 `i `uc `i 1125  ]
+"1915
+[; ;Source/FreeRTOS/queue.c: 1915:         {
+{
+"1916
+[; ;Source/FreeRTOS/queue.c: 1916:             const int8_t cRxLock = pxQueue->cRxLock;
+[v _cRxLock `Cc ~T0 @X0 1 a ]
+[e = _cRxLock . *U _pxQueue 8 ]
+"1920
+[; ;Source/FreeRTOS/queue.c: 1920:             prvCopyDataFromQueue( pxQueue, pvBuffer );
+[e ( _prvCopyDataFromQueue (2 , _pxQueue _pvBuffer ]
+"1921
+[; ;Source/FreeRTOS/queue.c: 1921:             pxQueue->uxMessagesWaiting = uxMessagesWaiting - ( UBaseType_t ) 1;
+[e = . *U _pxQueue 5 -> - -> _uxMessagesWaiting `i -> -> -> 1 `i `uc `i `uc ]
+"1927
+[; ;Source/FreeRTOS/queue.c: 1927:             if( cRxLock == ( ( int8_t ) -1 ) )
+[e $ ! == -> _cRxLock `i -> -> -U -> 1 `i `c `i 1126  ]
+"1928
+[; ;Source/FreeRTOS/queue.c: 1928:             {
+{
+"1929
+[; ;Source/FreeRTOS/queue.c: 1929:                 if( ( ( ( &( pxQueue->xTasksWaitingToSend ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == ? == -> . *U &U . *U _pxQueue 3 0 `i -> -> -> 0 `i `uc `i : -> -> -> 1 `i `c `i -> -> -> 0 `i `c `i -> -> -> 0 `i `c `i 1127  ]
+"1930
+[; ;Source/FreeRTOS/queue.c: 1930:                 {
+{
+"1931
+[; ;Source/FreeRTOS/queue.c: 1931:                     if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToSend ) ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _xTaskRemoveFromEventList (1 -> &U . *U _pxQueue 3 `*CS931 `i -> -> -> 0 `i `c `i 1128  ]
+"1932
+[; ;Source/FreeRTOS/queue.c: 1932:                     {
+{
+"1935
+[; ;Source/FreeRTOS/queue.c: 1935:                         if( pxHigherPriorityTaskWoken != ((void*)0) )
+[e $ ! != _pxHigherPriorityTaskWoken -> -> -> 0 `i `*v `*c 1129  ]
+"1936
+[; ;Source/FreeRTOS/queue.c: 1936:                         {
+{
+"1937
+[; ;Source/FreeRTOS/queue.c: 1937:                             *pxHigherPriorityTaskWoken = ( ( BaseType_t ) 1 );
+[e = *U _pxHigherPriorityTaskWoken -> -> 1 `i `c ]
+"1938
+[; ;Source/FreeRTOS/queue.c: 1938:                         }
+}
+[e $U 1130  ]
+"1939
+[; ;Source/FreeRTOS/queue.c: 1939:                         else
+[e :U 1129 ]
+"1940
+[; ;Source/FreeRTOS/queue.c: 1940:                         {
+{
+"1942
+[; ;Source/FreeRTOS/queue.c: 1942:                         }
+}
+[e :U 1130 ]
+"1943
+[; ;Source/FreeRTOS/queue.c: 1943:                     }
+}
+[e $U 1131  ]
+"1944
+[; ;Source/FreeRTOS/queue.c: 1944:                     else
+[e :U 1128 ]
+"1945
+[; ;Source/FreeRTOS/queue.c: 1945:                     {
+{
+"1947
+[; ;Source/FreeRTOS/queue.c: 1947:                     }
+}
+[e :U 1131 ]
+"1948
+[; ;Source/FreeRTOS/queue.c: 1948:                 }
+}
+[e $U 1132  ]
+"1949
+[; ;Source/FreeRTOS/queue.c: 1949:                 else
+[e :U 1127 ]
+"1950
+[; ;Source/FreeRTOS/queue.c: 1950:                 {
+{
+"1952
+[; ;Source/FreeRTOS/queue.c: 1952:                 }
+}
+[e :U 1132 ]
+"1953
+[; ;Source/FreeRTOS/queue.c: 1953:             }
+}
+[e $U 1133  ]
+"1954
+[; ;Source/FreeRTOS/queue.c: 1954:             else
+[e :U 1126 ]
+"1955
+[; ;Source/FreeRTOS/queue.c: 1955:             {
+{
+"1958
+[; ;Source/FreeRTOS/queue.c: 1958:                 { const UBaseType_t uxNumberOfTasks = uxTaskGetNumberOfTasks(); if( ( UBaseType_t ) ( cRxLock ) < uxNumberOfTasks ) { if( ( ( cRxLock ) != ( ( int8_t ) 127 ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1958 ); ( pxQueue )->cRxLock = ( int8_t ) ( ( cRxLock ) + ( int8_t ) 1 ); } };
+{
+[v _uxNumberOfTasks `Cuc ~T0 @X0 1 a ]
+[e = _uxNumberOfTasks ( _uxTaskGetNumberOfTasks ..  ]
+[e $ ! < -> -> _cRxLock `uc `i -> _uxNumberOfTasks `i 1134  ]
+{
+[e $ ! == -> != -> _cRxLock `i -> -> -> 127 `i `c `i `i -> 0 `i 1135  ]
+[e ( _Xprintf , (. :s 23C -> 1958 `i ]
+[e :U 1135 ]
+[e = . *U _pxQueue 8 -> + -> _cRxLock `i -> -> -> 1 `i `c `i `c ]
+}
+[e :U 1134 ]
+}
+"1959
+[; ;Source/FreeRTOS/queue.c: 1959:             }
+}
+[e :U 1133 ]
+"1961
+[; ;Source/FreeRTOS/queue.c: 1961:             xReturn = ( ( ( BaseType_t ) 1 ) );
+[e = _xReturn -> -> 1 `i `c ]
+"1962
+[; ;Source/FreeRTOS/queue.c: 1962:         }
+}
+[e $U 1136  ]
+"1963
+[; ;Source/FreeRTOS/queue.c: 1963:         else
+[e :U 1125 ]
+"1964
+[; ;Source/FreeRTOS/queue.c: 1964:         {
+{
+"1965
+[; ;Source/FreeRTOS/queue.c: 1965:             xReturn = ( ( ( BaseType_t ) 0 ) );
+[e = _xReturn -> -> 0 `i `c ]
+"1967
+[; ;Source/FreeRTOS/queue.c: 1967:         }
+}
+[e :U 1136 ]
+"1968
+[; ;Source/FreeRTOS/queue.c: 1968:     }
+}
+"1969
+[; ;Source/FreeRTOS/queue.c: 1969:     ( void ) ( uxSavedInterruptStatus );
+[e _uxSavedInterruptStatus ]
+"1971
+[; ;Source/FreeRTOS/queue.c: 1971:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1122  ]
+"1972
+[; ;Source/FreeRTOS/queue.c: 1972: }
+[e :UE 1122 ]
+}
+"1975
+[; ;Source/FreeRTOS/queue.c: 1975: BaseType_t xQueuePeekFromISR( QueueHandle_t xQueue,
+[v _xQueuePeekFromISR `(c ~T0 @X0 1 ef2`*S941`C*v ]
+"1977
+[; ;Source/FreeRTOS/queue.c: 1977: {
+{
+[e :U _xQueuePeekFromISR ]
+"1975
+[; ;Source/FreeRTOS/queue.c: 1975: BaseType_t xQueuePeekFromISR( QueueHandle_t xQueue,
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+[v F7681 `*v ~T0 @X0 1 t ]
+"1976
+[; ;Source/FreeRTOS/queue.c: 1976:                               void * const pvBuffer )
+[v _pvBuffer `C*v ~T0 @X0 1 r2 ]
+"1977
+[; ;Source/FreeRTOS/queue.c: 1977: {
+[f ]
+"1978
+[; ;Source/FreeRTOS/queue.c: 1978:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"1979
+[; ;Source/FreeRTOS/queue.c: 1979:     UBaseType_t uxSavedInterruptStatus;
+[v _uxSavedInterruptStatus `uc ~T0 @X0 1 a ]
+"1980
+[; ;Source/FreeRTOS/queue.c: 1980:     int8_t * pcOriginalReadPosition;
+[v _pcOriginalReadPosition `*c ~T0 @X0 1 a ]
+[v F7686 `*S941 ~T0 @X0 1 t ]
+"1981
+[; ;Source/FreeRTOS/queue.c: 1981:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"1983
+[; ;Source/FreeRTOS/queue.c: 1983:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1983 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1138  ]
+[e ( _Xprintf , (. :s 24C -> 1983 `i ]
+[e :U 1138 ]
+"1984
+[; ;Source/FreeRTOS/queue.c: 1984:     if( ( !( ( pvBuffer == ((void*)0) ) && ( pxQueue->uxItemSize != ( UBaseType_t ) 0U ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1984 );
+[e $ ! == -> ! && == _pvBuffer -> -> 0 `i `*v != -> . *U _pxQueue 7 `i -> -> -> 0 `ui `uc `i `i -> 0 `i 1139  ]
+[e ( _Xprintf , (. :s 25C -> 1984 `i ]
+[e :U 1139 ]
+"1985
+[; ;Source/FreeRTOS/queue.c: 1985:     if( ( pxQueue->uxItemSize != 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 1985 );
+[e $ ! == -> != -> . *U _pxQueue 7 `i -> 0 `i `i -> 0 `i 1140  ]
+[e ( _Xprintf , (. :s 26C -> 1985 `i ]
+[e :U 1140 ]
+"2003
+[; ;Source/FreeRTOS/queue.c: 2003:     uxSavedInterruptStatus = 0;
+[e = _uxSavedInterruptStatus -> -> 0 `i `uc ]
+"2004
+[; ;Source/FreeRTOS/queue.c: 2004:     {
+{
+"2006
+[; ;Source/FreeRTOS/queue.c: 2006:         if( pxQueue->uxMessagesWaiting > ( UBaseType_t ) 0 )
+[e $ ! > -> . *U _pxQueue 5 `i -> -> -> 0 `i `uc `i 1141  ]
+"2007
+[; ;Source/FreeRTOS/queue.c: 2007:         {
+{
+"2012
+[; ;Source/FreeRTOS/queue.c: 2012:             pcOriginalReadPosition = pxQueue->u.xQueue.pcReadFrom;
+[e = _pcOriginalReadPosition . . . *U _pxQueue 2 0 1 ]
+"2013
+[; ;Source/FreeRTOS/queue.c: 2013:             prvCopyDataFromQueue( pxQueue, pvBuffer );
+[e ( _prvCopyDataFromQueue (2 , _pxQueue _pvBuffer ]
+"2014
+[; ;Source/FreeRTOS/queue.c: 2014:             pxQueue->u.xQueue.pcReadFrom = pcOriginalReadPosition;
+[e = . . . *U _pxQueue 2 0 1 _pcOriginalReadPosition ]
+"2016
+[; ;Source/FreeRTOS/queue.c: 2016:             xReturn = ( ( ( BaseType_t ) 1 ) );
+[e = _xReturn -> -> 1 `i `c ]
+"2017
+[; ;Source/FreeRTOS/queue.c: 2017:         }
+}
+[e $U 1142  ]
+"2018
+[; ;Source/FreeRTOS/queue.c: 2018:         else
+[e :U 1141 ]
+"2019
+[; ;Source/FreeRTOS/queue.c: 2019:         {
+{
+"2020
+[; ;Source/FreeRTOS/queue.c: 2020:             xReturn = ( ( ( BaseType_t ) 0 ) );
+[e = _xReturn -> -> 0 `i `c ]
+"2022
+[; ;Source/FreeRTOS/queue.c: 2022:         }
+}
+[e :U 1142 ]
+"2023
+[; ;Source/FreeRTOS/queue.c: 2023:     }
+}
+"2024
+[; ;Source/FreeRTOS/queue.c: 2024:     ( void ) ( uxSavedInterruptStatus );
+[e _uxSavedInterruptStatus ]
+"2026
+[; ;Source/FreeRTOS/queue.c: 2026:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1137  ]
+"2027
+[; ;Source/FreeRTOS/queue.c: 2027: }
+[e :UE 1137 ]
+}
+"2030
+[; ;Source/FreeRTOS/queue.c: 2030: UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue )
+[v _uxQueueMessagesWaiting `(uc ~T0 @X0 1 ef1`C*S941 ]
+"2031
+[; ;Source/FreeRTOS/queue.c: 2031: {
+{
+[e :U _uxQueueMessagesWaiting ]
+[v F7690 `*S941 ~T0 @X0 1 t ]
+"2030
+[; ;Source/FreeRTOS/queue.c: 2030: UBaseType_t uxQueueMessagesWaiting( const QueueHandle_t xQueue )
+[v _xQueue `C*S941 ~T0 @X0 1 r1 ]
+"2031
+[; ;Source/FreeRTOS/queue.c: 2031: {
+[f ]
+"2032
+[; ;Source/FreeRTOS/queue.c: 2032:     UBaseType_t uxReturn;
+[v _uxReturn `uc ~T0 @X0 1 a ]
+"2034
+[; ;Source/FreeRTOS/queue.c: 2034:     if( ( xQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 2034 );
+[e $ ! == _xQueue -> -> 0 `i `*S941 1144  ]
+[e ( _Xprintf , (. :s 27C -> 2034 `i ]
+[e :U 1144 ]
+"2036
+[; ;Source/FreeRTOS/queue.c: 2036:     POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"2037
+[; ;Source/FreeRTOS/queue.c: 2037:     {
+{
+"2038
+[; ;Source/FreeRTOS/queue.c: 2038:         uxReturn = ( ( Queue_t * ) xQueue )->uxMessagesWaiting;
+[e = _uxReturn . *U _xQueue 5 ]
+"2039
+[; ;Source/FreeRTOS/queue.c: 2039:     }
+}
+"2040
+[; ;Source/FreeRTOS/queue.c: 2040:     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1145  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1145 ]
+"2042
+[; ;Source/FreeRTOS/queue.c: 2042:     return uxReturn;
+[e ) _uxReturn ]
+[e $UE 1143  ]
+"2043
+[; ;Source/FreeRTOS/queue.c: 2043: }
+[e :UE 1143 ]
+}
+"2046
+[; ;Source/FreeRTOS/queue.c: 2046: UBaseType_t uxQueueSpacesAvailable( const QueueHandle_t xQueue )
+[v _uxQueueSpacesAvailable `(uc ~T0 @X0 1 ef1`C*S941 ]
+"2047
+[; ;Source/FreeRTOS/queue.c: 2047: {
+{
+[e :U _uxQueueSpacesAvailable ]
+[v F7695 `*S941 ~T0 @X0 1 t ]
+"2046
+[; ;Source/FreeRTOS/queue.c: 2046: UBaseType_t uxQueueSpacesAvailable( const QueueHandle_t xQueue )
+[v _xQueue `C*S941 ~T0 @X0 1 r1 ]
+"2047
+[; ;Source/FreeRTOS/queue.c: 2047: {
+[f ]
+"2048
+[; ;Source/FreeRTOS/queue.c: 2048:     UBaseType_t uxReturn;
+[v _uxReturn `uc ~T0 @X0 1 a ]
+[v F7698 `*S941 ~T0 @X0 1 t ]
+"2049
+[; ;Source/FreeRTOS/queue.c: 2049:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"2051
+[; ;Source/FreeRTOS/queue.c: 2051:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 2051 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1147  ]
+[e ( _Xprintf , (. :s 28C -> 2051 `i ]
+[e :U 1147 ]
+"2053
+[; ;Source/FreeRTOS/queue.c: 2053:     POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"2054
+[; ;Source/FreeRTOS/queue.c: 2054:     {
+{
+"2055
+[; ;Source/FreeRTOS/queue.c: 2055:         uxReturn = pxQueue->uxLength - pxQueue->uxMessagesWaiting;
+[e = _uxReturn -> - -> . *U _pxQueue 6 `i -> . *U _pxQueue 5 `i `uc ]
+"2056
+[; ;Source/FreeRTOS/queue.c: 2056:     }
+}
+"2057
+[; ;Source/FreeRTOS/queue.c: 2057:     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1148  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1148 ]
+"2059
+[; ;Source/FreeRTOS/queue.c: 2059:     return uxReturn;
+[e ) _uxReturn ]
+[e $UE 1146  ]
+"2060
+[; ;Source/FreeRTOS/queue.c: 2060: }
+[e :UE 1146 ]
+}
+"2063
+[; ;Source/FreeRTOS/queue.c: 2063: UBaseType_t uxQueueMessagesWaitingFromISR( const QueueHandle_t xQueue )
+[v _uxQueueMessagesWaitingFromISR `(uc ~T0 @X0 1 ef1`C*S941 ]
+"2064
+[; ;Source/FreeRTOS/queue.c: 2064: {
+{
+[e :U _uxQueueMessagesWaitingFromISR ]
+[v F7702 `*S941 ~T0 @X0 1 t ]
+"2063
+[; ;Source/FreeRTOS/queue.c: 2063: UBaseType_t uxQueueMessagesWaitingFromISR( const QueueHandle_t xQueue )
+[v _xQueue `C*S941 ~T0 @X0 1 r1 ]
+"2064
+[; ;Source/FreeRTOS/queue.c: 2064: {
+[f ]
+"2065
+[; ;Source/FreeRTOS/queue.c: 2065:     UBaseType_t uxReturn;
+[v _uxReturn `uc ~T0 @X0 1 a ]
+[v F7705 `*S941 ~T0 @X0 1 t ]
+"2066
+[; ;Source/FreeRTOS/queue.c: 2066:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"2068
+[; ;Source/FreeRTOS/queue.c: 2068:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 2068 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1150  ]
+[e ( _Xprintf , (. :s 29C -> 2068 `i ]
+[e :U 1150 ]
+"2069
+[; ;Source/FreeRTOS/queue.c: 2069:     uxReturn = pxQueue->uxMessagesWaiting;
+[e = _uxReturn . *U _pxQueue 5 ]
+"2071
+[; ;Source/FreeRTOS/queue.c: 2071:     return uxReturn;
+[e ) _uxReturn ]
+[e $UE 1149  ]
+"2072
+[; ;Source/FreeRTOS/queue.c: 2072: }
+[e :UE 1149 ]
+}
+"2075
+[; ;Source/FreeRTOS/queue.c: 2075: void vQueueDelete( QueueHandle_t xQueue )
+[v _vQueueDelete `(v ~T0 @X0 1 ef1`*S941 ]
+"2076
+[; ;Source/FreeRTOS/queue.c: 2076: {
+{
+[e :U _vQueueDelete ]
+"2075
+[; ;Source/FreeRTOS/queue.c: 2075: void vQueueDelete( QueueHandle_t xQueue )
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+"2076
+[; ;Source/FreeRTOS/queue.c: 2076: {
+[f ]
+[v F7709 `*S941 ~T0 @X0 1 t ]
+"2077
+[; ;Source/FreeRTOS/queue.c: 2077:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"2079
+[; ;Source/FreeRTOS/queue.c: 2079:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 2079 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1152  ]
+[e ( _Xprintf , (. :s 30C -> 2079 `i ]
+[e :U 1152 ]
+"2089
+[; ;Source/FreeRTOS/queue.c: 2089:     {
+{
+"2092
+[; ;Source/FreeRTOS/queue.c: 2092:         vPortFree( pxQueue );
+[e ( _vPortFree (1 -> _pxQueue `*v ]
+"2093
+[; ;Source/FreeRTOS/queue.c: 2093:     }
+}
+"2114
+[; ;Source/FreeRTOS/queue.c: 2114: }
+[e :UE 1151 ]
+}
+"2119
+[; ;Source/FreeRTOS/queue.c: 2119:     UBaseType_t uxQueueGetQueueNumber( QueueHandle_t xQueue )
+[v _uxQueueGetQueueNumber `(uc ~T0 @X0 1 ef1`*S941 ]
+"2120
+[; ;Source/FreeRTOS/queue.c: 2120:     {
+{
+[e :U _uxQueueGetQueueNumber ]
+"2119
+[; ;Source/FreeRTOS/queue.c: 2119:     UBaseType_t uxQueueGetQueueNumber( QueueHandle_t xQueue )
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+"2120
+[; ;Source/FreeRTOS/queue.c: 2120:     {
+[f ]
+"2121
+[; ;Source/FreeRTOS/queue.c: 2121:         return ( ( Queue_t * ) xQueue )->uxQueueNumber;
+[e ) . *U _xQueue 10 ]
+[e $UE 1153  ]
+"2122
+[; ;Source/FreeRTOS/queue.c: 2122:     }
+[e :UE 1153 ]
+}
+"2129
+[; ;Source/FreeRTOS/queue.c: 2129:     void vQueueSetQueueNumber( QueueHandle_t xQueue,
+[v _vQueueSetQueueNumber `(v ~T0 @X0 1 ef2`*S941`uc ]
+"2131
+[; ;Source/FreeRTOS/queue.c: 2131:     {
+{
+[e :U _vQueueSetQueueNumber ]
+"2129
+[; ;Source/FreeRTOS/queue.c: 2129:     void vQueueSetQueueNumber( QueueHandle_t xQueue,
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+"2130
+[; ;Source/FreeRTOS/queue.c: 2130:                                UBaseType_t uxQueueNumber )
+[v _uxQueueNumber `uc ~T0 @X0 1 r2 ]
+"2131
+[; ;Source/FreeRTOS/queue.c: 2131:     {
+[f ]
+"2132
+[; ;Source/FreeRTOS/queue.c: 2132:         ( ( Queue_t * ) xQueue )->uxQueueNumber = uxQueueNumber;
+[e = . *U _xQueue 10 _uxQueueNumber ]
+"2133
+[; ;Source/FreeRTOS/queue.c: 2133:     }
+[e :UE 1154 ]
+}
+"2140
+[; ;Source/FreeRTOS/queue.c: 2140:     uint8_t ucQueueGetQueueType( QueueHandle_t xQueue )
+[v _ucQueueGetQueueType `(uc ~T0 @X0 1 ef1`*S941 ]
+"2141
+[; ;Source/FreeRTOS/queue.c: 2141:     {
+{
+[e :U _ucQueueGetQueueType ]
+"2140
+[; ;Source/FreeRTOS/queue.c: 2140:     uint8_t ucQueueGetQueueType( QueueHandle_t xQueue )
+[v _xQueue `*S941 ~T0 @X0 1 r1 ]
+"2141
+[; ;Source/FreeRTOS/queue.c: 2141:     {
+[f ]
+"2142
+[; ;Source/FreeRTOS/queue.c: 2142:         return ( ( Queue_t * ) xQueue )->ucQueueType;
+[e ) . *U _xQueue 11 ]
+[e $UE 1155  ]
+"2143
+[; ;Source/FreeRTOS/queue.c: 2143:     }
+[e :UE 1155 ]
+}
+"2175
+[; ;Source/FreeRTOS/queue.c: 2175: static BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
+[v _prvCopyDataToQueue `(c ~T0 @X0 1 sf3`C*S941`*Cv`Cc ]
+"2178
+[; ;Source/FreeRTOS/queue.c: 2178: {
+{
+[e :U _prvCopyDataToQueue ]
+[v F7720 `*S941 ~T0 @X0 1 t ]
+"2175
+[; ;Source/FreeRTOS/queue.c: 2175: static BaseType_t prvCopyDataToQueue( Queue_t * const pxQueue,
+[v _pxQueue `C*S941 ~T0 @X0 1 r1 ]
+"2176
+[; ;Source/FreeRTOS/queue.c: 2176:                                       const void * pvItemToQueue,
+[v _pvItemToQueue `*Cv ~T0 @X0 1 r2 ]
+"2177
+[; ;Source/FreeRTOS/queue.c: 2177:                                       const BaseType_t xPosition )
+[v _xPosition `Cc ~T0 @X0 1 r3 ]
+"2178
+[; ;Source/FreeRTOS/queue.c: 2178: {
+[f ]
+"2179
+[; ;Source/FreeRTOS/queue.c: 2179:     BaseType_t xReturn = ( ( BaseType_t ) 0 );
+[v _xReturn `c ~T0 @X0 1 a ]
+[e = _xReturn -> -> 0 `i `c ]
+"2180
+[; ;Source/FreeRTOS/queue.c: 2180:     UBaseType_t uxMessagesWaiting;
+[v _uxMessagesWaiting `uc ~T0 @X0 1 a ]
+"2184
+[; ;Source/FreeRTOS/queue.c: 2184:     uxMessagesWaiting = pxQueue->uxMessagesWaiting;
+[e = _uxMessagesWaiting . *U _pxQueue 5 ]
+"2186
+[; ;Source/FreeRTOS/queue.c: 2186:     if( pxQueue->uxItemSize == ( UBaseType_t ) 0 )
+[e $ ! == -> . *U _pxQueue 7 `i -> -> -> 0 `i `uc `i 1157  ]
+"2187
+[; ;Source/FreeRTOS/queue.c: 2187:     {
+{
+"2202
+[; ;Source/FreeRTOS/queue.c: 2202:     }
+}
+[e $U 1158  ]
+"2203
+[; ;Source/FreeRTOS/queue.c: 2203:     else if( xPosition == ( ( BaseType_t ) 0 ) )
+[e :U 1157 ]
+[e $ ! == -> _xPosition `i -> -> -> 0 `i `c `i 1159  ]
+"2204
+[; ;Source/FreeRTOS/queue.c: 2204:     {
+{
+"2205
+[; ;Source/FreeRTOS/queue.c: 2205:         ( void ) memcpy( ( void * ) pxQueue->pcWriteTo, pvItemToQueue, ( size_t ) pxQueue->uxItemSize );
+[e ( _memcpy (3 , , -> . *U _pxQueue 1 `*v _pvItemToQueue -> . *U _pxQueue 7 `ui ]
+"2206
+[; ;Source/FreeRTOS/queue.c: 2206:         pxQueue->pcWriteTo += pxQueue->uxItemSize;
+[e =+ . *U _pxQueue 1 * -> -> . *U _pxQueue 7 `i `x -> -> # *U . *U _pxQueue 1 `i `x ]
+"2208
+[; ;Source/FreeRTOS/queue.c: 2208:         if( pxQueue->pcWriteTo >= pxQueue->u.xQueue.pcTail )
+[e $ ! >= . *U _pxQueue 1 . . . *U _pxQueue 2 0 0 1160  ]
+"2209
+[; ;Source/FreeRTOS/queue.c: 2209:         {
+{
+"2210
+[; ;Source/FreeRTOS/queue.c: 2210:             pxQueue->pcWriteTo = pxQueue->pcHead;
+[e = . *U _pxQueue 1 . *U _pxQueue 0 ]
+"2211
+[; ;Source/FreeRTOS/queue.c: 2211:         }
+}
+[e $U 1161  ]
+"2212
+[; ;Source/FreeRTOS/queue.c: 2212:         else
+[e :U 1160 ]
+"2213
+[; ;Source/FreeRTOS/queue.c: 2213:         {
+{
+"2215
+[; ;Source/FreeRTOS/queue.c: 2215:         }
+}
+[e :U 1161 ]
+"2216
+[; ;Source/FreeRTOS/queue.c: 2216:     }
+}
+[e $U 1162  ]
+"2217
+[; ;Source/FreeRTOS/queue.c: 2217:     else
+[e :U 1159 ]
+"2218
+[; ;Source/FreeRTOS/queue.c: 2218:     {
+{
+"2219
+[; ;Source/FreeRTOS/queue.c: 2219:         ( void ) memcpy( ( void * ) pxQueue->u.xQueue.pcReadFrom, pvItemToQueue, ( size_t ) pxQueue->uxItemSize );
+[e ( _memcpy (3 , , -> . . . *U _pxQueue 2 0 1 `*v _pvItemToQueue -> . *U _pxQueue 7 `ui ]
+"2220
+[; ;Source/FreeRTOS/queue.c: 2220:         pxQueue->u.xQueue.pcReadFrom -= pxQueue->uxItemSize;
+[e =- . . . *U _pxQueue 2 0 1 * -> -> . *U _pxQueue 7 `i `x -> -> # *U . . . *U _pxQueue 2 0 1 `i `x ]
+"2222
+[; ;Source/FreeRTOS/queue.c: 2222:         if( pxQueue->u.xQueue.pcReadFrom < pxQueue->pcHead )
+[e $ ! < . . . *U _pxQueue 2 0 1 . *U _pxQueue 0 1163  ]
+"2223
+[; ;Source/FreeRTOS/queue.c: 2223:         {
+{
+"2224
+[; ;Source/FreeRTOS/queue.c: 2224:             pxQueue->u.xQueue.pcReadFrom = ( pxQueue->u.xQueue.pcTail - pxQueue->uxItemSize );
+[e = . . . *U _pxQueue 2 0 1 - . . . *U _pxQueue 2 0 0 * -> -> . *U _pxQueue 7 `i `x -> -> # *U . . . *U _pxQueue 2 0 0 `i `x ]
+"2225
+[; ;Source/FreeRTOS/queue.c: 2225:         }
+}
+[e $U 1164  ]
+"2226
+[; ;Source/FreeRTOS/queue.c: 2226:         else
+[e :U 1163 ]
+"2227
+[; ;Source/FreeRTOS/queue.c: 2227:         {
+{
+"2229
+[; ;Source/FreeRTOS/queue.c: 2229:         }
+}
+[e :U 1164 ]
+"2231
+[; ;Source/FreeRTOS/queue.c: 2231:         if( xPosition == ( ( BaseType_t ) 2 ) )
+[e $ ! == -> _xPosition `i -> -> -> 2 `i `c `i 1165  ]
+"2232
+[; ;Source/FreeRTOS/queue.c: 2232:         {
+{
+"2233
+[; ;Source/FreeRTOS/queue.c: 2233:             if( uxMessagesWaiting > ( UBaseType_t ) 0 )
+[e $ ! > -> _uxMessagesWaiting `i -> -> -> 0 `i `uc `i 1166  ]
+"2234
+[; ;Source/FreeRTOS/queue.c: 2234:             {
+{
+"2239
+[; ;Source/FreeRTOS/queue.c: 2239:                 --uxMessagesWaiting;
+[e =- _uxMessagesWaiting -> -> 1 `i `uc ]
+"2240
+[; ;Source/FreeRTOS/queue.c: 2240:             }
+}
+[e $U 1167  ]
+"2241
+[; ;Source/FreeRTOS/queue.c: 2241:             else
+[e :U 1166 ]
+"2242
+[; ;Source/FreeRTOS/queue.c: 2242:             {
+{
+"2244
+[; ;Source/FreeRTOS/queue.c: 2244:             }
+}
+[e :U 1167 ]
+"2245
+[; ;Source/FreeRTOS/queue.c: 2245:         }
+}
+[e $U 1168  ]
+"2246
+[; ;Source/FreeRTOS/queue.c: 2246:         else
+[e :U 1165 ]
+"2247
+[; ;Source/FreeRTOS/queue.c: 2247:         {
+{
+"2249
+[; ;Source/FreeRTOS/queue.c: 2249:         }
+}
+[e :U 1168 ]
+"2250
+[; ;Source/FreeRTOS/queue.c: 2250:     }
+}
+[e :U 1162 ]
+[e :U 1158 ]
+"2252
+[; ;Source/FreeRTOS/queue.c: 2252:     pxQueue->uxMessagesWaiting = uxMessagesWaiting + ( UBaseType_t ) 1;
+[e = . *U _pxQueue 5 -> + -> _uxMessagesWaiting `i -> -> -> 1 `i `uc `i `uc ]
+"2254
+[; ;Source/FreeRTOS/queue.c: 2254:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1156  ]
+"2255
+[; ;Source/FreeRTOS/queue.c: 2255: }
+[e :UE 1156 ]
+}
+"2258
+[; ;Source/FreeRTOS/queue.c: 2258: static void prvCopyDataFromQueue( Queue_t * const pxQueue,
+[v _prvCopyDataFromQueue `(v ~T0 @X0 1 sf2`C*S941`C*v ]
+"2260
+[; ;Source/FreeRTOS/queue.c: 2260: {
+{
+[e :U _prvCopyDataFromQueue ]
+[v F7729 `*S941 ~T0 @X0 1 t ]
+"2258
+[; ;Source/FreeRTOS/queue.c: 2258: static void prvCopyDataFromQueue( Queue_t * const pxQueue,
+[v _pxQueue `C*S941 ~T0 @X0 1 r1 ]
+[v F7731 `*v ~T0 @X0 1 t ]
+"2259
+[; ;Source/FreeRTOS/queue.c: 2259:                                   void * const pvBuffer )
+[v _pvBuffer `C*v ~T0 @X0 1 r2 ]
+"2260
+[; ;Source/FreeRTOS/queue.c: 2260: {
+[f ]
+"2261
+[; ;Source/FreeRTOS/queue.c: 2261:     if( pxQueue->uxItemSize != ( UBaseType_t ) 0 )
+[e $ ! != -> . *U _pxQueue 7 `i -> -> -> 0 `i `uc `i 1170  ]
+"2262
+[; ;Source/FreeRTOS/queue.c: 2262:     {
+{
+"2263
+[; ;Source/FreeRTOS/queue.c: 2263:         pxQueue->u.xQueue.pcReadFrom += pxQueue->uxItemSize;
+[e =+ . . . *U _pxQueue 2 0 1 * -> -> . *U _pxQueue 7 `i `x -> -> # *U . . . *U _pxQueue 2 0 1 `i `x ]
+"2265
+[; ;Source/FreeRTOS/queue.c: 2265:         if( pxQueue->u.xQueue.pcReadFrom >= pxQueue->u.xQueue.pcTail )
+[e $ ! >= . . . *U _pxQueue 2 0 1 . . . *U _pxQueue 2 0 0 1171  ]
+"2266
+[; ;Source/FreeRTOS/queue.c: 2266:         {
+{
+"2267
+[; ;Source/FreeRTOS/queue.c: 2267:             pxQueue->u.xQueue.pcReadFrom = pxQueue->pcHead;
+[e = . . . *U _pxQueue 2 0 1 . *U _pxQueue 0 ]
+"2268
+[; ;Source/FreeRTOS/queue.c: 2268:         }
+}
+[e $U 1172  ]
+"2269
+[; ;Source/FreeRTOS/queue.c: 2269:         else
+[e :U 1171 ]
+"2270
+[; ;Source/FreeRTOS/queue.c: 2270:         {
+{
+"2272
+[; ;Source/FreeRTOS/queue.c: 2272:         }
+}
+[e :U 1172 ]
+"2274
+[; ;Source/FreeRTOS/queue.c: 2274:         ( void ) memcpy( ( void * ) pvBuffer, ( void * ) pxQueue->u.xQueue.pcReadFrom, ( size_t ) pxQueue->uxItemSize );
+[e ( _memcpy (3 , , _pvBuffer -> -> . . . *U _pxQueue 2 0 1 `*v `*Cv -> . *U _pxQueue 7 `ui ]
+"2275
+[; ;Source/FreeRTOS/queue.c: 2275:     }
+}
+[e :U 1170 ]
+"2276
+[; ;Source/FreeRTOS/queue.c: 2276: }
+[e :UE 1169 ]
+}
+"2279
+[; ;Source/FreeRTOS/queue.c: 2279: static void prvUnlockQueue( Queue_t * const pxQueue )
+[v _prvUnlockQueue `(v ~T0 @X0 1 sf1`C*S941 ]
+"2280
+[; ;Source/FreeRTOS/queue.c: 2280: {
+{
+[e :U _prvUnlockQueue ]
+[v F7735 `*S941 ~T0 @X0 1 t ]
+"2279
+[; ;Source/FreeRTOS/queue.c: 2279: static void prvUnlockQueue( Queue_t * const pxQueue )
+[v _pxQueue `C*S941 ~T0 @X0 1 r1 ]
+"2280
+[; ;Source/FreeRTOS/queue.c: 2280: {
+[f ]
+"2287
+[; ;Source/FreeRTOS/queue.c: 2287:     POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"2288
+[; ;Source/FreeRTOS/queue.c: 2288:     {
+{
+"2289
+[; ;Source/FreeRTOS/queue.c: 2289:         int8_t cTxLock = pxQueue->cTxLock;
+[v _cTxLock `c ~T0 @X0 1 a ]
+[e = _cTxLock . *U _pxQueue 9 ]
+"2292
+[; ;Source/FreeRTOS/queue.c: 2292:         while( cTxLock > ( ( int8_t ) 0 ) )
+[e $U 1174  ]
+[e :U 1175 ]
+"2293
+[; ;Source/FreeRTOS/queue.c: 2293:         {
+{
+"2337
+[; ;Source/FreeRTOS/queue.c: 2337:             {
+{
+"2340
+[; ;Source/FreeRTOS/queue.c: 2340:                 if( ( ( ( &( pxQueue->xTasksWaitingToReceive ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == ? == -> . *U &U . *U _pxQueue 4 0 `i -> -> -> 0 `i `uc `i : -> -> -> 1 `i `c `i -> -> -> 0 `i `c `i -> -> -> 0 `i `c `i 1177  ]
+"2341
+[; ;Source/FreeRTOS/queue.c: 2341:                 {
+{
+"2342
+[; ;Source/FreeRTOS/queue.c: 2342:                     if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToReceive ) ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _xTaskRemoveFromEventList (1 -> &U . *U _pxQueue 4 `*CS931 `i -> -> -> 0 `i `c `i 1178  ]
+"2343
+[; ;Source/FreeRTOS/queue.c: 2343:                     {
+{
+"2346
+[; ;Source/FreeRTOS/queue.c: 2346:                         vTaskMissedYield();
+[e ( _vTaskMissedYield ..  ]
+"2347
+[; ;Source/FreeRTOS/queue.c: 2347:                     }
+}
+[e $U 1179  ]
+"2348
+[; ;Source/FreeRTOS/queue.c: 2348:                     else
+[e :U 1178 ]
+"2349
+[; ;Source/FreeRTOS/queue.c: 2349:                     {
+{
+"2351
+[; ;Source/FreeRTOS/queue.c: 2351:                     }
+}
+[e :U 1179 ]
+"2352
+[; ;Source/FreeRTOS/queue.c: 2352:                 }
+}
+[e $U 1180  ]
+"2353
+[; ;Source/FreeRTOS/queue.c: 2353:                 else
+[e :U 1177 ]
+"2354
+[; ;Source/FreeRTOS/queue.c: 2354:                 {
+{
+"2355
+[; ;Source/FreeRTOS/queue.c: 2355:                     break;
+[e $U 1176  ]
+"2356
+[; ;Source/FreeRTOS/queue.c: 2356:                 }
+}
+[e :U 1180 ]
+"2357
+[; ;Source/FreeRTOS/queue.c: 2357:             }
+}
+"2360
+[; ;Source/FreeRTOS/queue.c: 2360:             --cTxLock;
+[e =- _cTxLock -> -> 1 `i `c ]
+"2361
+[; ;Source/FreeRTOS/queue.c: 2361:         }
+}
+[e :U 1174 ]
+"2292
+[; ;Source/FreeRTOS/queue.c: 2292:         while( cTxLock > ( ( int8_t ) 0 ) )
+[e $ > -> _cTxLock `i -> -> -> 0 `i `c `i 1175  ]
+[e :U 1176 ]
+"2363
+[; ;Source/FreeRTOS/queue.c: 2363:         pxQueue->cTxLock = ( ( int8_t ) -1 );
+[e = . *U _pxQueue 9 -> -U -> 1 `i `c ]
+"2364
+[; ;Source/FreeRTOS/queue.c: 2364:     }
+}
+"2365
+[; ;Source/FreeRTOS/queue.c: 2365:     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1181  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1181 ]
+"2368
+[; ;Source/FreeRTOS/queue.c: 2368:     POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"2369
+[; ;Source/FreeRTOS/queue.c: 2369:     {
+{
+"2370
+[; ;Source/FreeRTOS/queue.c: 2370:         int8_t cRxLock = pxQueue->cRxLock;
+[v _cRxLock `c ~T0 @X0 1 a ]
+[e = _cRxLock . *U _pxQueue 8 ]
+"2372
+[; ;Source/FreeRTOS/queue.c: 2372:         while( cRxLock > ( ( int8_t ) 0 ) )
+[e $U 1182  ]
+[e :U 1183 ]
+"2373
+[; ;Source/FreeRTOS/queue.c: 2373:         {
+{
+"2374
+[; ;Source/FreeRTOS/queue.c: 2374:             if( ( ( ( &( pxQueue->xTasksWaitingToSend ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) == ( ( BaseType_t ) 0 ) )
+[e $ ! == ? == -> . *U &U . *U _pxQueue 3 0 `i -> -> -> 0 `i `uc `i : -> -> -> 1 `i `c `i -> -> -> 0 `i `c `i -> -> -> 0 `i `c `i 1185  ]
+"2375
+[; ;Source/FreeRTOS/queue.c: 2375:             {
+{
+"2376
+[; ;Source/FreeRTOS/queue.c: 2376:                 if( xTaskRemoveFromEventList( &( pxQueue->xTasksWaitingToSend ) ) != ( ( BaseType_t ) 0 ) )
+[e $ ! != -> ( _xTaskRemoveFromEventList (1 -> &U . *U _pxQueue 3 `*CS931 `i -> -> -> 0 `i `c `i 1186  ]
+"2377
+[; ;Source/FreeRTOS/queue.c: 2377:                 {
+{
+"2378
+[; ;Source/FreeRTOS/queue.c: 2378:                     vTaskMissedYield();
+[e ( _vTaskMissedYield ..  ]
+"2379
+[; ;Source/FreeRTOS/queue.c: 2379:                 }
+}
+[e $U 1187  ]
+"2380
+[; ;Source/FreeRTOS/queue.c: 2380:                 else
+[e :U 1186 ]
+"2381
+[; ;Source/FreeRTOS/queue.c: 2381:                 {
+{
+"2383
+[; ;Source/FreeRTOS/queue.c: 2383:                 }
+}
+[e :U 1187 ]
+"2385
+[; ;Source/FreeRTOS/queue.c: 2385:                 --cRxLock;
+[e =- _cRxLock -> -> 1 `i `c ]
+"2386
+[; ;Source/FreeRTOS/queue.c: 2386:             }
+}
+[e $U 1188  ]
+"2387
+[; ;Source/FreeRTOS/queue.c: 2387:             else
+[e :U 1185 ]
+"2388
+[; ;Source/FreeRTOS/queue.c: 2388:             {
+{
+"2389
+[; ;Source/FreeRTOS/queue.c: 2389:                 break;
+[e $U 1184  ]
+"2390
+[; ;Source/FreeRTOS/queue.c: 2390:             }
+}
+[e :U 1188 ]
+"2391
+[; ;Source/FreeRTOS/queue.c: 2391:         }
+}
+[e :U 1182 ]
+"2372
+[; ;Source/FreeRTOS/queue.c: 2372:         while( cRxLock > ( ( int8_t ) 0 ) )
+[e $ > -> _cRxLock `i -> -> -> 0 `i `c `i 1183  ]
+[e :U 1184 ]
+"2393
+[; ;Source/FreeRTOS/queue.c: 2393:         pxQueue->cRxLock = ( ( int8_t ) -1 );
+[e = . *U _pxQueue 8 -> -U -> 1 `i `c ]
+"2394
+[; ;Source/FreeRTOS/queue.c: 2394:     }
+}
+"2395
+[; ;Source/FreeRTOS/queue.c: 2395:     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1189  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1189 ]
+"2396
+[; ;Source/FreeRTOS/queue.c: 2396: }
+[e :UE 1173 ]
+}
+"2399
+[; ;Source/FreeRTOS/queue.c: 2399: static BaseType_t prvIsQueueEmpty( const Queue_t * pxQueue )
+[v _prvIsQueueEmpty `(c ~T0 @X0 1 sf1`*CS941 ]
+"2400
+[; ;Source/FreeRTOS/queue.c: 2400: {
+{
+[e :U _prvIsQueueEmpty ]
+"2399
+[; ;Source/FreeRTOS/queue.c: 2399: static BaseType_t prvIsQueueEmpty( const Queue_t * pxQueue )
+[v _pxQueue `*CS941 ~T0 @X0 1 r1 ]
+"2400
+[; ;Source/FreeRTOS/queue.c: 2400: {
+[f ]
+"2401
+[; ;Source/FreeRTOS/queue.c: 2401:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"2403
+[; ;Source/FreeRTOS/queue.c: 2403:     POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"2404
+[; ;Source/FreeRTOS/queue.c: 2404:     {
+{
+"2405
+[; ;Source/FreeRTOS/queue.c: 2405:         if( pxQueue->uxMessagesWaiting == ( UBaseType_t ) 0 )
+[e $ ! == -> . *U _pxQueue 5 `i -> -> -> 0 `i `uc `i 1191  ]
+"2406
+[; ;Source/FreeRTOS/queue.c: 2406:         {
+{
+"2407
+[; ;Source/FreeRTOS/queue.c: 2407:             xReturn = ( ( BaseType_t ) 1 );
+[e = _xReturn -> -> 1 `i `c ]
+"2408
+[; ;Source/FreeRTOS/queue.c: 2408:         }
+}
+[e $U 1192  ]
+"2409
+[; ;Source/FreeRTOS/queue.c: 2409:         else
+[e :U 1191 ]
+"2410
+[; ;Source/FreeRTOS/queue.c: 2410:         {
+{
+"2411
+[; ;Source/FreeRTOS/queue.c: 2411:             xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"2412
+[; ;Source/FreeRTOS/queue.c: 2412:         }
+}
+[e :U 1192 ]
+"2413
+[; ;Source/FreeRTOS/queue.c: 2413:     }
+}
+"2414
+[; ;Source/FreeRTOS/queue.c: 2414:     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1193  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1193 ]
+"2416
+[; ;Source/FreeRTOS/queue.c: 2416:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1190  ]
+"2417
+[; ;Source/FreeRTOS/queue.c: 2417: }
+[e :UE 1190 ]
+}
+"2420
+[; ;Source/FreeRTOS/queue.c: 2420: BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue )
+[v _xQueueIsQueueEmptyFromISR `(c ~T0 @X0 1 ef1`C*S941 ]
+"2421
+[; ;Source/FreeRTOS/queue.c: 2421: {
+{
+[e :U _xQueueIsQueueEmptyFromISR ]
+[v F7744 `*S941 ~T0 @X0 1 t ]
+"2420
+[; ;Source/FreeRTOS/queue.c: 2420: BaseType_t xQueueIsQueueEmptyFromISR( const QueueHandle_t xQueue )
+[v _xQueue `C*S941 ~T0 @X0 1 r1 ]
+"2421
+[; ;Source/FreeRTOS/queue.c: 2421: {
+[f ]
+"2422
+[; ;Source/FreeRTOS/queue.c: 2422:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+[v F7747 `*S941 ~T0 @X0 1 t ]
+"2423
+[; ;Source/FreeRTOS/queue.c: 2423:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"2425
+[; ;Source/FreeRTOS/queue.c: 2425:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 2425 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1195  ]
+[e ( _Xprintf , (. :s 31C -> 2425 `i ]
+[e :U 1195 ]
+"2427
+[; ;Source/FreeRTOS/queue.c: 2427:     if( pxQueue->uxMessagesWaiting == ( UBaseType_t ) 0 )
+[e $ ! == -> . *U _pxQueue 5 `i -> -> -> 0 `i `uc `i 1196  ]
+"2428
+[; ;Source/FreeRTOS/queue.c: 2428:     {
+{
+"2429
+[; ;Source/FreeRTOS/queue.c: 2429:         xReturn = ( ( BaseType_t ) 1 );
+[e = _xReturn -> -> 1 `i `c ]
+"2430
+[; ;Source/FreeRTOS/queue.c: 2430:     }
+}
+[e $U 1197  ]
+"2431
+[; ;Source/FreeRTOS/queue.c: 2431:     else
+[e :U 1196 ]
+"2432
+[; ;Source/FreeRTOS/queue.c: 2432:     {
+{
+"2433
+[; ;Source/FreeRTOS/queue.c: 2433:         xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"2434
+[; ;Source/FreeRTOS/queue.c: 2434:     }
+}
+[e :U 1197 ]
+"2436
+[; ;Source/FreeRTOS/queue.c: 2436:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1194  ]
+"2437
+[; ;Source/FreeRTOS/queue.c: 2437: }
+[e :UE 1194 ]
+}
+"2440
+[; ;Source/FreeRTOS/queue.c: 2440: static BaseType_t prvIsQueueFull( const Queue_t * pxQueue )
+[v _prvIsQueueFull `(c ~T0 @X0 1 sf1`*CS941 ]
+"2441
+[; ;Source/FreeRTOS/queue.c: 2441: {
+{
+[e :U _prvIsQueueFull ]
+"2440
+[; ;Source/FreeRTOS/queue.c: 2440: static BaseType_t prvIsQueueFull( const Queue_t * pxQueue )
+[v _pxQueue `*CS941 ~T0 @X0 1 r1 ]
+"2441
+[; ;Source/FreeRTOS/queue.c: 2441: {
+[f ]
+"2442
+[; ;Source/FreeRTOS/queue.c: 2442:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+"2444
+[; ;Source/FreeRTOS/queue.c: 2444:     POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+[e = _POSTINC1 _INTCON ]
+[e = . . _INTCONbits 0 7 -> -> 0 `i `uc ]
+"2445
+[; ;Source/FreeRTOS/queue.c: 2445:     {
+{
+"2446
+[; ;Source/FreeRTOS/queue.c: 2446:         if( pxQueue->uxMessagesWaiting == pxQueue->uxLength )
+[e $ ! == -> . *U _pxQueue 5 `i -> . *U _pxQueue 6 `i 1199  ]
+"2447
+[; ;Source/FreeRTOS/queue.c: 2447:         {
+{
+"2448
+[; ;Source/FreeRTOS/queue.c: 2448:             xReturn = ( ( BaseType_t ) 1 );
+[e = _xReturn -> -> 1 `i `c ]
+"2449
+[; ;Source/FreeRTOS/queue.c: 2449:         }
+}
+[e $U 1200  ]
+"2450
+[; ;Source/FreeRTOS/queue.c: 2450:         else
+[e :U 1199 ]
+"2451
+[; ;Source/FreeRTOS/queue.c: 2451:         {
+{
+"2452
+[; ;Source/FreeRTOS/queue.c: 2452:             xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"2453
+[; ;Source/FreeRTOS/queue.c: 2453:         }
+}
+[e :U 1200 ]
+"2454
+[; ;Source/FreeRTOS/queue.c: 2454:     }
+}
+"2455
+[; ;Source/FreeRTOS/queue.c: 2455:     __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+[; <" MOVF	POSTDEC1, 1, 0 ;# ">
+[e $ ! != & -> _INDF1 `i -> 128 `i -> 0 `i 1201  ]
+{
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+}
+[e :U 1201 ]
+"2457
+[; ;Source/FreeRTOS/queue.c: 2457:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1198  ]
+"2458
+[; ;Source/FreeRTOS/queue.c: 2458: }
+[e :UE 1198 ]
+}
+"2461
+[; ;Source/FreeRTOS/queue.c: 2461: BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue )
+[v _xQueueIsQueueFullFromISR `(c ~T0 @X0 1 ef1`C*S941 ]
+"2462
+[; ;Source/FreeRTOS/queue.c: 2462: {
+{
+[e :U _xQueueIsQueueFullFromISR ]
+[v F7754 `*S941 ~T0 @X0 1 t ]
+"2461
+[; ;Source/FreeRTOS/queue.c: 2461: BaseType_t xQueueIsQueueFullFromISR( const QueueHandle_t xQueue )
+[v _xQueue `C*S941 ~T0 @X0 1 r1 ]
+"2462
+[; ;Source/FreeRTOS/queue.c: 2462: {
+[f ]
+"2463
+[; ;Source/FreeRTOS/queue.c: 2463:     BaseType_t xReturn;
+[v _xReturn `c ~T0 @X0 1 a ]
+[v F7757 `*S941 ~T0 @X0 1 t ]
+"2464
+[; ;Source/FreeRTOS/queue.c: 2464:     Queue_t * const pxQueue = xQueue;
+[v _pxQueue `C*S941 ~T0 @X0 1 a ]
+[e = _pxQueue _xQueue ]
+"2466
+[; ;Source/FreeRTOS/queue.c: 2466:     if( ( pxQueue ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/queue.c", 2466 );
+[e $ ! == _pxQueue -> -> 0 `i `*S941 1203  ]
+[e ( _Xprintf , (. :s 32C -> 2466 `i ]
+[e :U 1203 ]
+"2468
+[; ;Source/FreeRTOS/queue.c: 2468:     if( pxQueue->uxMessagesWaiting == pxQueue->uxLength )
+[e $ ! == -> . *U _pxQueue 5 `i -> . *U _pxQueue 6 `i 1204  ]
+"2469
+[; ;Source/FreeRTOS/queue.c: 2469:     {
+{
+"2470
+[; ;Source/FreeRTOS/queue.c: 2470:         xReturn = ( ( BaseType_t ) 1 );
+[e = _xReturn -> -> 1 `i `c ]
+"2471
+[; ;Source/FreeRTOS/queue.c: 2471:     }
+}
+[e $U 1205  ]
+"2472
+[; ;Source/FreeRTOS/queue.c: 2472:     else
+[e :U 1204 ]
+"2473
+[; ;Source/FreeRTOS/queue.c: 2473:     {
+{
+"2474
+[; ;Source/FreeRTOS/queue.c: 2474:         xReturn = ( ( BaseType_t ) 0 );
+[e = _xReturn -> -> 0 `i `c ]
+"2475
+[; ;Source/FreeRTOS/queue.c: 2475:     }
+}
+[e :U 1205 ]
+"2477
+[; ;Source/FreeRTOS/queue.c: 2477:     return xReturn;
+[e ) _xReturn ]
+[e $UE 1202  ]
+"2478
+[; ;Source/FreeRTOS/queue.c: 2478: }
+[e :UE 1202 ]
+}
+[a 1C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 2C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 3C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 4C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 5C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 6C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 7C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 8C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 9C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 10C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 11C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 12C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 13C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 14C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 15C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 16C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 17C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 18C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 19C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 20C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 21C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 22C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 23C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 24C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 25C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 26C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 27C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 28C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 29C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 30C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 31C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]
+[a 32C 65 83 83 69 82 84 58 37 115 58 37 100 13 10 83 111 117 114 99 101 47 70 114 101 101 82 84 79 83 47 113 117 101 117 101 46 99 0 ]

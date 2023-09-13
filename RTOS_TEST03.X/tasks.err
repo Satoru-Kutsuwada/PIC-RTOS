@@ -1,0 +1,2 @@
+Error[1027] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\include\FreeRTOS.h 50 : unable to locate 'stdint.h'
+Error[1020] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\tasks.c 1131 : unexpected input following '#endif'

@@ -1,0 +1,3 @@
+Error[1027] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\include\FreeRTOS.h 50 : unable to locate 'stdint.h'
+Error[1027] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\uart_main.c 3 : unable to locate 'xc.h'
+Error[1027] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\uart_main.c 7 : unable to locate 'stdbool.h'
