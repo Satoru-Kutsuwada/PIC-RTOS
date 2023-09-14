@@ -11740,11 +11740,14 @@ BaseType_t xPortStartScheduler( void ) ;
 
 void vPortEndScheduler( void ) ;
 # 65 "Source/FreeRTOS/include\\FreeRTOS.h" 2
-# 318 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 320 "Source/FreeRTOS/include\\FreeRTOS.h"
 extern const char ConvC[];
-# 356 "Source/FreeRTOS/include\\FreeRTOS.h"
+extern uint8_t isr_cbuf[];
+extern uint8_t isr_cnt;
+void putstring(char *c);
+# 380 "Source/FreeRTOS/include\\FreeRTOS.h"
 void Xprintf(const char *string, ...);
-# 1249 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1273 "Source/FreeRTOS/include\\FreeRTOS.h"
 struct xSTATIC_LIST_ITEM
 {
 
@@ -11786,7 +11789,7 @@ typedef struct xSTATIC_LIST
 
 
 } StaticList_t;
-# 1304 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1328 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_TCB
 {
     void * pxDummy1;
@@ -11805,12 +11808,12 @@ typedef struct xSTATIC_TCB
 
 
         UBaseType_t uxDummy10[ 2 ];
-# 1339 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1363 "Source/FreeRTOS/include\\FreeRTOS.h"
         uint32_t ulDummy18[ 1 ];
         uint8_t ucDummy19[ 1 ];
-# 1352 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1376 "Source/FreeRTOS/include\\FreeRTOS.h"
 } StaticTask_t;
-# 1368 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1392 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_QUEUE
 {
     void * pvDummy1[ 3 ];
@@ -11824,13 +11827,13 @@ typedef struct xSTATIC_QUEUE
     StaticList_t xDummy3[ 2 ];
     UBaseType_t uxDummy4[ 3 ];
     uint8_t ucDummy5[ 2 ];
-# 1391 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1415 "Source/FreeRTOS/include\\FreeRTOS.h"
         UBaseType_t uxDummy8;
         uint8_t ucDummy9;
 
 } StaticQueue_t;
 typedef StaticQueue_t StaticSemaphore_t;
-# 1411 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1435 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_EVENT_GROUP
 {
     TickType_t xDummy1;
@@ -11844,7 +11847,7 @@ typedef struct xSTATIC_EVENT_GROUP
 
 
 } StaticEventGroup_t;
-# 1439 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1463 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_TIMER
 {
     void * pvDummy1;
@@ -11857,7 +11860,7 @@ typedef struct xSTATIC_TIMER
 
     uint8_t ucDummy8;
 } StaticTimer_t;
-# 1466 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1490 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_STREAM_BUFFER
 {
     size_t uxDummy1[ 4 ];

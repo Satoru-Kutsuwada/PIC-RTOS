@@ -9,8 +9,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "117 Source/FreeRTOS/MemMang/heap_4.c
 [; ;Source/FreeRTOS/MemMang/heap_4.c: 117: static void prvHeapInit( void ) ;
 [v _prvHeapInit `(v ~T0 @X0 0 sf ]
-"356 Source/FreeRTOS/include\FreeRTOS.h
-[; ;Source/FreeRTOS/include\FreeRTOS.h: 356: void Xprintf(const char *string, ...);
+"380 Source/FreeRTOS/include\FreeRTOS.h
+[; ;Source/FreeRTOS/include\FreeRTOS.h: 380: void Xprintf(const char *string, ...);
 [v _Xprintf `(v ~T0 @X0 0 ev`*Cuc ]
 "111 Source/FreeRTOS/MemMang/heap_4.c
 [; ;Source/FreeRTOS/MemMang/heap_4.c: 111: static void prvInsertBlockIntoFreeList( BlockLink_t * pxBlockToInsert ) ;

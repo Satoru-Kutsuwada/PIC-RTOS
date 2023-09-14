@@ -11737,11 +11737,14 @@ BaseType_t xPortStartScheduler( void ) ;
 
 void vPortEndScheduler( void ) ;
 # 65 "Source/FreeRTOS/include\\FreeRTOS.h" 2
-# 318 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 320 "Source/FreeRTOS/include\\FreeRTOS.h"
 extern const char ConvC[];
-# 356 "Source/FreeRTOS/include\\FreeRTOS.h"
+extern uint8_t isr_cbuf[];
+extern uint8_t isr_cnt;
+void putstring(char *c);
+# 380 "Source/FreeRTOS/include\\FreeRTOS.h"
 void Xprintf(const char *string, ...);
-# 1249 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1273 "Source/FreeRTOS/include\\FreeRTOS.h"
 struct xSTATIC_LIST_ITEM
 {
 
@@ -11783,7 +11786,7 @@ typedef struct xSTATIC_LIST
 
 
 } StaticList_t;
-# 1304 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1328 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_TCB
 {
     void * pxDummy1;
@@ -11802,12 +11805,12 @@ typedef struct xSTATIC_TCB
 
 
         UBaseType_t uxDummy10[ 2 ];
-# 1339 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1363 "Source/FreeRTOS/include\\FreeRTOS.h"
         uint32_t ulDummy18[ 1 ];
         uint8_t ucDummy19[ 1 ];
-# 1352 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1376 "Source/FreeRTOS/include\\FreeRTOS.h"
 } StaticTask_t;
-# 1368 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1392 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_QUEUE
 {
     void * pvDummy1[ 3 ];
@@ -11821,13 +11824,13 @@ typedef struct xSTATIC_QUEUE
     StaticList_t xDummy3[ 2 ];
     UBaseType_t uxDummy4[ 3 ];
     uint8_t ucDummy5[ 2 ];
-# 1391 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1415 "Source/FreeRTOS/include\\FreeRTOS.h"
         UBaseType_t uxDummy8;
         uint8_t ucDummy9;
 
 } StaticQueue_t;
 typedef StaticQueue_t StaticSemaphore_t;
-# 1411 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1435 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_EVENT_GROUP
 {
     TickType_t xDummy1;
@@ -11841,7 +11844,7 @@ typedef struct xSTATIC_EVENT_GROUP
 
 
 } StaticEventGroup_t;
-# 1439 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1463 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_TIMER
 {
     void * pvDummy1;
@@ -11854,7 +11857,7 @@ typedef struct xSTATIC_TIMER
 
     uint8_t ucDummy8;
 } StaticTimer_t;
-# 1466 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1490 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_STREAM_BUFFER
 {
     size_t uxDummy1[ 4 ];
@@ -12362,6 +12365,7 @@ StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t px
 uint32_t ulAddress;
 uint8_t ucBlock;
 
+    do { if( isr_cnt < 10 ){ const char* _s = ("pIS="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 1 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 1 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
 
 
 
@@ -12459,7 +12463,6 @@ uint8_t ucBlock;
  pxTopOfStack++;
 
 
-
  ulAddress = ( uint32_t ) pxCode;
 
 
@@ -12475,7 +12478,6 @@ uint8_t ucBlock;
 
  *pxTopOfStack = ( StackType_t ) ( ulAddress & ( uint32_t ) 0x00ff );
  pxTopOfStack++;
-
 
 
  *pxTopOfStack = ( StackType_t ) 1;
@@ -12501,14 +12503,7 @@ BaseType_t xPortStartScheduler( void )
 
 
  { __asm("MOVFF	(_pxCurrentTCB), FSR0L;" "MOVFF	(_pxCurrentTCB + 1), FSR0H;" "MOVFF	POSTINC0, FSR1L;" "MOVFF	POSTINC0, FSR1H;" "MOVFF	POSTDEC1, FSR0L;" "MOVFF	POSTDEC1, FSR0L"); STKPTR = 0; while( STKPTR < FSR0L ) { __asm("PUSH"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSU, 0"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSH, 0"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSL, 0"); } __asm("MOVFF	POSTDEC1, FSR0H;" "MOVFF	POSTDEC1, FSR0L;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, INDF0;" "MOVFF	POSTDEC1, PCLATH;" "MOVFF	POSTDEC1, PCLATU;" "MOVFF	POSTDEC1, PRODL;" "MOVFF	POSTDEC1, PRODH;" "MOVFF	POSTDEC1, TBLPTRL;" "MOVFF	POSTDEC1, TBLPTRH;" "MOVFF	POSTDEC1, TBLPTRU;" "MOVFF	POSTDEC1, TABLAT;" "MOVFF	POSTDEC1, FSR0H;" "MOVFF	POSTDEC1, FSR0L;" "MOVFF	POSTDEC1, FSR2H;" "MOVFF	POSTDEC1, FSR2L;" "MOVFF	POSTDEC1, BSR;" "MOVFF	POSTDEC1, WREG"); __asm("MOVFF	POSTDEC1, STATUS"); __asm("MOVFF	POSTDEC1, WREG"); __asm("RETURN	0"); };
-
-
-
-
- ( void ) prvLowInterrupt;
- ( void ) prvTickISR;
-
-
+# 601 "Source/FreeRTOS/portable/PIC18F/port.c"
  return ( ( BaseType_t ) 1 );
 }
 
@@ -12538,35 +12533,38 @@ void vPortYield( void )
 
  { __asm("MOVFF	(_pxCurrentTCB), FSR0L;" "MOVFF	(_pxCurrentTCB + 1), FSR0H;" "MOVFF	POSTINC0, FSR1L;" "MOVFF	POSTINC0, FSR1H;" "MOVFF	POSTDEC1, FSR0L;" "MOVFF	POSTDEC1, FSR0L"); STKPTR = 0; while( STKPTR < FSR0L ) { __asm("PUSH"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSU, 0"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSH, 0"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSL, 0"); } __asm("MOVFF	POSTDEC1, FSR0H;" "MOVFF	POSTDEC1, FSR0L;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, POSTDEC0;" "MOVFF	POSTDEC1, INDF0;" "MOVFF	POSTDEC1, PCLATH;" "MOVFF	POSTDEC1, PCLATU;" "MOVFF	POSTDEC1, PRODL;" "MOVFF	POSTDEC1, PRODH;" "MOVFF	POSTDEC1, TBLPTRL;" "MOVFF	POSTDEC1, TBLPTRH;" "MOVFF	POSTDEC1, TBLPTRU;" "MOVFF	POSTDEC1, TABLAT;" "MOVFF	POSTDEC1, FSR0H;" "MOVFF	POSTDEC1, FSR0L;" "MOVFF	POSTDEC1, FSR2H;" "MOVFF	POSTDEC1, FSR2L;" "MOVFF	POSTDEC1, BSR;" "MOVFF	POSTDEC1, WREG"); __asm("MOVFF	POSTDEC1, STATUS"); __asm("MOVFF	POSTDEC1, WREG"); __asm("RETURN	0"); };
 }
-# 687 "Source/FreeRTOS/portable/PIC18F/port.c"
+# 686 "Source/FreeRTOS/portable/PIC18F/port.c"
 uint16_t timer_cnt;
 uint16_t timer_cnt_buf;
-# 755 "Source/FreeRTOS/portable/PIC18F/port.c"
+# 753 "Source/FreeRTOS/portable/PIC18F/port.c"
 void __attribute__((picinterrupt(("high_priority")))) high_isr(void)
 {
     if( PIR1bits.CCP1IF ){
-        { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); };
-        { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); };
-        { };
+        do { if( isr_cnt < 10 ){ const char* _s = ("ISR="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 1 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 1 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
+
+
 
 
         { __asm("MOVFF	WREG, PREINC1"); __asm("MOVFF   STATUS, PREINC1"); __asm("MOVFF	INTCON, WREG"); __asm("MOVFF	WREG, PREINC1"); INTCONbits.GIE_GIEH = 0;; __asm("MOVFF	BSR, PREINC1"); __asm("MOVFF	FSR2L, PREINC1"); __asm("MOVFF	FSR2H, PREINC1"); __asm("MOVFF	FSR0L, PREINC1"); __asm("MOVFF	FSR0H, PREINC1"); __asm("MOVFF	TABLAT, PREINC1"); __asm("MOVFF	TBLPTRU, PREINC1"); __asm("MOVFF	TBLPTRH, PREINC1"); __asm("MOVFF	TBLPTRL, PREINC1"); __asm("MOVFF	PRODH, PREINC1"); __asm("MOVFF	PRODL, PREINC1"); __asm("MOVFF	PCLATU, PREINC1"); __asm("MOVFF	PCLATH, PREINC1"); __asm("CLRF	FSR0L, 0"); __asm("CLRF	FSR0H, 0"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	POSTINC0, PREINC1"); __asm("MOVFF	INDF0, PREINC1"); __asm("MOVFF	FSR0L, PREINC1"); __asm("MOVFF	FSR0H, PREINC1"); __asm("MOVFF	STKPTR, FSR0L"); while( STKPTR > ( uint8_t ) 0 ) { __asm("MOVFF	TOSL, PREINC1"); __asm("MOVFF	TOSH, PREINC1"); __asm("MOVFF	TOSU, PREINC1"); __asm("POP"); } __asm("MOVFF	FSR0L, PREINC1"); __asm("MOVF	PREINC1, 1, 0"); __asm("MOVFF	(_pxCurrentTCB), FSR0L"); __asm("MOVFF	(_pxCurrentTCB + 1), FSR0H"); __asm("MOVFF	FSR1L, POSTINC0"); __asm("MOVFF	FSR1H, POSTINC0"); };
-        { };
+
 
 
         PIR1bits.CCP1IF = 0;
 
 
 
+        if(isr_cnt < 10 )
+            isr_cnt++;
+
         if( xTaskIncrementTick() != ( ( BaseType_t ) 0 ) )
         {
-            { };
+            do { if( isr_cnt < 10 ){ const char* _s = ("ISR="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 2 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 2 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
 
 
             vTaskSwitchContext();
         }
-        { };
-        { __asm("MOVFF	(_pxCurrentTCB), FSR0L"); __asm("MOVFF	(_pxCurrentTCB + 1), FSR0H"); __asm("MOVFF	POSTINC0, FSR1L"); __asm("MOVFF	POSTINC0, FSR1H"); __asm("MOVFF	POSTDEC1, FSR0L"); __asm("MOVFF	POSTDEC1, FSR0L"); STKPTR = 0; while( STKPTR < FSR0L ) { __asm("PUSH"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSU, 0"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSH, 0"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSL, 0"); } __asm("MOVFF	POSTDEC1, FSR0H"); __asm("MOVFF	POSTDEC1, FSR0L"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, INDF0"); __asm("MOVFF	POSTDEC1, PCLATH"); __asm("MOVFF	POSTDEC1, PCLATU"); __asm("MOVFF	POSTDEC1, PRODL"); __asm("MOVFF	POSTDEC1, PRODH"); __asm("MOVFF	POSTDEC1, TBLPTRL"); __asm("MOVFF	POSTDEC1, TBLPTRH"); __asm("MOVFF	POSTDEC1, TBLPTRU"); __asm("MOVFF	POSTDEC1, TABLAT"); __asm("MOVFF	POSTDEC1, FSR0H"); __asm("MOVFF	POSTDEC1, FSR0L"); __asm("MOVFF	POSTDEC1, FSR2H"); __asm("MOVFF	POSTDEC1, FSR2L"); __asm("MOVFF	POSTDEC1, BSR"); __asm("MOVFF	POSTDEC1, WREG"); __asm("MOVFF	POSTDEC1, STATUS"); __asm("MOVFF	POSTDEC1, WREG"); { }; __asm("RETFIE	0"); };
+
+        { __asm("MOVFF	(_pxCurrentTCB), FSR0L"); __asm("MOVFF	(_pxCurrentTCB + 1), FSR0H"); __asm("MOVFF	POSTINC0, FSR1L"); __asm("MOVFF	POSTINC0, FSR1H"); __asm("MOVFF	POSTDEC1, FSR0L"); __asm("MOVFF	POSTDEC1, FSR0L"); STKPTR = 0; while( STKPTR < FSR0L ) { __asm("PUSH"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSU, 0"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSH, 0"); __asm("MOVF	POSTDEC1, 0, 0"); __asm("MOVWF	TOSL, 0"); } __asm("MOVFF	POSTDEC1, FSR0H"); __asm("MOVFF	POSTDEC1, FSR0L"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, POSTDEC0"); __asm("MOVFF	POSTDEC1, INDF0"); __asm("MOVFF	POSTDEC1, PCLATH"); __asm("MOVFF	POSTDEC1, PCLATU"); __asm("MOVFF	POSTDEC1, PRODL"); __asm("MOVFF	POSTDEC1, PRODH"); __asm("MOVFF	POSTDEC1, TBLPTRL"); __asm("MOVFF	POSTDEC1, TBLPTRH"); __asm("MOVFF	POSTDEC1, TBLPTRU"); __asm("MOVFF	POSTDEC1, TABLAT"); __asm("MOVFF	POSTDEC1, FSR0H"); __asm("MOVFF	POSTDEC1, FSR0L"); __asm("MOVFF	POSTDEC1, FSR2H"); __asm("MOVFF	POSTDEC1, FSR2L"); __asm("MOVFF	POSTDEC1, BSR"); __asm("MOVFF	POSTDEC1, WREG"); __asm("MOVFF	POSTDEC1, STATUS"); __asm("MOVFF	POSTDEC1, WREG"); __asm("RETFIE	0"); };
     }
 
 
@@ -12608,14 +12606,12 @@ static void prvSetupTimerInterrupt( void )
 {
     const uint32_t ulConstCompareValue = ( ( (( unsigned long ) 48000000) / ( ( uint32_t ) 4 ) ) / ( ( TickType_t ) 1000 ) );
     uint32_t ulCompareValue;
-# 830 "Source/FreeRTOS/portable/PIC18F/port.c"
-    Xprintf("prvSetupTimerInterrupt()\r\n");
-
+# 831 "Source/FreeRTOS/portable/PIC18F/port.c"
  TMR3H = ( uint8_t ) 0x00;
  TMR3L = ( uint8_t ) 0x00;
 
 
- ulCompareValue = ulConstCompareValue;
+ ulCompareValue = ulConstCompareValue*5;
  CCPR1L = ( uint8_t ) ( ulCompareValue & ( uint32_t ) 0xff );
  ulCompareValue >>= ( uint32_t ) 8;
  CCPR1H = ( uint8_t ) ( ulCompareValue & ( uint32_t ) 0xff );
@@ -12632,12 +12628,11 @@ static void prvSetupTimerInterrupt( void )
     INTCONbits.GIE_GIEH = 1;
     INTCONbits.PEIE_GIEL = 1;
     RCONbits.IPEN = 1;
-    Xprintf("prvSetupTimerInterrupt(2)\r\n");
 
     IPR1bits.CCP1IP = 1;
  PIR1bits.CCP1IF = 0;
  PIE1bits.CCP1IE = 1;
 
     Xprintf("prvSetupTimerInterrupt(3)\r\n");
-# 890 "Source/FreeRTOS/portable/PIC18F/port.c"
+# 888 "Source/FreeRTOS/portable/PIC18F/port.c"
 }

@@ -11799,11 +11799,14 @@ BaseType_t xPortStartScheduler( void ) ;
 
 void vPortEndScheduler( void ) ;
 # 65 "Source/FreeRTOS/include\\FreeRTOS.h" 2
-# 318 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 320 "Source/FreeRTOS/include\\FreeRTOS.h"
 extern const char ConvC[];
-# 356 "Source/FreeRTOS/include\\FreeRTOS.h"
+extern uint8_t isr_cbuf[];
+extern uint8_t isr_cnt;
+void putstring(char *c);
+# 380 "Source/FreeRTOS/include\\FreeRTOS.h"
 void Xprintf(const char *string, ...);
-# 1249 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1273 "Source/FreeRTOS/include\\FreeRTOS.h"
 struct xSTATIC_LIST_ITEM
 {
 
@@ -11845,7 +11848,7 @@ typedef struct xSTATIC_LIST
 
 
 } StaticList_t;
-# 1304 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1328 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_TCB
 {
     void * pxDummy1;
@@ -11864,12 +11867,12 @@ typedef struct xSTATIC_TCB
 
 
         UBaseType_t uxDummy10[ 2 ];
-# 1339 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1363 "Source/FreeRTOS/include\\FreeRTOS.h"
         uint32_t ulDummy18[ 1 ];
         uint8_t ucDummy19[ 1 ];
-# 1352 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1376 "Source/FreeRTOS/include\\FreeRTOS.h"
 } StaticTask_t;
-# 1368 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1392 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_QUEUE
 {
     void * pvDummy1[ 3 ];
@@ -11883,13 +11886,13 @@ typedef struct xSTATIC_QUEUE
     StaticList_t xDummy3[ 2 ];
     UBaseType_t uxDummy4[ 3 ];
     uint8_t ucDummy5[ 2 ];
-# 1391 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1415 "Source/FreeRTOS/include\\FreeRTOS.h"
         UBaseType_t uxDummy8;
         uint8_t ucDummy9;
 
 } StaticQueue_t;
 typedef StaticQueue_t StaticSemaphore_t;
-# 1411 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1435 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_EVENT_GROUP
 {
     TickType_t xDummy1;
@@ -11903,7 +11906,7 @@ typedef struct xSTATIC_EVENT_GROUP
 
 
 } StaticEventGroup_t;
-# 1439 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1463 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_TIMER
 {
     void * pvDummy1;
@@ -11916,7 +11919,7 @@ typedef struct xSTATIC_TIMER
 
     uint8_t ucDummy8;
 } StaticTimer_t;
-# 1466 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1490 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_STREAM_BUFFER
 {
     size_t uxDummy1[ 4 ];
@@ -12370,9 +12373,9 @@ BaseType_t xTimerGenericCommand( TimerHandle_t xTimer,
 # 58 "Source/FreeRTOS/tasks.c"
 # 1 "Source/FreeRTOS/portable/PIC18F\\stdio.h" 1
 # 58 "Source/FreeRTOS/tasks.c" 2
-# 258 "Source/FreeRTOS/tasks.c"
+# 252 "Source/FreeRTOS/tasks.c"
     void debu_uint2a(uint8_t ch,uint16_t dt);
-# 267 "Source/FreeRTOS/tasks.c"
+# 261 "Source/FreeRTOS/tasks.c"
 typedef struct tskTaskControlBlock
 {
     volatile StackType_t * pxTopOfStack;
@@ -12398,10 +12401,10 @@ typedef struct tskTaskControlBlock
 
         UBaseType_t uxTCBNumber;
         UBaseType_t uxTaskNumber;
-# 316 "Source/FreeRTOS/tasks.c"
+# 310 "Source/FreeRTOS/tasks.c"
         volatile uint32_t ulNotifiedValue[ 1 ];
         volatile uint8_t ucNotifyState[ 1 ];
-# 333 "Source/FreeRTOS/tasks.c"
+# 327 "Source/FreeRTOS/tasks.c"
 } tskTCB;
 
 
@@ -12433,7 +12436,7 @@ typedef tskTCB TCB_t;
 
 
                     static List_t xSuspendedTaskList;
-# 374 "Source/FreeRTOS/tasks.c"
+# 368 "Source/FreeRTOS/tasks.c"
                 static volatile UBaseType_t uxCurrentNumberOfTasks = ( UBaseType_t ) 0U;
                 static volatile TickType_t xTickCount = ( TickType_t ) 0;
                 static volatile UBaseType_t uxTopReadyPriority = ( ( UBaseType_t ) 0U );
@@ -12449,9 +12452,9 @@ typedef tskTCB TCB_t;
 
 
 const volatile UBaseType_t uxTopUsedPriority = ( 3 ) - 1U;
-# 398 "Source/FreeRTOS/tasks.c"
+# 392 "Source/FreeRTOS/tasks.c"
                 static volatile UBaseType_t uxSchedulerSuspended = ( UBaseType_t ) ( ( BaseType_t ) 0 );
-# 414 "Source/FreeRTOS/tasks.c"
+# 408 "Source/FreeRTOS/tasks.c"
 void __prvAddTaskToReadyList( TCB_t *pxTCB)
 {
     ListItem_t *pxIndex;
@@ -12490,7 +12493,7 @@ void __prvAddTaskToReadyList( TCB_t *pxTCB)
 
 
 }
-# 468 "Source/FreeRTOS/tasks.c"
+# 462 "Source/FreeRTOS/tasks.c"
     static BaseType_t prvTaskIsTaskSuspended( const TaskHandle_t xTask ) ;
 
 
@@ -12500,11 +12503,11 @@ void __prvAddTaskToReadyList( TCB_t *pxTCB)
 
 
 static void prvInitialiseTaskLists( void ) ;
-# 489 "Source/FreeRTOS/tasks.c"
+# 483 "Source/FreeRTOS/tasks.c"
 static void prvIdleTask( void *pvParameters ) ;
-# 500 "Source/FreeRTOS/tasks.c"
+# 494 "Source/FreeRTOS/tasks.c"
     static void prvDeleteTCB( TCB_t * pxTCB ) ;
-# 509 "Source/FreeRTOS/tasks.c"
+# 503 "Source/FreeRTOS/tasks.c"
 static void prvCheckTasksWaitingTermination( void ) ;
 
 
@@ -12513,13 +12516,13 @@ static void prvCheckTasksWaitingTermination( void ) ;
 
 static void prvAddCurrentTaskToDelayedList( TickType_t xTicksToWait,
                                             const BaseType_t xCanBlockIndefinitely ) ;
-# 528 "Source/FreeRTOS/tasks.c"
+# 522 "Source/FreeRTOS/tasks.c"
     static UBaseType_t prvListTasksWithinSingleList( TaskStatus_t * pxTaskStatusArray,
                                                      List_t * pxList,
                                                      eTaskState eState ) ;
-# 552 "Source/FreeRTOS/tasks.c"
+# 546 "Source/FreeRTOS/tasks.c"
     static uint16_t prvTaskCheckFreeStackSpace( const uint8_t * pucStackByte ) ;
-# 575 "Source/FreeRTOS/tasks.c"
+# 569 "Source/FreeRTOS/tasks.c"
 static void prvResetNextTaskUnblockTime( void ) ;
 
 
@@ -12551,7 +12554,7 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
 
 
 static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) ;
-# 779 "Source/FreeRTOS/tasks.c"
+# 773 "Source/FreeRTOS/tasks.c"
     BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
                             const char * const pcName,
                             const uint16_t usStackDepth,
@@ -12573,7 +12576,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) ;
 
             if( pxNewTCB != ((void*)0) )
             {
-                Xprintf("xTaskCreate 001 pxNewTCB=%p\r\n",pxNewTCB);
+                Xprintf("xTaskCreate 001 pxNewTCB=%p\r\n",(void *)pxNewTCB);
                 memset( ( void * ) pxNewTCB, 0x00, sizeof( TCB_t ) );
 
 
@@ -12581,7 +12584,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) ;
 
                 pxNewTCB->pxStack = ( StackType_t * ) pvPortMalloc( ( ( ( size_t ) usStackDepth ) * sizeof( StackType_t ) ) );
 
-                Xprintf("xTaskCreate 002 pxStack=%p\r\n",pxNewTCB->pxStack);
+                Xprintf("xTaskCreate 002 pxStack=%p\r\n",(void *)pxNewTCB->pxStack);
                 if( pxNewTCB->pxStack == ((void*)0) )
                 {
 
@@ -12590,10 +12593,10 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) ;
                 }
             }
         }
-# 850 "Source/FreeRTOS/tasks.c"
+# 844 "Source/FreeRTOS/tasks.c"
         if( pxNewTCB != ((void*)0) )
         {
-# 860 "Source/FreeRTOS/tasks.c"
+# 854 "Source/FreeRTOS/tasks.c"
             Xprintf("xTaskCreate 003\r\n");
 
             prvInitialiseNewTask( pxTaskCode, pcName, ( uint32_t ) usStackDepth, pvParameters, uxPriority, pxCreatedTask, pxNewTCB, ((void*)0) );
@@ -12624,20 +12627,20 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
     StackType_t * pxTopOfStack;
     UBaseType_t x;
 
-    Xprintf("prvInitialiseNewTask 001 pxNewTCB=%p\r\n",pxNewTCB);
-    Xprintf("prvInitialiseNewTask 002 pxStack=%p\r\n",pxNewTCB->pxStack);
-# 910 "Source/FreeRTOS/tasks.c"
+    Xprintf("prvInitialiseNewTask 001 pxNewTCB=%p\r\n",(void *)pxNewTCB);
+    Xprintf("prvInitialiseNewTask 002 pxStack=%p\r\n",(void *)pxNewTCB->pxStack);
+# 904 "Source/FreeRTOS/tasks.c"
     {
 
         ( void ) memset( pxNewTCB->pxStack, ( int ) ( 0xa5U ), ( size_t ) ulStackDepth * sizeof( StackType_t ) );
     }
-# 937 "Source/FreeRTOS/tasks.c"
+# 931 "Source/FreeRTOS/tasks.c"
     {
         Xprintf("prvInitialiseNewTask 002\r\n");
         pxTopOfStack = pxNewTCB->pxStack;
 
 
-        if( ( ( ( ( uint32_t ) pxNewTCB->pxStack & ( uint32_t ) ( 0x0000 ) ) == 0UL ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 942 );
+        if( ( ( ( ( uint32_t ) pxNewTCB->pxStack & ( uint32_t ) ( 0x0000 ) ) == 0UL ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 936 );
 
 
         pxNewTCB->pxEndOfStack = pxNewTCB->pxStack + ( ulStackDepth - ( uint32_t ) 1 );
@@ -12676,7 +12679,7 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
     }
 
 
-    if( ( uxPriority < ( 3 ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 981 );
+    if( ( uxPriority < ( 3 ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 975 );
 
     if( uxPriority >= ( UBaseType_t ) ( 3 ) )
     {
@@ -12714,10 +12717,11 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
 
         ( void ) xRegions;
     }
-# 1056 "Source/FreeRTOS/tasks.c"
+# 1048 "Source/FreeRTOS/tasks.c"
     {
-# 1073 "Source/FreeRTOS/tasks.c"
+# 1064 "Source/FreeRTOS/tasks.c"
         {
+            do { if( isr_cnt < 10 ){ const char* _s = ("pIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 1 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 1 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
             pxNewTCB->pxTopOfStack = pxPortInitialiseStack( pxTopOfStack, pxTaskCode, pvParameters );
         }
 
@@ -12767,7 +12771,7 @@ void taskInfo( TCB_t *tcb )
     Xprintf(" pxNext     　 = %p\r\n", (void *)tcb->xEventListItem.pxNext);
     Xprintf(" pxPrevious  　= %p\r\n", (void *)tcb->xEventListItem.pxPrevious);
     Xprintf(" xItemValue    = %x\r\n", tcb->xEventListItem.xItemValue);
-# 1139 "Source/FreeRTOS/tasks.c"
+# 1131 "Source/FreeRTOS/tasks.c"
 }
 
 void pxReadyTasksLists_info(void)
@@ -13001,7 +13005,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
         {
             if( pxTCB == pxCurrentTCB )
             {
-                if( ( uxSchedulerSuspended == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1372 );
+                if( ( uxSchedulerSuspended == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1364 );
                 vPortYield();
             }
             else
@@ -13022,9 +13026,9 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
         TickType_t xTimeToWake;
         BaseType_t xAlreadyYielded, xShouldDelay = ( ( BaseType_t ) 0 );
 
-        if( ( pxPreviousWakeTime ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1393 );
-        if( ( ( xTimeIncrement > 0U ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1394 );
-        if( ( uxSchedulerSuspended == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1395 );
+        if( ( pxPreviousWakeTime ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1385 );
+        if( ( ( xTimeIncrement > 0U ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1386 );
+        if( ( uxSchedulerSuspended == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1387 );
 
         vTaskSuspendAll();
         {
@@ -13110,11 +13114,11 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
 
         if( xTicksToDelay > ( TickType_t ) 0U )
         {
-            if( ( uxSchedulerSuspended == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1481 );
+            if( ( uxSchedulerSuspended == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1473 );
             vTaskSuspendAll();
             {
                                  ;
-# 1493 "Source/FreeRTOS/tasks.c"
+# 1485 "Source/FreeRTOS/tasks.c"
                 prvAddCurrentTaskToDelayedList( xTicksToDelay, ( ( BaseType_t ) 0 ) );
             }
             xAlreadyYielded = xTaskResumeAll();
@@ -13149,7 +13153,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
         List_t const * pxOverflowedDelayedList;
         const TCB_t * const pxTCB = xTask;
 
-        if( ( pxTCB ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1527 );
+        if( ( pxTCB ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1519 );
 
         if( pxTCB == pxCurrentTCB )
         {
@@ -13234,7 +13238,207 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
 
         return eReturn;
     }
-# 1846 "Source/FreeRTOS/tasks.c"
+
+
+
+
+
+
+    UBaseType_t uxTaskPriorityGet( const TaskHandle_t xTask )
+    {
+        TCB_t const * pxTCB;
+        UBaseType_t uxReturn;
+
+        POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+        {
+
+
+            pxTCB = ( ( ( xTask ) == ((void*)0) ) ? pxCurrentTCB : ( xTask ) );
+            uxReturn = pxTCB->uxPriority;
+        }
+        __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+
+        return uxReturn;
+    }
+
+
+
+
+
+
+    UBaseType_t uxTaskPriorityGetFromISR( const TaskHandle_t xTask )
+    {
+        TCB_t const * pxTCB;
+        UBaseType_t uxReturn, uxSavedInterruptState;
+# 1653 "Source/FreeRTOS/tasks.c"
+                                                  ;
+
+        uxSavedInterruptState = 0;
+        {
+
+
+            pxTCB = ( ( ( xTask ) == ((void*)0) ) ? pxCurrentTCB : ( xTask ) );
+            uxReturn = pxTCB->uxPriority;
+        }
+        ( void ) ( uxSavedInterruptState );
+
+        return uxReturn;
+    }
+
+
+
+
+
+
+    void vTaskPrioritySet( TaskHandle_t xTask,
+                           UBaseType_t uxNewPriority )
+    {
+        TCB_t * pxTCB;
+        UBaseType_t uxCurrentBasePriority, uxPriorityUsedOnEntry;
+        BaseType_t xYieldRequired = ( ( BaseType_t ) 0 );
+
+        if( ( uxNewPriority < ( 3 ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1679 );
+
+
+        if( uxNewPriority >= ( UBaseType_t ) ( 3 ) )
+        {
+            uxNewPriority = ( UBaseType_t ) ( 3 ) - ( UBaseType_t ) 1U;
+        }
+        else
+        {
+                                    ;
+        }
+
+        POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
+        {
+
+
+            pxTCB = ( ( ( xTask ) == ((void*)0) ) ? pxCurrentTCB : ( xTask ) );
+
+                                                          ;
+
+
+
+
+
+
+            {
+                uxCurrentBasePriority = pxTCB->uxPriority;
+            }
+
+
+            if( uxCurrentBasePriority != uxNewPriority )
+            {
+
+
+                if( uxNewPriority > uxCurrentBasePriority )
+                {
+                    if( pxTCB != pxCurrentTCB )
+                    {
+
+
+
+                        if( uxNewPriority >= pxCurrentTCB->uxPriority )
+                        {
+                            xYieldRequired = ( ( BaseType_t ) 1 );
+                        }
+                        else
+                        {
+                                                    ;
+                        }
+                    }
+                    else
+                    {
+
+
+
+                    }
+                }
+                else if( pxTCB == pxCurrentTCB )
+                {
+
+
+
+                    xYieldRequired = ( ( BaseType_t ) 1 );
+                }
+                else
+                {
+
+
+
+                }
+
+
+
+
+                uxPriorityUsedOnEntry = pxTCB->uxPriority;
+# 1772 "Source/FreeRTOS/tasks.c"
+                {
+                    pxTCB->uxPriority = uxNewPriority;
+                }
+
+
+
+
+                if( ( ( ( &( pxTCB->xEventListItem ) )->xItemValue ) & 0x8000U ) == 0UL )
+                {
+                    ( ( &( pxTCB->xEventListItem ) )->xItemValue = ( ( ( TickType_t ) ( 3 ) - ( TickType_t ) uxNewPriority ) ) );
+                }
+                else
+                {
+                                            ;
+                }
+
+
+
+
+
+                if( ( ( ( &( pxTCB->xStateListItem ) )->pvContainer == ( &( pxReadyTasksLists[ uxPriorityUsedOnEntry ] ) ) ) ? ( ( ( BaseType_t ) 1 ) ) : ( ( ( BaseType_t ) 0 ) ) ) != ( ( BaseType_t ) 0 ) )
+                {
+
+
+
+                    if( uxListRemove( &( pxTCB->xStateListItem ) ) == ( UBaseType_t ) 0 )
+                    {
+
+
+
+                                                                                             ;
+                    }
+                    else
+                    {
+                                                ;
+                    }
+
+                    ; { if( ( ( pxTCB )->uxPriority ) > uxTopReadyPriority ) { uxTopReadyPriority = ( ( pxTCB )->uxPriority ); } }; { ListItem_t * const pxIndex = ( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ) )->pxIndex; ; ; ( &( ( pxTCB )->xStateListItem ) )->pxNext = pxIndex; ( &( ( pxTCB )->xStateListItem ) )->pxPrevious = pxIndex->pxPrevious; pxIndex->pxPrevious->pxNext = ( &( ( pxTCB )->xStateListItem ) ); pxIndex->pxPrevious = ( &( ( pxTCB )->xStateListItem ) ); ( &( ( pxTCB )->xStateListItem ) )->pvContainer = ( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ) ); ( ( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ) )->uxNumberOfItems )++; }; ;
+                }
+                else
+                {
+                                            ;
+                }
+
+                if( xYieldRequired != ( ( BaseType_t ) 0 ) )
+                {
+                    vPortYield();
+                }
+                else
+                {
+                                            ;
+                }
+
+
+
+                ( void ) uxPriorityUsedOnEntry;
+            }
+        }
+        __asm("MOVF	POSTDEC1, 1, 0"); if( INDF1 & 0x80 ) { INTCONbits.GIE_GIEH = 1;; };
+    }
+
+
+
+
+
+
     void vTaskSuspend( TaskHandle_t xTaskToSuspend )
     {
         TCB_t * pxTCB;
@@ -13308,7 +13512,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
             if( xSchedulerRunning != ( ( BaseType_t ) 0 ) )
             {
 
-                if( ( uxSchedulerSuspended == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1919 );
+                if( ( uxSchedulerSuspended == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1911 );
                 vPortYield();
             }
             else
@@ -13350,7 +13554,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
 
 
 
-        if( ( xTask ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1961 );
+        if( ( xTask ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1953 );
 
 
         if( ( ( ( &( pxTCB->xStateListItem ) )->pvContainer == ( &xSuspendedTaskList ) ) ? ( ( ( BaseType_t ) 1 ) ) : ( ( ( BaseType_t ) 0 ) ) ) != ( ( BaseType_t ) 0 ) )
@@ -13392,7 +13596,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
         TCB_t * const pxTCB = xTaskToResume;
 
 
-        if( ( xTaskToResume ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2003 );
+        if( ( xTaskToResume ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 1995 );
 
 
 
@@ -13447,8 +13651,8 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
         TCB_t * const pxTCB = xTaskToResume;
         UBaseType_t uxSavedInterruptStatus;
 
-        if( ( xTaskToResume ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2058 );
-# 2076 "Source/FreeRTOS/tasks.c"
+        if( ( xTaskToResume ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2050 );
+# 2068 "Source/FreeRTOS/tasks.c"
                                                   ;
 
         uxSavedInterruptStatus = 0;
@@ -13505,7 +13709,7 @@ void vTaskStartScheduler( void )
     BaseType_t xReturn;
 
     Xprintf("vTaskStartScheduler(001)\r\n");
-# 2160 "Source/FreeRTOS/tasks.c"
+# 2152 "Source/FreeRTOS/tasks.c"
     {
 
         Xprintf("vTaskStartScheduler(002)\r\n");
@@ -13517,19 +13721,19 @@ void vTaskStartScheduler( void )
                                &xIdleTaskHandle );
         Xprintf("vTaskStartScheduler(002)xReturn=%d \r\n",xReturn);
     }
-# 2186 "Source/FreeRTOS/tasks.c"
+# 2178 "Source/FreeRTOS/tasks.c"
     if( xReturn == ( ( ( BaseType_t ) 1 ) ) )
     {
         Xprintf("vTaskStartScheduler(003) \r\n");
-# 2203 "Source/FreeRTOS/tasks.c"
+# 2195 "Source/FreeRTOS/tasks.c"
         Xprintf("vTaskStartScheduler(005) \r\n");
         INTCONbits.GIE_GIEH = 0;;
-# 2215 "Source/FreeRTOS/tasks.c"
+# 2207 "Source/FreeRTOS/tasks.c"
         xNextTaskUnblockTime = ( TickType_t ) 0xffff;
         xSchedulerRunning = ( ( BaseType_t ) 1 );
         xTickCount = ( TickType_t ) 0;
         Xprintf("vTaskStartScheduler(007) \r\n");
-# 2227 "Source/FreeRTOS/tasks.c"
+# 2219 "Source/FreeRTOS/tasks.c"
                                                 ;
 
                                ;
@@ -13552,7 +13756,7 @@ void vTaskStartScheduler( void )
 
 
 
-        if( ( xReturn != ( -1 ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2249 );
+        if( ( xReturn != ( -1 ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2241 );
     }
 
         Xprintf("vTaskStartScheduler(009) \r\n");
@@ -13596,7 +13800,7 @@ void vTaskSuspendAll( void )
 
                         ;
 }
-# 2358 "Source/FreeRTOS/tasks.c"
+# 2350 "Source/FreeRTOS/tasks.c"
 BaseType_t xTaskResumeAll( void )
 {
     TCB_t * pxTCB = ((void*)0);
@@ -13604,7 +13808,7 @@ BaseType_t xTaskResumeAll( void )
 
 
 
-    if( ( uxSchedulerSuspended ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2365 );
+    if( ( uxSchedulerSuspended ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2357 );
 
 
 
@@ -13728,7 +13932,7 @@ TickType_t xTaskGetTickCountFromISR( void )
 {
     TickType_t xReturn;
     UBaseType_t uxSavedInterruptStatus;
-# 2504 "Source/FreeRTOS/tasks.c"
+# 2496 "Source/FreeRTOS/tasks.c"
                                               ;
 
     uxSavedInterruptStatus = 0;
@@ -13756,10 +13960,10 @@ char * pcTaskGetName( TaskHandle_t xTaskToQuery )
 
 
     pxTCB = ( ( ( xTaskToQuery ) == ((void*)0) ) ? pxCurrentTCB : ( xTaskToQuery ) );
-    if( ( pxTCB ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2531 );
+    if( ( pxTCB ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2523 );
     return &( pxTCB->pcTaskName[ 0 ] );
 }
-# 2673 "Source/FreeRTOS/tasks.c"
+# 2665 "Source/FreeRTOS/tasks.c"
     UBaseType_t uxTaskGetSystemState( TaskStatus_t * const pxTaskStatusArray,
                                       const UBaseType_t uxArraySize,
                                       uint32_t * const pulTotalRunTime )
@@ -13798,7 +14002,7 @@ char * pcTaskGetName( TaskHandle_t xTaskToQuery )
 
                     uxTask += prvListTasksWithinSingleList( &( pxTaskStatusArray[ uxTask ] ), &xSuspendedTaskList, eSuspended );
                 }
-# 2725 "Source/FreeRTOS/tasks.c"
+# 2717 "Source/FreeRTOS/tasks.c"
                 {
                     if( pulTotalRunTime != ((void*)0) )
                     {
@@ -13816,14 +14020,14 @@ char * pcTaskGetName( TaskHandle_t xTaskToQuery )
 
         return uxTask;
     }
-# 2800 "Source/FreeRTOS/tasks.c"
+# 2792 "Source/FreeRTOS/tasks.c"
 BaseType_t xTaskCatchUpTicks( TickType_t xTicksToCatchUp )
 {
     BaseType_t xYieldOccurred;
 
 
 
-    if( ( uxSchedulerSuspended == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2806 );
+    if( ( uxSchedulerSuspended == 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2798 );
 
 
 
@@ -13839,7 +14043,7 @@ BaseType_t xTaskCatchUpTicks( TickType_t xTicksToCatchUp )
 
     return xYieldOccurred;
 }
-# 2904 "Source/FreeRTOS/tasks.c"
+# 2896 "Source/FreeRTOS/tasks.c"
 BaseType_t xTaskIncrementTick( void )
 {
     TCB_t * pxTCB;
@@ -13849,10 +14053,12 @@ BaseType_t xTaskIncrementTick( void )
 
 
 
+    do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 1 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 1 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
                                           ;
 
     if( uxSchedulerSuspended == ( UBaseType_t ) ( ( BaseType_t ) 0 ) )
     {
+        do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 2 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 2 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
 
         const TickType_t xConstTickCount = xTickCount + ( TickType_t ) 1;
 
@@ -13861,7 +14067,8 @@ BaseType_t xTaskIncrementTick( void )
 
         if( xConstTickCount == ( TickType_t ) 0U )
         {
-            { List_t * pxTemp; if( ( ( ( ( ( pxDelayedTaskList )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2925 ); pxTemp = pxDelayedTaskList; pxDelayedTaskList = pxOverflowDelayedTaskList; pxOverflowDelayedTaskList = pxTemp; xNumOfOverflows++; prvResetNextTaskUnblockTime(); };
+            do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 3 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 3 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
+            { List_t * pxTemp; if( ( ( ( ( ( pxDelayedTaskList )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 2920 ); pxTemp = pxDelayedTaskList; pxDelayedTaskList = pxOverflowDelayedTaskList; pxOverflowDelayedTaskList = pxTemp; xNumOfOverflows++; prvResetNextTaskUnblockTime(); };
         }
         else
         {
@@ -13872,12 +14079,16 @@ BaseType_t xTaskIncrementTick( void )
 
 
 
+        do { if( isr_cnt < 10 ){ const char* _s = ("xCon="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( xConstTickCount >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( xConstTickCount & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
+        do { if( isr_cnt < 10 ){ const char* _s = ("xNex="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( xNextTaskUnblockTime >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( xNextTaskUnblockTime & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
         if( xConstTickCount >= xNextTaskUnblockTime )
         {
+            do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 4 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 4 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
             for( ; ; )
             {
                 if( ( ( ( pxDelayedTaskList )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) != ( ( BaseType_t ) 0 ) )
                 {
+                    do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 5 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 5 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
 
 
 
@@ -13886,6 +14097,7 @@ BaseType_t xTaskIncrementTick( void )
                 }
                 else
                 {
+                    do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 6 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 6 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
 
 
 
@@ -13894,6 +14106,7 @@ BaseType_t xTaskIncrementTick( void )
 
                     if( xConstTickCount < xItemValue )
                     {
+                       do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 7 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 7 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
 
 
 
@@ -13912,6 +14125,7 @@ BaseType_t xTaskIncrementTick( void )
 
                     if( ( ( &( pxTCB->xEventListItem ) )->pvContainer ) != ((void*)0) )
                     {
+                       do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 8 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 8 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
                         { List_t * const pxList = ( &( pxTCB->xEventListItem ) )->pvContainer; ( &( pxTCB->xEventListItem ) )->pxNext->pxPrevious = ( &( pxTCB->xEventListItem ) )->pxPrevious; ( &( pxTCB->xEventListItem ) )->pxPrevious->pxNext = ( &( pxTCB->xEventListItem ) )->pxNext; if( pxList->pxIndex == ( &( pxTCB->xEventListItem ) ) ) { pxList->pxIndex = ( &( pxTCB->xEventListItem ) )->pxPrevious; } ( &( pxTCB->xEventListItem ) )->pvContainer = ((void*)0); ( pxList->uxNumberOfItems )--; };
                     }
                     else
@@ -13932,6 +14146,7 @@ BaseType_t xTaskIncrementTick( void )
 
 
 
+                        do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 9 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 9 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
                         if( pxTCB->uxPriority > pxCurrentTCB->uxPriority )
                         {
                             xSwitchRequired = ( ( BaseType_t ) 1 );
@@ -13951,8 +14166,10 @@ BaseType_t xTaskIncrementTick( void )
 
 
         {
+            do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 10 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 10 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
             if( ( ( &( pxReadyTasksLists[ pxCurrentTCB->uxPriority ] ) )->uxNumberOfItems ) > ( UBaseType_t ) 1 )
             {
+                do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 11 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 11 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
                 xSwitchRequired = ( ( BaseType_t ) 1 );
             }
             else
@@ -13960,10 +14177,12 @@ BaseType_t xTaskIncrementTick( void )
                                         ;
             }
         }
-# 3042 "Source/FreeRTOS/tasks.c"
+# 3047 "Source/FreeRTOS/tasks.c"
         {
+            do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 12 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 12 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
             if( xYieldPending != ( ( BaseType_t ) 0 ) )
             {
+                do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 13 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 13 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
                 xSwitchRequired = ( ( BaseType_t ) 1 );
             }
             else
@@ -13984,41 +14203,38 @@ BaseType_t xTaskIncrementTick( void )
 
 
     }
-
+    do { if( isr_cnt < 10 ){ const char* _s = ("TIT="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 0xff >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 0xff & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
     return xSwitchRequired;
 }
-# 3182 "Source/FreeRTOS/tasks.c"
+# 3189 "Source/FreeRTOS/tasks.c"
 void vTaskSwitchContext( void )
 {
+    do { if( isr_cnt < 10 ){ const char* _s = ("TSC="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 1 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 1 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
     if( uxSchedulerSuspended != ( UBaseType_t ) ( ( BaseType_t ) 0 ) )
     {
 
-        { };
         xYieldPending = ( ( BaseType_t ) 1 );
     }
     else
     {
-        { };
         xYieldPending = ( ( BaseType_t ) 0 );
                                 ;
-# 3229 "Source/FreeRTOS/tasks.c"
-        { };
+# 3231 "Source/FreeRTOS/tasks.c"
                                       ;
 # 3241 "Source/FreeRTOS/tasks.c"
-        { };
-        { UBaseType_t uxTopPriority = uxTopReadyPriority; uxTopPriority = ( 3 ); { }; while( ( ( ( &( pxReadyTasksLists[ uxTopPriority ] ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) ) { { }; { }; if( ( uxTopPriority ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3242 ); --uxTopPriority; } { }; { List_t * const pxConstList = ( &( pxReadyTasksLists[ uxTopPriority ] ) ); ( pxConstList )->pxIndex = ( pxConstList )->pxIndex->pxNext; if( ( void * ) ( pxConstList )->pxIndex == ( void * ) &( ( pxConstList )->xListEnd ) ) { ( pxConstList )->pxIndex = ( pxConstList )->pxIndex->pxNext; } ( pxCurrentTCB ) = ( pxConstList )->pxIndex->pvOwner; }; uxTopReadyPriority = uxTopPriority; };
-        { };
+        { UBaseType_t uxTopPriority = uxTopReadyPriority; while( ( ( ( &( pxReadyTasksLists[ uxTopPriority ] ) )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? ( ( BaseType_t ) 1 ) : ( ( BaseType_t ) 0 ) ) ) { if( ( uxTopPriority ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3241 ); --uxTopPriority; } { List_t * const pxConstList = ( &( pxReadyTasksLists[ uxTopPriority ] ) ); ( pxConstList )->pxIndex = ( pxConstList )->pxIndex->pxNext; if( ( void * ) ( pxConstList )->pxIndex == ( void * ) &( ( pxConstList )->xListEnd ) ) { ( pxConstList )->pxIndex = ( pxConstList )->pxIndex->pxNext; } ( pxCurrentTCB ) = ( pxConstList )->pxIndex->pvOwner; }; uxTopReadyPriority = uxTopPriority; };
                                ;
-# 3262 "Source/FreeRTOS/tasks.c"
+# 3258 "Source/FreeRTOS/tasks.c"
     }
+    do { if( isr_cnt < 10 ){ const char* _s = ("TSC="); while (*_s) { { while (!TXSTA2bits.TRMT); TXREG2 = (*_s); }; _s++; } { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 10 >> 4 ) & 0x0f ]); }; { while (!TXSTA2bits.TRMT); TXREG2 = (ConvC[( 10 & 0x0f)]); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\r'); }; { while (!TXSTA2bits.TRMT); TXREG2 = ('\n'); }; } } while (0);
 }
 
 
 void vTaskPlaceOnEventList( List_t * const pxEventList,
                             const TickType_t xTicksToWait )
 {
-    if( ( pxEventList ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3269 );
-# 3285 "Source/FreeRTOS/tasks.c"
+    if( ( pxEventList ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3266 );
+# 3282 "Source/FreeRTOS/tasks.c"
     vListInsert( pxEventList, &( pxCurrentTCB->xEventListItem ) );
 
     prvAddCurrentTaskToDelayedList( xTicksToWait, ( ( BaseType_t ) 1 ) );
@@ -14029,11 +14245,11 @@ void vTaskPlaceOnUnorderedEventList( List_t * pxEventList,
                                      const TickType_t xItemValue,
                                      const TickType_t xTicksToWait )
 {
-    if( ( pxEventList ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3295 );
+    if( ( pxEventList ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3292 );
 
 
 
-    if( ( uxSchedulerSuspended != 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3299 );
+    if( ( uxSchedulerSuspended != 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3296 );
 
 
 
@@ -14049,21 +14265,21 @@ void vTaskPlaceOnUnorderedEventList( List_t * pxEventList,
 
     prvAddCurrentTaskToDelayedList( xTicksToWait, ( ( BaseType_t ) 1 ) );
 }
-# 3352 "Source/FreeRTOS/tasks.c"
+# 3349 "Source/FreeRTOS/tasks.c"
 BaseType_t xTaskRemoveFromEventList( const List_t * const pxEventList )
 {
     TCB_t * pxUnblockedTCB;
     BaseType_t xReturn;
-# 3370 "Source/FreeRTOS/tasks.c"
+# 3367 "Source/FreeRTOS/tasks.c"
     pxUnblockedTCB = ( ( &( ( pxEventList )->xListEnd ) )->pxNext->pvOwner );
-    if( ( pxUnblockedTCB ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3371 );
+    if( ( pxUnblockedTCB ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3368 );
     { List_t * const pxList = ( &( pxUnblockedTCB->xEventListItem ) )->pvContainer; ( &( pxUnblockedTCB->xEventListItem ) )->pxNext->pxPrevious = ( &( pxUnblockedTCB->xEventListItem ) )->pxPrevious; ( &( pxUnblockedTCB->xEventListItem ) )->pxPrevious->pxNext = ( &( pxUnblockedTCB->xEventListItem ) )->pxNext; if( pxList->pxIndex == ( &( pxUnblockedTCB->xEventListItem ) ) ) { pxList->pxIndex = ( &( pxUnblockedTCB->xEventListItem ) )->pxPrevious; } ( &( pxUnblockedTCB->xEventListItem ) )->pvContainer = ((void*)0); ( pxList->uxNumberOfItems )--; };
 
     if( uxSchedulerSuspended == ( UBaseType_t ) ( ( BaseType_t ) 0 ) )
     {
         { List_t * const pxList = ( &( pxUnblockedTCB->xStateListItem ) )->pvContainer; ( &( pxUnblockedTCB->xStateListItem ) )->pxNext->pxPrevious = ( &( pxUnblockedTCB->xStateListItem ) )->pxPrevious; ( &( pxUnblockedTCB->xStateListItem ) )->pxPrevious->pxNext = ( &( pxUnblockedTCB->xStateListItem ) )->pxNext; if( pxList->pxIndex == ( &( pxUnblockedTCB->xStateListItem ) ) ) { pxList->pxIndex = ( &( pxUnblockedTCB->xStateListItem ) )->pxPrevious; } ( &( pxUnblockedTCB->xStateListItem ) )->pvContainer = ((void*)0); ( pxList->uxNumberOfItems )--; };
         ; { if( ( ( pxUnblockedTCB )->uxPriority ) > uxTopReadyPriority ) { uxTopReadyPriority = ( ( pxUnblockedTCB )->uxPriority ); } }; { ListItem_t * const pxIndex = ( &( pxReadyTasksLists[ ( pxUnblockedTCB )->uxPriority ] ) )->pxIndex; ; ; ( &( ( pxUnblockedTCB )->xStateListItem ) )->pxNext = pxIndex; ( &( ( pxUnblockedTCB )->xStateListItem ) )->pxPrevious = pxIndex->pxPrevious; pxIndex->pxPrevious->pxNext = ( &( ( pxUnblockedTCB )->xStateListItem ) ); pxIndex->pxPrevious = ( &( ( pxUnblockedTCB )->xStateListItem ) ); ( &( ( pxUnblockedTCB )->xStateListItem ) )->pvContainer = ( &( pxReadyTasksLists[ ( pxUnblockedTCB )->uxPriority ] ) ); ( ( &( pxReadyTasksLists[ ( pxUnblockedTCB )->uxPriority ] ) )->uxNumberOfItems )++; }; ;
-# 3392 "Source/FreeRTOS/tasks.c"
+# 3389 "Source/FreeRTOS/tasks.c"
     }
     else
     {
@@ -14099,7 +14315,7 @@ void vTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem,
 
 
 
-    if( ( uxSchedulerSuspended != ( ( BaseType_t ) 0 ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3427 );
+    if( ( uxSchedulerSuspended != ( ( BaseType_t ) 0 ) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3424 );
 
 
     ( ( pxEventListItem )->xItemValue = ( xItemValue | 0x8000U ) );
@@ -14107,9 +14323,9 @@ void vTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem,
 
 
     pxUnblockedTCB = ( ( pxEventListItem )->pvOwner );
-    if( ( pxUnblockedTCB ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3435 );
+    if( ( pxUnblockedTCB ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3432 );
     { List_t * const pxList = ( pxEventListItem )->pvContainer; ( pxEventListItem )->pxNext->pxPrevious = ( pxEventListItem )->pxPrevious; ( pxEventListItem )->pxPrevious->pxNext = ( pxEventListItem )->pxNext; if( pxList->pxIndex == ( pxEventListItem ) ) { pxList->pxIndex = ( pxEventListItem )->pxPrevious; } ( pxEventListItem )->pvContainer = ((void*)0); ( pxList->uxNumberOfItems )--; };
-# 3455 "Source/FreeRTOS/tasks.c"
+# 3452 "Source/FreeRTOS/tasks.c"
     { List_t * const pxList = ( &( pxUnblockedTCB->xStateListItem ) )->pvContainer; ( &( pxUnblockedTCB->xStateListItem ) )->pxNext->pxPrevious = ( &( pxUnblockedTCB->xStateListItem ) )->pxPrevious; ( &( pxUnblockedTCB->xStateListItem ) )->pxPrevious->pxNext = ( &( pxUnblockedTCB->xStateListItem ) )->pxNext; if( pxList->pxIndex == ( &( pxUnblockedTCB->xStateListItem ) ) ) { pxList->pxIndex = ( &( pxUnblockedTCB->xStateListItem ) )->pxPrevious; } ( &( pxUnblockedTCB->xStateListItem ) )->pvContainer = ((void*)0); ( pxList->uxNumberOfItems )--; };
     ; { if( ( ( pxUnblockedTCB )->uxPriority ) > uxTopReadyPriority ) { uxTopReadyPriority = ( ( pxUnblockedTCB )->uxPriority ); } }; { ListItem_t * const pxIndex = ( &( pxReadyTasksLists[ ( pxUnblockedTCB )->uxPriority ] ) )->pxIndex; ; ; ( &( ( pxUnblockedTCB )->xStateListItem ) )->pxNext = pxIndex; ( &( ( pxUnblockedTCB )->xStateListItem ) )->pxPrevious = pxIndex->pxPrevious; pxIndex->pxPrevious->pxNext = ( &( ( pxUnblockedTCB )->xStateListItem ) ); pxIndex->pxPrevious = ( &( ( pxUnblockedTCB )->xStateListItem ) ); ( &( ( pxUnblockedTCB )->xStateListItem ) )->pvContainer = ( &( pxReadyTasksLists[ ( pxUnblockedTCB )->uxPriority ] ) ); ( ( &( pxReadyTasksLists[ ( pxUnblockedTCB )->uxPriority ] ) )->uxNumberOfItems )++; }; ;
 
@@ -14126,7 +14342,7 @@ void vTaskRemoveFromUnorderedEventList( ListItem_t * pxEventListItem,
 
 void vTaskSetTimeOutState( TimeOut_t * const pxTimeOut )
 {
-    if( ( pxTimeOut ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3471 );
+    if( ( pxTimeOut ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3468 );
     POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
     {
         pxTimeOut->xOverflowCount = xNumOfOverflows;
@@ -14149,15 +14365,15 @@ BaseType_t xTaskCheckForTimeOut( TimeOut_t * const pxTimeOut,
 {
     BaseType_t xReturn;
 
-    if( ( pxTimeOut ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3494 );
-    if( ( pxTicksToWait ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3495 );
+    if( ( pxTimeOut ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3491 );
+    if( ( pxTicksToWait ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 3492 );
 
     POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
     {
 
         const TickType_t xConstTickCount = xTickCount;
         const TickType_t xElapsedTime = xConstTickCount - pxTimeOut->xTimeOnEntering;
-# 3515 "Source/FreeRTOS/tasks.c"
+# 3512 "Source/FreeRTOS/tasks.c"
             if( *pxTicksToWait == ( TickType_t ) 0xffff )
             {
 
@@ -14239,7 +14455,7 @@ void vTaskMissedYield( void )
             pxTCB->uxTaskNumber = uxHandle;
         }
     }
-# 3610 "Source/FreeRTOS/tasks.c"
+# 3607 "Source/FreeRTOS/tasks.c"
 static void prvIdleTask( void *pvParameters )
 {
 
@@ -14258,9 +14474,9 @@ static void prvIdleTask( void *pvParameters )
 
 
         prvCheckTasksWaitingTermination();
-# 3640 "Source/FreeRTOS/tasks.c"
+# 3637 "Source/FreeRTOS/tasks.c"
         {
-# 3650 "Source/FreeRTOS/tasks.c"
+# 3647 "Source/FreeRTOS/tasks.c"
             if( ( ( &( pxReadyTasksLists[ ( ( UBaseType_t ) 0U ) ] ) )->uxNumberOfItems ) > ( UBaseType_t ) 1 )
             {
                 vPortYield();
@@ -14270,10 +14486,10 @@ static void prvIdleTask( void *pvParameters )
                                         ;
             }
         }
-# 3723 "Source/FreeRTOS/tasks.c"
+# 3720 "Source/FreeRTOS/tasks.c"
     }
 }
-# 3840 "Source/FreeRTOS/tasks.c"
+# 3837 "Source/FreeRTOS/tasks.c"
 static void prvInitialiseTaskLists( void )
 {
     UBaseType_t uxPriority;
@@ -14489,21 +14705,21 @@ static void prvCheckTasksWaitingTermination( void )
 
         return ( uint16_t ) ulCount;
     }
-# 4129 "Source/FreeRTOS/tasks.c"
+# 4126 "Source/FreeRTOS/tasks.c"
     static void prvDeleteTCB( TCB_t * pxTCB )
     {
 
 
 
         ( void ) ( pxTCB );
-# 4144 "Source/FreeRTOS/tasks.c"
+# 4141 "Source/FreeRTOS/tasks.c"
         {
 
 
             vPortFree( pxTCB->pxStack );
             vPortFree( pxTCB );
         }
-# 4177 "Source/FreeRTOS/tasks.c"
+# 4174 "Source/FreeRTOS/tasks.c"
     }
 
 
@@ -14543,7 +14759,7 @@ static void prvResetNextTaskUnblockTime( void )
 
         return xReturn;
     }
-# 4589 "Source/FreeRTOS/tasks.c"
+# 4586 "Source/FreeRTOS/tasks.c"
     static char * prvWriteNameToBuffer( char * pcBuffer,
                                         const char * pcTaskName )
     {
@@ -14576,7 +14792,7 @@ static void prvResetNextTaskUnblockTime( void )
         TaskStatus_t * pxTaskStatusArray;
         UBaseType_t uxArraySize, x;
         char cStatus;
-# 4654 "Source/FreeRTOS/tasks.c"
+# 4651 "Source/FreeRTOS/tasks.c"
         uxArraySize = uxCurrentNumberOfTasks;
 
 
@@ -14651,7 +14867,7 @@ static void prvResetNextTaskUnblockTime( void )
                                     ;
         }
     }
-# 4853 "Source/FreeRTOS/tasks.c"
+# 4850 "Source/FreeRTOS/tasks.c"
 TickType_t uxTaskResetEventItemValue( void )
 {
     TickType_t uxReturn;
@@ -14664,14 +14880,14 @@ TickType_t uxTaskResetEventItemValue( void )
 
     return uxReturn;
 }
-# 4886 "Source/FreeRTOS/tasks.c"
+# 4883 "Source/FreeRTOS/tasks.c"
     uint32_t ulTaskGenericNotifyTake( UBaseType_t uxIndexToWait,
                                       BaseType_t xClearCountOnExit,
                                       TickType_t xTicksToWait )
     {
         uint32_t ulReturn;
 
-        if( ( uxIndexToWait < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 4892 );
+        if( ( uxIndexToWait < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 4889 );
 
         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
         {
@@ -14745,7 +14961,7 @@ TickType_t uxTaskResetEventItemValue( void )
     {
         BaseType_t xReturn;
 
-        if( ( uxIndexToWait < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 4966 );
+        if( ( uxIndexToWait < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 4963 );
 
         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
         {
@@ -14833,8 +15049,8 @@ TickType_t uxTaskResetEventItemValue( void )
         BaseType_t xReturn = ( ( ( BaseType_t ) 1 ) );
         uint8_t ucOriginalNotifyState;
 
-        if( ( uxIndexToNotify < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5054 );
-        if( ( xTaskToNotify ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5055 );
+        if( ( uxIndexToNotify < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5051 );
+        if( ( xTaskToNotify ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5052 );
         pxTCB = xTaskToNotify;
 
         POSTINC1 = INTCON; INTCONbits.GIE_GIEH = 0;;
@@ -14887,7 +15103,7 @@ TickType_t uxTaskResetEventItemValue( void )
 
 
 
-                    if( ( xTickCount == ( TickType_t ) 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5108 );
+                    if( ( xTickCount == ( TickType_t ) 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5105 );
 
                     break;
             }
@@ -14902,8 +15118,8 @@ TickType_t uxTaskResetEventItemValue( void )
                 ; { if( ( ( pxTCB )->uxPriority ) > uxTopReadyPriority ) { uxTopReadyPriority = ( ( pxTCB )->uxPriority ); } }; { ListItem_t * const pxIndex = ( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ) )->pxIndex; ; ; ( &( ( pxTCB )->xStateListItem ) )->pxNext = pxIndex; ( &( ( pxTCB )->xStateListItem ) )->pxPrevious = pxIndex->pxPrevious; pxIndex->pxPrevious->pxNext = ( &( ( pxTCB )->xStateListItem ) ); pxIndex->pxPrevious = ( &( ( pxTCB )->xStateListItem ) ); ( &( ( pxTCB )->xStateListItem ) )->pvContainer = ( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ) ); ( ( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ) )->uxNumberOfItems )++; }; ;
 
 
-                if( ( ( ( &( pxTCB->xEventListItem ) )->pvContainer ) == ((void*)0) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5123 );
-# 5141 "Source/FreeRTOS/tasks.c"
+                if( ( ( ( &( pxTCB->xEventListItem ) )->pvContainer ) == ((void*)0) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5120 );
+# 5138 "Source/FreeRTOS/tasks.c"
                 if( pxTCB->uxPriority > pxCurrentTCB->uxPriority )
                 {
 
@@ -14942,9 +15158,9 @@ TickType_t uxTaskResetEventItemValue( void )
         BaseType_t xReturn = ( ( ( BaseType_t ) 1 ) );
         UBaseType_t uxSavedInterruptStatus;
 
-        if( ( xTaskToNotify ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5179 );
-        if( ( uxIndexToNotify < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5180 );
-# 5198 "Source/FreeRTOS/tasks.c"
+        if( ( xTaskToNotify ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5176 );
+        if( ( uxIndexToNotify < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5177 );
+# 5195 "Source/FreeRTOS/tasks.c"
                                                   ;
 
         pxTCB = xTaskToNotify;
@@ -14998,7 +15214,7 @@ TickType_t uxTaskResetEventItemValue( void )
 
 
 
-                    if( ( xTickCount == ( TickType_t ) 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5251 );
+                    if( ( xTickCount == ( TickType_t ) 0 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5248 );
                     break;
             }
 
@@ -15009,7 +15225,7 @@ TickType_t uxTaskResetEventItemValue( void )
             if( ucOriginalNotifyState == ( ( uint8_t ) 1 ) )
             {
 
-                if( ( ( ( &( pxTCB->xEventListItem ) )->pvContainer ) == ((void*)0) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5262 );
+                if( ( ( ( &( pxTCB->xEventListItem ) )->pvContainer ) == ((void*)0) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5259 );
 
                 if( uxSchedulerSuspended == ( UBaseType_t ) ( ( BaseType_t ) 0 ) )
                 {
@@ -15061,9 +15277,9 @@ TickType_t uxTaskResetEventItemValue( void )
         uint8_t ucOriginalNotifyState;
         UBaseType_t uxSavedInterruptStatus;
 
-        if( ( xTaskToNotify ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5314 );
-        if( ( uxIndexToNotify < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5315 );
-# 5333 "Source/FreeRTOS/tasks.c"
+        if( ( xTaskToNotify ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5311 );
+        if( ( uxIndexToNotify < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5312 );
+# 5330 "Source/FreeRTOS/tasks.c"
                                                   ;
 
         pxTCB = xTaskToNotify;
@@ -15084,7 +15300,7 @@ TickType_t uxTaskResetEventItemValue( void )
             if( ucOriginalNotifyState == ( ( uint8_t ) 1 ) )
             {
 
-                if( ( ( ( &( pxTCB->xEventListItem ) )->pvContainer ) == ((void*)0) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5353 );
+                if( ( ( ( &( pxTCB->xEventListItem ) )->pvContainer ) == ((void*)0) ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5350 );
 
                 if( uxSchedulerSuspended == ( UBaseType_t ) ( ( BaseType_t ) 0 ) )
                 {
@@ -15132,7 +15348,7 @@ TickType_t uxTaskResetEventItemValue( void )
         TCB_t * pxTCB;
         BaseType_t xReturn;
 
-        if( ( uxIndexToClear < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5401 );
+        if( ( uxIndexToClear < 1 ) == 0 ) Xprintf("ASSERT:%s:%d\r\n" "Source/FreeRTOS/tasks.c", 5398 );
 
 
 
@@ -15182,13 +15398,13 @@ TickType_t uxTaskResetEventItemValue( void )
 
         return ulReturn;
     }
-# 5492 "Source/FreeRTOS/tasks.c"
+# 5489 "Source/FreeRTOS/tasks.c"
 static void prvAddCurrentTaskToDelayedList( TickType_t xTicksToWait,
                                             const BaseType_t xCanBlockIndefinitely )
 {
     TickType_t xTimeToWake;
     const TickType_t xConstTickCount = xTickCount;
-# 5509 "Source/FreeRTOS/tasks.c"
+# 5506 "Source/FreeRTOS/tasks.c"
     if( uxListRemove( &( pxCurrentTCB->xStateListItem ) ) == ( UBaseType_t ) 0 )
     {
 
@@ -15245,5 +15461,5 @@ static void prvAddCurrentTaskToDelayedList( TickType_t xTicksToWait,
             }
         }
     }
-# 5602 "Source/FreeRTOS/tasks.c"
+# 5599 "Source/FreeRTOS/tasks.c"
 }

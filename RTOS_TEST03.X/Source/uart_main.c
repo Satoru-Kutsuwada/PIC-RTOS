@@ -29,6 +29,9 @@ void print485(char *string);
 void putstring(char *c);
 
 const char ConvC[]= { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' };
+uint8_t isr_cbuf[ISR_CBUF_MAX];
+uint8_t isr_cnt=0;
+
 
 //extern QueueHandle_t   Mutex;
 
@@ -404,10 +407,10 @@ void Xprintf(const char *string, ...)
                         break;
                     case  'p':
                         uint32value = (long)va_arg(ap, long);
-                        uintvalue = (uint16_t)(uint32value >> 16);
-                        debu_uint2a('@',uintvalue);
-                        uintvalue = (uint16_t)uint32value;
-                        debu_uint2a('*',uintvalue);
+                        //uintvalue = (uint16_t)(uint32value >> 16);
+                        //debu_uint2a('@',uintvalue);
+                        //uintvalue = (uint16_t)uint32value;
+                        //debu_uint2a('*',uintvalue);
                         buffer = my_putshex32((long)uint32value,  buffer );
                         break;
                     default:

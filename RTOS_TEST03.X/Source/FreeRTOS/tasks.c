@@ -117,12 +117,10 @@
 
 #if ( configUSE_PORT_OPTIMISED_TASK_SELECTION == 0 )
 
-/* If configUSE_PORT_OPTIMISED_TASK_SELECTION is 0 then task selection is
- * performed in a generic way that is not optimised to any particular
- * microcontroller architecture. */
+/* configUSE_PORT_OPTIMISED_TASK_SELECTION が 0 の場合、タスクの選択は、特定の
+ * マイクロコントローラー アーキテクチャに最適化されていない一般的な方法で実行されます。 */
 
-/* uxTopReadyPriority holds the priority of the highest priority ready
- * state task. */
+/* uxTopReadyPriority は、最も優先度の高い準備完了状態タスクの優先度を保持します。 */
     #define taskRECORD_READY_PRIORITY( uxPriority ) \
     {                                               \
         if( ( uxPriority ) > uxTopReadyPriority )   \
@@ -138,20 +136,16 @@
     #define taskSELECT_HIGHEST_PRIORITY_TASK()                                \
     {                                                                         \
         UBaseType_t uxTopPriority = uxTopReadyPriority;                       \
-        uxTopPriority = configMAX_PRIORITIES;                                   \
+        /*uxTopPriority = configMAX_PRIORITIES;   */                                \
                                                                                \
-        mDEBUG_INT2A2('u','T','P',uxTopPriority);                               \
         /* 準備完了のタスクを含む最も優先度の高いキューを見つけます。 */      \
         while( listLIST_IS_EMPTY( &( pxReadyTasksLists[ uxTopPriority ] ) ) ) \
         {                                                                     \
-            mDEBUG_INT2A2('H','P','T',1);           \
-        mDEBUG_INT2A2('u','T','P',uxTopPriority);                               \
-            configASSERT( uxTopPriority );                                    \
+            configASSERT( uxTopPriority );                                   \
             --uxTopPriority;                                                  \
         }                                                                     \
                                                                               \
         /*listGET_OWNER_OF_NEXT_ENTRY はリスト全体にインデックスを付けるため、同じ優先順位のタスクがプロセッサー時間を均等に共有します。 */                    \
-        mDEBUG_INT2A2('H','P','T',2);           \
         listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &( pxReadyTasksLists[ uxTopPriority ] ) ); \
         uxTopReadyPriority = uxTopPriority;                                                   \
     } /* taskSELECT_HIGHEST_PRIORITY_TASK */
@@ -797,7 +791,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) PRIVILEGED_FUNCTION;
 
             if( pxNewTCB != NULL )
             {
-                Xprintf("xTaskCreate 001 pxNewTCB=%p\r\n",pxNewTCB);
+                Xprintf("xTaskCreate 001 pxNewTCB=%p\r\n",(void *)pxNewTCB);
                 memset( ( void * ) pxNewTCB, 0x00, sizeof( TCB_t ) );
 
                 /* 作成中のタスクによって使用されるスタックにスペースを割り当てます。 
@@ -805,7 +799,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) PRIVILEGED_FUNCTION;
                  * スタック メモリのベース。 */
                 pxNewTCB->pxStack = ( StackType_t * ) pvPortMallocStack( ( ( ( size_t ) usStackDepth ) * sizeof( StackType_t ) ) ); /*lint !e961 MISRA exception as the casts are only redundant for some ports. */
 
-                Xprintf("xTaskCreate 002 pxStack=%p\r\n",pxNewTCB->pxStack);
+                Xprintf("xTaskCreate 002 pxStack=%p\r\n",(void *)pxNewTCB->pxStack);
                 if( pxNewTCB->pxStack == NULL )
                 {
                     /* Could not allocate the stack.  Delete the allocated TCB. */
@@ -887,8 +881,8 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
     StackType_t * pxTopOfStack;
     UBaseType_t x;
 
-    Xprintf("prvInitialiseNewTask 001 pxNewTCB=%p\r\n",pxNewTCB);
-    Xprintf("prvInitialiseNewTask 002 pxStack=%p\r\n",pxNewTCB->pxStack);
+    Xprintf("prvInitialiseNewTask 001 pxNewTCB=%p\r\n",(void *)pxNewTCB);
+    Xprintf("prvInitialiseNewTask 002 pxStack=%p\r\n",(void *)pxNewTCB->pxStack);
 
     #if ( portUSING_MPU_WRAPPERS == 1 )
         /* Should the task be created in privileged mode? */
@@ -1025,15 +1019,13 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
     }
     #endif
 
-    /* Initialize the TCB stack to look as if the task was already running,
-     * but had been interrupted by the scheduler.  The return address is set
-     * to the start of the task function. Once the stack has been initialised
-     * the top of stack variable is updated. */
+    /* TCB スタックを初期化して、タスクがすでに実行されているが、スケジューラに
+     * よって中断されたかのように見せます。 戻りアドレスはタスク関数の先頭に設定
+     * されます。 スタックが初期化されると、スタック変数の最上位が更新されます。 */
     #if ( portUSING_MPU_WRAPPERS == 1 )
     {
-        /* If the port has capability to detect stack overflow,
-         * pass the stack end address to the stack initialization
-         * function as well. */
+        /* ポートにスタック オーバーフローを検出する機能がある場合は、スタック
+         * 終了アドレスをスタック初期化関数にも渡します。*/
         #if ( portHAS_STACK_OVERFLOW_CHECKING == 1 )
         {
             #if ( portSTACK_GROWTH < 0 )
@@ -1054,9 +1046,8 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
     }
     #else /* portUSING_MPU_WRAPPERS */
     {
-        /* If the port has capability to detect stack overflow,
-         * pass the stack end address to the stack initialization
-         * function as well. */
+        /* ポートにスタック オーバーフローを検出する機能がある場合は、スタック
+         * 終了アドレスをスタック初期化関数にも渡します。 */
         #if ( portHAS_STACK_OVERFLOW_CHECKING == 1 )
         {
             #if ( portSTACK_GROWTH < 0 )
@@ -1071,6 +1062,7 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
         }
         #else /* portHAS_STACK_OVERFLOW_CHECKING */
         {
+            M_PRINTF_B(pIT=,1);     
             pxNewTCB->pxTopOfStack = pxPortInitialiseStack( pxTopOfStack, pxTaskCode, pvParameters );
         }
         #endif /* portHAS_STACK_OVERFLOW_CHECKING */
@@ -1079,8 +1071,8 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
 
     if( pxCreatedTask != NULL )
     {
-        /* Pass the handle out in an anonymous way.  The handle can be used to
-         * change the created task's priority, delete the created task, etc.*/
+        /* 匿名の方法でハンドルを渡します。 ハンドルは、作成したタスクの優先度
+         * の変更、作成したタスクの削除などに使用できます。*/
         *pxCreatedTask = ( TaskHandle_t ) pxNewTCB;
     }
     else
@@ -2910,10 +2902,12 @@ BaseType_t xTaskIncrementTick( void )
     /* ティック割り込みが発生するたびにポータブル層によって呼び出されます。 
      * ティックをインクリメントし、新しいティック値によってタスクのブロックが解除
      * されるかどうかを確認します。 */
+    M_PRINTF_B(TIT=,1); 
     traceTASK_INCREMENT_TICK( xTickCount );
 
     if( uxSchedulerSuspended == ( UBaseType_t ) pdFALSE )
     {
+        M_PRINTF_B(TIT=,2);
         /* マイナーな最適化。 このブロックではティック数を変更できません。 */
         const TickType_t xConstTickCount = xTickCount + ( TickType_t ) 1;
 
@@ -2922,6 +2916,7 @@ BaseType_t xTaskIncrementTick( void )
 
         if( xConstTickCount == ( TickType_t ) 0U ) /*lint !e774 'if' はオーバーフローを探しているため、常に false と評価されるわけではありません。 */
         {
+            M_PRINTF_B(TIT=,3);
             taskSWITCH_DELAYED_LISTS();
         }
         else
@@ -2933,12 +2928,16 @@ BaseType_t xTaskIncrementTick( void )
          * タスクはウェイクタイムの順にキューに保存されます。
          * つまり、ブロック時間が期限切れになっていないタスクが 1 つ見つかったら、
          * それ以上リストを調べる必要はありません。 */
+        M_PRINTF_B(xCon=,xConstTickCount);
+        M_PRINTF_B(xNex=,xNextTaskUnblockTime);
         if( xConstTickCount >= xNextTaskUnblockTime )
         {
+            M_PRINTF_B(TIT=,4);
             for( ; ; )
             {
                 if( listLIST_IS_EMPTY( pxDelayedTaskList ) != pdFALSE )
                 {
+                    M_PRINTF_B(TIT=,5);
                     /* 遅延リストは空です。 xNextTaskUnblockTime を可能な最大値に
                      * 設定すると、次回 if( xTickCount >= xNextTaskUnblockTime ) 
                      * テストが通過する可能性が非常に低くなります。 */
@@ -2947,6 +2946,7 @@ BaseType_t xTaskIncrementTick( void )
                 }
                 else
                 {
+                    M_PRINTF_B(TIT=,6);
                     /* 遅延リストは空ではありません。遅延リストの先頭にある項目の値を
                      * 取得します。 これは、遅延リストの先頭にあるタスクをブロック
                      * 状態から削除する必要がある時間です。 */
@@ -2955,6 +2955,7 @@ BaseType_t xTaskIncrementTick( void )
 
                     if( xConstTickCount < xItemValue )
                     {
+                       M_PRINTF_B(TIT=,7);
                         /* まだこの項目のブロックを解除する時期ではありませんが、
                          * 項目の値は、ブロックされたリストの先頭にあるタスクを
                          * ブロック状態から削除する必要がある時刻であるため、項目の
@@ -2973,6 +2974,7 @@ BaseType_t xTaskIncrementTick( void )
                     /* タスクもイベントを待機していますか? その場合はイベントリストから削除してください。 */
                     if( listLIST_ITEM_CONTAINER( &( pxTCB->xEventListItem ) ) != NULL )
                     {
+                       M_PRINTF_B(TIT=,8);
                         listREMOVE_ITEM( &( pxTCB->xEventListItem ) );
                     }
                     else
@@ -2993,6 +2995,7 @@ BaseType_t xTaskIncrementTick( void )
                          * 処理時間を共有する同じ優先順位のタスクの場合 
                          * (プリエンプションとタイム スライシングの両方がオンの場合
                          * に発生します) は、以下で処理されます。*/
+                        M_PRINTF_B(TIT=,9);
                         if( pxTCB->uxPriority > pxCurrentTCB->uxPriority )
                         {
                             xSwitchRequired = pdTRUE;
@@ -3012,8 +3015,10 @@ BaseType_t xTaskIncrementTick( void )
          * 処理時間 (タイム スライス) を共有します。 */
         #if ( ( configUSE_PREEMPTION == 1 ) && ( configUSE_TIME_SLICING == 1 ) )
         {
+            M_PRINTF_B(TIT=,10);
             if( listCURRENT_LIST_LENGTH( &( pxReadyTasksLists[ pxCurrentTCB->uxPriority ] ) ) > ( UBaseType_t ) 1 )
             {
+                M_PRINTF_B(TIT=,11);
                 xSwitchRequired = pdTRUE;
             }
             else
@@ -3040,8 +3045,10 @@ BaseType_t xTaskIncrementTick( void )
 
         #if ( configUSE_PREEMPTION == 1 )
         {
+            M_PRINTF_B(TIT=,12);
             if( xYieldPending != pdFALSE )
             {
+                M_PRINTF_B(TIT=,13);
                 xSwitchRequired = pdTRUE;
             }
             else
@@ -3062,7 +3069,7 @@ BaseType_t xTaskIncrementTick( void )
         }
         #endif
     }
-
+    M_PRINTF_B(TIT=,0xff); 
     return xSwitchRequired;
 }
 /*-----------------------------------------------------------*/
@@ -3181,25 +3188,22 @@ BaseType_t xTaskIncrementTick( void )
 
 void vTaskSwitchContext( void )
 {
+    M_PRINTF_B(TSC=,1);    
     if( uxSchedulerSuspended != ( UBaseType_t ) pdFALSE )
     {
         /* スケジューラは現在一時停止されています。コンテキストの切り替えを許可しないでください。 */
-        mDEBUG_INT2A2('t','s','w',1);
         xYieldPending = pdTRUE;
     }
     else
     {
-        mDEBUG_INT2A2('t','s','w',2);
         xYieldPending = pdFALSE;
         traceTASK_SWITCHED_OUT();
 
         #if ( configGENERATE_RUN_TIME_STATS == 1 )
         {
             #ifdef portALT_GET_RUN_TIME_COUNTER_VALUE
-                mDEBUG_INT2A2('t','s','w',3);
                 portALT_GET_RUN_TIME_COUNTER_VALUE( ulTotalRunTime );
             #else
-                mDEBUG_INT2A2('t','s','w',4);
                 ulTotalRunTime = portGET_RUN_TIME_COUNTER_VALUE();
             #endif
 
@@ -3212,12 +3216,10 @@ void vTaskSwitchContext( void )
              * are provided by the application, not the kernel. */
             if( ulTotalRunTime > ulTaskSwitchedInTime )
             {
-                mDEBUG_INT2A2('t','s','w',5);
                 pxCurrentTCB->ulRunTimeCounter += ( ulTotalRunTime - ulTaskSwitchedInTime );
             }
             else
             {
-                mDEBUG_INT2A2('t','s','w',6);
                 mtCOVERAGE_TEST_MARKER();
             }
 
@@ -3226,40 +3228,35 @@ void vTaskSwitchContext( void )
         #endif /* configGENERATE_RUN_TIME_STATS */
 
         /* 構成されている場合は、スタック オーバーフローを確認します。 */
-        mDEBUG_INT2A2('t','s','w',7);
         taskCHECK_FOR_STACK_OVERFLOW();
 
         /* Before the currently running task is switched out, save its errno. */
         #if ( configUSE_POSIX_ERRNO == 1 )
         {
-            mDEBUG_INT2A2('t','s','w',8);
             pxCurrentTCB->iTaskErrno = FreeRTOS_errno;
         }
         #endif
 
         /* 汎用 C またはポート最適化された asm コードを使用して実行する新しいタスクを選択します。*/
-        mDEBUG_INT2A2('t','s','w',9);
         taskSELECT_HIGHEST_PRIORITY_TASK(); /*lint !e9079 void * is used as this macro is used with timers and co-routines too.  Alignment is known to be fine as the type of the pointer stored and retrieved is the same. */
-        mDEBUG_INT2A2('t','s','w',10);
         traceTASK_SWITCHED_IN();
 
         /* After the new task is switched in, update the global errno. */
         #if ( configUSE_POSIX_ERRNO == 1 )
         {
-            mDEBUG_INT2A2('t','s','w',11);
             FreeRTOS_errno = pxCurrentTCB->iTaskErrno;
         }
         #endif
 
         #if ( ( configUSE_NEWLIB_REENTRANT == 1 ) || ( configUSE_C_RUNTIME_TLS_SUPPORT == 1 ) )
         {
-            mDEBUG_INT2A2('t','s','w',12);
             /* Switch C-Runtime's TLS Block to point to the TLS
              * Block specific to this task. */
             configSET_TLS_BLOCK( pxCurrentTCB->xTLSBlock );
         }
         #endif
     }
+    M_PRINTF_B(TSC=,10);    
 }
 /*-----------------------------------------------------------*/
 

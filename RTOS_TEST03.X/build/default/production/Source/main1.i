@@ -11737,11 +11737,14 @@ BaseType_t xPortStartScheduler( void ) ;
 
 void vPortEndScheduler( void ) ;
 # 65 "Source/FreeRTOS/include\\FreeRTOS.h" 2
-# 318 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 320 "Source/FreeRTOS/include\\FreeRTOS.h"
 extern const char ConvC[];
-# 356 "Source/FreeRTOS/include\\FreeRTOS.h"
+extern uint8_t isr_cbuf[];
+extern uint8_t isr_cnt;
+void putstring(char *c);
+# 380 "Source/FreeRTOS/include\\FreeRTOS.h"
 void Xprintf(const char *string, ...);
-# 1249 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1273 "Source/FreeRTOS/include\\FreeRTOS.h"
 struct xSTATIC_LIST_ITEM
 {
 
@@ -11783,7 +11786,7 @@ typedef struct xSTATIC_LIST
 
 
 } StaticList_t;
-# 1304 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1328 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_TCB
 {
     void * pxDummy1;
@@ -11802,12 +11805,12 @@ typedef struct xSTATIC_TCB
 
 
         UBaseType_t uxDummy10[ 2 ];
-# 1339 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1363 "Source/FreeRTOS/include\\FreeRTOS.h"
         uint32_t ulDummy18[ 1 ];
         uint8_t ucDummy19[ 1 ];
-# 1352 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1376 "Source/FreeRTOS/include\\FreeRTOS.h"
 } StaticTask_t;
-# 1368 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1392 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_QUEUE
 {
     void * pvDummy1[ 3 ];
@@ -11821,13 +11824,13 @@ typedef struct xSTATIC_QUEUE
     StaticList_t xDummy3[ 2 ];
     UBaseType_t uxDummy4[ 3 ];
     uint8_t ucDummy5[ 2 ];
-# 1391 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1415 "Source/FreeRTOS/include\\FreeRTOS.h"
         UBaseType_t uxDummy8;
         uint8_t ucDummy9;
 
 } StaticQueue_t;
 typedef StaticQueue_t StaticSemaphore_t;
-# 1411 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1435 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_EVENT_GROUP
 {
     TickType_t xDummy1;
@@ -11841,7 +11844,7 @@ typedef struct xSTATIC_EVENT_GROUP
 
 
 } StaticEventGroup_t;
-# 1439 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1463 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_TIMER
 {
     void * pvDummy1;
@@ -11854,7 +11857,7 @@ typedef struct xSTATIC_TIMER
 
     uint8_t ucDummy8;
 } StaticTimer_t;
-# 1466 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1490 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_STREAM_BUFFER
 {
     size_t uxDummy1[ 4 ];
@@ -12676,28 +12679,11 @@ void main( void )
 
 
     Timer0_init();
-
-
-    TMR3H = ( uint8_t ) 0x00;
- TMR3L = ( uint8_t ) 0x00;
-    CCPR1L = 0xe0;
-    CCPR1H = 0x2e;
-    CCP1CON = 0b00001011;
-    CCPTMRS0 = 0b00000001;
-    T3CON = 0b00001011;
-    INTCONbits.GIE_GIEH = 1;
-    INTCONbits.PEIE_GIEL = 1;
-
-    RCONbits.IPEN = 1;
-    IPR1bits.CCP1IP = 1;
- PIR1bits.CCP1IF = 0;
- PIE1bits.CCP1IE = 1;
-
-    Xprintf("INTCON=%x,RCON=%x\r\n",INTCON,RCON);
 # 570 "Source/main1.c"
-        Status = xTaskCreate( task001, "U01", ( 128 )*2, ((void*)0),2, ((void*)0) );
+        Status = xTaskCreate( task001, "U01", ( 128 )*2, ((void*)0),1, ((void*)0) );
+        vTaskList(0);
         Status = xTaskCreate( task002, "U02", ( 128 )*2, ((void*)0),2, ((void*)0) );
-        Xprintf("main1.c %d Status=%d\r\n",572,Status);
+        Xprintf("main1.c %d Status=%d\r\n",573,Status);
 
 
         vTaskList(0);
@@ -12723,7 +12709,7 @@ static void task002( void *pvParameters )
 
 static void task001( void *pvParameters )
 {
-# 613 "Source/main1.c"
+# 614 "Source/main1.c"
 Xprintf("task001() START\r\n");
 
 
@@ -12733,7 +12719,7 @@ Xprintf("task001() START\r\n");
         Xprintf("task001() Loop\r\n");
         vTaskDelay( 100 );
     }
-# 642 "Source/main1.c"
+# 643 "Source/main1.c"
 }
 
 

@@ -526,6 +526,7 @@ void main( void )
 
     Timer0_init();
     //Timer1_init();
+#ifdef ___NOP    
     
     TMR3H = ( uint8_t ) 0x00;
 	TMR3L = ( uint8_t ) 0x00;
@@ -543,7 +544,6 @@ void main( void )
 	CCPTMR_ISRIE = 1;		/*< Interrupt enable. */
 
     Xprintf("INTCON=%x,RCON=%x\r\n",INTCON,RCON);
-#ifdef ___NOP    
     
     int ch;
     while(1){
@@ -567,7 +567,8 @@ void main( void )
         //vStartIntegerMathTasks( tskIDLE_PRIORITY );
         //vStartPolledQueueTasks( mainQUEUE_POLL_PRIORITY );
         /* Start the check task defined in this file. */
-        Status = xTaskCreate( task001, "U01", configMINIMAL_STACK_SIZE*2, NULL,2, NULL );
+        Status = xTaskCreate( task001, "U01", configMINIMAL_STACK_SIZE*2, NULL,1, NULL );
+        vTaskList(0);
         Status = xTaskCreate( task002, "U02", configMINIMAL_STACK_SIZE*2, NULL,2, NULL );
         Xprintf("main1.c %d Status=%d\r\n",__LINE__,Status);
         /* Start the scheduler.  Will never return here. */

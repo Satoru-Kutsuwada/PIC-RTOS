@@ -18,12 +18,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "175 Source/FreeRTOS/include/portable.h
 [; ;Source/FreeRTOS/include/portable.h: 175: void * pvPortMalloc( size_t xSize ) ;
 [v _pvPortMalloc `(*v ~T0 @X0 0 ef1`ui ]
-[v F6916 `*S930 ~T0 @X0 1 t ]
+[v F6920 `*S930 ~T0 @X0 1 t ]
 "429 Source/FreeRTOS/include/list.h
 [; ;Source/FreeRTOS/include/list.h: 429: void vListInitialise( List_t * const pxList ) ;
 [v _vListInitialise `(v ~T0 @X0 0 ef1`C*S930 ]
-"356 Source/FreeRTOS/include\FreeRTOS.h
-[; ;Source/FreeRTOS/include\FreeRTOS.h: 356: void Xprintf(const char *string, ...);
+"380 Source/FreeRTOS/include\FreeRTOS.h
+[; ;Source/FreeRTOS/include\FreeRTOS.h: 380: void Xprintf(const char *string, ...);
 [v _Xprintf `(v ~T0 @X0 0 ev`*Cuc ]
 "1370 Source/FreeRTOS/include/task.h
 [v _vTaskSuspendAll `(v ~T0 @X0 0 ef ]
@@ -1817,7 +1817,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "519
 [; ;Source/FreeRTOS/event_groups.c: 519:     UBaseType_t uxSavedInterruptStatus;
 [v _uxSavedInterruptStatus `uc ~T0 @X0 1 a ]
-[v F7360 `*CS941 ~T0 @X0 1 t ]
+[v F7364 `*CS941 ~T0 @X0 1 t ]
 "520
 [; ;Source/FreeRTOS/event_groups.c: 520:     EventGroup_t const * const pxEventBits = xEventGroup;
 [v _pxEventBits `C*CS941 ~T0 @X0 1 a ]

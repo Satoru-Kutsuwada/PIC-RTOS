@@ -315,7 +315,12 @@
 //==============================================================================
 //
 //==============================================================================
+
+#define ISR_CBUF_MAX 10        
 extern const char ConvC[];
+extern  uint8_t isr_cbuf[];
+extern  uint8_t isr_cnt;
+void putstring(char *c);
 
 #define mPUTCH(x)                                                               \
 {																				\
@@ -325,30 +330,49 @@ extern const char ConvC[];
 
 
 
-#define  ISR_TIC_DEBUG  0
+#define  ISR_DEBUG  1
 
-#ifndef ISR_TIC_DEBUG
-    #define ISR_TIC_DEBUG    0
+#ifndef ISR_DEBUG
+    #define ISR_DEBUG    0
 #endif
 
-#if ISR_TIC_DEBUG > 0
-    #define mDEBUG_INT2A2(x,y,z,r)                                                  \
-    {																				\
-        mPUTCH(x);                                                                  \
-        mPUTCH(y);                                                                  \
-        mPUTCH(z);                                                                  \
-        mPUTCH('=');                                                                \
-        mPUTCH(ConvC[( r >> 4 ) & 0x0f ]);                                          \
-        mPUTCH(ConvC[( r & 0x0f)]);                                                 \
-        mPUTCH('\r');                                                               \
-        mPUTCH('\n');                                                               \
-     }    
+#if ISR_DEBUG > 0
+#define M_PRINTF_B(str, data) \
+    do {                            \
+        if( isr_cnt < 10 ){         \
+            const char* _s = (#str);    \
+            while (*_s) {               \
+                mPUTCH(*_s);            \
+                _s++;                   \
+            }                           \
+            mPUTCH(ConvC[( data >> 4 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data & 0x0f)]);                                             \
+            mPUTCH('\r');                                                           \
+            mPUTCH('\n');                                                           \
+        }                       \
+    } while (0)
+
+#define M_PRINTF_W(str, data) \
+    do {                            \
+        if( isr_cnt < 10 ){         \
+            const char* _s = (#str);    \
+            while (*_s) {               \
+                mPUTCH(*_s);            \
+                _s++;                   \
+            }                           \
+            mPUTCH(ConvC[( data >> 12 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data >> 8 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data >> 4 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data & 0x0f)]);                                             \
+            mPUTCH('\r');                                                           \
+            mPUTCH('\n');                                                           \
+        }                       \
+    } while (0)
 #else
-    #define mDEBUG_INT2A2(x,y,z,r)                                                  \
-    {																				\
-    }
+#define M_PRINTF_B(str, data) 
+#define M_PRINTF_W(str, data) 
 #endif
-        
+
 
 //==============================================================================
 //  Prototype

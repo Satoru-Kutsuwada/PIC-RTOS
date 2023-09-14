@@ -11736,11 +11736,14 @@ BaseType_t xPortStartScheduler( void ) ;
 
 void vPortEndScheduler( void ) ;
 # 65 "Source/FreeRTOS/include\\FreeRTOS.h" 2
-# 318 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 320 "Source/FreeRTOS/include\\FreeRTOS.h"
 extern const char ConvC[];
-# 356 "Source/FreeRTOS/include\\FreeRTOS.h"
+extern uint8_t isr_cbuf[];
+extern uint8_t isr_cnt;
+void putstring(char *c);
+# 380 "Source/FreeRTOS/include\\FreeRTOS.h"
 void Xprintf(const char *string, ...);
-# 1249 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1273 "Source/FreeRTOS/include\\FreeRTOS.h"
 struct xSTATIC_LIST_ITEM
 {
 
@@ -11782,7 +11785,7 @@ typedef struct xSTATIC_LIST
 
 
 } StaticList_t;
-# 1304 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1328 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_TCB
 {
     void * pxDummy1;
@@ -11801,12 +11804,12 @@ typedef struct xSTATIC_TCB
 
 
         UBaseType_t uxDummy10[ 2 ];
-# 1339 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1363 "Source/FreeRTOS/include\\FreeRTOS.h"
         uint32_t ulDummy18[ 1 ];
         uint8_t ucDummy19[ 1 ];
-# 1352 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1376 "Source/FreeRTOS/include\\FreeRTOS.h"
 } StaticTask_t;
-# 1368 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1392 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_QUEUE
 {
     void * pvDummy1[ 3 ];
@@ -11820,13 +11823,13 @@ typedef struct xSTATIC_QUEUE
     StaticList_t xDummy3[ 2 ];
     UBaseType_t uxDummy4[ 3 ];
     uint8_t ucDummy5[ 2 ];
-# 1391 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1415 "Source/FreeRTOS/include\\FreeRTOS.h"
         UBaseType_t uxDummy8;
         uint8_t ucDummy9;
 
 } StaticQueue_t;
 typedef StaticQueue_t StaticSemaphore_t;
-# 1411 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1435 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_EVENT_GROUP
 {
     TickType_t xDummy1;
@@ -11840,7 +11843,7 @@ typedef struct xSTATIC_EVENT_GROUP
 
 
 } StaticEventGroup_t;
-# 1439 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1463 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_TIMER
 {
     void * pvDummy1;
@@ -11853,7 +11856,7 @@ typedef struct xSTATIC_TIMER
 
     uint8_t ucDummy8;
 } StaticTimer_t;
-# 1466 "Source/FreeRTOS/include\\FreeRTOS.h"
+# 1490 "Source/FreeRTOS/include\\FreeRTOS.h"
 typedef struct xSTATIC_STREAM_BUFFER
 {
     size_t uxDummy1[ 4 ];
@@ -11998,6 +12001,9 @@ void print485(char *string);
 void putstring(char *c);
 
 const char ConvC[]= { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' };
+uint8_t isr_cbuf[10];
+uint8_t isr_cnt=0;
+
 
 
 
@@ -12218,7 +12224,7 @@ uint8_t *my_puts(char* str, uint8_t *buf )
 
  return buf ;
 }
-# 261 "Source/uart_main.c"
+# 264 "Source/uart_main.c"
 uint8_t *my_putshex(uint16_t dt, uint8_t flg, uint8_t *buf )
 {
  uint8_t sw;
@@ -12267,7 +12273,7 @@ uint8_t *my_putshex(uint16_t dt, uint8_t flg, uint8_t *buf )
  }
  return buf ;
 }
-# 317 "Source/uart_main.c"
+# 320 "Source/uart_main.c"
 uint8_t *my_putshex32(long dt, uint8_t *buf )
 {
  uint8_t sw;
@@ -12358,10 +12364,10 @@ void Xprintf(const char *string, ...)
                         break;
                     case 'p':
                         uint32value = (long)(*(long *)__va_arg(*(long **)ap, (long)0));
-                        uintvalue = (uint16_t)(uint32value >> 16);
-                        debu_uint2a('@',uintvalue);
-                        uintvalue = (uint16_t)uint32value;
-                        debu_uint2a('*',uintvalue);
+
+
+
+
                         buffer = my_putshex32((long)uint32value, buffer );
                         break;
                     default:

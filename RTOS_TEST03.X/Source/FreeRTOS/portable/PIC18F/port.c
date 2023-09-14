@@ -350,7 +350,7 @@ void putch(unsigned char c);
 			asm("MOVFF	POSTDEC1, STATUS");                                     \
 			asm("MOVFF	POSTDEC1, WREG");										\
 			/* Return enabling interrupts. */									\
-            mDEBUG_INT2A2('S','T','5',STKPTR);      \
+            /* M_PRINTF_B(ISR=,5);*/        \
 			asm("RETFIE	0");													\
                                                                                 \
 																				\
@@ -452,6 +452,7 @@ StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t px
 uint32_t ulAddress;
 uint8_t ucBlock;
 
+    M_PRINTF_B(pIS=,1);     
 	/* Place a few bytes of known values on the bottom of the stack. 
 	This is just useful for debugging. */
 
@@ -548,8 +549,7 @@ uint8_t ucBlock;
 	*pxTopOfStack = ( StackType_t ) 0x00; /* High. */
 	pxTopOfStack++;
 
-	/* The only function return address so far is the address of the 
-	task. */
+	/* これまでのところ、関数の戻りアドレスはタスクのアドレスのみです。 */
 	ulAddress = ( uint32_t ) pxCode;
 
 	/* TOS low. */
@@ -566,8 +566,7 @@ uint8_t ucBlock;
 	*pxTopOfStack = ( StackType_t ) ( ulAddress & ( uint32_t ) 0x00ff );
 	pxTopOfStack++;
 
-	/* Store the number of return addresses on the hardware stack - so far only
-	the address of the task entry point. */
+	/* 戻りアドレスの数をハードウェア スタックに保存します。これまでのところ、タスク エントリ ポイントのアドレスのみです。 */
 	*pxTopOfStack = ( StackType_t ) 1;
 	pxTopOfStack++;
 
@@ -592,13 +591,13 @@ BaseType_t xPortStartScheduler( void )
 	/* 実行する最初のタスクのコンテキストを復元します。 */
 	portRESTORE_CONTEXT2();
     
-
+#ifdef ___NOP
     //Xprintf("xPortStartScheduler(003) \r\n");
 	/* ここに来るべきではない。 コンパイラの警告を停止するには、関数名を使用します。 */
 	( void ) prvLowInterrupt;
 	( void ) prvTickISR;
     //Xprintf("xPortStartScheduler(003) \r\n");
-
+#endif
 	return pdTRUE;
 }
 /*-----------------------------------------------------------*/
@@ -751,31 +750,33 @@ static void timer1_ISR(void)
 #endif  // ___NOP
 
 
-
 void __interrupt(high_priority) high_isr(void) 
 { 
     if( CCPTMR_ISRIF ){
-        mPUTCH('\r');
-        mPUTCH('\n');
-        mDEBUG_INT2A2('S','T','1',STKPTR);
+        M_PRINTF_B(ISR=,1);     
+
+
         /* ISR を起動するには割り込みが有効になっている必要があるため、割り込みを有効に
          * してコンテキストを保存する必要があります。 */
         portSAVE_CONTEXT( portGLOBAL_INTERRUPT_FLAG );
-        mDEBUG_INT2A2('S','T','2',STKPTR);
+
 
         // PIR1bits.CCP1IF = 0;
         CCPTMR_ISRIF = 0;        
-        //putch('C');
+
 
         /* ティック数を維持します。 */
+        if(isr_cnt < 10 )
+            isr_cnt++;
+    
         if( xTaskIncrementTick() != pdFALSE )
         {
-            mDEBUG_INT2A2('S','T','3',STKPTR);
+            M_PRINTF_B(ISR=,2);         
             //Xprintf("prvTickISR(1)\r\n");
             /* 実行準備ができている最も優先度の高いタスクに切り替えます。 */
             vTaskSwitchContext();
         }
-        mDEBUG_INT2A2('S','T','4',STKPTR);
+        //M_PRINTF_B(ISR=,3);         
         portRESTORE_CONTEXT_ISR();
     }
     
@@ -827,13 +828,11 @@ static void prvSetupTimerInterrupt( void )
 
     /* タイムカウントをクリアしてからタイマーを設定してください。 */
 
-    Xprintf("prvSetupTimerInterrupt()\r\n");
-
 	TMR3H = ( uint8_t ) 0x00;
 	TMR3L = ( uint8_t ) 0x00;
 
 	/* コンペアマッチ値を設定します。 */
-	ulCompareValue = ulConstCompareValue;
+	ulCompareValue = ulConstCompareValue*5;
 	CCPRL = ( uint8_t ) ( ulCompareValue & ( uint32_t ) 0xff );
 	ulCompareValue >>= ( uint32_t ) 8;
 	CCPRH = ( uint8_t ) ( ulCompareValue & ( uint32_t ) 0xff );	
@@ -850,7 +849,6 @@ static void prvSetupTimerInterrupt( void )
     INTCONbits.GIE_GIEH = 1;
     INTCONbits.PEIE_GIEL = 1;
     RCONbits.IPEN = 1;
-    Xprintf("prvSetupTimerInterrupt(2)\r\n");
 
     CCPTMR_ISRIP = 1;    // Timer1 Priority High
 	CCPTMR_ISRIF = 0;        

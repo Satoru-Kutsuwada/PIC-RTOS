@@ -132,21 +132,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _INDF1 `Vuc ~T0 @X0 0 e@4071 ]
 "141 Source/serial/serial.c
 [; ;Source/serial/serial.c: 141: xComPortHandle xSerialPortInit( eCOMPort ePort, eBaud eWantedBaud, eParity eWantedParity, eDataBits eWantedDataBits, eStopBits eWantedStopBits, unsigned char uxBufferLength )
-[c E7189 0 1 2 3 4 5 6 7 .. ]
-[n E7189 . serCOM1 serCOM2 serCOM3 serCOM4 serCOM5 serCOM6 serCOM7 serCOM8  ]
-[c E7216 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 .. ]
-[n E7216 . ser50 ser75 ser110 ser134 ser150 ser200 ser300 ser600 ser1200 ser1800 ser2400 ser4800 ser9600 ser19200 ser38400 ser57600 ser115200  ]
-[c E7199 0 1 2 3 4 .. ]
-[n E7199 . serNO_PARITY serODD_PARITY serEVEN_PARITY serMARK_PARITY serSPACE_PARITY  ]
-[c E7210 0 1 2 3 .. ]
-[n E7210 . serBITS_5 serBITS_6 serBITS_7 serBITS_8  ]
-[c E7206 0 1 .. ]
-[n E7206 . serSTOP_1 serSTOP_2  ]
-[v F7286 `*v ~T0 @X0 1 t ]
+[c E7193 0 1 2 3 4 5 6 7 .. ]
+[n E7193 . serCOM1 serCOM2 serCOM3 serCOM4 serCOM5 serCOM6 serCOM7 serCOM8  ]
+[c E7220 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 .. ]
+[n E7220 . ser50 ser75 ser110 ser134 ser150 ser200 ser300 ser600 ser1200 ser1800 ser2400 ser4800 ser9600 ser19200 ser38400 ser57600 ser115200  ]
+[c E7203 0 1 2 3 4 .. ]
+[n E7203 . serNO_PARITY serODD_PARITY serEVEN_PARITY serMARK_PARITY serSPACE_PARITY  ]
+[c E7214 0 1 2 3 .. ]
+[n E7214 . serBITS_5 serBITS_6 serBITS_7 serBITS_8  ]
+[c E7210 0 1 .. ]
+[n E7210 . serSTOP_1 serSTOP_2  ]
+[v F7290 `*v ~T0 @X0 1 t ]
 "884 Source/FreeRTOS/include\queue.h
 [; ;Source/FreeRTOS/include\queue.h: 884: BaseType_t xQueueReceive( QueueHandle_t xQueue,
 [v _xQueueReceive `(c ~T0 @X0 0 ef3`*S939`C*v`us ]
-[v F7268 `*Cv ~T0 @X0 1 t ]
+[v F7272 `*Cv ~T0 @X0 1 t ]
 "657
 [; ;Source/FreeRTOS/include\queue.h: 657: BaseType_t xQueueGenericSend( QueueHandle_t xQueue,
 [v _xQueueGenericSend `(c ~T0 @X0 0 ef4`*S939`C*Cv`us`Cc ]
@@ -207,16 +207,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13195
 [; ;C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f47j53.h: 13195: extern volatile RCSTAbits_t RCSTAbits __attribute__((address(0xFAC)));
 [v _RCSTAbits `VS604 ~T0 @X0 0 e@4012 ]
-[v F7302 `*Cv ~T0 @X0 1 t ]
-[v F7303 `*c ~T0 @X0 1 t ]
+[v F7306 `*Cv ~T0 @X0 1 t ]
+[v F7307 `*c ~T0 @X0 1 t ]
 "1323 Source/FreeRTOS/include\queue.h
 [; ;Source/FreeRTOS/include\queue.h: 1323: BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue,
 [v _xQueueGenericSendFromISR `(c ~T0 @X0 0 ef4`*S939`C*Cv`C*c`Cc ]
 "92 Source/FreeRTOS/portable/PIC18F\portmacro.h
 [; ;Source/FreeRTOS/portable/PIC18F\portmacro.h: 92: extern void vPortYield( void );
 [v _vPortYield `(v ~T0 @X0 0 ef ]
-[v F7316 `*v ~T0 @X0 1 t ]
-[v F7317 `*c ~T0 @X0 1 t ]
+[v F7320 `*v ~T0 @X0 1 t ]
+[v F7321 `*c ~T0 @X0 1 t ]
 "1417 Source/FreeRTOS/include\queue.h
 [; ;Source/FreeRTOS/include\queue.h: 1417: BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue,
 [v _xQueueReceiveFromISR `(c ~T0 @X0 0 ef3`*S939`C*v`C*c ]
@@ -1357,18 +1357,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "141
 [; ;Source/serial/serial.c: 141: xComPortHandle xSerialPortInit( eCOMPort ePort, eBaud eWantedBaud, eParity eWantedParity, eDataBits eWantedDataBits, eStopBits eWantedStopBits, unsigned char uxBufferLength )
-[v _xSerialPortInit `(*v ~T0 @X0 1 ef6`E7189`E7216`E7199`E7210`E7206`uc ]
+[v _xSerialPortInit `(*v ~T0 @X0 1 ef6`E7193`E7220`E7203`E7214`E7210`uc ]
 "142
 [; ;Source/serial/serial.c: 142: {
 {
 [e :U _xSerialPortInit ]
 "141
 [; ;Source/serial/serial.c: 141: xComPortHandle xSerialPortInit( eCOMPort ePort, eBaud eWantedBaud, eParity eWantedParity, eDataBits eWantedDataBits, eStopBits eWantedStopBits, unsigned char uxBufferLength )
-[v _ePort `E7189 ~T0 @X0 1 r1 ]
-[v _eWantedBaud `E7216 ~T0 @X0 1 r2 ]
-[v _eWantedParity `E7199 ~T0 @X0 1 r3 ]
-[v _eWantedDataBits `E7210 ~T0 @X0 1 r4 ]
-[v _eWantedStopBits `E7206 ~T0 @X0 1 r5 ]
+[v _ePort `E7193 ~T0 @X0 1 r1 ]
+[v _eWantedBaud `E7220 ~T0 @X0 1 r2 ]
+[v _eWantedParity `E7203 ~T0 @X0 1 r3 ]
+[v _eWantedDataBits `E7214 ~T0 @X0 1 r4 ]
+[v _eWantedStopBits `E7210 ~T0 @X0 1 r5 ]
 [v _uxBufferLength `uc ~T0 @X0 1 r6 ]
 "142
 [; ;Source/serial/serial.c: 142: {
