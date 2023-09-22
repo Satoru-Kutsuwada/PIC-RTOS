@@ -1,5 +1,6 @@
 build/default/production/Source/FreeRTOS/stream_buffer.p1:  \
 Source/FreeRTOS/stream_buffer.c  \
+Source/FreeRTOS/include/stdint.h  \
 Source/FreeRTOS/include/FreeRTOS.h  \
 Source/FreeRTOSConfig.h  \
 Source/FreeRTOS/include/projdefs.h  \

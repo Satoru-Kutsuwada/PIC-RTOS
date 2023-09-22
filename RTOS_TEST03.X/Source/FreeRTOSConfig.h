@@ -27,7 +27,8 @@
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
-#include <p18cxxx.h>
+#include <p18cxxx.h>]
+//#include "trace_macro_definitions.h"
 
 #define _XTAL_FREQ  (( unsigned long ) 48000000) 
 #define UART_BAUDRATE   ( ( unsigned long ) 57600 ) 

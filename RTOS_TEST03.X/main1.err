@@ -1,1 +1,2 @@
-Error[1027] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\include\FreeRTOS.h 50 : unable to locate 'stdint.h'
+Warning[2105] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\pic18f47j53.h 41 : Header file pic18f47j53.h included directly. Use #include <xc.h> instead.
+Error[yy] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\pic18f47j53.h 55 : syntax error

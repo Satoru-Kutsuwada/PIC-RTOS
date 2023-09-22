@@ -1,6 +1,7 @@
 build/default/production/Source/main1.p1:  \
 Source/main1.c  \
 Source/FreeRTOS/include/FreeRTOS.h  \
+Source/FreeRTOS/include/stdint.h  \
 Source/FreeRTOSConfig.h  \
 Source/FreeRTOS/include/projdefs.h  \
 Source/FreeRTOS/include/portable.h  \

@@ -1,10 +1,10 @@
 #include "FreeRTOS.h"		
 
-#include <xc.h>		
+//#include <xc.h>		
 //#include "semphr.h"
 
 #include <stdio.h>
-#include <stdbool.h>
+//#include <stdbool.h>
 #include <stdarg.h>
 #include <ctype.h>
 #include <string.h>
@@ -191,6 +191,7 @@ uint8_t *my_putfloat(double num, int precision, uint8_t *buf)
 	double fracPart,dtf;
 	int intPart;
 	int digit;
+    int count;
 
 	intPart = (int)num;
     buf = my_putint(intPart, buf);
@@ -203,10 +204,10 @@ uint8_t *my_putfloat(double num, int precision, uint8_t *buf)
         fracPart = -fracPart;
     }
 
-    int count = 0;
+    count = 0;
     while (count < precision) {
         fracPart *= 10;
-        int digit = (int)fracPart;
+        digit = (int)fracPart;
 
         *buf = '0' + digit;
         buf ++;
@@ -364,7 +365,7 @@ uint8_t printbuf[128];
 void Xprintf(const char *string, ...)
 {
 	va_list     ap;
-	char        *buffer,*Malloc_buf;
+	uint8_t        *buffer,*Malloc_buf;
     int         intvalue;
     char        *charvalue;
     char        ch;
@@ -372,7 +373,7 @@ void Xprintf(const char *string, ...)
     long    uint32value;
     double      floatvalue;
 
-    Malloc_buf = ( char * ) printbuf;
+    Malloc_buf = ( uint8_t * ) printbuf;
     //Malloc_buf = ( char * ) pvPortMalloc( 64 );
     buffer = Malloc_buf;
     if(Malloc_buf != NULL){

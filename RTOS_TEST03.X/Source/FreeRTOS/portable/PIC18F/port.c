@@ -28,23 +28,22 @@
  */
 
 /* 
-Changes between V1.2.4 and V1.2.5
-
-	+ Introduced portGLOBAL_INTERRUPT_FLAG definition to test the global 
-	  interrupt flag setting.  Using the two bits defined within
-	  portINITAL_INTERRUPT_STATE was causing the w register to get clobbered
-	  before the test was performed.
-
-Changes from V1.2.5
-
-	+ Set the interrupt vector address to 0x08.  Previously it was at the
-	  incorrect address for compatibility mode of 0x18.
-
-Changes from V2.1.1
-
-	+ PCLATU and PCLATH are now saved as part of the context.  This allows
-	  function pointers to be used within tasks.  Thanks to Javier Espeche
-	  for the enhancement. 
+ * Changes between V1.2.4 and V1.2.5
+ * 
+ * 	+ グローバル割り込みフラグ設定をテストするための portGLOBAL_INTERRUPT_FLAG 
+ * 定義を導入しました。 portINITAL_INTERRUPT_STATE 内で定義された 2 ビットを使用
+ * すると、テストの実行前に w レジスタが破壊されてしまいました。
+ * 
+ * Changes from V1.2.5
+ * 
+ * + 割り込みベクタアドレスを0x08に設定します。 以前は、互換モード 0x18 の誤った
+ *   アドレスにありました。
+ * 
+ * Changes from V2.1.1
+ * 
+ *  + PCLATU と PCLATH はコンテキストの一部として保存されるようになりました。 
+ *   これにより、関数ポインタをタスク内で使用できるようになります。 機能強化については
+ *   、Javier Espeche に感謝します。
 
 Changes from V2.3.1
 
@@ -105,7 +104,7 @@ extern volatile TCB_t * volatile pxCurrentTCB;
  */
 void vSerialTxISR( void );
 void vSerialRxISR( void );
-
+void pxCurrentTCB_point(uint32_t *dt);
 /*
  * Perform hardware setup to enable ticks.
  */
@@ -189,82 +188,87 @@ void putch(unsigned char c);
  */
 #define	portSAVE_CONTEXT( ucForcedInterruptFlags )								\
 {																				\
+uint32_t    dt;         \
+      /*INTCON |= ucForcedInterruptFlags; */                                      \
 		/* Save the status and WREG registers first, as these will get modified	 by the operations below. */	\
-		asm("MOVFF	WREG, PREINC1");											\
-		asm("MOVFF   STATUS, PREINC1");											\
+pxCurrentTCB_point(&dt);\
+M_PRINTF_D(pxCurrentTCB=, dt);                                             \
+		asm("MOVFF	WREG, PREINC1");		M_PRINT_STK(WREG); 									\
+pxCurrentTCB_point(&dt);\
+M_PRINTF_D(pxCurrentTCB=, dt);                                             \
+		asm("MOVFF   STATUS, PREINC1");		M_PRINT_STK(STATUS);			\
 		/* Save the INTCON register with the appropriate bits forced if necessary - as described above. */		\
-		asm("MOVFF	INTCON, WREG");												\
+		asm("MOVFF	INTCON, WREG");			M_PRINT_STK(INTCON);				\
 		/*asm("IORLW	(ucForcedInterruptFlags)");	*/								\
-		asm("MOVFF	WREG, PREINC1");											\
+		asm("MOVFF	WREG, PREINC1");		M_PRINT_STK(WREG); 			\
 																				\
 	portDISABLE_INTERRUPTS();													\
 																				\
                                                                                 \
 		/* Store the necessary registers to the stack. */						\
-		asm("MOVFF	BSR, PREINC1");												\
-		asm("MOVFF	FSR2L, PREINC1");											\
-		asm("MOVFF	FSR2H, PREINC1");											\
-		asm("MOVFF	FSR0L, PREINC1");											\
-		asm("MOVFF	FSR0H, PREINC1");											\
-		asm("MOVFF	TABLAT, PREINC1");											\
-		asm("MOVFF	TBLPTRU, PREINC1");                                         \
-		asm("MOVFF	TBLPTRH, PREINC1");											\
-		asm("MOVFF	TBLPTRL, PREINC1");											\
-		asm("MOVFF	PRODH, PREINC1");											\
-		asm("MOVFF	PRODL, PREINC1");											\
-		asm("MOVFF	PCLATU, PREINC1");											\
-		asm("MOVFF	PCLATH, PREINC1");											\
+		asm("MOVFF	BSR, PREINC1");			M_PRINT_STK(BSR); 				\
+		asm("MOVFF	FSR2L, PREINC1");		M_PRINT_STK(FSR2L);				\
+		asm("MOVFF	FSR2H, PREINC1");		M_PRINT_STK(FSR2H);				\
+		asm("MOVFF	FSR0L, PREINC1");		M_PRINT_STK(FSR0L);			\
+		asm("MOVFF	FSR0L, PREINC1");		M_PRINT_STK(FSR0L);			\
+		asm("MOVFF	TABLAT, PREINC1");		M_PRINT_STK(TABLAT);			\
+		asm("MOVFF	TBLPTRU, PREINC1");     M_PRINT_STK(TBLPTRU);           \
+		asm("MOVFF	TBLPTRH, PREINC1");		M_PRINT_STK(TBLPTRH);			\
+		asm("MOVFF	TBLPTRL, PREINC1");		M_PRINT_STK(TBLPTRL);			\
+		asm("MOVFF	PRODH, PREINC1");		M_PRINT_STK(PRODH);			\
+		asm("MOVFF	PRODL, PREINC1");		M_PRINT_STK(PRODL);			\
+		asm("MOVFF	PCLATU, PREINC1");		M_PRINT_STK(PCLATU);			\       
+		asm("MOVFF	PCLATH, PREINC1");		M_PRINT_STK(PCLATH);			\      
 		/* Store the .tempdata and MATH_DATA areas as described above. */		\
 		asm("CLRF	FSR0L, 0");													\
 		asm("CLRF	FSR0H, 0");													\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-        asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	POSTINC0, PREINC1");										\
-		asm("MOVFF	INDF0, PREINC1");											\
-		asm("MOVFF	FSR0L, PREINC1");											\
-		asm("MOVFF	FSR0H, PREINC1");											\
+		asm("MOVFF	POSTINC0, PREINC1");				\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+        asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	POSTINC0, PREINC1");					\
+		asm("MOVFF	INDF0, PREINC1");		M_PRINT_STK(INDF0);				\
+		asm("MOVFF	FSR0L, PREINC1");		M_PRINT_STK(FSR0L);				\
+		asm("MOVFF	FSR0H, PREINC1");		M_PRINT_STK(FSR0H);				\
         /* Store the hardware stack pointer in a temp register before we modify it. */			\
-		asm("MOVFF	STKPTR, FSR0L");											\
+		asm("MOVFF	STKPTR, FSR0L");		M_PRINT_STK(STKPTR);					\
                                                                                 \
 																				\
 		/* Store each address from the hardware stack. */						\
 		while( STKPTR > ( uint8_t ) 0 )                                         \
 		{																		\
-                                                                                \
-				asm("MOVFF	TOSL, PREINC1");									\
-				asm("MOVFF	TOSH, PREINC1");									\
-				asm("MOVFF	TOSU, PREINC1");									\
+				asm("MOVFF	TOSL, PREINC1");	M_PRINT_STK(TOSL);				\
+				asm("MOVFF	TOSH, PREINC1");	M_PRINT_STK(TOSH);			\
+				asm("MOVFF	TOSU, PREINC1");	M_PRINT_STK(TOSU);				\
 				asm("POP");														\
                                                                                 \
 		}																		\
 																				\
 		/* Store the number of addresses on the hardware stack (from the temporary register). */	\
-		asm("MOVFF	FSR0L, PREINC1");											\
+		asm("MOVFF	FSR0L, PREINC1");			M_PRINT_STK(FSR0L);				\
 		asm("MOVF	PREINC1, 1, 0");                                            \
                                                                                 \
 																				\
 	/* Save the new top of the software stack in the TCB. */					\
                                                                                 \
-		asm("MOVFF	(_pxCurrentTCB), FSR0L");									\
-		asm("MOVFF	(_pxCurrentTCB + 1), FSR0H");								\
-		asm("MOVFF	FSR1L, POSTINC0");											\
-		asm("MOVFF	FSR1H, POSTINC0");											\
+		asm("MOVFF	(_pxCurrentTCB), FSR0L");		M_PRINT_STK(FSR0L);								\
+		asm("MOVFF	(_pxCurrentTCB + 1), FSR0H");	M_PRINT_STK(FSR0H);								\
+		asm("MOVFF	FSR1L, POSTINC0");				M_PRINT_STK(FSR1L);								\
+		asm("MOVFF	FSR1H, POSTINC0");				M_PRINT_STK(FSR1H);							\
                                                                                 \
 }	
 /*-----------------------------------------------------------*/
@@ -276,16 +280,16 @@ void putch(unsigned char c);
 #define portRESTORE_CONTEXT_ISR()           \
 {                                       \
 		/* Set FSR0 to point to pxCurrentTCB->pxTopOfStack. */					\
-		asm("MOVFF	(_pxCurrentTCB), FSR0L");									\
-		asm("MOVFF	(_pxCurrentTCB + 1), FSR0H");								\
+		asm("MOVFF	(_pxCurrentTCB), FSR0L");		M_PRINT_STK(FSR0L);			\
+		asm("MOVFF	(_pxCurrentTCB + 1), FSR0H");	M_PRINT_STK(FSR0H);			\
 																				\
 		/* De-reference FSR0 to set the address it holds into FSR1. (i.e. *( pxCurrentTCB->pxTopOfStack ) ). */		\
-		asm("MOVFF	POSTINC0, FSR1L");											\
-		asm("MOVFF	POSTINC0, FSR1H");											\
+		asm("MOVFF	POSTINC0, FSR1L");				M_PRINT_STK(FSR1L);			\
+		asm("MOVFF	POSTINC0, FSR1H");				M_PRINT_STK(FSR1H);		\
 																				\
 		/* How many return addresses are there on the hardware stack?  Discard the first byte as we are pointing to the next free space. */			\
-		asm("MOVFF	POSTDEC1, FSR0L");											\
-		asm("MOVFF	POSTDEC1, FSR0L");											\
+		asm("MOVFF	POSTDEC1, FSR0L");				M_PRINT_STK(FSR0L);		\
+		asm("MOVFF	POSTDEC1, FSR0L");				M_PRINT_STK(FSR0L);			\
                                                                                 \
 	/* Fill the hardware stack from our software stack. */						\
 	STKPTR = 0;																	\
@@ -294,19 +298,19 @@ void putch(unsigned char c);
 	{																			\
                                                                                 \
 			asm("PUSH");														\
+			asm("MOVF	POSTDEC1, 0, 0");                                   	\
+			asm("MOVWF	TOSU, 0");					M_PRINT_STK(TOSU);			\
 			asm("MOVF	POSTDEC1, 0, 0");										\
-			asm("MOVWF	TOSU, 0");												\
+			asm("MOVWF	TOSH, 0");					M_PRINT_STK(TOSH);			\
 			asm("MOVF	POSTDEC1, 0, 0");										\
-			asm("MOVWF	TOSH, 0");												\
-			asm("MOVF	POSTDEC1, 0, 0");										\
-			asm("MOVWF	TOSL, 0");												\
+			asm("MOVWF	TOSL, 0");					M_PRINT_STK(TOSL);			\
                                                                                 \
 	}																			\
 																				\
                       \
 		/* Restore the .tmpdata and MATH_DATA memory. */						\
-		asm("MOVFF	POSTDEC1, FSR0H");											\
-		asm("MOVFF	POSTDEC1, FSR0L");											\
+		asm("MOVFF	POSTDEC1, FSR0H");				M_PRINT_STK(FSR0H);				\
+		asm("MOVFF	POSTDEC1, FSR0L");				M_PRINT_STK(FSR0L);				\
 		asm("MOVFF	POSTDEC1, POSTDEC0");										\
 		asm("MOVFF	POSTDEC1, POSTDEC0");										\
 		asm("MOVFF	POSTDEC1, POSTDEC0");										\
@@ -326,32 +330,32 @@ void putch(unsigned char c);
 		asm("MOVFF	POSTDEC1, POSTDEC0");										\
 		asm("MOVFF	POSTDEC1, POSTDEC0");										\
 		asm("MOVFF	POSTDEC1, POSTDEC0");										\
-		asm("MOVFF	POSTDEC1, INDF0");											\
+		asm("MOVFF	POSTDEC1, INDF0");				M_PRINT_STK(INDF0);			\
 		/* Restore the other registers forming the tasks context. */			\
-		asm("MOVFF	POSTDEC1, PCLATH");											\
-		asm("MOVFF	POSTDEC1, PCLATU");											\
-		asm("MOVFF	POSTDEC1, PRODL");											\
-		asm("MOVFF	POSTDEC1, PRODH");											\
-		asm("MOVFF	POSTDEC1, TBLPTRL");										\
-		asm("MOVFF	POSTDEC1, TBLPTRH");										\
-		asm("MOVFF	POSTDEC1, TBLPTRU");										\
-		asm("MOVFF	POSTDEC1, TABLAT");											\
-		asm("MOVFF	POSTDEC1, FSR0H");											\
-		asm("MOVFF	POSTDEC1, FSR0L");											\
-		asm("MOVFF	POSTDEC1, FSR2H");											\
-		asm("MOVFF	POSTDEC1, FSR2L");											\
-		asm("MOVFF	POSTDEC1, BSR");											\
+		asm("MOVFF	POSTDEC1, PCLATH");				M_PRINT_STK(PCLATH);				\
+		asm("MOVFF	POSTDEC1, PCLATU");				M_PRINT_STK(PCLATU);			\
+		asm("MOVFF	POSTDEC1, PRODL");				M_PRINT_STK(PRODL);			\
+		asm("MOVFF	POSTDEC1, PRODH");				M_PRINT_STK(PRODH);			\
+		asm("MOVFF	POSTDEC1, TBLPTRL");			M_PRINT_STK(TBLPTRL);			\
+		asm("MOVFF	POSTDEC1, TBLPTRH");			M_PRINT_STK(TBLPTRH);			\
+		asm("MOVFF	POSTDEC1, TBLPTRU");			M_PRINT_STK(TBLPTRU);			\
+		asm("MOVFF	POSTDEC1, TABLAT");				M_PRINT_STK(TABLAT);			\
+		asm("MOVFF	POSTDEC1, FSR0H");				M_PRINT_STK(FSR0H);			\
+		asm("MOVFF	POSTDEC1, FSR0L");				M_PRINT_STK(FSR0L);			\
+		asm("MOVFF	POSTDEC1, FSR2H");				M_PRINT_STK(FSR2H);			\
+		asm("MOVFF	POSTDEC1, FSR2L");				M_PRINT_STK(FSR2L);			\
+		asm("MOVFF	POSTDEC1, BSR");				M_PRINT_STK(BSR);			\
 		/* The next byte is the INTCON register.  Read this into WREG as some manipulation is required. */		\
-		asm("MOVFF	POSTDEC1, WREG");											\
+		asm("MOVFF	POSTDEC1, WREG");				M_PRINT_STK(WREG);			\
                                                                                 \
 																				\
 	/* From the INTCON register, only the interrupt enable bits form part of the tasks context.  It is perfectly legitimate for another task to have modified any other bits.  We therefore only restore the top two bits.	 */	\
 	                                                                            \
-			asm("MOVFF	POSTDEC1, STATUS");                                     \
-			asm("MOVFF	POSTDEC1, WREG");										\
+			asm("MOVFF	POSTDEC1, STATUS");          M_PRINT_STK(STATUS);	         \
+			asm("MOVFF	POSTDEC1, WREG");			M_PRINT_STK(WREG);			\
 			/* Return enabling interrupts. */									\
             /* M_PRINTF_B(ISR=,5);*/        \
-			asm("RETFIE	0");													\
+			/*asm("RETFIE	0");	*/												\
                                                                                 \
 																				\
 }
@@ -443,6 +447,8 @@ void putch(unsigned char c);
 }
 /*-----------------------------------------------------------*/
 
+StackType_t *stkptr[3];
+uint8_t     stkptrcnt=0;
 
 /* 
  * See header file for description. 
@@ -451,10 +457,13 @@ StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t px
 {
 uint32_t ulAddress;
 uint8_t ucBlock;
+StackType_t *temp;
+    stkptr[stkptrcnt] = pxTopOfStack;
+    temp = pxTopOfStack;
+    stkptrcnt++;
 
     M_PRINTF_B(pIS=,1);     
-	/* Place a few bytes of known values on the bottom of the stack. 
-	This is just useful for debugging. */
+	/* 既知の値の数バイトをスタックの一番下に置きます。 これはデバッグにのみ役立ちます。 */
 
 	*pxTopOfStack = 0x11;
 	pxTopOfStack++;
@@ -464,11 +473,12 @@ uint8_t ucBlock;
 	pxTopOfStack++;
 
 
-	/* Simulate how the stack would look after a call to vPortYield() generated
-	by the compiler. 
-
-	First store the function parameters.  This is where the task will expect to
-	find them when it starts running. */
+	/* コンパイラによって生成された vPortYield() の呼び出し後にスタックがどのように
+     * 見えるかをシミュレートします。
+     * 
+     * まず関数のパラメータを保存します。 これは、タスクが実行を開始するときにそれらを
+     * 見つけることを期待する場所です。 */
+    
 	ulAddress = ( uint32_t ) pvParameters;
 	*pxTopOfStack = ( StackType_t ) ( ulAddress & ( uint32_t ) 0x00ff );
 	pxTopOfStack++;
@@ -476,15 +486,31 @@ uint8_t ucBlock;
 	ulAddress >>= 8;
 	*pxTopOfStack = ( StackType_t ) ( ulAddress & ( uint32_t ) 0x00ff );
 	pxTopOfStack++;
+    
+    
+#ifdef ___NOP
+    // 追加した
+    ulAddress >>= 8;
+	*pxTopOfStack = ( StackType_t ) ( ulAddress & ( uint32_t ) 0x00ff );
+	pxTopOfStack++;
+    
+    ulAddress >>= 8;
+	*pxTopOfStack = ( StackType_t ) ( ulAddress & ( uint32_t ) 0x00ff );
+	pxTopOfStack++;
+#endif  // ___NOP
+    
+    
+    
+    
 
-	/* Next we just leave a space.  When a context is saved the stack pointer
-	is incremented before it is used so as not to corrupt whatever the stack
-	pointer is actually pointing to.  This is especially necessary during 
-	function epilogue code generated by the compiler. */
+	/* 次にスペースを空けるだけです。 コンテキストが保存されるとき、スタック ポインタ
+     * が実際に指しているものを破壊しないように、スタック ポインタは使用される前に
+     * インクリメントされます。 これは、コンパイラによって生成される関数エピローグ 
+     * コード中に特に必要です。 */
 	*pxTopOfStack = 0x44;
 	pxTopOfStack++;
 
-	/* Next are all the registers that form part of the task context. */
+	/* 次に、タスク コンテキストの一部を形成するすべてのレジスタです。 */
 	
 	*pxTopOfStack = ( StackType_t ) 0x66; /* WREG. */
 	pxTopOfStack++;
@@ -535,14 +561,14 @@ uint8_t ucBlock;
 	*pxTopOfStack = ( StackType_t ) 0x00; /* PCLATH. */
 	pxTopOfStack++;
 
-	/* Next the .tmpdata and MATH_DATA sections. */
+	/* 次に .tmpdata セクションと MATH_DATA セクション。 */
 	for( ucBlock = 0; ucBlock <= portCOMPILER_MANAGED_MEMORY_SIZE; ucBlock++ )
 	{
 		*pxTopOfStack = ( StackType_t ) ucBlock;
 		*pxTopOfStack++;
 	}
 
-	/* Store the top of the global data section. */
+	/* グローバルデータセクションの先頭を格納します。 */
 	*pxTopOfStack = ( StackType_t ) portCOMPILER_MANAGED_MEMORY_SIZE; /* Low. */
 	pxTopOfStack++;
 
@@ -552,6 +578,9 @@ uint8_t ucBlock;
 	/* これまでのところ、関数の戻りアドレスはタスクのアドレスのみです。 */
 	ulAddress = ( uint32_t ) pxCode;
 
+    Xprintf("pxCode=%p\r\n",(TaskFunction_t)pxCode);
+    Xprintf("ulAddress=%p\r\n",(uint32_t)ulAddress);
+    
 	/* TOS low. */
 	*pxTopOfStack = ( StackType_t ) ( ulAddress & ( uint32_t ) 0x00ff );
 	pxTopOfStack++;
@@ -570,6 +599,20 @@ uint8_t ucBlock;
 	*pxTopOfStack = ( StackType_t ) 1;
 	pxTopOfStack++;
 
+    ucBlock = 0;
+    
+    Xprintf("-----------------\r\n");
+    Xprintf("  Stack List %p - %p\r\n",(void *) temp , (void *)pxTopOfStack);
+    Xprintf("-----------------\r\n");
+    while(  temp  != pxTopOfStack ){
+        Xprintf( "%d: 0x%x\r\n",ucBlock,*temp);
+        ucBlock++;
+        temp++;
+    }
+    Xprintf("-----------------\r\n");
+    
+    
+    
 	return pxTopOfStack;
 }
 /*-----------------------------------------------------------*/
@@ -643,9 +686,9 @@ void __interrupt(high_priority) high_isr(void)
 #endif
 
 
-
-
 #ifdef ___NOP
+
+
 #pragma code high_vector=0x08
 static void prvLowInterrupt( void )
 {
@@ -653,16 +696,12 @@ static void prvLowInterrupt( void )
 	//if( PIR1bits.CCP1IF ){		
     if( CCPTMR_ISRIF ){        
 
-		asm( "goto prvTickISR" );
+		asm( "goto _prvTickISR" );
 	}
     
     if( INTCONbits.TMR0IF ){
-        asm( "goto timer0_ISR" );
+        asm( "goto _timer0_ISR" );
 	}
-    
-    if( PIR1bits.TMR1IF ){        // 割込みフラグをクリア
-        asm( "goto timer1_ISR");
-    }
     
     
 	/* Was the interrupt a byte being received? */
@@ -678,6 +717,8 @@ static void prvLowInterrupt( void )
 //	}
 }
 #pragma code
+
+
 #endif  // ___NOP
 
 
@@ -750,6 +791,127 @@ static void timer1_ISR(void)
 #endif  // ___NOP
 
 
+
+void stack_ptr_disp(void)
+{
+    uint8_t *dt;
+    uint8_t i,j;
+
+    for( j=0; j<3; j++ ){
+        dt = (uint8_t *)stkptr[j];
+        for(i=0; i<48; i++){
+            dt --;
+        }
+
+        for(i=0; i<128; i++){
+            M_PRINTF_B_DT(*dt);
+            if((i % 16)==15 ){
+                mPUTCH('\r');     
+                mPUTCH('\n');     
+            }
+            dt++;
+        }
+        mPUTCH('\r');     
+        mPUTCH('\n');     
+    }
+}
+
+static void prvTickISR( void )
+{
+    uint32_t    dt;
+    
+        M_PRINTF_B(ISR=,1); 
+        stack_ptr_disp();
+        pxCurrentTCB_point(&dt);
+        M_PRINTF_D(pxCurrentTCB=, dt);
+
+        /* ISR を起動するには割り込みが有効になっている必要があるため、割り込みを有効に
+         * してコンテキストを保存する必要があります。 */
+        portSAVE_CONTEXT( portGLOBAL_INTERRUPT_FLAG );
+
+        M_PRINTF_B(ISR=,2);         
+        stack_ptr_disp();
+        
+        // PIR1bits.CCP1IF = 0;
+        CCPTMR_ISRIF = 0;        
+
+
+        /* ティック数を維持します。 */
+        //if(isr_cnt < 10 )
+        //    isr_cnt++;
+            pxCurrentTCB_point(&dt);
+        M_PRINTF_D(pxCurrentTCB=, dt);
+        if( xTaskIncrementTick() != pdFALSE ){
+            M_PRINTF_B(ISR=,3);         
+            //Xprintf("prvTickISR(1)\r\n");
+            /* 実行準備ができている最も優先度の高いタスクに切り替えます。 */
+            vTaskSwitchContext();
+        }
+        else if(isr_cnt == 0){
+            isr_cnt = 1;
+            vTaskSwitchContext();
+        }
+        M_PRINTF_B(ISR=,4); 
+        pxCurrentTCB_point(&dt);
+        M_PRINTF_D(pxCurrentTCB=, dt);
+        
+        portRESTORE_CONTEXT_ISR();
+        M_PRINTF_B(ISR=,5);         
+        asm("RETFIE	0");	
+}
+
+
+static void timer0_ISR(void)
+{
+    //M_PRINTF_B(timr0=,1); 
+    INTCONbits.TMR0IF = 0;      // 割込みフラグをクリア
+    // タイマー値再設定
+    TMR0H = TIMER0_100usec >> 8;
+    TMR0L = TIMER0_100usec & 0x00ff;
+    // timer_cnt++;
+    
+    RTCdt.usec ++;
+    if( RTCdt.usec > 10 ){
+        RTCdt.usec = 0;
+        RTCdt.msec ++;
+        if( RTCdt.msec > 1000 ){
+            RTCdt.msec = 0;
+            RTCdt.sec ++;
+            if( RTCdt.sec > 60 ){
+                RTCdt.sec = 0;
+                RTCdt.min ++;
+                if( RTCdt.min > 60 ){
+                    RTCdt.min = 0;
+                    RTCdt.hour ++;                
+                }
+            }
+        }
+    }
+
+    asm("RETFIE	0");	
+}
+void high_isr_main(void)
+{ 
+
+    if( CCPTMR_ISRIF ){        
+
+		asm( "goto _prvTickISR" );
+	}
+    
+    if( INTCONbits.TMR0IF ){
+        asm( "goto _timer0_ISR" );
+	}
+    
+    asm("RETFIE	0");	
+}
+
+
+void __interrupt(high_priority) high_isr(void) 
+{ 
+    asm( "goto _high_isr_main" );
+}
+
+#ifdef ____NOP
 void __interrupt(high_priority) high_isr(void) 
 { 
     if( CCPTMR_ISRIF ){
@@ -809,6 +971,7 @@ void __interrupt(high_priority) high_isr(void)
         }
     }    
 }
+#endif  // ____NOP
 
 
 

@@ -35,17 +35,17 @@
 #include <stddef.h>
 #include <stdarg.h>
 /*
- * If stdint.h cannot be located then:
- *   + If using GCC ensure the -nostdint options is *not* being used.
- *   + Ensure the project's include path includes the directory in which your
- *     compiler stores stdint.h.
- *   + Set any compiler options necessary for it to support C99, as technically
- *     stdint.h is only mandatory with C99 (FreeRTOS does not require C99 in any
- *     other way).
- *   + The FreeRTOS download includes a simple stdint.h definition that can be
- *     used in cases where none is provided by the compiler.  The files only
- *     contains the typedefs required to build FreeRTOS.  Read the instructions
- *     in FreeRTOS/source/stdint.readme for more information.
+ * stdint.h が見つからない場合は、次のようにします。
+ *  + GCC を使用する場合は、-nostdint オプションが使用されていないことを確認してく
+ *    ださい。
+ *  + プロジェクトのインクルード パスに、コンパイラが stdint.h を保存するディレクトリ
+ *    が含まれていることを確認します。
+ *  + 技術的に stdint.h は C99 でのみ必須であるため、C99 をサポートするために必要な
+ *    コンパイラ オプションを設定します (FreeRTOS は他の方法で C99 を必要としません)。
+ *  + FreeRTOS のダウンロードには、コンパイラによって何も提供されない場合に使用できる
+ *    単純な stdint.h 定義が含まれています。 ファイルには、FreeRTOS の構築に必要な 
+ *    typedef のみが含まれています。 詳細については、FreeRTOS/source/stdint.readme 
+ *    の手順を参照してください。
  */
 #include <stdint.h> /* READ COMMENT ABOVE. */
 
@@ -351,6 +351,27 @@ void putstring(char *c);
             mPUTCH('\n');                                                           \
         }                       \
     } while (0)
+#define M_PRINTF_B_DT(data) \
+    do {                            \
+        mPUTCH(ConvC[( data >> 4 ) & 0x0f ]);                                      \
+        mPUTCH(ConvC[( data & 0x0f)]);                                             \
+        mPUTCH(' ');                                                           \
+    } while (0)
+#define M_PRINT_STK(str) \
+    do {                            \
+        if( isr_cnt < 10 ){         \
+            const char* _s = (#str);    \
+            while (*_s) {               \
+                mPUTCH(*_s);            \
+                _s++;                   \
+            }                           \
+            mPUTCH('=');                                                           \
+            mPUTCH(ConvC[( str >> 4 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( str & 0x0f)]);                                             \
+            mPUTCH('\r');                                                           \
+            mPUTCH('\n');                                                           \
+        }                       \
+    } while (0)
 
 #define M_PRINTF_W(str, data) \
     do {                            \
@@ -368,9 +389,30 @@ void putstring(char *c);
             mPUTCH('\n');                                                           \
         }                       \
     } while (0)
+#define M_PRINTF_D(str, data) \
+    do {                            \
+        if( isr_cnt < 10 ){         \
+            const char* _s = (#str);    \
+            while (*_s) {               \
+                mPUTCH(*_s);            \
+                _s++;                   \
+            }                           \
+            mPUTCH(ConvC[( data >> 28 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data >> 24 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data >> 20 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data >> 16 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data >> 12 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data >> 8 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data >> 4 ) & 0x0f ]);                                      \
+            mPUTCH(ConvC[( data & 0x0f)]);                                             \
+            mPUTCH('\r');                                                           \
+            mPUTCH('\n');                                                           \
+        }                       \
+    } while (0)
 #else
 #define M_PRINTF_B(str, data) 
 #define M_PRINTF_W(str, data) 
+#define M_PRINTF_D(str, data) 
 #endif
 
 
@@ -483,8 +525,7 @@ void Xprintf(const char *string, ...);
 
 #ifndef traceTASK_SWITCHED_IN
 
-/* Called after a task has been selected to run.  pxCurrentTCB holds a pointer
- * to the task control block of the selected task. */
+/* 実行するタスクが選択された後に呼び出されます。 pxCurrentTCB は、選択されたタスクのタスク制御ブロックへのポインターを保持します。 */
     #define traceTASK_SWITCHED_IN()
 #endif
 

@@ -27,6 +27,7 @@
  */
 
 /* Standard includes. */
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -40,6 +41,20 @@
 #include "task.h"
 #include "timers.h"
 #include "stack_macros.h"
+
+
+/* Other file private variables. --------------------------------*/
+PRIVILEGED_DATA static volatile UBaseType_t uxCurrentNumberOfTasks = ( UBaseType_t ) 0U;
+PRIVILEGED_DATA static volatile TickType_t xTickCount = ( TickType_t ) configINITIAL_TICK_COUNT;
+PRIVILEGED_DATA static volatile UBaseType_t uxTopReadyPriority = tskIDLE_PRIORITY;
+PRIVILEGED_DATA static volatile BaseType_t xSchedulerRunning = pdFALSE;
+PRIVILEGED_DATA static volatile TickType_t xPendedTicks = ( TickType_t ) 0U;
+PRIVILEGED_DATA static volatile BaseType_t xYieldPending = pdFALSE;
+PRIVILEGED_DATA static volatile BaseType_t xNumOfOverflows = ( BaseType_t ) 0;
+PRIVILEGED_DATA static UBaseType_t uxTaskNumber = ( UBaseType_t ) 0U;
+PRIVILEGED_DATA static volatile TickType_t xNextTaskUnblockTime = ( TickType_t ) 0U; /* Initialised to portMAX_DELAY before the scheduler starts. */
+PRIVILEGED_DATA static TaskHandle_t xIdleTaskHandle = NULL;                          /*< Holds the handle of the idle task.  The idle task is created automatically when the scheduler is started. */
+
 
 /* Lint e9021, e961 and e750 are suppressed as a MISRA exception justified
  * because the MPU ports require MPU_WRAPPERS_INCLUDED_FROM_API_FILE to be defined
@@ -129,6 +144,8 @@
         }                                           \
     } /* taskRECORD_READY_PRIORITY */
 
+
+
 /*-----------------------------------------------------------*/
 // #define listLIST_IS_EMPTY( pxList )                       ( ( ( pxList )->uxNumberOfItems == ( UBaseType_t ) 0 ) ? pdTRUE : pdFALSE )
 
@@ -137,15 +154,16 @@
     {                                                                         \
         UBaseType_t uxTopPriority = uxTopReadyPriority;                       \
         /*uxTopPriority = configMAX_PRIORITIES;   */                                \
-                                                                               \
+                                                                                    \
         /* 準備完了のタスクを含む最も優先度の高いキューを見つけます。 */      \
         while( listLIST_IS_EMPTY( &( pxReadyTasksLists[ uxTopPriority ] ) ) ) \
         {                                                                     \
             configASSERT( uxTopPriority );                                   \
             --uxTopPriority;                                                  \
         }                                                                     \
-                                                                              \
+        M_PRINTF_B(uTPrio=,uxTopPriority);                                                                          \
         /*listGET_OWNER_OF_NEXT_ENTRY はリスト全体にインデックスを付けるため、同じ優先順位のタスクがプロセッサー時間を均等に共有します。 */                    \
+        M_PRINTF_D(pxCurrentTCB4=,(uint32_t)pxCurrentTCB); \
         listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &( pxReadyTasksLists[ uxTopPriority ] ) ); \
         uxTopReadyPriority = uxTopPriority;                                                   \
     } /* taskSELECT_HIGHEST_PRIORITY_TASK */
@@ -217,13 +235,13 @@
  * pxTCB で表されるタスクを、そのタスクの適切な準備完了リストに配置します。 
  * リストの最後に挿入されます。
  */
-#define prvAddTaskToReadyList( pxTCB )                                                                 \
-    traceMOVED_TASK_TO_READY_STATE( pxTCB );                                                          \   
-    taskRECORD_READY_PRIORITY( ( pxTCB )->uxPriority );                                                \
+#define prvAddTaskToReadyList( pxTCB )                                          \
+    traceMOVED_TASK_TO_READY_STATE( pxTCB );                                    \   
+    taskRECORD_READY_PRIORITY( ( pxTCB )->uxPriority );                       \
     listINSERT_END( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ), &( ( pxTCB )->xStateListItem ) ); \
     tracePOST_MOVED_TASK_TO_READY_STATE( pxTCB )
 /*-----------------------------------------------------------*/
-            
+
             
 
 /*
@@ -334,6 +352,7 @@ typedef tskTCB TCB_t;
  * which static variables must be declared volatile. */
 portDONT_DISCARD PRIVILEGED_DATA TCB_t * volatile pxCurrentTCB = NULL;
 
+
 /* Lists for ready and blocked tasks. --------------------
  * xDelayedTaskList1 and xDelayedTaskList2 could be moved to function scope but
  * doing so breaks some kernel aware debuggers and debuggers that rely on removing
@@ -344,6 +363,14 @@ PRIVILEGED_DATA static List_t xDelayedTaskList2;                         /*< Del
 PRIVILEGED_DATA static List_t * volatile pxDelayedTaskList;              /*< Points to the delayed task list currently being used. */
 PRIVILEGED_DATA static List_t * volatile pxOverflowDelayedTaskList;      /*< Points to the delayed task list currently being used to hold tasks that have overflowed the current tick count. */
 PRIVILEGED_DATA static List_t xPendingReadyList;                         /*< Tasks that have been readied while the scheduler was suspended.  They will be moved to the ready list when the scheduler is resumed. */
+
+void pxCurrentTCB_point(uint32_t *dt);
+void pxCurrentTCB_point(uint32_t *dt)
+{
+    *dt = pxReadyTasksLists[2].pxIndex->pvOwner;  
+    //*dt =  pxCurrentTCB;
+}
+
 
 #if ( INCLUDE_vTaskDelete == 1 )
 
@@ -364,17 +391,6 @@ PRIVILEGED_DATA static List_t xPendingReadyList;                         /*< Tas
     int FreeRTOS_errno = 0;
 #endif
 
-/* Other file private variables. --------------------------------*/
-PRIVILEGED_DATA static volatile UBaseType_t uxCurrentNumberOfTasks = ( UBaseType_t ) 0U;
-PRIVILEGED_DATA static volatile TickType_t xTickCount = ( TickType_t ) configINITIAL_TICK_COUNT;
-PRIVILEGED_DATA static volatile UBaseType_t uxTopReadyPriority = tskIDLE_PRIORITY;
-PRIVILEGED_DATA static volatile BaseType_t xSchedulerRunning = pdFALSE;
-PRIVILEGED_DATA static volatile TickType_t xPendedTicks = ( TickType_t ) 0U;
-PRIVILEGED_DATA static volatile BaseType_t xYieldPending = pdFALSE;
-PRIVILEGED_DATA static volatile BaseType_t xNumOfOverflows = ( BaseType_t ) 0;
-PRIVILEGED_DATA static UBaseType_t uxTaskNumber = ( UBaseType_t ) 0U;
-PRIVILEGED_DATA static volatile TickType_t xNextTaskUnblockTime = ( TickType_t ) 0U; /* Initialised to portMAX_DELAY before the scheduler starts. */
-PRIVILEGED_DATA static TaskHandle_t xIdleTaskHandle = NULL;                          /*< Holds the handle of the idle task.  The idle task is created automatically when the scheduler is started. */
 
 /* Improve support for OpenOCD. The kernel tracks Ready tasks via priority lists.
  * For tracking the state of remote threads, OpenOCD uses uxTopUsedPriority
@@ -470,12 +486,11 @@ void __prvAddTaskToReadyList( TCB_t *pxTCB)
 static void prvInitialiseTaskLists( void ) PRIVILEGED_FUNCTION;
 
 /*
- * The idle task, which as all tasks is implemented as a never ending loop.
- * The idle task is automatically created and added to the ready lists upon
- * creation of the first user task.
- *
- * The portTASK_FUNCTION_PROTO() macro is used to allow port/compiler specific
- * language extensions.  The equivalent prototype for this function is:
+ * アイドル タスク。すべてのタスクと同様に、終わりのないループとして実装されます。
+ * アイドル タスクは自動的に作成され、最初のユーザー タスクの作成時に準備完了リストに
+ * 追加されます。
+ * portTASK_FUNCTION_PROTO() マクロは、ポート/コンパイラー固有の言語拡張を許可する
+ * ために使用されます。 この関数の同等のプロトタイプは次のとおりです。
  *
  * void prvIdleTask( void *pvParameters );
  *
@@ -779,6 +794,7 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) PRIVILEGED_FUNCTION;
     {
         TCB_t * pxNewTCB;
         BaseType_t xReturn;
+        uint32_t mAdd;
 
         /* スタックが減少した場合は、スタックが TCB に増加しないように、スタックを
          * 割り当ててから TCB を割り当てます。 同様に、スタックが大きくなった場合は、
@@ -792,6 +808,13 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) PRIVILEGED_FUNCTION;
             if( pxNewTCB != NULL )
             {
                 Xprintf("xTaskCreate 001 pxNewTCB=%p\r\n",(void *)pxNewTCB);
+                mAdd = (uint32_t)(TCB_t *)pxNewTCB;
+
+                Xprintf("xTaskCreate 00A pxNewTCB=%p\r\n",(uint32_t)mAdd);
+                M_PRINTF_D(pxNewTCB(1)=,(uint32_t)mAdd);  
+
+                
+
                 memset( ( void * ) pxNewTCB, 0x00, sizeof( TCB_t ) );
 
                 /* 作成中のタスクによって使用されるスタックにスペースを割り当てます。 
@@ -1127,7 +1150,7 @@ void taskInfo( TCB_t *tcb )
     Xprintf("uxPriority   = %d\r\n", tcb->uxPriority);
     Xprintf("pxStack      = %p\r\n", tcb->pxStack);
     Xprintf("pxEndOfStack = %p\r\n", tcb->pxEndOfStack);
-#endif ___NOP            
+#endif //___NOP            
 }
 
 void pxReadyTasksLists_info(void)
@@ -1135,7 +1158,7 @@ void pxReadyTasksLists_info(void)
     uint8_t     i,j;
     ListItem_t  *xlist;
  
-    
+     M_PRINTF_D(pxCurrentTCB=,(uint32_t)pxCurrentTCB); 
     
     Xprintf("\r\n");
     Xprintf("***************************\r\n");
@@ -2913,6 +2936,9 @@ BaseType_t xTaskIncrementTick( void )
 
         /* RTOS ティックをインクリメントし、0 にラップすると遅延リストとオーバーフローした遅延リストを切り替えます。 */
         xTickCount = xConstTickCount;
+        
+        M_PRINTF_W(xTC=,xTickCount);
+        
 
         if( xConstTickCount == ( TickType_t ) 0U ) /*lint !e774 'if' はオーバーフローを探しているため、常に false と評価されるわけではありません。 */
         {
@@ -3188,34 +3214,41 @@ BaseType_t xTaskIncrementTick( void )
 
 void vTaskSwitchContext( void )
 {
-    M_PRINTF_B(TSC=,1);    
+    M_PRINTF_B(vTaskSwitchContext=,1);    
+    M_PRINTF_D(pxCurrentTCB0=,(uint32_t)pxReadyTasksLists[2].pxIndex->pvOwner); 
+    
     if( uxSchedulerSuspended != ( UBaseType_t ) pdFALSE )
     {
+            M_PRINTF_B(TSC=,2);   
         /* スケジューラは現在一時停止されています。コンテキストの切り替えを許可しないでください。 */
         xYieldPending = pdTRUE;
     }
     else
     {
+            M_PRINTF_B(TSC=,3);   
         xYieldPending = pdFALSE;
         traceTASK_SWITCHED_OUT();
 
         #if ( configGENERATE_RUN_TIME_STATS == 1 )
         {
+            M_PRINTF_B(TSC=,4);   
             #ifdef portALT_GET_RUN_TIME_COUNTER_VALUE
                 portALT_GET_RUN_TIME_COUNTER_VALUE( ulTotalRunTime );
             #else
                 ulTotalRunTime = portGET_RUN_TIME_COUNTER_VALUE();
             #endif
 
-            /* Add the amount of time the task has been running to the
-             * accumulated time so far.  The time the task started running was
-             * stored in ulTaskSwitchedInTime.  Note that there is no overflow
-             * protection here so count values are only valid until the timer
-             * overflows.  The guard against negative values is to protect
-             * against suspect run time stat counter implementations - which
-             * are provided by the application, not the kernel. */
+            /* 
+             * タスクが実行されている時間をこれまでの累積時間に加算します。 
+             * タスクの実行が開始された時刻は、ulTaskSwitchedInTime に保存されます。 
+             * ここにはオーバーフロー保護がないため、カウント値はタイマーがオーバー
+             * フローするまでのみ有効であることに注意してください。 負の値に対する
+             * 保護は、カーネルではなくアプリケーションによって提供される、疑わしい
+             * 実行時統計カウンターの実装から保護することです。 
+             */
             if( ulTotalRunTime > ulTaskSwitchedInTime )
             {
+            M_PRINTF_B(TSC=,5);   
                 pxCurrentTCB->ulRunTimeCounter += ( ulTotalRunTime - ulTaskSwitchedInTime );
             }
             else
@@ -3228,6 +3261,8 @@ void vTaskSwitchContext( void )
         #endif /* configGENERATE_RUN_TIME_STATS */
 
         /* 構成されている場合は、スタック オーバーフローを確認します。 */
+            M_PRINTF_B(TSC=,6);   
+            M_PRINTF_D(pxCurrentTCB0=,(uint32_t)pxReadyTasksLists[2].pxIndex->pvOwner); 
         taskCHECK_FOR_STACK_OVERFLOW();
 
         /* Before the currently running task is switched out, save its errno. */
@@ -3236,12 +3271,15 @@ void vTaskSwitchContext( void )
             pxCurrentTCB->iTaskErrno = FreeRTOS_errno;
         }
         #endif
+             
 
         /* 汎用 C またはポート最適化された asm コードを使用して実行する新しいタスクを選択します。*/
+        M_PRINTF_B(TSC=,7);   
         taskSELECT_HIGHEST_PRIORITY_TASK(); /*lint !e9079 void * is used as this macro is used with timers and co-routines too.  Alignment is known to be fine as the type of the pointer stored and retrieved is the same. */
+        M_PRINTF_D(pxCurrentTCB1=,(uint32_t)pxCurrentTCB); 
         traceTASK_SWITCHED_IN();
 
-        /* After the new task is switched in, update the global errno. */
+        /* 新しいタスクが切り替えられたら、グローバル errno を更新します。*/
         #if ( configUSE_POSIX_ERRNO == 1 )
         {
             FreeRTOS_errno = pxCurrentTCB->iTaskErrno;
@@ -3250,8 +3288,8 @@ void vTaskSwitchContext( void )
 
         #if ( ( configUSE_NEWLIB_REENTRANT == 1 ) || ( configUSE_C_RUNTIME_TLS_SUPPORT == 1 ) )
         {
-            /* Switch C-Runtime's TLS Block to point to the TLS
-             * Block specific to this task. */
+            M_PRINTF_B(TSC=,8);
+            /*C ランタイムの TLS ブロックを切り替えて、このタスクに固有の TLS ブロックを指すようにします。 */
             configSET_TLS_BLOCK( pxCurrentTCB->xTLSBlock );
         }
         #endif
@@ -3598,12 +3636,17 @@ void vTaskMissedYield( void )
  * The Idle task.
  * ----------------------------------------------------------
  *
- * The portTASK_FUNCTION() macro is used to allow port/compiler specific
- * language extensions.  The equivalent prototype for this function is:
+ * portTASK_FUNCTION() マクロは、ポート/コンパイラー固有の言語拡張を許可するために
+ * 使用されます。 この関数の同等のプロトタイプは次のとおりです。
  *
  * void prvIdleTask( void *pvParameters );
  *
  */
+void prvIdleTask_entry(void)
+{
+    prvIdleTask(0);
+}
+
 static portTASK_FUNCTION( prvIdleTask, pvParameters )
 {
     /* Stop warnings. */

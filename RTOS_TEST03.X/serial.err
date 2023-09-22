@@ -1,1 +1,9 @@
-Error[1027] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\include\FreeRTOS.h 50 : unable to locate 'stdint.h'
+Warning[2074] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\serial\serial.c 183 : location PRODH specified in the interrupt save list is redundant
+Warning[2074] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\serial\serial.c 183 : location PRODL specified in the interrupt save list is redundant
+Warning[2074] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\serial\serial.c 183 : location TABLAT specified in the interrupt save list is redundant
+Warning[2074] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\serial\serial.c 183 : location .tmpdata specified in the interrupt save list is redundant
+Warning[2074] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\serial\serial.c 210 : location PRODH specified in the interrupt save list is redundant
+Warning[2074] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\serial\serial.c 210 : location PRODL specified in the interrupt save list is redundant
+Warning[2074] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\serial\serial.c 210 : location TABLAT specified in the interrupt save list is redundant
+Warning[2074] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\serial\serial.c 210 : location .tmpdata specified in the interrupt save list is redundant
+Warning[2058] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\serial\serial.c 133 : call of function without prototype

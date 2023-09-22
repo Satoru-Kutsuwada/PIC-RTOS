@@ -1,1 +1,16 @@
-Error[1027] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\include\FreeRTOS.h 50 : unable to locate 'stdint.h'
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 204 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 205 : type qualifier mismatch in assignment
+Warning[2058] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 294 : call of function without prototype
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 330 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 331 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 332 : type qualifier mismatch in assignment
+Warning[2058] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 453 : call of function without prototype
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 481 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 482 : type qualifier mismatch in assignment
+Warning[2058] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 495 : call of function without prototype
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 546 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 547 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 549 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 634 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 636 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\event_groups.c 646 : type qualifier mismatch in assignment

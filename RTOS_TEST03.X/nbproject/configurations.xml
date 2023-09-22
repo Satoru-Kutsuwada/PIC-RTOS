@@ -34,9 +34,10 @@
         <itemPath>Source/FreeRTOS/include/task.h</itemPath>
         <itemPath>Source/FreeRTOS/include/timers.h</itemPath>
       </logicalFolder>
-      <itemPath>Source/FreeRTOSConfig.h</itemPath>
       <itemPath>stdint.h</itemPath>
       <itemPath>Source/rtc_main.h</itemPath>
+      <itemPath>Source/trace_macro_definitions.h</itemPath>
+      <itemPath>Source/FreeRTOSConfig.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -144,7 +145,7 @@
         <property key="enable-ou" value="true"/>
         <property key="enable-ow" value="true"/>
         <property key="extra-include-directories"
-                  value="Source;Source\FreeRTOS;Source\FreeRTOS\include;Source\FreeRTOS\portable\PIC18F;Source\FreeRTOS\Common"/>
+                  value="Source;Source\FreeRTOS;Source\FreeRTOS\Common;Source\FreeRTOS\include;Source\FreeRTOS\portable\PIC18F"/>
         <property key="optimization-master" value="Enable all"/>
         <property key="preprocessor-macros" value=""/>
         <property key="procedural-abstraction-passes" value="4"/>

@@ -1,1 +1,8 @@
-Error[1027] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\include\FreeRTOS.h 50 : unable to locate 'stdint.h'
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\Common\PollQ.c 108 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\Common\PollQ.c 109 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\Common\PollQ.c 110 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\Common\PollQ.c 111 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\Common\PollQ.c 120 : type qualifier mismatch in assignment
+Warning[2058] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\Common\PollQ.c 140 : call of function without prototype
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\Common\PollQ.c 160 : type qualifier mismatch in assignment
+Warning[2058] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\Common\PollQ.c 186 : call of function without prototype

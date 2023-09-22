@@ -1,6 +1,7 @@
 build/default/production/Source/FreeRTOS/portable/PIC18F/port.p1:  \
 Source/FreeRTOS/portable/PIC18F/port.c  \
 Source/FreeRTOS/include/FreeRTOS.h  \
+Source/FreeRTOS/include/stdint.h  \
 Source/FreeRTOSConfig.h  \
 Source/FreeRTOS/include/projdefs.h  \
 Source/FreeRTOS/include/portable.h  \

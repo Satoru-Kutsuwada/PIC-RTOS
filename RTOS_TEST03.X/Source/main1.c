@@ -70,7 +70,7 @@ Changes from V2.0.0
 #include "FreeRTOSConfig.h"
 #include "task.h"
 #include "semphr.h"
-
+//#include "pic18f47j53.h"
 /* Demo app include files. */
 #include "PollQ.h"
 #include "integer.h"
@@ -453,6 +453,9 @@ extern uint16_t timer_cnt;
 extern uint16_t timer_cnt_buf;
 
 void putstring(char *c);
+void pxReadyTasksLists_info(void);
+void prvIdleTask_entry(void);
+     
 //QueueHandle_t   Mutex;
 
 //==============================================================================
@@ -470,6 +473,9 @@ void Wait(uint16_t num)
 //==============================================================================
 //
 //==============================================================================
+
+
+
 /* Creates the tasks, then starts the scheduler. */
 void main( void )
 {
@@ -524,7 +530,7 @@ void main( void )
     putstring("******************\r\n");
     //printf("UART START\r\n");
 
-    Timer0_init();
+    //Timer0_init();
     //Timer1_init();
 #ifdef ___NOP    
     
@@ -567,24 +573,42 @@ void main( void )
         //vStartIntegerMathTasks( tskIDLE_PRIORITY );
         //vStartPolledQueueTasks( mainQUEUE_POLL_PRIORITY );
         /* Start the check task defined in this file. */
+
+    
+    //M_PRINTF_D(task001=,*func_table[0]);
+    //M_PRINTF_D(task001=,&task001);
+    //M_PRINTF_D(task001=,(uint32_t)task001);
+    
+    
+            
+            
         Status = xTaskCreate( task001, "U01", configMINIMAL_STACK_SIZE*2, NULL,1, NULL );
+
+        pxReadyTasksLists_info();
         vTaskList(0);
         Status = xTaskCreate( task002, "U02", configMINIMAL_STACK_SIZE*2, NULL,2, NULL );
         Xprintf("main1.c %d Status=%d\r\n",__LINE__,Status);
         /* Start the scheduler.  Will never return here. */
         
+        pxReadyTasksLists_info();
         vTaskList(0);
         
         vTaskStartScheduler();
     //}
     
-    while(1);
+    while(1){
+        
+    }
+     task001(0);   
+     task002(0);   
+     prvIdleTask_entry();
 }
 /*-----------------------------------------------------------*/
-static void task002( void *pvParameters )
+void task002( void *pvParameters )
 {
-    Xprintf("task002() START\r\n");
-
+    //Xprintf("task002() START\r\n");
+    M_PRINTF_B(task002 -------------------,1);   
+    
 	/* Cycle for ever, delaying then checking all the other tasks are still
 	operating without error. */
 	for( ;; )
@@ -594,52 +618,16 @@ static void task002( void *pvParameters )
     }
 }
 
-static void task001( void *pvParameters )
+void task001( void *pvParameters )
 {
-    #ifdef ___NOP    
-TickType_t xDelayTime = mainNO_ERROR_CHECK_PERIOD;
+    M_PRINTF_B(task001 -------------------,1);   
 
-Xprintf("task001() START\r\n");
-
-for( ;; ){
-    vTaskDelay( xDelayTime );
-    Xprintf("xDelayTime=%d\r\n",xDelayTime);
-}
-  
-
-TickType_t xDelayTime = mainNO_ERROR_CHECK_PERIOD;
-portBASE_TYPE xErrorOccurred;
-#endif  // ___NOP  
-
-Xprintf("task001() START\r\n");
-
-	/* Cycle for ever, delaying then checking all the other tasks are still
-	operating without error. */
 	for( ;; )
 	{
         Xprintf("task001() Loop\r\n");
         vTaskDelay( 100 );
     }
 
-#ifdef ___NOP
-		/* Wait until it is time to check the other tasks. */
-		vTaskDelay( xDelayTime );
-        Xprintf("xDelayTime=%d\r\n",xDelayTime);
-
-		/* 他のすべてのタスクが実行中であり、エラーが発生することなく実行されている
-         * ことを確認します。 */
-		xErrorOccurred = prvCheckOtherTasksAreStillRunning();
-
-		/* If an error was detected increase the frequency of the LED flash. */
-		if( xErrorOccurred == pdTRUE )
-		{
-			xDelayTime = mainERROR_CHECK_PERIOD;
-		}
-
-		/* Flash the LED for visual feedback. */
-		vParTestToggleLED( mainCHECK_TASK_LED );
-	}
-#endif
 }
 /*-----------------------------------------------------------*/
 

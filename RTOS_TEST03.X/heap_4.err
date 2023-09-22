@@ -1,1 +1,5 @@
-Error[1027] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\include\FreeRTOS.h 50 : unable to locate 'stdint.h'
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\MemMang\heap_4.c 216 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\MemMang\heap_4.c 279 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\MemMang\heap_4.c 298 : type qualifier mismatch in assignment
+Warning[2066] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\MemMang\heap_4.c 299 : type qualifier mismatch in assignment
+Warning[2058] D:\PIC_RTOS\PIC-RTOS\RTOS_TEST03.X\Source\FreeRTOS\MemMang\heap_4.c 530 : call of function without prototype
