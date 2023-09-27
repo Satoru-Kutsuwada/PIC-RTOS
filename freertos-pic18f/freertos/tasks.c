@@ -536,6 +536,38 @@ static void prvResetNextTaskUnblockTime( void ) PRIVILEGED_FUNCTION;
 
 #endif
 
+void rom_print_data( static char rom *text, uint16_t dt1, uint16_t dt2);
+void rom_char_print( static char rom *text );
+//=============================================================================
+//
+//=============================================================================
+
+void param_size_disp(void)
+{
+    rom_print_data("Size *************\r\n",0,0);
+    rom_print_data("MiniListItem_t=%d\r\n",sizeof(MiniListItem_t),0);
+    rom_print_data("List_t=%d\r\n",sizeof(List_t),0);
+    rom_print_data("ListItem_t=%d\r\n",sizeof(ListItem_t),0);
+    rom_print_data("StackType_t*=%d\r\n",sizeof(StackType_t *),0);
+    rom_print_data("ListItem_t*=%d\r\n",sizeof(ListItem_t *),0);
+
+}
+void param_disp(TCB_t *tcb)
+{
+    tcb->pcTaskName[3]='\0';
+    rom_print_data("TCB *************\r\n",0,0);
+    //rom_char_print( &tcb->pcTaskName[0] );
+    rom_print_data("*****************\r\n",0,0);
+    rom_print_data("  uxPriority    = %d\r\n",tcb->uxPriority,0);
+    rom_print_data("  *pxStack      = 0x%x\r\n",(uint16_t)tcb->pxStack,0);
+    rom_print_data("  *pxEndOfStack = 0x%x\r\n",(uint16_t)tcb->pxEndOfStack,0);
+    rom_print_data("  xState.pxNext = 0x%x\r\n",(uint16_t)tcb->xStateListItem.pxNext,0);
+
+    
+    
+    
+}
+        
 /*
  * Called after a Task_t structure has been allocated either statically or
  * dynamically to fill in the structure's members.
@@ -808,6 +840,9 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB ) PRIVILEGED_FUNCTION;
             xReturn = errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY;
         }
 
+        param_disp( pxNewTCB );
+        
+        
         return xReturn;
     }
 
@@ -5393,3 +5428,4 @@ static void prvAddCurrentTaskToDelayedList( TickType_t xTicksToWait,
     #endif
 
 #endif /* if ( configINCLUDE_FREERTOS_TASK_C_ADDITIONS_H == 1 ) */
+        
