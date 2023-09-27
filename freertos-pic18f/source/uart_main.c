@@ -423,3 +423,54 @@ void Xprintf(const char *string, ...)
         //vPortFree(Malloc_buf);
     }
 }
+
+
+void ram_message_send2(static char *text,uint16_t ine);
+
+//=============================================================================
+//
+//
+//=============================================================================
+void Yprintf(uint8_t *buffer, static char rom *string, ...)
+{
+	va_list     ap;
+    uint16_t    uintValue;
+    uint8_t     *buftmp;
+
+    buftmp = buffer;
+    va_start(ap, string);
+
+    while (*string != '\0') {
+        if (*string == '%') {
+            string++; // Move past '%'
+            switch (*string ){
+                case  'd':
+                    uintValue = va_arg(ap, int);
+                    //printf("intvaluee=%d\r\n",intvalue);
+                    buffer = my_putint((int)uintValue, buffer);
+                    break;
+                case  'x':
+                    uintValue = (uint16_t)va_arg(ap, int);
+                    //printf("uintvalue=%x\r\n",uintvalue);
+                    buffer = my_putshex(uintValue, 0, buffer );
+                    break;
+                default:
+                    buffer = my_putchar('%', buffer );
+                    buffer = my_putchar(*string, buffer );
+                    break;
+            }
+        }
+        else {
+            buffer = my_putchar(*string, buffer );
+        }
+        string++;
+    }
+
+    *buffer = '\0';
+
+    va_end(ap);
+  
+    ram_message_send2(buftmp,__LINE__);
+    
+
+}

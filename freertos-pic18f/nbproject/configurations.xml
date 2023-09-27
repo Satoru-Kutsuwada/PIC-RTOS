@@ -5,6 +5,12 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>source/FreeRTOSConfig.h</itemPath>
+      <itemPath>source/rtc_main.h</itemPath>
+      <itemPath>freertos/include/list.h</itemPath>
+      <itemPath>freertos/include/task.h</itemPath>
+      <itemPath>freertos/include/FreeRTOS.h</itemPath>
+      <itemPath>freertos/include/mpu_prototypes.h</itemPath>
+      <itemPath>freertos/include/mpu_wrappers.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -30,6 +36,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>source</Elem>
+    <Elem>freertos/include</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -134,6 +141,7 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
@@ -180,6 +188,7 @@
         <property key="debugoptions.debug-startup" value="Use system settings"/>
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

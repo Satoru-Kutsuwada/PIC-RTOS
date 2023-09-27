@@ -1,5 +1,4 @@
 /* ---------- デバイス依存コード ---------- */
-#if defined(PIC18F)
 
 
 #pragma config CFGPLLEN = ON
@@ -67,144 +66,389 @@
 #pragma config WPDIS = OFF          //WPFP[5:0], WPEND, and WPCFG bits ignored
 
 
-/** CONFIGURATION Bits **********************************************/
+/** CONFIGURATION Bits *********************************************************/
 #pragma config MSSP7B_EN = MSK7     //7 Bit address masking
 
 
-    #include "FreeRTOS.h"
-    #include "task.h"
-    #include "queue.h"
+//==============================================================================
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "rtc_main.h"
 #include <stdarg.h>
-    #include <stdio.h>
+#include <stdio.h>
 
-    /* PIC18Fのメイン関数名はmain() */
-    #define MAIN main
-    /* タスクスケジューラを開始するAPI関数 */
-    #define START_SCHEDULER() vTaskStartScheduler()
+//==============================================================================
+/* PIC18Fのメイン関数名はmain() */
+#define MAIN main
+/* タスクスケジューラを開始するAPI関数 */
+#define START_SCHEDULER() vTaskStartScheduler()
 
 
+//==============================================================================
 void uart_init(void);
 void putstring(uint8_t *string);
 int getch(void);
 void putch(uint8_t c);
-
-#elif defined(ESP32)
-    #include "freertos/FreeRTOS.h"
-    #include "freertos/task.h"
-    #include "freertos/queue.h"
-    #include "driver/gpio.h"
-
-    /* ESP32のメイン関数名はapp_main() */
-    #define MAIN app_main
-    /* ESP32ではapp_main()呼び出し前にタスクスケジューラが
-       開始済みのため、ユーザー・アプリケーション側では実行不要 */
-    #define START_SCHEDULER()
-#endif
-
-#ifdef ___NOP
-/* デバイスを初期化する。 */
-void vDeviceInitialize(void)
-{
-    /* LED用のGPIOを出力モードにして初期値を0とする。*/
-#if defined(ESP32)
-    gpio_config_t conf;
-    conf.intr_type = GPIO_INTR_DISABLE;
-    conf.mode = GPIO_MODE_OUTPUT;
-    conf.pin_bit_mask = (1ULL << GPIO_NUM_0)
-                        | (1ULL << GPIO_NUM_2)
-                        | (1ULL << GPIO_NUM_4);
-    conf.pull_down_en = 0;
-    conf.pull_up_en = 0;
-    gpio_config(&conf);
-    gpio_set_level(GPIO_NUM_0, 0);
-    gpio_set_level(GPIO_NUM_2, 0);
-    gpio_set_level(GPIO_NUM_4, 0);
-#elif defined(PIC18F)
-    /* LEDが接続しているポートDの0〜3を出力モードに設定 */
-    TRISD &= 0xf0;
-    PORTD &= 0xf0;
-#endif
-}
-
-/* LEDの点灯状態を設定する。 1:点灯、0:消灯 */
-void vSetLedStatus(UBaseType_t uNum, BaseType_t xState)
-{
-#if defined(ESP32)
-    static int led[3] = {GPIO_NUM_0, GPIO_NUM_2, GPIO_NUM_4};
-    gpio_set_level(led[uNum], xState);
-#elif defined(PIC18F)
-    if (uNum == 0) {
-        LATDbits.LATD0 = xState;
-    }
-    else if (uNum == 1) {
-        LATDbits.LATD1 = xState;
-    }
-#endif
-}
-
-/* ---------- デバイス非依存コード ---------- */
-#define QUEUE_LENGTH 2
+ int getch(void);
+ void Yprintf(uint8_t *buffer, static char rom *string, ...);
+//==============================================================================
+#define QUEUE_LENGTH 4
 QueueHandle_t xQueue;
 
-/* LEDをトグルする。 */
-void vToggleLed(UBaseType_t uNum)
+
+//==============================================================================
+RTC_DATA RTCdt;
+RTC_DATA getRTCdt;
+uint16_t    timer_cnt;
+#define     MESG_BUF_MAX    30
+uint8_t     message_buf1[MESG_BUF_MAX];
+uint8_t     message_buf2[MESG_BUF_MAX];
+
+    
+
+void Xprintf(const char *string, ...);
+//=============================================================================
+//
+//=============================================================================
+void rtc_display(void)
 {
-    static BaseType_t xState = 0;
-    vSetLedStatus(uNum, xState);
-    xState = !xState;
+#ifdef ___NOP
+    uint8_t temp[]=" Time %d.%d.%d\r\n";
+    getRTCdt = RTCdt;
+    
+    Xprintf(temp, getRTCdt.sec, getRTCdt.msec, getRTCdt.usec);
+#endif
+    uint8_t temp[]=" Time \r\n";
+    Xprintf(temp);
+    
+}
+//==============================================================================
+// TIMER0 100usec
+// 
+//==============================================================================
+#define TIMER0_100usec 0xFB60
+#define TIMER1_10msec 0x15A0
+
+void Timer0_init(void)
+{
+    T0CON = 0;
+    T0CONbits.TMR0ON = 1;       // タイマー0を有効にする
+    T0CONbits.T08BIT = 0;       // 16 ビット タイマー
+    T0CONbits.PSA    = 1;       // Timer0 プリスケーラーは割り当てない
+    
+    TMR0H = TIMER0_100usec >> 8;
+    TMR0L = TIMER0_100usec & 0x00ff;
+            
+    
+     //==============================
+    // TIMER0
+    //==============================
+    INTCONbits.TMR0IF = 0;    
+    INTCONbits.TMR0IE = 1;
 }
 
-/* 一定時間だけワンショットでLEDを点灯させるタスク */
-void vFlashTask(void *pvParameters)
+
+//==============================================================================
+// TIMER0 10msec
+// 
+//==============================================================================
+
+
+void Timer1_init(void)
 {
-    TickType_t xPeriod = (TickType_t)pvParameters;
-    vSetLedStatus(1, 1);
-    /* (引数の数値+1)*10ミリ秒だけLEDを1回点灯し、タスクを終了する。 */
-    vTaskDelay((xPeriod % 10 + 1) * 100 / portTICK_PERIOD_MS);
-    vSetLedStatus(1, 0);
-    vTaskDelete(NULL);
+    T1CON = 0;
+    
+    /***************************************************************************
+     * 10 = Timer1 クロック ソースは T1OSC または T1CKI ピンです
+     * 01 = Timer1 のクロック ソースはシステム クロック (FOSC)(1)
+     * 00 = Timer1 のクロック ソースは命令クロック (FOSC/4)
+     **************************************************************************/ 
+    T1CONbits.TMR1CS0 = 0;
+    T1CONbits.TMR1CS1 = 0;
+    
+    /**************************************************************************
+     * 11 = 1:8 プリスケール値
+     * 10 = 1:4 プリスケール値
+     * 01 = 1:2 プリスケール値
+     * 00 = 1:1 プリスケール値
+     **************************************************************************/ 
+    T1CONbits.T1CKPS0 = 1;
+    T1CONbits.T1CKPS1 = 0;
+
+    /***************************************************************************
+     * 1 = 1 回の 16 ビット操作で Timer1 のレジスタ読み取り/書き込みを有効にします。
+     * 0 = 2 つの 8 ビット操作で Timer1 のレジスタ読み取り/書き込みを有効にし
+     **************************************************************************/ 
+    T1CONbits.RD16 = 1;
+
+    /***************************************************************************
+     * 1 = タイマー 1 を有効にする
+     * 0 = タイマー 1 を停止します
+     **************************************************************************/ 
+    T1CONbits.TMR1ON = 1;
+        
+    TMR1H = TIMER1_10msec >> 8;
+    TMR1L = TIMER1_10msec & 0x00ff;
+            
+    
+     //==============================
+    // TIMER1
+    //==============================
+    PIR1bits.TMR1IF = 0;
+    PIE1bits.TMR1IE = 1;    //Timer1 Int
 }
-#endif
-void char_print( static uint8_t *st1)
+//=============================================================================
+//
+//=============================================================================
+void ram_char_print( static char *text)
 {
-    while(*st1 != '\0'){
-           putch(*st1);
-           st1++;
-     }        
-     
+    while(*text != '\0'){
+        while (!UART_TXSTA_TRMT); // 送信バッファが空になるまで待機
+        UART_TXREG = *text; // データを送信
+        text++;
+    }             
 }
-/* 受信用タスク */
+//=============================================================================
+//
+//=============================================================================
+void rom_char_print( static char rom *text )
+{
+    while(*text != '\0'){
+        while (!UART_TXSTA_TRMT); // 送信バッファが空になるまで待機
+        UART_TXREG = *text; // データを送信
+        text++;
+    }             
+}
+//=============================================================================
+//
+//=============================================================================
+extern const char ConvC[];
+
+void rom_print_data( static char rom *text, uint16_t dt1, uint16_t dt2)
+{
+    uint16_t    data[2];
+    uint16_t    tmp;
+    int          i=0;
+    int          j;
+
+    data[0] = dt1;
+    data[1] = dt2;
+    
+    
+    while(*text != '\0'){
+        if( *text == '%' ){
+            text++;
+            switch(*text){
+            case 'd':
+                j = (int)data[i];
+                if( j < 0){
+                    j *= -1;
+                }
+ 
+                if(j>=10000)
+                    tmp = 5;
+                else if(j>=1000)
+                    tmp = 4;
+                else if(j>=100)
+                    tmp = 3;
+                else if(j>=10)
+                    tmp = 2;
+                else
+                    tmp = 1;
+                
+                switch(tmp){
+                case 5:
+                    tmp = j/10000;
+                    j = j - (tmp*10000);
+                    while (!UART_TXSTA_TRMT);
+                    UART_TXREG = ConvC[tmp];
+                case 4:
+                    tmp = j/1000;
+                    j = j - (tmp*1000);
+                    while (!UART_TXSTA_TRMT);
+                    UART_TXREG = ConvC[tmp];
+                case 3:
+                    tmp = j/100;
+                    j = j - (tmp*100);
+                    while (!UART_TXSTA_TRMT);
+                    UART_TXREG = ConvC[tmp];
+                case 2:
+                    tmp = j/10;
+                    j = j - (tmp*10);
+                    while (!UART_TXSTA_TRMT);
+                    UART_TXREG = ConvC[tmp];
+                case 1:
+                    tmp = j;
+                    while (!UART_TXSTA_TRMT);
+                    UART_TXREG = ConvC[tmp];
+                }
+                i++;
+                text++;
+                break;
+            case 'x':
+                for(j=12; j>0; j=j-4){
+                    tmp = (data[i] >> j) & 0x0f;
+                    while (!UART_TXSTA_TRMT); // 送信バッファが空になるまで待機
+                    UART_TXREG = ConvC[tmp];
+                }
+                    tmp = data[i] & 0x0f;
+                    while (!UART_TXSTA_TRMT); // 送信バッファが空になるまで待機
+                    UART_TXREG = ConvC[tmp];
+                
+                i++;
+                text++;
+                break;
+            default:
+                while (!UART_TXSTA_TRMT); // 送信バッファが空になるまで待機
+                UART_TXREG = '%';
+
+                while (!UART_TXSTA_TRMT); // 送信バッファが空になるまで待機
+                UART_TXREG = *text; // データを送信
+                text++;
+                break;
+            }
+        }
+        else{
+            while (!UART_TXSTA_TRMT); // 送信バッファが空になるまで待機
+            UART_TXREG = *text; // データを送信
+            text++;
+        }
+    }             
+}
+
+typedef struct{
+    void *malloc_pt;
+}PRINT_MSG_FORM;
+
+//=============================================================================
+//
+//=============================================================================
+void rom_message_send(static char rom *text,uint8_t *buffer,uint16_t line)
+{
+    uint8_t i;
+    PRINT_MSG_FORM pm_msg;
+    BaseType_t  Status;
+    
+    //rom_char_print( "rom_message_send()\r\n\0" );
+    
+    for( i=0; i<MESG_BUF_MAX; i++ ){
+        if( text[i] != '\0' ){
+            buffer[i] = text[i];
+        }
+        else{
+            buffer[i] = text[i];
+            break;
+        }
+    }
+    buffer[i] = '\0';
+    
+    
+    pm_msg.malloc_pt = (void *)buffer;
+    //rom_print_data( "rom_message_send(Line %d)\r\n", line, 0);
+    
+    Status = xQueueSend(xQueue, (void *)&pm_msg, 0);
+    if( Status  != pdPASS ){
+        rom_print_data( "Statust=%d(Line %d)\r\n", Status,line);
+    }
+}
+
+void ram_message_send(static char *text,uint16_t line)
+{
+    PRINT_MSG_FORM pm_msg;
+    BaseType_t  Status;
+
+    pm_msg.malloc_pt = (void *)text;
+    
+    rom_print_data( "ram_message_send(Line %d)\r\n", line, 0);
+    Status = xQueueSend(xQueue, (void *)&pm_msg, 0);
+    if( Status  != pdPASS ){
+        rom_print_data( "Statust=%d(Line %d)\r\n", Status,line);
+    }
+}
+
+void ram_message_send2(static char *text,uint16_t line)
+{
+    PRINT_MSG_FORM pm_msg;
+    BaseType_t  Status;
+
+    pm_msg.malloc_pt = (void *)text;
+    
+    rom_print_data( "ram2_message_send(Line %d)\r\n", line, 0);
+    Status = xQueueSend(xQueue, (void *)&pm_msg, 0);
+    if( Status  != pdPASS ){
+        rom_print_data( "Statust=%d(Line %d)\r\n", Status,line);
+    }
+}
+
+
+//=============================================================================
+//
+//=============================================================================
 void vTask001(void *pvParameters) 
 {
-    
-uint8_t cstring[]="vTask001\r\n";
-char_print(cstring);
-
-        
+    //rom_message_send("vTask001 START\r\n\0", message_buf1,__LINE__);
+    rom_char_print("vTask001 START\r\n\0"); 
     while(1) {
-        vTaskDelay(10);
+        //timer_cnt = 12;
+        rom_message_send("vTask001 Activ\r\n\0", message_buf1,__LINE__);
+        vTaskDelay(250);
     }
 }
 
-/* メッセージ送信用タスク */
+int tsk02_ch;
+    
+//=============================================================================
+//
+//=============================================================================
 void vTask002(void *pvParameters)
 {
-uint8_t cstring[]="vTask002\r\n";
-char_print(cstring);
-
+    //rom_message_send("vTask002 START\r\n\0", message_buf2,__LINE__);
+    rom_char_print("vTask002 START\r\n\0"); 
     while(1) {
-        vTaskDelay(10);
+        
+        //rom_print_data( "timer_cnt=%d\r\n", timer_cnt, 0);
+        rom_message_send("vTask002 Activ\r\n\0", message_buf2,__LINE__);
+        
+#ifdef ___NOP
+        tsk02_ch = getch();
+        if( tsk02_ch != 0 ){
+            putch(tsk02_ch);
+        }
+#endif
+        vTaskDelay(100);
     }
 }
 
-/* LED点滅タスク */
+       
+//=============================================================================
+//
+//=============================================================================
 void vTask003(void *pvParameters)
 {
-uint8_t cstring[]="vTask003\r\n";
-char_print(cstring);
+    int ch;
+    PRINT_MSG_FORM  *pm_msg;
+    uint8_t			msgQueBuf[sizeof(void *)];
+    char            *print_mess;
+    char            temp[]="%p,%p\r\n";
+    
+    
+    rom_char_print("vTask003 START\r\n\0"); 
+
     while (1) {
-        vTaskDelay(10);
+        if(xQueueReceive(xQueue, msgQueBuf, portMAX_DELAY) == pdPASS ) {
+            rom_char_print("Tsk03 MsgRcv\r\n");
+            pm_msg = (PRINT_MSG_FORM *)msgQueBuf;
+            print_mess = (char *)pm_msg->malloc_pt;
+     
+            ram_char_print(print_mess);
+        }
+        else{
+            rom_char_print("Error vTask003\r\n\0");
+        }
+
     }
+
 }
 
 //==============================================================================
@@ -219,14 +463,13 @@ void Wait(uint16_t num)
      }
 }
 
-
 //==============================================================================
 // main
 //==============================================================================
 void MAIN(void)
 {
-    int ch;
-    uint8_t     temp[] = "*** UART START ***\r\n\0";
+    int ch,i;
+   
     
     //PLLEN  = 1 ;             // 内部クロックをPLLに通し48MHzとする
     //FSEN   = 1 ;             // USBクロック使用時は48MHzとする
@@ -256,19 +499,22 @@ void MAIN(void)
     TRISDbits.TRISD2 = 1;   // Button 2
     Wait(10000);
     uart_init();
+    
+    rom_char_print("\r\n******************\r\n"); 
+    rom_char_print("*** UART START ***\r\n"); 
+    rom_char_print("******************\r\n"); 
+    
     Wait(10000);
-    putch('\r');
-    putch('\n');
+    //Timer0_init();
+    //Timer1_init();
+    rom_char_print("\r\n*** TMR0 START ***\r\n"); 
+    
+    xQueue = xQueueCreate(QUEUE_LENGTH, sizeof(void *));
     
 
-    char_print(temp);
-      
-    
-   
-
-    xTaskCreate(vTask001, "U01", configMINIMAL_STACK_SIZE + 10, NULL, 3, NULL);
+    xTaskCreate(vTask001, "U01", configMINIMAL_STACK_SIZE + 10, NULL, 1, NULL);
     xTaskCreate(vTask002, "U02", configMINIMAL_STACK_SIZE + 10, NULL, 2, NULL);
-    xTaskCreate(vTask003, "U03", configMINIMAL_STACK_SIZE + 10, NULL, 1, NULL);
+    xTaskCreate(vTask003, "U03", configMINIMAL_STACK_SIZE + 10, NULL, 3, NULL);
     START_SCHEDULER();
     
     vTask001(0);

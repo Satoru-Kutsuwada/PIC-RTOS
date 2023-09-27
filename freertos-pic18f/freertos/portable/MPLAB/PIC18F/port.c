@@ -60,6 +60,10 @@ Changes from V3.2.0
 
 /* MPLAB library include file. */
 #include "timers.h"
+#include "rtc_main.h"
+
+extern RTC_DATA RTCdt;
+extern uint16_t    timer_cnt;
 
 /*-----------------------------------------------------------
  * Implementation of functions defined in portable.h for the PIC port.
@@ -501,6 +505,7 @@ void vPortEndScheduler( void )
  */
 void vPortYield( void )
 {
+    //PIR1bits.CCP1IF=0;
 	/* This can get called with interrupts either enabled or disabled.  We
 	will save the INTCON register with the interrupt enable bits unmodified. */
 	portSAVE_CONTEXT( portINTERRUPTS_UNCHANGED );
@@ -512,6 +517,87 @@ void vPortYield( void )
 	portRESTORE_CONTEXT();
 }
 /*-----------------------------------------------------------*/
+static void timer0_ISR(void)
+{
+    //M_PRINTF_B(timr0=,1); 
+    INTCONbits.TMR0IF = 0;      // 割込みフラグをクリア
+    // タイマー値再設定
+    TMR0H = TIMER0_100usec >> 8;
+    TMR0L = TIMER0_100usec & 0x00ff;
+    //timer_cnt++;
+    
+    RTCdt.usec ++;
+    if( RTCdt.usec > 10 ){
+        RTCdt.usec = 0;
+        RTCdt.msec ++;
+        if( RTCdt.msec > 1000 ){
+            RTCdt.msec = 0;
+            RTCdt.sec ++;
+            if( RTCdt.sec > 60 ){
+                RTCdt.sec = 0;
+                RTCdt.min ++;
+                if( RTCdt.min > 60 ){
+                    RTCdt.min = 0;
+                    RTCdt.hour ++;                
+                }
+            }
+        }
+    }
+
+    _asm
+        RETFIE	0	
+    _endasm
+}
+static void HighInterrupt( void )
+{
+	if( PIR1bits.CCP1IF )
+	{		
+		//PIR1bits.CCP1IF = 0;
+        timer_cnt++;
+        _asm
+			goto prvTickISR
+		_endasm
+	}
+    
+    if( INTCONbits.TMR0IF ){
+
+        INTCONbits.TMR0IF = 0;      // 割込みフラグをクリア
+        // タイマー値再設定
+        TMR0H = TIMER0_100usec >> 8;
+        TMR0L = TIMER0_100usec & 0x00ff;
+        //timer_cnt++;
+
+        RTCdt.usec ++;
+        if( RTCdt.usec > 10 ){
+            RTCdt.usec = 0;
+            RTCdt.msec ++;
+            if( RTCdt.msec > 1000 ){
+                RTCdt.msec = 0;
+                RTCdt.sec ++;
+                if( RTCdt.sec > 60 ){
+                    RTCdt.sec = 0;
+                    RTCdt.min ++;
+                    if( RTCdt.min > 60 ){
+                        RTCdt.min = 0;
+                        RTCdt.hour ++;                
+                    }
+                }
+            }
+        }
+	}
+
+    if( PIR1bits.TMR1IF ){
+        PIR1bits.TMR1IF = 0;
+        TMR1H = TIMER1_10msec >> 8;
+        TMR1L = TIMER1_10msec & 0x00ff;
+                //timer_cnt++;
+    }
+
+    _asm
+        RETFIE	0	
+    _endasm
+    
+}
 
 /*
  * Vector for ISR.  Nothing here must alter any registers!
@@ -519,13 +605,9 @@ void vPortYield( void )
 #pragma code high_vector=0x08
 static void prvLowInterrupt( void )
 {
-	/* Was the interrupt the tick? */
-	if( PIR1bits.CCP1IF )
-	{		
-		_asm
-			goto prvTickISR
-		_endasm
-	}
+    _asm
+        goto HighInterrupt
+    _endasm
 }
 #pragma code
 
